@@ -1,0 +1,112 @@
+{
+    "DNDConfig": null,
+    "_bottom_": {
+        "type": "string",
+        "value": "16dp"
+    },
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 6,
+    "_padding_": [
+        12,
+        8,
+        12,
+        8
+    ],
+    "_percent_": true,
+    "_skin_": "sb5b61f098a64d1ea3df5ecdaa3fc9d4",
+    "_top_": {
+        "type": "string",
+        "value": "16dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "allboxes": [],
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "children": [
+        "flxOwnerShip",
+        "flxWomenOwned",
+        "flxDescBussiness",
+        "flxManagement",
+        "flxNatureOfBuss",
+        "flxPrincipalProductRange",
+        "flxPPMarketPlace",
+        "flxCapitalLabIntensity",
+        "flxDistribution",
+        "flxGeographicLoc",
+        "flxMainSuppCred",
+        "flxMainCustDeb",
+        "CopyflxWomenOwned0f319c5389a644c",
+        "CopyflxWomenOwned0c6b1659c74eb49",
+        "CopyflxWomenOwned0dbf73110e7fe45",
+        "flxLastSiteVisit",
+        "flxLastDept",
+        "flxDirExec",
+        "flxSBGAssoc",
+        "flxFinancialYrEnd",
+        "flxDirNonExec",
+        "flxCompetitors",
+        "flxAuditor",
+        "flxAcctHis"
+    ],
+    "clipbounds": false,
+    "containerweight": 100,
+    "desktopweb": {
+        "render": true
+    },
+    "disabledSkins": {
+        "blockedUISkin": "se10403881e545c88517e38d1704fe6e"
+    },
+    "enablescrolling": true,
+    "focusskin": "s055b30cc8544a4092521d1a3c930a38",
+    "gutterx": {
+        "type": "string",
+        "value": "12dp"
+    },
+    "guttery": {
+        "type": "string",
+        "value": "16dp"
+    },
+    "id": "flxOpInfo",
+    "info": null,
+    "iscustomlayout": false,
+    "isvisible": false,
+    "kiosk": {
+        "render": false
+    },
+    "kuid": "cfa0959ac2eb43c98410f520d0d59620",
+    "layouttype": 5,
+    "name": "kony.ui.FlexContainer",
+    "nativemac": {
+        "render": true
+    },
+    "nativewin": {
+        "render": true
+    },
+    "paddinginpixel": true,
+    "parent": "flxSrc",
+    "pf": "frmCustomer",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "wType": "FlexContainer",
+    "widgetalignment": 1,
+    "zindex": 1
+}

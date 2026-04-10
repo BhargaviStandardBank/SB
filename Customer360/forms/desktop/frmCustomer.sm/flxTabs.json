@@ -38,7 +38,9 @@
         "flxInternalExpo",
         "flxFixedAssets",
         "flxCollateral",
-        "flxInsuranceAss"
+        "flxInsuranceAss",
+        "flxOperationalInfo",
+        "flxRiskRating"
     ],
     "clipbounds": false,
     "containerweight": 100,

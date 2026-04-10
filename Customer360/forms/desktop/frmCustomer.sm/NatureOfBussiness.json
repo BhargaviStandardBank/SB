@@ -1,0 +1,114 @@
+{
+    "@class": "com.kony.gen.viz.model.component.KVizUserWidget",
+    "DNDConfig": null,
+    "_children_": [],
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 1,
+    "_padding_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_percent_": true,
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_top_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "areflexpropsreferenced": false,
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "clipbounds": false,
+    "containerweight": 0,
+    "dataDiffs": {
+        "FlexContainer0e91e04f1e8e74a": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "a294b45affbb42dd954311fcd0d6e693",
+                "srcKUID": "c328a426ff384c3199682ac5a555a788",
+                "wType": "FlexContainer"
+            },
+            "responsiveData": {},
+            "top": {
+                "Default": {
+                    "type": "string",
+                    "value": "5dp"
+                }
+            }
+        },
+        "LabelTextArea": {
+            "__events__": {},
+            "__info__": {
+                "isRoot": true,
+                "kuid": "if600f192a214b39a76ccb5b3847338b",
+                "srcKUID": "hbbfcd7d82a74b7093591483b1d28f49",
+                "wType": "FlexContainer"
+            }
+        },
+        "lblText": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "b7f07de789e6433ba079c621631bd906",
+                "srcKUID": "i9300a4f4a4d48c5998decb33fd84cee",
+                "wType": "Label"
+            },
+            "responsiveData": {},
+            "text": "Nature Of Business"
+        },
+        "txtArea": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "f78d4195397843bdb32e79b4407c4d7c",
+                "srcKUID": "f3847ce1f7404c06b77ebe8c54e77072",
+                "wType": "TextArea"
+            },
+            "height": {
+                "Default": {
+                    "type": "string",
+                    "value": "100%"
+                }
+            },
+            "responsiveData": {},
+            "text": "80/20 Marketing Ltd 80/20 Marketing Ltd for the past 6 years has been operating as a supplier for branded promotional items and also a service provider for PR Communications services with its clientele ranging from NGOs, Government and also the private sector. Today, the company has a partnership with leading South African distributor of Promotional Items called BARON and also has connections with suppliers of high quality items from China as well. The company is pre-qualified with companies like UDB, Bank of Africa, URA, ICEA, MTN Uganda, TOTALENERGIES, etc. They also look at targeting our existing clients who have repeatedly ordered from them which tells that they satisfied with their items & services and would place orders over & over again J"
+        }
+    },
+    "enablescrolling": true,
+    "focusskin": null,
+    "id": "NatureOfBussiness",
+    "info": null,
+    "iscustomlayout": false,
+    "isdatareferenced": false,
+    "isvisible": true,
+    "kuid": "if600f192a214b39a76ccb5b3847338b",
+    "layouttype": 4,
+    "masterType": 0,
+    "name": "kony.ui.UserWidgetInstance",
+    "parent": "flxNatureOfBuss",
+    "pf": "frmCustomer",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "sourceUserWidget": "hbbfcd7d82a74b7093591483b1d28f49",
+    "wType": "UserWidgetInstance",
+    "zindex": 1
+}

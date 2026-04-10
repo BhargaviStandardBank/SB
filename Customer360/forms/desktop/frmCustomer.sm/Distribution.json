@@ -1,0 +1,114 @@
+{
+    "@class": "com.kony.gen.viz.model.component.KVizUserWidget",
+    "DNDConfig": null,
+    "_children_": [],
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 1,
+    "_padding_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_percent_": true,
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_top_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "areflexpropsreferenced": false,
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "clipbounds": false,
+    "containerweight": 0,
+    "dataDiffs": {
+        "FlexContainer0e91e04f1e8e74a": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "id9b4cf50beb4474ad6d283a53fafbe1",
+                "srcKUID": "c328a426ff384c3199682ac5a555a788",
+                "wType": "FlexContainer"
+            },
+            "responsiveData": {},
+            "top": {
+                "Default": {
+                    "type": "string",
+                    "value": "5dp"
+                }
+            }
+        },
+        "LabelTextArea": {
+            "__events__": {},
+            "__info__": {
+                "isRoot": true,
+                "kuid": "dd5b20a5d4e943ac835fe6a1382e23ba",
+                "srcKUID": "hbbfcd7d82a74b7093591483b1d28f49",
+                "wType": "FlexContainer"
+            }
+        },
+        "lblText": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "b4de06bf5b524311bb4d3ebaed97fc00",
+                "srcKUID": "i9300a4f4a4d48c5998decb33fd84cee",
+                "wType": "Label"
+            },
+            "responsiveData": {},
+            "text": "Distribution"
+        },
+        "txtArea": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "f569fdbe9a574aa990fa2d86d5913e8c",
+                "srcKUID": "f3847ce1f7404c06b77ebe8c54e77072",
+                "wType": "TextArea"
+            },
+            "height": {
+                "Default": {
+                    "type": "string",
+                    "value": "100%"
+                }
+            },
+            "responsiveData": {},
+            "text": "80/20 Marketing receives its goods through Entebbe Airport by air freight for goods coming from South Africa and China and the East Africa Bond in Namanve for goods coming from China. The goods are kept in their store in Bwebaija on Entebbe road. Goods that are urgently needed by clients are normally moved from the bond, to our office premises for inspection and taken to client's stores.\n"
+        }
+    },
+    "enablescrolling": true,
+    "focusskin": null,
+    "id": "Distribution",
+    "info": null,
+    "iscustomlayout": false,
+    "isdatareferenced": false,
+    "isvisible": true,
+    "kuid": "dd5b20a5d4e943ac835fe6a1382e23ba",
+    "layouttype": 4,
+    "masterType": 0,
+    "name": "kony.ui.UserWidgetInstance",
+    "parent": "flxDistribution",
+    "pf": "frmCustomer",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "sourceUserWidget": "hbbfcd7d82a74b7093591483b1d28f49",
+    "wType": "UserWidgetInstance",
+    "zindex": 1
+}

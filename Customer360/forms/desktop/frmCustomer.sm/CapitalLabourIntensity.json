@@ -1,0 +1,114 @@
+{
+    "@class": "com.kony.gen.viz.model.component.KVizUserWidget",
+    "DNDConfig": null,
+    "_children_": [],
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 1,
+    "_padding_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_percent_": true,
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_top_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "areflexpropsreferenced": false,
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "clipbounds": false,
+    "containerweight": 0,
+    "dataDiffs": {
+        "FlexContainer0e91e04f1e8e74a": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "a6875b0af5f145839c27d67f11d6a231",
+                "srcKUID": "c328a426ff384c3199682ac5a555a788",
+                "wType": "FlexContainer"
+            },
+            "responsiveData": {},
+            "top": {
+                "Default": {
+                    "type": "string",
+                    "value": "5dp"
+                }
+            }
+        },
+        "LabelTextArea": {
+            "__events__": {},
+            "__info__": {
+                "isRoot": true,
+                "kuid": "e4dfdc26fa5e400bba8a87e2f901b50c",
+                "srcKUID": "hbbfcd7d82a74b7093591483b1d28f49",
+                "wType": "FlexContainer"
+            }
+        },
+        "lblText": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "cfd58894b52b4d31a8d76d316f2772d1",
+                "srcKUID": "i9300a4f4a4d48c5998decb33fd84cee",
+                "wType": "Label"
+            },
+            "responsiveData": {},
+            "text": "Capital Labour Intensity"
+        },
+        "txtArea": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "jd8d32f7595e4b0ca7d26004e69dcf94",
+                "srcKUID": "f3847ce1f7404c06b77ebe8c54e77072",
+                "wType": "TextArea"
+            },
+            "height": {
+                "Default": {
+                    "type": "string",
+                    "value": "100%"
+                }
+            },
+            "responsiveData": {},
+            "text": "80/20 Marketing Ltd runs a highly capital intensive operation and need massive amounts of capital expenditure to fulfill client's orders. Some clients order 1,000s of items with zero deposits meaning the budget is met by the company which has to wait 30-60 days to get payment. The Client employs labour but they usually come in to finished products so their main role is to do deliveries, sales and after sales\n"
+        }
+    },
+    "enablescrolling": true,
+    "focusskin": null,
+    "id": "CapitalLabourIntensity",
+    "info": null,
+    "iscustomlayout": false,
+    "isdatareferenced": false,
+    "isvisible": true,
+    "kuid": "e4dfdc26fa5e400bba8a87e2f901b50c",
+    "layouttype": 4,
+    "masterType": 0,
+    "name": "kony.ui.UserWidgetInstance",
+    "parent": "flxCapitalLabIntensity",
+    "pf": "frmCustomer",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "sourceUserWidget": "hbbfcd7d82a74b7093591483b1d28f49",
+    "wType": "UserWidgetInstance",
+    "zindex": 1
+}

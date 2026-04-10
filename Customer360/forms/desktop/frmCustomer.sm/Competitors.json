@@ -1,0 +1,114 @@
+{
+    "@class": "com.kony.gen.viz.model.component.KVizUserWidget",
+    "DNDConfig": null,
+    "_children_": [],
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 1,
+    "_padding_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_percent_": true,
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_top_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "areflexpropsreferenced": false,
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "clipbounds": false,
+    "containerweight": 0,
+    "dataDiffs": {
+        "FlexContainer0e91e04f1e8e74a": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "e87cd529d7864ca0baf1cf1894b74e5d",
+                "srcKUID": "c328a426ff384c3199682ac5a555a788",
+                "wType": "FlexContainer"
+            },
+            "responsiveData": {},
+            "top": {
+                "Default": {
+                    "type": "string",
+                    "value": "5dp"
+                }
+            }
+        },
+        "LabelTextArea": {
+            "__events__": {},
+            "__info__": {
+                "isRoot": true,
+                "kuid": "b39f1d072c1b4065ba98124e7b5efb74",
+                "srcKUID": "hbbfcd7d82a74b7093591483b1d28f49",
+                "wType": "FlexContainer"
+            }
+        },
+        "lblText": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "eda1d0953ab54bcabf07451f0b677481",
+                "srcKUID": "i9300a4f4a4d48c5998decb33fd84cee",
+                "wType": "Label"
+            },
+            "responsiveData": {},
+            "text": "Competitors"
+        },
+        "txtArea": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "bcaf8fbfebb94c7bb8c4925da885f626",
+                "srcKUID": "f3847ce1f7404c06b77ebe8c54e77072",
+                "wType": "TextArea"
+            },
+            "height": {
+                "Default": {
+                    "type": "string",
+                    "value": "100%"
+                }
+            },
+            "responsiveData": {},
+            "text": "Rocket Products Ltd\nJude Colour Solutions\nClear Media"
+        }
+    },
+    "enablescrolling": true,
+    "focusskin": null,
+    "id": "Competitors",
+    "info": null,
+    "iscustomlayout": false,
+    "isdatareferenced": false,
+    "isvisible": true,
+    "kuid": "b39f1d072c1b4065ba98124e7b5efb74",
+    "layouttype": 4,
+    "masterType": 0,
+    "name": "kony.ui.UserWidgetInstance",
+    "parent": "flxCompetitors",
+    "pf": "frmCustomer",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "sourceUserWidget": "hbbfcd7d82a74b7093591483b1d28f49",
+    "wType": "UserWidgetInstance",
+    "zindex": 1
+}

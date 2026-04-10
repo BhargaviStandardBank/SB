@@ -1,6 +1,5 @@
 {
     "DNDConfig": null,
-    "__parentReadjusting__": false,
     "_height_": {
         "type": "string",
         "value": "100%"
@@ -23,7 +22,7 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "s97edd2235254da99cefe728e9d91035",
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
     "_top_": {
         "type": "string",
         "value": "0dp"
@@ -41,6 +40,7 @@
     "clipbounds": true,
     "containerweight": 100,
     "enablescrolling": true,
+    "focusskin": null,
     "id": "linechart",
     "info": null,
     "isvisible": true,

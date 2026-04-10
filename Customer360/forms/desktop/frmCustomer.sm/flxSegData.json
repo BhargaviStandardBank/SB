@@ -22,7 +22,7 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "sd8ab9c97168446b845155711bc4db99",
+    "_skin_": "s0c135c03ae94beb9e3199579c562d80",
     "_top_": {
         "type": "string",
         "value": "16dp"
@@ -44,11 +44,11 @@
     "containerweight": 100,
     "decelerat": false,
     "disabledSkins": {
-        "blockedUISkin": "slFSBlockedUIbox"
+        "blockedUISkin": "slFSBlockedUIbox",
+        "focusSkin": "s13a2089eddd45cf89a10724aa9345bd"
     },
     "dragg": false,
     "enablescrolling": true,
-    "focusskin": "slFSFocusSbox",
     "horizontalscrollindicator": true,
     "id": "flxSegData",
     "info": null,

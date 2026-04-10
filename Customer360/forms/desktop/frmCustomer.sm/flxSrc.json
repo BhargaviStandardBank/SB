@@ -39,7 +39,10 @@
         "flxSegData",
         "flxChart",
         "flxCollaInfo",
-        "flxInsuranceInfo"
+        "flxInsuranceInfo",
+        "flxOpInfo",
+        "flxRiskTypes",
+        "flxRiskInsight"
     ],
     "clipbounds": false,
     "containerweight": 100,

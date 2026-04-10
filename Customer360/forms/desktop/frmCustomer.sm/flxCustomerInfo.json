@@ -52,7 +52,8 @@
         "flxEmailAddress",
         "flxFax",
         "flxApplicantName",
-        "flxIDNum"
+        "flxIDNum",
+        "flxAddress"
     ],
     "clipbounds": false,
     "containerweight": 100,

@@ -77,7 +77,7 @@
                 "wType": "Label"
             },
             "responsiveData": {},
-            "text": "Customer Name"
+            "text": "Customer Information"
         }
     },
     "enablescrolling": true,

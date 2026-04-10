@@ -19,13 +19,25 @@
     "_title_": null,
     "addWidgetsdone": false,
     "allboxes": [],
+    "breakpointInfo": {
+        "b1": {
+            "width": 1366
+        },
+        "b2": {
+            "width": 1024
+        },
+        "b3": {
+            "width": 640
+        }
+    },
     "canUpdateUI": true,
+    "canvasWidth": 1200,
     "children": [
         "linechart"
     ],
     "containerweight": 100,
     "currentLocale": "default",
-    "device": "iPhoneX",
+    "device": "desktopweb",
     "displayorientation": 3,
     "enabledforidletimeout": false,
     "globalUserWidgetRefs": [
@@ -49,11 +61,10 @@
         "formTransition": "None"
     },
     "paddinginpixel": false,
-    "platform": "iphone",
+    "platform": "desktopweb",
     "prevDevice": "iPhoneX",
     "prevPlatform": "iphone",
     "retainscrollposition": false,
-    "shellCSS": "iOS_iPhoneX",
     "titleBarSkin": "",
     "titlebar": true,
     "type": 3,
