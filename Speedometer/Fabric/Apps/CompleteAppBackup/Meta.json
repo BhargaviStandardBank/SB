@@ -1,0 +1,102 @@
+{
+  "meta" : "{\"faa3cd80-8aab-45d4-a24f-06727e284ed5\":{\"isUpdated\":false},\"1904e888-5661-481b-b7d6-c57662ec9feb\":{\"isUpdated\":false}}",
+  "subType" : "customapp",
+  "description" : "CompleteAppBackup",
+  "version" : "1.0",
+  "intSvcs" : [ {
+    "name" : "aiDetection",
+    "version" : "1.0",
+    "etag" : "699e8ecd-772d-4fa5-80db-3f7e6ca5b2d3"
+  }, {
+    "name" : "AiTextractionIntegration",
+    "version" : "1.0",
+    "etag" : "fb1a408c-92d5-437c-8409-ce510b9e5503"
+  }, {
+    "name" : "BinListIntegration",
+    "version" : "1.0",
+    "etag" : "7d18004f-00d7-4ddf-b35c-4a3593419ef6"
+  }, {
+    "name" : "BloggerComments",
+    "version" : "1.0",
+    "etag" : "b9f3113d-955a-4d18-aba1-e85d4110dc89"
+  }, {
+    "name" : "BloggerInsertPost",
+    "version" : "1.0",
+    "etag" : "e127b0e3-8517-4817-b805-0e0d9011ce97"
+  }, {
+    "name" : "BloggerJson",
+    "version" : "1.0",
+    "etag" : "7231614b-19bb-4c4e-9560-8c1953db2311"
+  }, {
+    "name" : "BloggerPostDetailsAdmin",
+    "version" : "1.0",
+    "etag" : "93304d64-3aee-4019-98ba-3d18ef03fb67"
+  }, {
+    "name" : "bloggerPostUpdate",
+    "version" : "1.0",
+    "etag" : "d7432be9-72b1-4207-a1a4-eea0a2f07de9"
+  }, {
+    "name" : "BloggerServiceJS",
+    "version" : "1.0",
+    "etag" : "30db6015-2605-4d94-a55c-0a5312bddc47"
+  }, {
+    "name" : "BlogIntegration",
+    "version" : "1.0",
+    "etag" : "beed2539-4ec8-4cef-bfe8-03babd3f27f8"
+  }, {
+    "name" : "Copy1MicrosoftGraphService",
+    "version" : "1.0",
+    "etag" : "04b33679-c70c-4948-a93f-82324f04d444"
+  }, {
+    "name" : "Copy1Service",
+    "version" : "1.0",
+    "etag" : "c058a57f-b895-4829-9b0f-2c21f343a7e0"
+  }, {
+    "name" : "CopyAiGoogleKeywordResearch",
+    "version" : "1.0",
+    "etag" : "f71c805e-200c-4c40-92e1-29ef9c6ab312"
+  }, {
+    "name" : "CopyAIImageGeneratorAPITest",
+    "version" : "1.0",
+    "etag" : "557aabf1-e033-4369-a018-352a4ff3dfe9"
+  }, {
+    "name" : "CopyBestBuyService1",
+    "version" : "1.0",
+    "etag" : "2d0d37d0-d458-4782-be88-c61b930ae568"
+  }, {
+    "name" : "CopyGeminiAi",
+    "version" : "1.0",
+    "etag" : "d8d2a99b-855b-4cfc-afce-d7e0d8f05fb0"
+  }, {
+    "name" : "CopyRetailXmlService",
+    "version" : "1.0",
+    "etag" : "ec7dcc13-3b5b-479b-b702-0896b7084f00"
+  }, {
+    "name" : "CopySentenceExpander",
+    "version" : "1.0",
+    "etag" : "112fa99b-edc2-460b-8d60-22bf7f7dbe0e"
+  }, {
+    "name" : "CopyService",
+    "version" : "1.0",
+    "etag" : "afd73d62-58c7-4011-b69d-47e552ce6730"
+  }, {
+    "name" : "googleCalendarIntegration",
+    "version" : "1.0",
+    "etag" : "d69034d7-723c-4453-a19b-f96ccd5466f7"
+  }, {
+    "name" : "GoogleServiceIntegration",
+    "version" : "1.0",
+    "etag" : "1367bcb1-fef0-408e-95b5-d88c9bfa48e3"
+  }, {
+    "name" : "sapGetway",
+    "version" : "1.0",
+    "etag" : "9712d795-2563-4eea-87d6-3a2fe245178f"
+  } ],
+  "objectSvcs" : [ {
+    "name" : "CommentService",
+    "version" : "1.0",
+    "etag" : "627007b8-28e5-4076-b5a9-934e22e1e46e"
+  } ],
+  "identity" : [ "BlogIdenty", "BlogUserIdentity", "FBLogin", "Googlecalender", "googlelogin1", "IdentityOAuth", "IdentityServices", "JsonAuthendicator", "loginSampleOuthNew", "LogoinUser", "MicrosoftAuth", "microsoftIdentityService", "naveenGoogleOAuth", "SampleFood", "SAPGatewayAuth" ],
+  "identitySvcConf" : "{\"session_idle_timeout_mins\":30,\"session_max_duration_mins\":30,\"show_security_attributes\":false,\"is_integrity_enabled\":false,\"auto_extend\":true,\"integrity_key_type\":\"custom\",\"integrity_key\":\"\"}"
+}

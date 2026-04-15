@@ -1,0 +1,1 @@
+require(['applicationController','com/riskrating/chart/RiskRateChart/RiskRateChartController','com/riskrating/chart/RiskRateChart/RiskRateChart','flxSampleRowTemplate','flxSectionHeaderTemplate','flxSampleRowTemplateController','flxSectionHeaderTemplateController','navigation/NavigationModel','navigation/NavigationController'], function(){});

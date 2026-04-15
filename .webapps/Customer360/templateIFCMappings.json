@@ -1,0 +1,398 @@
+{
+    "controllerTemplateInfoMapping": {
+        "desktopweb": {
+            "flxApproverController_desktop": [
+                "flxApproverController"
+            ],
+            "flxDropDownController_desktop": [
+                "flxDropDownController"
+            ],
+            "flxRowController_desktop": [
+                "flxRowController"
+            ],
+            "flxRowItemsController_desktop": [
+                "flxRowItemsController"
+            ],
+            "flxRowSuspendController_desktop": [
+                "flxRowSuspendController"
+            ],
+            "flxSampleRowTemplateController_desktop": [
+                "flxSampleRowTemplateController"
+            ],
+            "flxSchemeListController_desktop": [
+                "flxSchemeListController"
+            ],
+            "flxSecHdrSuspendController_desktop": [
+                "flxSecHdrSuspendController"
+            ],
+            "flxSectionHeaderTemplateController_desktop": [
+                "flxSectionHeaderTemplateController"
+            ],
+            "flxSegSecHdrController_desktop": [
+                "flxSegSecHdrController"
+            ],
+            "flxSuspensionEntryController_desktop": [
+                "flxSuspensionEntryController"
+            ]
+        }
+    },
+    "controllerformInfoMapping": {
+        "desktopweb": {
+            "frmCustomerController_desktop": [
+                "frmCustomerController"
+            ],
+            "frmHomeController_desktop": [
+                "frmHomeController"
+            ]
+        }
+    },
+    "formControllerInfoMapping": {
+        "desktopweb": {
+            "frmCustomer": {
+                "controllerActionDir": "frmCustomerController",
+                "controllerChannel": "desktop",
+                "controllerName": "frmCustomerController"
+            },
+            "frmHome": {
+                "controllerActionDir": "frmHomeController",
+                "controllerChannel": "desktop",
+                "controllerName": "frmHomeController"
+            }
+        }
+    },
+    "formsifcMapping": {
+        "desktopweb": {
+            "Customer360.frmCustomer": {
+                "ControllerExtensions": [],
+                "appName": "Customer360",
+                "controllerInfo": {
+                    "controllerActionName": "frmCustomerController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "frmCustomerController"
+                },
+                "enableModelDriven": false,
+                "formPath": "frmCustomer",
+                "friendlyName": "frmCustomer",
+                "isMDAForm": false
+            },
+            "SBCommon.frmHome": {
+                "ControllerExtensions": [],
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "frmHomeController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "frmHomeController"
+                },
+                "enableModelDriven": false,
+                "formPath": "frmHome",
+                "friendlyName": "frmHome",
+                "isMDAForm": false
+            }
+        }
+    },
+    "templateControllerInfoMapping": {
+        "desktopweb": {
+            "SampleRowTemplate": {
+                "controllerActionDir": "flxSampleRowTemplateController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxSampleRowTemplateController"
+            },
+            "SampleSectionHeaderTemplate": {
+                "controllerActionDir": "flxSectionHeaderTemplateController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxSectionHeaderTemplateController"
+            },
+            "TempApproverSegRow": {
+                "controllerActionDir": "flxApproverController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxApproverController"
+            },
+            "TempDropDown": {
+                "controllerActionDir": "flxDropDownController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxDropDownController"
+            },
+            "TempRowSchemeList": {
+                "controllerActionDir": "flxSchemeListController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxSchemeListController"
+            },
+            "TempRowSuspend": {
+                "controllerActionDir": "flxRowSuspendController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxRowSuspendController"
+            },
+            "TempRowSuspensionEntry": {
+                "controllerActionDir": "flxSuspensionEntryController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxSuspensionEntryController"
+            },
+            "TempSecHdrSuspend": {
+                "controllerActionDir": "flxSecHdrSuspendController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxSecHdrSuspendController"
+            },
+            "TempSegRowInternalExpo": {
+                "controllerActionDir": "flxRowController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxRowController"
+            },
+            "TempSegRowItems": {
+                "controllerActionDir": "flxRowItemsController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxRowItemsController"
+            },
+            "TempSegSecHdr": {
+                "controllerActionDir": "flxSegSecHdrController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxSegSecHdrController"
+            }
+        }
+    },
+    "templatesifcMapping": {
+        "desktopweb": {
+            "Customer360.flxSampleRowTemplate": {
+                "appName": "Customer360",
+                "controllerInfo": {
+                    "controllerActionName": "flxSampleRowTemplateController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSampleRowTemplateController"
+                },
+                "friendlyName": "flxSampleRowTemplate",
+                "templateId": "flxSampleRowTemplate"
+            },
+            "Customer360.flxSectionHeaderTemplate": {
+                "appName": "Customer360",
+                "controllerInfo": {
+                    "controllerActionName": "flxSectionHeaderTemplateController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSectionHeaderTemplateController"
+                },
+                "friendlyName": "flxSectionHeaderTemplate",
+                "templateId": "flxSectionHeaderTemplate"
+            },
+            "SBCommon.flxApprover": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxApproverController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxApproverController"
+                },
+                "friendlyName": "flxApprover",
+                "templateId": "flxApprover"
+            },
+            "SBCommon.flxDropDown": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxDropDownController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxDropDownController"
+                },
+                "friendlyName": "flxDropDown",
+                "templateId": "flxDropDown"
+            },
+            "SBCommon.flxRow": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxRowController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxRowController"
+                },
+                "friendlyName": "flxRow",
+                "templateId": "flxRow"
+            },
+            "SBCommon.flxRowItems": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxRowItemsController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxRowItemsController"
+                },
+                "friendlyName": "flxRowItems",
+                "templateId": "flxRowItems"
+            },
+            "SBCommon.flxRowSuspend": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxRowSuspendController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxRowSuspendController"
+                },
+                "friendlyName": "flxRowSuspend",
+                "templateId": "flxRowSuspend"
+            },
+            "SBCommon.flxSampleRowTemplate": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxSampleRowTemplateController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSampleRowTemplateController"
+                },
+                "friendlyName": "flxSampleRowTemplate",
+                "templateId": "flxSampleRowTemplate"
+            },
+            "SBCommon.flxSchemeList": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxSchemeListController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSchemeListController"
+                },
+                "friendlyName": "flxSchemeList",
+                "templateId": "flxSchemeList"
+            },
+            "SBCommon.flxSecHdrSuspend": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxSecHdrSuspendController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSecHdrSuspendController"
+                },
+                "friendlyName": "flxSecHdrSuspend",
+                "templateId": "flxSecHdrSuspend"
+            },
+            "SBCommon.flxSectionHeaderTemplate": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxSectionHeaderTemplateController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSectionHeaderTemplateController"
+                },
+                "friendlyName": "flxSectionHeaderTemplate",
+                "templateId": "flxSectionHeaderTemplate"
+            },
+            "SBCommon.flxSegSecHdr": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxSegSecHdrController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSegSecHdrController"
+                },
+                "friendlyName": "flxSegSecHdr",
+                "templateId": "flxSegSecHdr"
+            },
+            "SBCommon.flxSuspensionEntry": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxSuspensionEntryController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSuspensionEntryController"
+                },
+                "friendlyName": "flxSuspensionEntry",
+                "templateId": "flxSuspensionEntry"
+            }
+        }
+    },
+    "userwidgetsifcMapping": {
+        "com.hc.segApprover.SegApproverScheme": {
+            "appName": "SBCommon",
+            "classname": "SegApproverScheme",
+            "namespace": "com.hc.segApprover"
+        },
+        "com.hcl.SuspensionEntries.SuspensionEntries": {
+            "appName": "SBCommon",
+            "classname": "SuspensionEntries",
+            "namespace": "com.hcl.SuspensionEntries"
+        },
+        "com.hcl.addSuspend.AddSuspend": {
+            "appName": "SBCommon",
+            "classname": "AddSuspend",
+            "namespace": "com.hcl.addSuspend"
+        },
+        "com.hcl.dropDown.DropDown": {
+            "appName": "SBCommon",
+            "classname": "DropDown",
+            "namespace": "com.hcl.dropDown"
+        },
+        "com.hcl.hdr.FormHeader": {
+            "appName": "SBCommon",
+            "classname": "FormHeader",
+            "namespace": "com.hcl.hdr"
+        },
+        "com.hcl.labelField.LabelsField": {
+            "appName": "SBCommon",
+            "classname": "LabelsField",
+            "namespace": "com.hcl.labelField"
+        },
+        "com.hcl.lblList.LabelList": {
+            "appName": "SBCommon",
+            "classname": "LabelList",
+            "namespace": "com.hcl.lblList"
+        },
+        "com.hcl.lblText.LabelTextBox": {
+            "appName": "SBCommon",
+            "classname": "LabelTextBox",
+            "namespace": "com.hcl.lblText"
+        },
+        "com.hcl.lblTextArea.LabelTextArea": {
+            "appName": "SBCommon",
+            "classname": "LabelTextArea",
+            "namespace": "com.hcl.lblTextArea"
+        },
+        "com.hcl.listData.ListBoxData": {
+            "appName": "SBCommon",
+            "classname": "ListBoxData",
+            "namespace": "com.hcl.listData"
+        },
+        "com.hcl.menu.SideMenu": {
+            "appName": "SBCommon",
+            "classname": "SideMenu",
+            "namespace": "com.hcl.menu"
+        },
+        "com.hcl.popup.AlertUp": {
+            "appName": "SBCommon",
+            "classname": "AlertUp",
+            "namespace": "com.hcl.popup"
+        },
+        "com.hcl.schemeList.SchemeList": {
+            "appName": "SBCommon",
+            "classname": "SchemeList",
+            "namespace": "com.hcl.schemeList"
+        },
+        "com.hcl.segDropDown.SegDropDown": {
+            "appName": "SBCommon",
+            "classname": "SegDropDown",
+            "namespace": "com.hcl.segDropDown"
+        },
+        "com.hcl.segHdr.segHeader": {
+            "appName": "SBCommon",
+            "classname": "segHeader",
+            "namespace": "com.hcl.segHdr"
+        },
+        "com.hcl.segSuspend.SegSuspendList": {
+            "appName": "SBCommon",
+            "classname": "SegSuspendList",
+            "namespace": "com.hcl.segSuspend"
+        },
+        "com.hcl.srchTextBox.SrchTextBox": {
+            "appName": "SBCommon",
+            "classname": "SrchTextBox",
+            "namespace": "com.hcl.srchTextBox"
+        },
+        "com.hcl.subHdr.SubHdr": {
+            "appName": "SBCommon",
+            "classname": "SubHdr",
+            "namespace": "com.hcl.subHdr"
+        },
+        "com.hcl.suspenEntryHdr.SuspenEntryHdr": {
+            "appName": "SBCommon",
+            "classname": "SuspenEntryHdr",
+            "namespace": "com.hcl.suspenEntryHdr"
+        },
+        "com.konymp.halfdonutup": {
+            "appName": "Customer360",
+            "classname": "halfdonutup",
+            "namespace": "com.konymp"
+        },
+        "com.konymp.linechart": {
+            "appName": "Customer360",
+            "classname": "linechart",
+            "namespace": "com.konymp"
+        },
+        "com.riskrating.chart.RiskRateChart": {
+            "appName": "SBCommon",
+            "classname": "RiskRateChart",
+            "namespace": "com.riskrating.chart"
+        }
+    }
+}

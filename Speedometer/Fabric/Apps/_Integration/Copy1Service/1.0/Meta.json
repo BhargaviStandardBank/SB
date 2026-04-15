@@ -1,0 +1,9 @@
+{
+  "serviceType" : "integration",
+  "dataAdapter" : {
+    "name" : "AI Random User Generator",
+    "version" : "1.0"
+  },
+  "mapType" : "java.util.HashMap",
+  "empty" : true
+}

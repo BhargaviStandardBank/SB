@@ -1,0 +1,16 @@
+{
+  "name" : "loginSampleOuthNew",
+  "type" : "oauth2",
+  "version" : "1.0",
+  "metaPreference" : -1,
+  "config" : "{\"dependent_providers\":[],\"auth_type\":\"oauth2\",\"session_restrictions\":{\"session_restriction_type\":\"allow_any_number_of_sessions\"},\"oauthProviderType\":\"default\",\"grant_type\":\"authorization_code\",\"authorization_endpoint\":\"https://accounts.google.com/o/oauth2/v2/auth\",\"token_endpoint\":\"https://www.googleapis.com/oauth2/v4/token\",\"logout_url\":\"\",\"client_authentication\":{\"client_id\":\"586608175005-gk2nqp4m8rga85u24iuoafbd2fjuc764.apps.googleusercontent.com\",\"client_secret\":\"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\",\"authentication_scheme\":\"header\",\"client_pvt_key_jwt\":false},\"scope\":\"openid email profile https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email\",\"authentication_scheme\":\"header\",\"profile\":{\"endpoint\":{\"location\":\"\",\"type\":\"none\",\"value\":\"\"},\"request_method\":\"GET\",\"profile_attribute_selectors\":{\"federation_id\":\"\",\"email\":\"\",\"first_name\":\"\",\"last_name\":\"\",\"custom_profile_attribute_selectors\":{}}},\"dollarParamPresence\":{\"authorization_endpoint\":false,\"token_endpoint\":false,\"logout_url\":false,\"revoke_url\":false,\"profile_url\":false},\"enable_identity_pkce\":true,\"additional_data\":{\"token_request\":[],\"refresh_request\":[],\"profile_request\":[],\"authorize_request\":[],\"revoke_request\":[]}}",
+  "policyConfig" : "{\"def_user_status\":\"pending\",\"max_login_fail\":5}",
+  "admissionPolicy" : "no_approval_needed",
+  "identityMeta" : {
+    "allow_sso" : false
+  },
+  "isIntegrityEnabled" : true,
+  "ssoenabled" : false,
+  "mapType" : "java.util.HashMap",
+  "empty" : true
+}

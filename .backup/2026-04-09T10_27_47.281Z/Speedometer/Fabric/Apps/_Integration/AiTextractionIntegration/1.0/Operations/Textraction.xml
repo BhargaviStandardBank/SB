@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service serviceGroup="" cachable="false" cacheduration="" customOperation="false" description="" endpoint="default" groupType="" id="Textraction" passwordencrypted="false" security="authorized_app_user" type="dataAdapterConnector" smscode="" smsenabled="false">
+    <service-config>
+        <config-param api-version="" appid="" name="preprocessorname" value=""/>
+        <config-param api-version="" appid="" name="postprocessorname" value=""/>
+        <config-param api-version="" appid="" name="preprocessorJS" value=""/>
+        <config-param api-version="" appid="" name="postprocessorJS" value=""/>
+        <config-param api-version="" appid="" name="preprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="postprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="kony_http_supported_methods" value="POST"/>
+        <config-param api-version="" appid="" name="endpointUrl" value=""/>
+        <config-param api-version="" appid="" name="opcode" value="service"/>
+        <config-param api-version="" appid="" name="sockettimeout" value=""/>
+        <config-param api-version="" appid="" name="entitymetadata" value="{&quot;name&quot;:&quot;Textraction&quot;,&quot;serviceType&quot;:&quot;com.kony.adapter.openapi.v3.OpenApiV3Service&quot;}"/>
+        <config-param api-version="" appid="" name="metadataformatterobject" value="{&quot;serviceType&quot;:&quot;com.kony.adapter.openapi.v3.OpenApiV3Service&quot;,&quot;serviceOutput&quot;:[],&quot;qualifiedName&quot;:&quot;Textraction&quot;,&quot;serviceIdForCache&quot;:&quot;&quot;,&quot;name&quot;:&quot;Textraction&quot;,&quot;serviceInput&quot;:[{&quot;name&quot;:&quot;text&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;entities&quot;,&quot;serviceElementTypeList&quot;:[],&quot;param_type&quot;:&quot;Default&quot;}],&quot;listOfHeaders&quot;:[{&quot;defaultValue&quot;:&quot;application/json&quot;,&quot;name&quot;:&quot;Accept&quot;},{&quot;defaultValue&quot;:&quot;application/json&quot;,&quot;name&quot;:&quot;Content-Type&quot;},{&quot;name&quot;:&quot;Authorization&quot;},{&quot;name&quot;:&quot;X-RapidAPI-Key&quot;},{&quot;name&quot;:&quot;X-RapidAPI-Host&quot;}]}"/>
+        <config-param api-version="" appid="" name="isCustomQuery" value="false"/>
+        <config-param api-version="" appid="" name="customQuery" value=""/>
+        <config-param api-version="" appid="" name="paramType" value="[{&quot;name&quot;:&quot;text&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;entities&quot;,&quot;serviceElementTypeList&quot;:[],&quot;param_type&quot;:&quot;Default&quot;}]"/>
+        <config-param api-version="" appid="" name="http_auth_mode" value="none"/>
+        <config-param api-version="" appid="" name="serverURL" value="https://ai-textraction.p.rapidapi.com"/>
+        <config-param api-version="" appid="" name="serverURLs" value=""/>
+        <config-param api-version="" appid="" name="serverDescription" value=""/>
+        <config-param api-version="" appid="" name="serverDescriptions" value=""/>
+        <config-param api-version="" appid="" name="authservicetype" value="IdentityProvider"/>
+        <config-param api-version="" appid="" name="adaptertype" value="CUSTOM"/>
+        <config-param api-version="" appid="" name="zipName" value="AI Textraction.zip"/>
+        <config-param api-version="" appid="" name="basepackage" value="com.kony.adapter.openapi.v3"/>
+        <config-param api-version="" appid="" name="identityProviderType" value=""/>
+        <config-param api-version="" appid="" name="identityProvider" value=""/>
+        <config-param api-version="" appid="" name="mapped_to" value="Textraction"/>
+    </service-config>
+    <service-input passthrough="false" isExtended="false">
+        <header datatype="" name="" passthrough="false" isExtended="false">
+            <param datatype="string" defaultvalue="application/json" description="" encode="false" format="None" formatvalue="" name="Accept" order="" paramOrder="0" parentOrder="0" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="" targetdatatype="" testvalue="" value="application/json" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="application/json" description="" encode="false" format="None" formatvalue="" name="Content-Type" order="" paramOrder="0" parentOrder="0" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="" targetdatatype="" testvalue="" value="application/json" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="false" format="None" formatvalue="" name="Authorization" order="" paramOrder="0" parentOrder="0" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="" targetdatatype="" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="false" format="None" formatvalue="" name="X-RapidAPI-Key" order="" paramOrder="0" parentOrder="0" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="" targetdatatype="" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="false" format="None" formatvalue="" name="X-RapidAPI-Host" order="" paramOrder="0" parentOrder="0" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="" targetdatatype="" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+        </header>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="text" order="" paramOrder="1" parentOrder="-1" passnull="true" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="Python is a high-level, general-purpose programming language known for its readability and simplicity. It was created by Guido van Rossum and first released in 1991. Python supports multiple programming paradigms, including procedural, object-oriented, and functional programming." value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="collection" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="entities" order="" paramOrder="2" parentOrder="-1" passnull="false" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <template-param datatype="" defaultvalue="" description="" encode="false" format="" formatvalue="" name="criteria" order="" paramOrder="0" parentOrder="0" sms-name="" src="" sourcevalue="" srcformatvalue="" target="" targetdatatype="" value="" isExtended="false">
+            <accessType></accessType>
+        </template-param>
+    </service-input>
+    <service-output passthrough="false" isExtended="false"/>
+</service>

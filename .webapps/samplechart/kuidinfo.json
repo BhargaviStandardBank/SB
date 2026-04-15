@@ -1,0 +1,153 @@
+{
+    "idToKuidMapping": {
+        "androidwear": {},
+        "desktop": {
+            "Form1": "h65b8fa693a54a1889247d4a578558fa",
+            "Form2": "d897ec7f3f864b6e9b9d5efc593355e6",
+            "SampleRowTemplate": "cb8010b8716642ffaad4dde2cb12695a",
+            "SampleSectionHeaderTemplate": "c86613f91de64e4c8076bc7bff8a9cf5"
+        },
+        "masters": {},
+        "mobile": {},
+        "skins": {
+            "defBtnBlockedUI": "sad650e3b554410cb830f137fe29d4c9",
+            "defBtnHover": "sacac96815eb4ea785aca546c79e8734",
+            "defBtnPressed": "se7a1b37f11b4bf5828530c358dac47d",
+            "defTextAreaBlockedUI": "s31be43304804967ad6bbe27b0fde352",
+            "defTextAreaHover": "s3969463ae1946eebf26633fd316cecc",
+            "defTextBoxBlockedUI": "s4265d3422894a7ab34eefc4bd0af188",
+            "sknLblDescription": "s1cb0939d3034ba2b648502f5c1292d8",
+            "sknLblRowHeading": "s33043b305a148cab93384134508e544",
+            "sknLblStrip": "sf590eddb40a4a91bdc29df54fc3c2dc",
+            "sknLblTimeStamp": "s0452aac4d0948698361005158838545",
+            "sknSampleRowTemplate": "s464c92fd0d845f08a557350504171d5",
+            "sknSampleSectionHeaderTemplate": "s8e651b3eafd45a38f1cbe3b5a94304a",
+            "sknSectionHeaderLabelSkin": "sb165b32b74f43b38c28b4f54c4c2e3d",
+            "sknslFbox5": "sd03a2deedcf48dc9ed882d8ba60f883",
+            "sknslForm01a6acdcc890149": "s247049ba0404832b444a257f4961ae4",
+            "sknslTitleBar05676fd2e088747": "s1df7fa3e7214dd69684ff97bc392c83",
+            "slCameraFocus": "sea51c6a38334ed3906c0be8e256cb99",
+            "slDynamicNotificationForm": "sb93bba4ef734c58892f425da1e1696c",
+            "slFBlockedUIbox": "se10403881e545c88517e38d1704fe6e",
+            "slFFocusbox": "s055b30cc8544a4092521d1a3c930a38",
+            "slFSBlockedUIbox": "s4a31468fb624fe9b00cafc228a8ee66",
+            "slFSFocusSbox": "s50473dc54ea429da8f631a3be7bfda1",
+            "slFbox": "s4351af2bcfe417d983a8b6fee28272f",
+            "slForm": "s4f2c8fae2b641f0ae3342782741c1c4",
+            "slImage": "s3f3716afec64fa4afd7e1143bf5e5ed",
+            "slSplashiOS": "s8a7129691994256992df2db52ed9379",
+            "slStaticNotificationForm": "s80f35558f0840b8bd3a74eb5326fc60",
+            "slTitleBar": "sfc23d05b60c4baaa354d08d9df4aa4a",
+            "slWatchForm": "s7d8fafc8abb4e8791e81d4ab033c792"
+        },
+        "tablet": {},
+        "userwidgets": {
+            "com.konymp.halfdonutup": "ubd627c9609a4932b3e918bf71874bb7"
+        }
+    },
+    "kuidDependencyMap": {
+        "s0452aac4d0948698361005158838545": [
+            "cb8010b8716642ffaad4dde2cb12695a"
+        ],
+        "s055b30cc8544a4092521d1a3c930a38": [
+            "h65b8fa693a54a1889247d4a578558fa",
+            "d897ec7f3f864b6e9b9d5efc593355e6"
+        ],
+        "s1cb0939d3034ba2b648502f5c1292d8": [
+            "cb8010b8716642ffaad4dde2cb12695a"
+        ],
+        "s33043b305a148cab93384134508e544": [
+            "cb8010b8716642ffaad4dde2cb12695a"
+        ],
+        "s4351af2bcfe417d983a8b6fee28272f": [
+            "h65b8fa693a54a1889247d4a578558fa",
+            "d897ec7f3f864b6e9b9d5efc593355e6"
+        ],
+        "s464c92fd0d845f08a557350504171d5": [
+            "cb8010b8716642ffaad4dde2cb12695a"
+        ],
+        "s4f2c8fae2b641f0ae3342782741c1c4": [
+            "h65b8fa693a54a1889247d4a578558fa",
+            "d897ec7f3f864b6e9b9d5efc593355e6"
+        ],
+        "s8e651b3eafd45a38f1cbe3b5a94304a": [
+            "c86613f91de64e4c8076bc7bff8a9cf5"
+        ],
+        "sb165b32b74f43b38c28b4f54c4c2e3d": [
+            "c86613f91de64e4c8076bc7bff8a9cf5"
+        ],
+        "sd03a2deedcf48dc9ed882d8ba60f883": [
+            "ubd627c9609a4932b3e918bf71874bb7",
+            "h65b8fa693a54a1889247d4a578558fa"
+        ],
+        "sf590eddb40a4a91bdc29df54fc3c2dc": [
+            "cb8010b8716642ffaad4dde2cb12695a"
+        ]
+    },
+    "kuidInfo": {
+        "androidwear": {},
+        "desktop": {
+            "c86613f91de64e4c8076bc7bff8a9cf5": {
+                "appName": "samplechart",
+                "id": "SampleSectionHeaderTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSectionHeaderTemplate"
+            },
+            "cb8010b8716642ffaad4dde2cb12695a": {
+                "appName": "samplechart",
+                "id": "SampleRowTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSampleRowTemplate"
+            },
+            "d897ec7f3f864b6e9b9d5efc593355e6": {
+                "appName": "samplechart",
+                "id": "Form2",
+                "relFormId": "Form2",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "h65b8fa693a54a1889247d4a578558fa": {
+                "appName": "samplechart",
+                "id": "Form1",
+                "relFormId": "Form1",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            }
+        },
+        "masters": {},
+        "mobile": {},
+        "tablet": {},
+        "userwidgets": {
+            "ubd627c9609a4932b3e918bf71874bb7": {
+                "appName": "samplechart",
+                "id": "com.konymp.halfdonutup",
+                "templateType": "userwidgets",
+                "viewName": "halfdonutup",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            }
+        }
+    },
+    "userWidgetsKuidToIdMap": {
+        "ubd627c9609a4932b3e918bf71874bb7": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/samplechart/userwidgets/com.konymp.halfdonutup/userwidgetmodel.sm"
+        },
+        "uc27e83037d943adbda5f7419457440b": {
+            "id": "halfdonutup",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/samplechart/userwidgets/com.konymp.halfdonutup"
+        },
+        "uc59957ae23544bf9d7f55e5a8567636": {
+            "id": "gaugeUpBrowser",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/samplechart/userwidgets/com.konymp.halfdonutup/userwidgetmodel.sm"
+        }
+    }
+}

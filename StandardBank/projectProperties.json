@@ -68,7 +68,7 @@
     "androidscreenresizeable": "false",
     "androidscreensmall": "true",
     "androidwear_allowselfsignedcertificates": "None",
-    "andwearapppackagekey": "com.orgname.Sample",
+    "andwearapppackagekey": "com.orgname.StandardBank",
     "andwearappversioncode": "1",
     "andwearmaxsdkkey": "None",
     "antialiaseddrawing": "false",
@@ -97,7 +97,7 @@
                         "default": "option1.png"
                     },
                     "id": "appmenuitemid1",
-                    "kuid": "f8272134846c4281a1d43e020c55f9c6",
+                    "kuid": "ef9cc0de0951436081d4d8285a7cdfa9",
                     "title": "Item 1"
                 },
                 {
@@ -105,7 +105,7 @@
                         "default": "option2.png"
                     },
                     "id": "appmenuitemid2",
-                    "kuid": "i687c2033cf24271b685080c7d9fd5d8",
+                    "kuid": "a9e97479110646ccb1a329be7a12a425",
                     "title": "Item 2"
                 },
                 {
@@ -113,7 +113,7 @@
                         "default": "option3.png"
                     },
                     "id": "appmenuitemid3",
-                    "kuid": "g047f03e5a334f559952a3dfae969004",
+                    "kuid": "i7762fa5e9694a6184becad967ad4c5e",
                     "title": "Item 3"
                 },
                 {
@@ -121,7 +121,7 @@
                         "default": "option4.png"
                     },
                     "id": "appmenuitemid4",
-                    "kuid": "b7b36abed128421b844dee994b28c927",
+                    "kuid": "c2185a6c16a04451a8abc54a32fdedbc",
                     "title": "Item 4"
                 }
             ]
@@ -135,7 +135,7 @@
                         "default": "option1.png"
                     },
                     "id": "appmenuitemid1",
-                    "kuid": "f8aa558cd1b247fd8face833214a5058",
+                    "kuid": "a5609875f16c4a3485f7f99a67b5d5fe",
                     "title": "Item 1"
                 },
                 {
@@ -143,7 +143,7 @@
                         "default": "option2.png"
                     },
                     "id": "appmenuitemid2",
-                    "kuid": "c2a9b9e12f664ee88366dc0397de644d",
+                    "kuid": "eb06e025e2ad40fe878e45c426dd742a",
                     "title": "Item 2"
                 },
                 {
@@ -151,7 +151,7 @@
                         "default": "option3.png"
                     },
                     "id": "appmenuitemid3",
-                    "kuid": "fb57866c24874151b06c0a5a4f122e03",
+                    "kuid": "c7a6cdb1363d45789c8b439532b57f12",
                     "title": "Item 3"
                 },
                 {
@@ -159,7 +159,7 @@
                         "default": "option4.png"
                     },
                     "id": "appmenuitemid4",
-                    "kuid": "g9f3ee50e55e4a52b738541882c93411",
+                    "kuid": "h8294cd243c94983ae5d595a82558046",
                     "title": "Item 4"
                 }
             ]
@@ -174,7 +174,7 @@
                         "default": "option1.png"
                     },
                     "id": "appmenuitemid1",
-                    "kuid": "e0ca3359a221449bbf3062165dec2208",
+                    "kuid": "i2923691e816405dab05e66114b699cb",
                     "title": "Item 1",
                     "windows8": {
                         "appBarButtonStyle": "No Style",
@@ -186,7 +186,7 @@
                         "default": "option2.png"
                     },
                     "id": "appmenuitemid2",
-                    "kuid": "ic8c3f99afa34c81b19e9c6b9488d5bc",
+                    "kuid": "f84a1a636066459887714e3c0f9b426e",
                     "title": "Item 2",
                     "windows8": {
                         "appBarButtonStyle": "No Style",
@@ -198,7 +198,7 @@
                         "default": "option3.png"
                     },
                     "id": "appmenuitemid3",
-                    "kuid": "ad97aec62e82486a8a2a80697c2e8217",
+                    "kuid": "i99c4a20062140bd88ed854d6efbee64",
                     "title": "Item 3",
                     "windows8": {
                         "appBarButtonStyle": "No Style",
@@ -210,7 +210,7 @@
                         "default": "option4.png"
                     },
                     "id": "appmenuitemid4",
-                    "kuid": "e87e3419973844c6a94f21469b3d2d4e",
+                    "kuid": "dd78eb0c8cfc4ed3acf29c8bd3cd88c9",
                     "title": "Item 4",
                     "windows8": {
                         "appBarButtonStyle": "No Style",
@@ -223,7 +223,7 @@
     },
     "appnamekey": "StandardBank",
     "appointments": "false",
-    "apppackagekey": "com.orgname.Sample",
+    "apppackagekey": "com.orgname.StandardBank",
     "apptitle": "",
     "appversioncode": "1",
     "appversionkey": "1.0.0",
@@ -252,6 +252,7 @@
     "build_gradle_attrs_prefix_andwear": "",
     "build_gradle_attrs_suffix": "",
     "build_gradle_attrs_suffix_andwear": "",
+    "buttonAsLabel": true,
     "camerasettings": "",
     "category": "app",
     "chat": "false",
@@ -260,17 +261,14 @@
     "codeGeneration": "false",
     "contacts": "false",
     "cordovaModified": false,
-    "cordovaVersionInfo": {
-        "useGlobalCordova": false
-    },
-    "createdVizVersion": "10.0.0",
-    "createdgaversion": "10.0.0",
+    "createdVizVersion": "10.0.5.0",
+    "createdgaversion": "10.0.5.0",
     "currentgaversion": "10.0.5.0",
     "deeplinkkey": "None",
     "defaultZIndex": "1",
-    "defaultlocalekey": "pt_PT",
+    "defaultlocalekey": "",
     "defaulttheme": "defaultTheme",
-    "desktopstartupformkey": "fc512eaefe8248828e2f7f954852e301",
+    "desktopstartupformkey": "fd1b30e466a64beb9bdbf382fbeca372",
     "desktopwebaligenmentoption": "left",
     "desktopwebbasefontsize": "16",
     "desktopwebfavico": "",
@@ -312,7 +310,6 @@
     "exceptionalert": "true",
     "extendBottom": "false",
     "extendTop": "false",
-    "fabric_runtime_app_version": "Linked",
     "fbxfolderpathkey": "",
     "fgcolorkey": "255,255,255",
     "generateJavaCodeForForms": "false",
@@ -406,24 +403,22 @@
     "iphone_spotlighticon_3x_40": "",
     "iphone_spotlighticon_3x_40_dark": "",
     "iphone_spotlighticon_3x_40_tinted": "",
-    "iphonebundleidentifierkey": "com.hcl.Sample",
+    "iphonebundleidentifierkey": "com.hcl.StandardBank",
     "iphonebundleversionkey": "1.0.0",
     "iphoneipad_appstoreicon_1x_1024": "",
     "iphoneipad_appstoreicon_1x_1024_dark": "",
     "iphoneipad_appstoreicon_1x_1024_tinted": "",
+    "iphoneipadenablescenedelegate": "false",
     "iphoneipadglossyeffectkey": "false",
     "iphoneloadindicatorkey": "true",
     "iphoneurlscheme": "",
     "iphonewebshrtcutkey": "",
     "isA11yConfigEnabled": false,
     "isDpScaleFactor": true,
-    "isEASAppUpgradable": false,
     "isI18nConfigEnabled": false,
-    "isI18nLayoutConfigEnabled": false,
     "isMVC": true,
     "isNewAppWithRespectToAndroidPackageName": "true",
     "isNewAppWithRespectToAndroidWearPackageName": "true",
-    "isScreenShotDisabledForTestReports": false,
     "keyAlias": "",
     "keyAliasandwear": "",
     "keyStoreFilePath": "",
@@ -431,13 +426,13 @@
     "kfAppInfo": {
         "4f3cb165-da14-4aa4-8d93-3fb6a5f6a994": {
             "appName": "StandardBank",
-            "baseId": "cabada2d-dd07-4982-a73d-fa16a29fd8a5",
-            "id": "cabada2d-dd07-4982-a73d-fa16a29fd8a5",
+            "baseId": "ac303668-f56d-4163-82db-71fc28de5fc1",
+            "id": "ac303668-f56d-4163-82db-71fc28de5fc1",
             "version": "1.0"
         }
     },
     "konyVizVersion": "10.0.5.0",
-    "lastmodifiedtime": "1743151351411",
+    "lastmodifiedtime": "1775662736918",
     "location": "false",
     "mangoapptitlekey": ",,,,,,",
     "mapkey": "",
@@ -710,7 +705,6 @@
     "protectedmodeenabled_android": "false",
     "protectedmodeenabled_androidwear": "false",
     "protectedmodeenabled_ios": "false",
-    "prototype": {},
     "proximity": "false",
     "read_device_identifying_information": "false",
     "referenceWidth": "375",
@@ -723,6 +717,16 @@
     },
     "remoteSystem": "false",
     "removableStorage": "false",
+    "rosettaConvertDelay": "750",
+    "rosettaCustomAPIFile": "",
+    "rosettaDRAPIServiceName": "",
+    "rosettaEmailServiceName": "",
+    "rosettaFormulaGetFieldEnabled": false,
+    "rosettaFormulaPassthroughEnabled": true,
+    "rosettaNativeness": {},
+    "rosettaPreferredFormulaImpl": "notes",
+    "rosettaShowNI": true,
+    "rosettaShowNPTI": true,
     "schemekey": "",
     "schemekey_andwear": "",
     "secondarytilefunctionkey": "None",
@@ -740,7 +744,7 @@
     "spawindows480basefontsize": "12",
     "spawindowstabbasefontsize": "17",
     "splashlogokey": "",
-    "startupformkey": "a722f321a88343b8a294995f9747a2b5",
+    "startupformkey": "",
     "statusBarHidden": "false",
     "statusBarStyle": "STATUS_BAR_STYLE_DEFAULT",
     "support32bit": "false",
@@ -847,16 +851,16 @@
     "win8bgagenttaskname": "",
     "win8certificatekey": "",
     "win8descriptionkey": "Sample Test Application",
-    "win8displaynamekey": "Sample",
+    "win8displaynamekey": "StandardBank",
     "win8enablecrashlogkey": "false",
     "win8lockscreennotificationskey": "Not set",
-    "win8packagedisplaynamekey": "Sample",
+    "win8packagedisplaynamekey": "StandardBank",
     "win8packagelogokey": "",
-    "win8packagenamekey": "Sample",
+    "win8packagenamekey": "StandardBank",
     "win8packagepublichernamekey": "HCL",
     "win8publisherdisplaynamekey": "HCL",
     "win8pvkkey": "",
-    "win8shortnamekey": "Sample",
+    "win8shortnamekey": "StandardBank",
     "win8shownamekey": "Not set",
     "win8smalllogokey": "",
     "win8toastcapablekey": "Not set",
@@ -874,7 +878,7 @@
     "windowsloadindicatorkey": "true",
     "windowsmapkey": "",
     "winenablecrashlogkey": "false",
-    "winmangotiletitlekey": "Sample",
+    "winmangotiletitlekey": "StandardBank",
     "winmobileguidkey": "",
     "winmobiletileimagekey": "",
     "winphn10bgagentclassname": "",
@@ -902,7 +906,7 @@
     "wp10codeGeneration": "false",
     "wp10contacts": "false",
     "wp10descriptionkey": "Sample Test Application",
-    "wp10displayname": "Sample",
+    "wp10displayname": "StandardBank",
     "wp10enablecrashlogkey": "false",
     "wp10enterpriseAuthentication": "false",
     "wp10initialRotationPreferenceKey": "landscape",
@@ -913,10 +917,10 @@
     "wp10microphone": "false",
     "wp10musicLibrary": "false",
     "wp10objects3D": "false",
-    "wp10packagedisplaynamekey": "Sample",
+    "wp10packagedisplaynamekey": "StandardBank",
     "wp10packagelogokey": "",
-    "wp10packagenamekey": "Sample",
-    "wp10packagepublichernamekey": "HCL",
+    "wp10packagenamekey": "StandardBank",
+    "wp10packagepublichernamekey": "Temenos",
     "wp10pfxkey": "",
     "wp10phoneCall": "false",
     "wp10picturesLibrary": "false",
@@ -926,7 +930,7 @@
     "wp10remoteSystem": "false",
     "wp10removableStorage": "false",
     "wp10sharedUserCertificates": "false",
-    "wp10shortnamekey": "Sample",
+    "wp10shortnamekey": "StandardBank",
     "wp10shownamekey": "Not set",
     "wp10smalllogokey": "",
     "wp10tileUpdateRecurrenceKey": "",
@@ -944,12 +948,12 @@
     "wp10webcam": "false",
     "wp10widelogokey": "",
     "wp81sdescriptionkey": "Sample Test Application",
-    "wp81sdisplaynamekey": "Sample",
+    "wp81sdisplaynamekey": "StandardBank",
     "wp81slockscreennotificationskey": "Not set",
-    "wp81spackagedisplaynamekey": "Sample",
-    "wp81spackagenamekey": "Sample",
-    "wp81spackagepublichernamekey": "HCL",
-    "wp81spublisherdisplaynamekey": "HCL",
+    "wp81spackagedisplaynamekey": "StandardBank",
+    "wp81spackagenamekey": "StandardBank",
+    "wp81spackagepublichernamekey": "Kony",
+    "wp81spublisherdisplaynamekey": "Temenos",
     "wp81stoastcapablekey": "Not set",
     "wp8cycle1key": "",
     "wp8cycle2key": "",

@@ -1,18 +1,20 @@
 {
     "models": {
-        "mobile": {
-            "class": "GraphLinksModel",
-            "linkDataArray": [],
-            "nodeDataArray": [
-                {
-                    "formKUID": "a722f321a88343b8a294995f9747a2b5",
-                    "formName": "Form1",
-                    "isStartupForm": true,
-                    "key": "a722f321a88343b8a294995f9747a2b5",
-                    "loc": "8 25.026806640625",
-                    "thumbnailURL": null
-                }
-            ]
+        "desktop": {
+            "1366": {
+                "class": "GraphLinksModel",
+                "linkDataArray": [],
+                "nodeDataArray": [
+                    {
+                        "formKUID": "b9042dc94cc24cf295a929e6d2cfa98f",
+                        "formName": "Form1",
+                        "isStartupForm": true,
+                        "key": "b9042dc94cc24cf295a929e6d2cfa98f",
+                        "loc": "8 25.026806640625",
+                        "thumbnailURL": null
+                    }
+                ]
+            }
         }
     }
 }

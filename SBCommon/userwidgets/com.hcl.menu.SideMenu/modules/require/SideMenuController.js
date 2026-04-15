@@ -59,31 +59,26 @@ define(function() {
                  {
                    header: { lblSectionTitle: "Customer 360", isExpanded: false },
                    rows: [{ lblMenuItem: "Customer Info", formID: {
-                     "appName": "Customer360",
-                     "friendlyName": "frmCustomer"
-                   }
-                          },
-                          { lblMenuItem: "Request History", formID: {
-                            "appName": "ManageScheme",
-                            "friendlyName": "frmSchemeReqHistory"
-                          } 
-                          },
-                          { lblMenuItem: "Add Scheme", formID: {
-                            "appName": "ManageScheme",
-                            "friendlyName": "frmAddScheme"
-                          } 
-                          },
-                          { lblMenuItem: "Remove Scheme", formID: {
-                            "appName": "ManageScheme",
-                            "friendlyName": "frmRemoveScheme"
-                          } 
-                          },
-                          { lblMenuItem: "Approvers", formID: {
-                            "appName": "ManageScheme",
-                            "friendlyName": "frmSchemeApprover"
-                          } }
+                             "appName": "Customer360",
+                             "friendlyName": "frmCustomer"
+                           }
+                          }
                          ]
-                 }
+                 },
+                  {
+                   header: { lblSectionTitle: "Financial Spreading & Risk Rating", isExpanded: false },
+                 },
+                 {
+                   header: { lblSectionTitle: "Queue Manager", isExpanded: false },
+                 },
+                 {
+                   header: { lblSectionTitle: "Reporting / Dashboard", isExpanded: false },
+                 },
+                 {
+                   header: { lblSectionTitle: "Home", isExpanded: false,
+                            formID: { "appName": "StandardBank", "friendlyName": "frmSBHome" }
+                           },
+                 },
                 ],
 
     constructor: function() {
@@ -140,14 +135,26 @@ define(function() {
     },
 
     onSectionClicked: function(sectionIndex) {
-      const currentState = this.masterData[sectionIndex].header.isExpanded;
+      const section = this.masterData[sectionIndex];
+      
+      // 1. Check if the clicked section is "Home"
+      if (section.header.lblSectionTitle === "Home") {
+        try {
+          const nav = new voltmx.mvc.Navigation(section.header.formID);
+          nav.navigate();
+          return; // Exit function so it doesn't try to expand
+        } catch (e) {
+          voltmx.print("Home Navigation Failed: " + e.message);
+        }
+      }
 
-      // Logic: Collapse others (Accordion style)
+      // 2. Normal Accordion Logic for other sections
+      const currentState = section.header.isExpanded;
       this.masterData.forEach(item => {
         item.header.isExpanded = false;
       });
 
-      this.masterData[sectionIndex].header.isExpanded = !currentState;
+      section.header.isExpanded = !currentState;
       this.refreshMenu();
     },
 

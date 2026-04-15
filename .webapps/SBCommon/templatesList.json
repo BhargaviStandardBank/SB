@@ -1,0 +1,46 @@
+{
+    "desktopweb": {
+        "formslist": {
+            "mvcFormObjects": [
+                "frmHome"
+            ],
+            "nonmvcFormObjects": []
+        },
+        "templatesList": {
+            "mvcTemplateObjects": [
+                "com.hc.segApprover.SegApproverScheme",
+                "com.hcl.SuspensionEntries.SuspensionEntries",
+                "com.hcl.addSuspend.AddSuspend",
+                "com.hcl.dropDown.DropDown",
+                "com.hcl.hdr.FormHeader",
+                "com.hcl.labelField.LabelsField",
+                "com.hcl.lblList.LabelList",
+                "com.hcl.lblText.LabelTextBox",
+                "com.hcl.lblTextArea.LabelTextArea",
+                "com.hcl.listData.ListBoxData",
+                "com.hcl.menu.SideMenu",
+                "com.hcl.popup.AlertUp",
+                "com.hcl.schemeList.SchemeList",
+                "com.hcl.segDropDown.SegDropDown",
+                "com.hcl.segHdr.segHeader",
+                "com.hcl.segSuspend.SegSuspendList",
+                "com.hcl.srchTextBox.SrchTextBox",
+                "com.hcl.subHdr.SubHdr",
+                "com.hcl.suspenEntryHdr.SuspenEntryHdr",
+                "com.riskrating.chart.RiskRateChart",
+                "SampleRowTemplate",
+                "SampleSectionHeaderTemplate",
+                "TempApproverSegRow",
+                "TempDropDown",
+                "TempRowSchemeList",
+                "TempRowSuspend",
+                "TempRowSuspensionEntry",
+                "TempSecHdrSuspend",
+                "TempSegRowInternalExpo",
+                "TempSegRowItems",
+                "TempSegSecHdr"
+            ],
+            "nonmvcTemplateObjects": []
+        }
+    }
+}

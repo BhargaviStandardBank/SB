@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service serviceGroup="" cachable="false" cacheduration="" customOperation="false" description="" endpoint="default" groupType="" id="bloggercommentslistByBlog" passwordencrypted="false" security="authorized_app_user" type="dataAdapterConnector" smscode="" smsenabled="false">
+    <service-config>
+        <config-param api-version="" appid="" name="preprocessorname" value=""/>
+        <config-param api-version="" appid="" name="postprocessorname" value=""/>
+        <config-param api-version="" appid="" name="preprocessorJS" value=""/>
+        <config-param api-version="" appid="" name="postprocessorJS" value=""/>
+        <config-param api-version="" appid="" name="preprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="postprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="kony_http_supported_methods" value="POST"/>
+        <config-param api-version="" appid="" name="endpointUrl" value=""/>
+        <config-param api-version="" appid="" name="opcode" value="service"/>
+        <config-param api-version="" appid="" name="sockettimeout" value=""/>
+        <config-param api-version="" appid="" name="entitymetadata" value="{&quot;name&quot;:&quot;bloggercommentslistByBlog&quot;,&quot;serviceType&quot;:&quot;com.kony.adapter.openapi.v3.OpenApiV3Service&quot;}"/>
+        <config-param api-version="" appid="" name="metadataformatterobject" value="{&quot;serviceType&quot;:&quot;com.kony.adapter.openapi.v3.OpenApiV3Service&quot;,&quot;serviceOutput&quot;:[{&quot;name&quot;:&quot;etag&quot;},{&quot;name&quot;:&quot;items&quot;,&quot;serviceElementTypeList&quot;:[{&quot;name&quot;:&quot;author&quot;,&quot;serviceElementTypeList&quot;:[{&quot;name&quot;:&quot;displayName&quot;},{&quot;name&quot;:&quot;id&quot;},{&quot;name&quot;:&quot;image&quot;,&quot;serviceElementTypeList&quot;:[{&quot;name&quot;:&quot;url&quot;}]},{&quot;name&quot;:&quot;url&quot;}]},{&quot;name&quot;:&quot;blog&quot;,&quot;serviceElementTypeList&quot;:[{&quot;name&quot;:&quot;id&quot;}]},{&quot;name&quot;:&quot;content&quot;},{&quot;name&quot;:&quot;id&quot;},{&quot;name&quot;:&quot;inReplyTo&quot;,&quot;serviceElementTypeList&quot;:[{&quot;name&quot;:&quot;id&quot;}]},{&quot;name&quot;:&quot;kind&quot;},{&quot;name&quot;:&quot;post&quot;,&quot;serviceElementTypeList&quot;:[{&quot;name&quot;:&quot;id&quot;}]},{&quot;name&quot;:&quot;published&quot;},{&quot;name&quot;:&quot;selfLink&quot;},{&quot;name&quot;:&quot;status&quot;},{&quot;name&quot;:&quot;updated&quot;}]},{&quot;name&quot;:&quot;kind&quot;},{&quot;name&quot;:&quot;nextPageToken&quot;},{&quot;name&quot;:&quot;prevPageToken&quot;}],&quot;qualifiedName&quot;:&quot;bloggercommentslistByBlog&quot;,&quot;serviceIdForCache&quot;:&quot;&quot;,&quot;name&quot;:&quot;bloggercommentslistByBlog&quot;,&quot;serviceInput&quot;:[{&quot;name&quot;:&quot;$.xgafv&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;access_token&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;alt&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;callback&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;fields&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;key&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;oauth_token&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;prettyPrint&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;quotaUser&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;upload_protocol&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;uploadType&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;blogId&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;endDate&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;fetchBodies&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;maxResults&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;pageToken&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;startDate&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;status&quot;,&quot;param_type&quot;:&quot;Default&quot;}],&quot;listOfHeaders&quot;:[{&quot;defaultValue&quot;:&quot;application/json&quot;,&quot;name&quot;:&quot;Accept&quot;},{&quot;name&quot;:&quot;Authorization&quot;}],&quot;tags&quot;:[&quot;comments&quot;]}"/>
+        <config-param api-version="" appid="" name="isCustomQuery" value="false"/>
+        <config-param api-version="" appid="" name="customQuery" value=""/>
+        <config-param api-version="" appid="" name="paramType" value="[{&quot;name&quot;:&quot;$.xgafv&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;access_token&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;alt&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;callback&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;fields&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;key&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;oauth_token&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;prettyPrint&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;quotaUser&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;upload_protocol&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;uploadType&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;blogId&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;endDate&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;fetchBodies&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;maxResults&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;pageToken&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;startDate&quot;,&quot;param_type&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;status&quot;,&quot;param_type&quot;:&quot;Default&quot;}]"/>
+        <config-param api-version="" appid="" name="http_auth_mode" value="none"/>
+        <config-param api-version="" appid="" name="serverURL" value="https://blogger.googleapis.com/"/>
+        <config-param api-version="" appid="" name="serverURLs" value=""/>
+        <config-param api-version="" appid="" name="serverDescription" value=""/>
+        <config-param api-version="" appid="" name="serverDescriptions" value=""/>
+        <config-param api-version="" appid="" name="authservicetype" value="IdentityProvider"/>
+        <config-param api-version="" appid="" name="adaptertype" value="CUSTOM"/>
+        <config-param api-version="" appid="" name="zipName" value="Blogs Connector.zip"/>
+        <config-param api-version="" appid="" name="basepackage" value="com.kony.adapter.openapi.v3"/>
+        <config-param api-version="" appid="" name="identityProvider" value="BlogIdenty"/>
+        <config-param api-version="" appid="" name="identityProviderType" value="oauth2"/>
+        <config-param api-version="" appid="" name="mapped_to" value="bloggercommentslistByBlog"/>
+    </service-config>
+    <service-input passthrough="false" isExtended="false">
+        <header datatype="" name="" passthrough="false" isExtended="false">
+            <param datatype="string" defaultvalue="application/json" description="" encode="false" format="None" formatvalue="" name="Accept" order="" paramOrder="0" parentOrder="0" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="" targetdatatype="" testvalue="" value="application/json" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="false" format="None" formatvalue="" name="Authorization" order="" paramOrder="0" parentOrder="0" sms-name="" src="identity" sourcevalue="BlogIdenty.security.access_token" srcformatvalue="" target="" targetdatatype="" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+        </header>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="key" order="" paramOrder="1" parentOrder="-1" passnull="true" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="AIzaSyBL-KwumZCOEefTkvwRQgJ4pc4ZrX15G_4" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="blogId" order="" paramOrder="2" parentOrder="-1" passnull="true" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="7345520363790170299" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <template-param datatype="" defaultvalue="" description="" encode="false" format="" formatvalue="" name="criteria" order="" paramOrder="0" parentOrder="0" sms-name="" src="" sourcevalue="" srcformatvalue="" target="" targetdatatype="" value="" isExtended="false">
+            <accessType></accessType>
+        </template-param>
+    </service-input>
+    <service-output passthrough="false" isExtended="false">
+        <dataset defaultvalue="" id="items" order="" paramOrder="5" parentOrder="0" src="" testvalue="" isExtended="false">
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="content" order="" paramOrder="6" parentOrder="5" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id" order="" paramOrder="7" parentOrder="5" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="kind" order="" paramOrder="8" parentOrder="5" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="published" order="" paramOrder="9" parentOrder="5" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="selfLink" order="" paramOrder="10" parentOrder="5" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="status" order="" paramOrder="11" parentOrder="5" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="updated" order="" paramOrder="12" parentOrder="5" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <record id="author" order="" paramOrder="13" parentOrder="5" src="" isExtended="false">
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="displayName" order="" paramOrder="14" parentOrder="13" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id" order="" paramOrder="15" parentOrder="13" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="url" order="" paramOrder="16" parentOrder="13" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <record id="image" order="" paramOrder="17" parentOrder="13" src="" isExtended="false">
+                    <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="url" order="" paramOrder="18" parentOrder="17" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                        <accessType></accessType>
+                    </param>
+                </record>
+            </record>
+            <record id="blog" order="" paramOrder="19" parentOrder="5" src="" isExtended="false">
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id" order="" paramOrder="20" parentOrder="19" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+            </record>
+            <record id="inReplyTo" order="" paramOrder="21" parentOrder="5" src="" isExtended="false">
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id" order="" paramOrder="22" parentOrder="21" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+            </record>
+            <record id="post" order="" paramOrder="23" parentOrder="5" src="" isExtended="false">
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id" order="" paramOrder="24" parentOrder="23" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+            </record>
+        </dataset>
+        <dataset defaultvalue="" id="items" order="" paramOrder="40" parentOrder="0" src="$.items[*]" testvalue="" isExtended="false">
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="kind" order="" paramOrder="41" parentOrder="40" passnull="false" sms-name="" src="kind" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id" order="" paramOrder="42" parentOrder="40" passnull="false" sms-name="" src="id" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="status" order="" paramOrder="43" parentOrder="40" passnull="false" sms-name="" src="status" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="published" order="" paramOrder="48" parentOrder="40" passnull="false" sms-name="" src="published" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="updated" order="" paramOrder="49" parentOrder="40" passnull="false" sms-name="" src="updated" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="selfLink" order="" paramOrder="50" parentOrder="40" passnull="false" sms-name="" src="selfLink" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="content" order="" paramOrder="51" parentOrder="40" passnull="false" sms-name="" src="content" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <record id="post" order="" paramOrder="44" parentOrder="40" src="post" isExtended="false">
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id" order="" paramOrder="45" parentOrder="44" passnull="false" sms-name="" src="id" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+            </record>
+            <record id="blog" order="" paramOrder="46" parentOrder="40" src="blog" isExtended="false">
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id" order="" paramOrder="47" parentOrder="46" passnull="false" sms-name="" src="id" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+            </record>
+            <record id="author" order="" paramOrder="52" parentOrder="40" src="author" isExtended="false">
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id" order="" paramOrder="53" parentOrder="52" passnull="false" sms-name="" src="id" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="displayName" order="" paramOrder="54" parentOrder="52" passnull="false" sms-name="" src="displayName" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="url" order="" paramOrder="55" parentOrder="52" passnull="false" sms-name="" src="url" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <record id="image" order="" paramOrder="56" parentOrder="52" src="image" isExtended="false">
+                    <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="url" order="" paramOrder="57" parentOrder="56" passnull="false" sms-name="" src="url" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                        <accessType></accessType>
+                    </param>
+                </record>
+            </record>
+        </dataset>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="etag" order="" paramOrder="1" parentOrder="0" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="kind" order="" paramOrder="2" parentOrder="0" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="nextPageToken" order="" paramOrder="3" parentOrder="0" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="prevPageToken" order="" paramOrder="4" parentOrder="0" passnull="false" sms-name="" src="" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <record id="error" order="" paramOrder="25" parentOrder="0" src="$.error" isExtended="false">
+            <dataset defaultvalue="" id="errors" order="" paramOrder="28" parentOrder="25" src="errors[*]" testvalue="" isExtended="false">
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="message" order="" paramOrder="29" parentOrder="28" passnull="false" sms-name="" src="message" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="domain" order="" paramOrder="30" parentOrder="28" passnull="false" sms-name="" src="domain" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="reason" order="" paramOrder="31" parentOrder="28" passnull="false" sms-name="" src="reason" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+            </dataset>
+            <dataset defaultvalue="" id="details" order="" paramOrder="33" parentOrder="25" src="details[*]" testvalue="" isExtended="false">
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="@type" order="" paramOrder="34" parentOrder="33" passnull="false" sms-name="" src="@type" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="reason" order="" paramOrder="35" parentOrder="33" passnull="false" sms-name="" src="reason" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="domain" order="" paramOrder="36" parentOrder="33" passnull="false" sms-name="" src="domain" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                    <accessType></accessType>
+                </param>
+                <record id="metadata" order="" paramOrder="37" parentOrder="33" src="metadata" isExtended="false">
+                    <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="service" order="" paramOrder="38" parentOrder="37" passnull="false" sms-name="" src="service" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                        <accessType></accessType>
+                    </param>
+                    <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="method" order="" paramOrder="39" parentOrder="37" passnull="false" sms-name="" src="method" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                        <accessType></accessType>
+                    </param>
+                </record>
+            </dataset>
+            <param datatype="number" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="code" order="" paramOrder="26" parentOrder="25" passnull="false" sms-name="" src="code" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="message" order="" paramOrder="27" parentOrder="25" passnull="false" sms-name="" src="message" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="status" order="" paramOrder="32" parentOrder="25" passnull="false" sms-name="" src="status" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+        </record>
+    </service-output>
+</service>

@@ -37,7 +37,6 @@
     "children": [
         "flxAppStatusHdr",
         "flxSeparator",
-        "SubHdr",
         "flxAddComments",
         "flxTextArea",
         "flxButtons"

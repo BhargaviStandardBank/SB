@@ -1,0 +1,92 @@
+{
+    "HEAD": "w76f80f6b4174f349c1634ba37426925",
+    "w12bfee2c95c422d99eebb4150c23aba": {
+        "extension": "js",
+        "kuid": "w12bfee2c95c422d99eebb4150c23aba",
+        "name": "chartist.js",
+        "parent": "wa1f037679d04f50bc5e984aa17aab77",
+        "type": "F"
+    },
+    "w18337e3e68142a28f288dc2bb2e267a": {
+        "extension": "css",
+        "kuid": "w18337e3e68142a28f288dc2bb2e267a",
+        "name": "chartitst.css",
+        "parent": "wa1f037679d04f50bc5e984aa17aab77",
+        "type": "F"
+    },
+    "w44803d481a546d8964a9d1395743cae": {
+        "extension": "js",
+        "kuid": "w44803d481a546d8964a9d1395743cae",
+        "name": "halfDonutUp.js",
+        "parent": "wa1f037679d04f50bc5e984aa17aab77",
+        "type": "F"
+    },
+    "w5fd0d4d1c7a4761959d71f9881f7eef": {
+        "extension": "html",
+        "kuid": "w5fd0d4d1c7a4761959d71f9881f7eef",
+        "name": "halfDonutUp.html",
+        "parent": "wa1f037679d04f50bc5e984aa17aab77",
+        "type": "F"
+    },
+    "w6c96615effe4340a5898cb133c71a17": {
+        "extension": "js",
+        "kuid": "w6c96615effe4340a5898cb133c71a17",
+        "name": "chartistlegend.js",
+        "parent": "wa1f037679d04f50bc5e984aa17aab77",
+        "type": "F"
+    },
+    "w76f80f6b4174f349c1634ba37426925": {
+        "children": [
+            "wa1f037679d04f50bc5e984aa17aab77",
+            "wf3cadc05b824be8be4b0d4bd76ec8ee"
+        ],
+        "kuid": "w76f80f6b4174f349c1634ba37426925",
+        "name": "localfiles",
+        "type": "L"
+    },
+    "wa1f037679d04f50bc5e984aa17aab77": {
+        "children": [
+            "wd29e1f3dccb49ad9c255aab3623f2dc",
+            "w12bfee2c95c422d99eebb4150c23aba",
+            "w6c96615effe4340a5898cb133c71a17",
+            "w18337e3e68142a28f288dc2bb2e267a",
+            "w5fd0d4d1c7a4761959d71f9881f7eef",
+            "w44803d481a546d8964a9d1395743cae",
+            "wad3353eb5b3427eb6018557dfb25448"
+        ],
+        "kuid": "wa1f037679d04f50bc5e984aa17aab77",
+        "name": "Chart_halfDonutUp",
+        "parent": "w76f80f6b4174f349c1634ba37426925",
+        "type": "D"
+    },
+    "wad3353eb5b3427eb6018557dfb25448": {
+        "extension": "js",
+        "kuid": "wad3353eb5b3427eb6018557dfb25448",
+        "name": "LIC.js",
+        "parent": "wa1f037679d04f50bc5e984aa17aab77",
+        "type": "F"
+    },
+    "wc1fa50447a04707b3e3d0f06dd7ceb7": {
+        "extension": "html",
+        "kuid": "wc1fa50447a04707b3e3d0f06dd7ceb7",
+        "name": "gauge.html",
+        "parent": "wf3cadc05b824be8be4b0d4bd76ec8ee",
+        "type": "F"
+    },
+    "wd29e1f3dccb49ad9c255aab3623f2dc": {
+        "extension": "js",
+        "kuid": "wd29e1f3dccb49ad9c255aab3623f2dc",
+        "name": "chartist-plugin-axistitle.js",
+        "parent": "wa1f037679d04f50bc5e984aa17aab77",
+        "type": "F"
+    },
+    "wf3cadc05b824be8be4b0d4bd76ec8ee": {
+        "children": [
+            "wc1fa50447a04707b3e3d0f06dd7ceb7"
+        ],
+        "kuid": "wf3cadc05b824be8be4b0d4bd76ec8ee",
+        "name": "gauge",
+        "parent": "w76f80f6b4174f349c1634ba37426925",
+        "type": "D"
+    }
+}

@@ -1,0 +1,19 @@
+CACHE MANIFEST
+#Time stamp 1775831353847
+#Version 1.0.0
+
+CACHE:
+
+jslib/voltmxframework.js
+appjs/app.js
+appjs/kvmodules.js
+
+voltmxdesktop.css
+
+
+
+
+
+
+NETWORK:
+*

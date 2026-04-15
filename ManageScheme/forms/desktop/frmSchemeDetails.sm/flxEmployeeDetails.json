@@ -34,7 +34,7 @@
         "SubHdr1",
         "SrchTextBox",
         "SuspenEntryHdr",
-        "SuspensionEntries"
+        "flxSusEntry"
     ],
     "clipbounds": false,
     "containerweight": 100,

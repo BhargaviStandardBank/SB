@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service serviceGroup="" cachable="false" cacheduration="" customOperation="false" description="" endpoint="default" groupType="" id="GetRandomUser" passwordencrypted="false" security="authorized_app_user" type="dataAdapterConnector" smscode="" smsenabled="false">
+    <service-config>
+        <config-param api-version="" appid="" name="preprocessorname" value=""/>
+        <config-param api-version="" appid="" name="postprocessorname" value=""/>
+        <config-param api-version="" appid="" name="preprocessorJS" value=""/>
+        <config-param api-version="" appid="" name="postprocessorJS" value=""/>
+        <config-param api-version="" appid="" name="preprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="postprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="kony_http_supported_methods" value="POST"/>
+        <config-param api-version="" appid="" name="endpointUrl" value=""/>
+        <config-param api-version="" appid="" name="opcode" value="service"/>
+        <config-param api-version="" appid="" name="sockettimeout" value=""/>
+        <config-param api-version="" appid="" name="entitymetadata" value="{&quot;name&quot;:&quot;GetRandomUser&quot;,&quot;serviceType&quot;:&quot;com.kony.adapter.swagger.SwaggerService&quot;}"/>
+        <config-param api-version="" appid="" name="metadataformatterobject" value="{&quot;serviceType&quot;:&quot;com.kony.adapter.swagger.SwaggerService&quot;,&quot;serviceOutput&quot;:[],&quot;qualifiedName&quot;:&quot;GetRandomUser&quot;,&quot;name&quot;:&quot;GetRandomUser&quot;,&quot;serviceInput&quot;:[],&quot;listOfHeaders&quot;:[{&quot;name&quot;:&quot;X-RapidAPI-Key&quot;},{&quot;name&quot;:&quot;X-RapidAPI-Host&quot;}]}"/>
+        <config-param api-version="" appid="" name="isCustomQuery" value="false"/>
+        <config-param api-version="" appid="" name="customQuery" value=""/>
+        <config-param api-version="" appid="" name="http_auth_mode" value="none"/>
+        <config-param api-version="" appid="" name="basePath" value=""/>
+        <config-param api-version="" appid="" name="scheme" value="https"/>
+        <config-param api-version="" appid="" name="hostURL" value="ai-random-user-generator.p.rapidapi.com"/>
+        <config-param api-version="" appid="" name="authservicetype" value="IdentityProvider"/>
+        <config-param api-version="" appid="" name="adaptertype" value="CUSTOM"/>
+        <config-param api-version="" appid="" name="zipName" value="AI Random User Generator.zip"/>
+        <config-param api-version="" appid="" name="basepackage" value="com.kony.adapter.swagger"/>
+        <config-param api-version="" appid="" name="identityProviderType" value=""/>
+        <config-param api-version="" appid="" name="identityProvider" value=""/>
+        <config-param api-version="" appid="" name="mapped_to" value="GetRandomUser"/>
+    </service-config>
+    <service-input passthrough="false" isExtended="false">
+        <header datatype="" name="" passthrough="false" isExtended="false">
+            <param datatype="string" defaultvalue="" description="" encode="false" format="None" formatvalue="" name="X-RapidAPI-Key" order="" paramOrder="0" parentOrder="0" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="" targetdatatype="" testvalue=" ac3d6e7ae8msh75c2496a2f94530p1c7398jsn5b4c633e6d2f" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+            <param datatype="string" defaultvalue="" description="" encode="false" format="None" formatvalue="" name="X-RapidAPI-Host" order="" paramOrder="0" parentOrder="0" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="" targetdatatype="" testvalue="ai-random-user-generator.p.rapidapi.com" value="" isExtended="false">
+                <accessType></accessType>
+            </param>
+        </header>
+        <template-param datatype="" defaultvalue="" description="" encode="false" format="" formatvalue="" name="criteria" order="" paramOrder="0" parentOrder="0" sms-name="" src="" sourcevalue="" srcformatvalue="" target="" targetdatatype="" value="" isExtended="false">
+            <accessType></accessType>
+        </template-param>
+    </service-input>
+    <service-output passthrough="false" isExtended="false"/>
+</service>

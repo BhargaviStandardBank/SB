@@ -1,0 +1,30 @@
+{
+    "AS_TextField_b7c2c666d6a34331ad159e529d370183": {
+        "id": "AS_TextField_b7c2c666d6a34331ad159e529d370183",
+        "type": "ACTION_SEQUENCE",
+        "params": [{
+            "datatype": "collection",
+            "name": "eventobject"
+        }, {
+            "datatype": "string",
+            "name": "changedtext"
+        }],
+        "contextObj": {
+            "name": "userwidgetmodel",
+            "type": "userwidgets",
+            "KUID": "u2a49f260cdb41d0af8a5a9bc114786a"
+        },
+        "language": "js",
+        "actions": [{
+            "id": "INVOKE_FUNCTION__fee412087ebf4ab69bc32f28fff2df10",
+            "type": "INVOKE_FUNCTION",
+            "sequenceKUID": "validateUsername",
+            "display": "validateUsername",
+            "inputparams": [],
+            "parentId": null,
+            "callbackType": null,
+            "disabled": null,
+            "source": "controller"
+        }]
+    }
+}

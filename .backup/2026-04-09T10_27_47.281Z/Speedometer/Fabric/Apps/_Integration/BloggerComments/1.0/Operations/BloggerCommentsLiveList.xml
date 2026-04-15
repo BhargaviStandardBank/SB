@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service serviceGroup="" cachable="false" cacheduration="" customOperation="false" description="" endpoint="default" groupType="" id="BloggerCommentsLiveList" passwordencrypted="false" security="authorized_app" type="jsonConnector" smscode="" smsenabled="false">
+    <service-config>
+        <config-param api-version="" appid="" name="preprocessorname" value=""/>
+        <config-param api-version="" appid="" name="postprocessorname" value=""/>
+        <config-param api-version="" appid="" name="preprocessorJS" value=""/>
+        <config-param api-version="" appid="" name="postprocessorJS" value=""/>
+        <config-param api-version="" appid="" name="preprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="postprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="kony_http_supported_methods" value="POST"/>
+        <config-param api-version="" appid="" name="endpointUrl" value="https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments?status={status}&amp;key={key}"/>
+        <config-param api-version="" appid="" name="ignorehttpproxy" value="true"/>
+        <config-param api-version="" appid="" name="http.method" value="GET"/>
+        <config-param api-version="" appid="" name="dataObjectName" value=""/>
+        <config-param api-version="" appid="" name="sockettimeout" value=""/>
+        <config-param api-version="" appid="" name="responseEncoding" value="UTF-8"/>
+        <config-param api-version="" appid="" name="isembedxmlpresent" value="false"/>
+        <config-param api-version="" appid="" name="retrycount" value="0"/>
+        <config-param api-version="" appid="" name="jsonpath" value="true"/>
+        <config-param api-version="" appid="" name="identityProvider" value="BlogUserIdentity"/>
+        <config-param api-version="" appid="" name="identityProviderType" value="oauth2"/>
+    </service-config>
+    <service-input passthrough="false" isExtended="false">
+        <header datatype="" name="" passthrough="false" isExtended="false"/>
+        <param datatype="string" defaultvalue="7345520363790170299" description="" encode="false" format="None" formatvalue="" name="blogId" order="" paramOrder="1" parentOrder="-1" passnull="false" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="7345520363790170299" value="7345520363790170299" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="8395207674968890125" description="" encode="false" format="None" formatvalue="" name="postId" order="" paramOrder="2" parentOrder="-1" passnull="false" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="8395207674968890125" value="8395207674968890125" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="AIzaSyCK7j9OAfQSyy25HN-gSeJhw4PxvnNCAD8" description="" encode="true" format="None" formatvalue="" name="key" order="" paramOrder="3" parentOrder="-1" passnull="false" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="AIzaSyCK7j9OAfQSyy25HN-gSeJhw4PxvnNCAD8" value="AIzaSyCK7j9OAfQSyy25HN-gSeJhw4PxvnNCAD8" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="LIVE" description="" encode="true" format="None" formatvalue="" name="status" order="" paramOrder="4" parentOrder="-1" passnull="false" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="LIVE" value="LIVE" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <stub-param value=""/>
+    </service-input>
+    <service-output passthrough="false" isExtended="false">
+        <param datatype="collection" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="commentsList" order="" paramOrder="1" parentOrder="0" passnull="false" sms-name="" src="$.items" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="commentText" order="" paramOrder="2" parentOrder="0" passnull="false" sms-name="" src="$.items[*].content" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="authorName" order="" paramOrder="3" parentOrder="0" passnull="false" sms-name="" src="$.items[*].author.displayName" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="publishedDate" order="" paramOrder="4" parentOrder="0" passnull="false" sms-name="" src="$.items[*].published" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="" isExtended="false">
+            <accessType></accessType>
+        </param>
+    </service-output>
+</service>

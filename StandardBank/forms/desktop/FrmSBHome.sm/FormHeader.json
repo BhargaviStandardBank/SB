@@ -43,20 +43,33 @@
             "__events__": {},
             "__info__": {
                 "isRoot": true,
-                "kuid": "f36d030ebca24a91a05873d143289b3e",
+                "kuid": "hb126935e30244f28533382f9d45c9df",
                 "srcKUID": "ja2cbe8fda184c1caaab89eeae9fb281",
                 "wType": "FlexContainer"
+            },
+            "centerY": {
+                "Default": {
+                    "type": "string",
+                    "value": ""
+                }
+            },
+            "responsiveData": {},
+            "top": {
+                "Default": {
+                    "type": "string",
+                    "value": "0dp"
+                }
             }
         },
         "lblHdr": {
             "__events__": {},
             "__info__": {
-                "kuid": "h5a42801076f4c429d00ec6230935ca8",
+                "kuid": "j4c79c47b2a64c3f8519ee35b6a6818f",
                 "srcKUID": "ecaffe136a7647ee89b97eff000d8e8c",
                 "wType": "Label"
             },
             "responsiveData": {},
-            "text": "Home"
+            "text": "Credit Risk Portal Uganda [DEV]"
         }
     },
     "enablescrolling": true,
@@ -66,12 +79,12 @@
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kuid": "f36d030ebca24a91a05873d143289b3e",
+    "kuid": "hb126935e30244f28533382f9d45c9df",
     "layouttype": 2,
     "masterType": 0,
     "name": "kony.ui.UserWidgetInstance",
     "parent": "flxRight",
-    "pf": "FrmSBHome",
+    "pf": "frmSBHome",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,
     "retainflowhorizontalalignment": false,

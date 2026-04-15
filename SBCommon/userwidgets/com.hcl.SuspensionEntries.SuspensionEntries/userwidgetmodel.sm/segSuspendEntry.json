@@ -14,8 +14,8 @@
         {}
     ],
     "_height_": {
-        "type": "ref",
-        "value": "preferred"
+        "type": "string",
+        "value": "100%"
     },
     "_indicator_": "none",
     "_left_": {
@@ -43,7 +43,7 @@
         "type": "string",
         "value": "100%"
     },
-    "autogrowmode": 1,
+    "autogrowmode": 0,
     "canUpdateUI": true,
     "containerweight": 100,
     "counter": "07",
@@ -52,177 +52,217 @@
             {
                 "imgDelet": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "imagedrag.png"
+                    "src": "icon_delete.png",
+                    "type": "Image"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "CIF No"
+                    "text": "CIF No",
+                    "type": "Label"
                 },
                 "lblCustomerName": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Customer Name"
+                    "text": "Customer Name",
+                    "type": "Label"
                 },
                 "lblIDNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "ID No"
+                    "text": "ID No",
+                    "type": "Label"
                 },
                 "lblReason": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Reason"
+                    "text": "Reason",
+                    "type": "Label"
                 }
             },
             {
                 "imgDelet": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "imagedrag.png"
+                    "src": "icon_delete.png",
+                    "type": "Image"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "CIF No"
+                    "text": "CIF No",
+                    "type": "Label"
                 },
                 "lblCustomerName": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Customer Name"
+                    "text": "Customer Name",
+                    "type": "Label"
                 },
                 "lblIDNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "ID No"
+                    "text": "ID No",
+                    "type": "Label"
                 },
                 "lblReason": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Reason"
+                    "text": "Reason",
+                    "type": "Label"
                 }
             },
             {
                 "imgDelet": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "imagedrag.png"
+                    "src": "icon_delete.png",
+                    "type": "Image"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "CIF No"
+                    "text": "CIF No",
+                    "type": "Label"
                 },
                 "lblCustomerName": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Customer Name"
+                    "text": "Customer Name",
+                    "type": "Label"
                 },
                 "lblIDNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "ID No"
+                    "text": "ID No",
+                    "type": "Label"
                 },
                 "lblReason": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Reason"
+                    "text": "Reason",
+                    "type": "Label"
                 }
             },
             {
                 "imgDelet": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "imagedrag.png"
+                    "src": "icon_delete.png",
+                    "type": "Image"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "CIF No"
+                    "text": "CIF No",
+                    "type": "Label"
                 },
                 "lblCustomerName": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Customer Name"
+                    "text": "Customer Name",
+                    "type": "Label"
                 },
                 "lblIDNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "ID No"
+                    "text": "ID No",
+                    "type": "Label"
                 },
                 "lblReason": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Reason"
+                    "text": "Reason",
+                    "type": "Label"
                 }
             },
             {
                 "imgDelet": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "imagedrag.png"
+                    "src": "icon_delete.png",
+                    "type": "Image"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "CIF No"
+                    "text": "CIF No",
+                    "type": "Label"
                 },
                 "lblCustomerName": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Customer Name"
+                    "text": "Customer Name",
+                    "type": "Label"
                 },
                 "lblIDNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "ID No"
+                    "text": "ID No",
+                    "type": "Label"
                 },
                 "lblReason": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Reason"
+                    "text": "Reason",
+                    "type": "Label"
                 }
             },
             {
                 "imgDelet": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "imagedrag.png"
+                    "src": "icon_delete.png",
+                    "type": "Image"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "CIF No"
+                    "text": "CIF No",
+                    "type": "Label"
                 },
                 "lblCustomerName": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Customer Name"
+                    "text": "Customer Name",
+                    "type": "Label"
                 },
                 "lblIDNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "ID No"
+                    "text": "ID No",
+                    "type": "Label"
                 },
                 "lblReason": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Reason"
+                    "text": "Reason",
+                    "type": "Label"
                 }
             },
             {
                 "imgDelet": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "imagedrag.png"
+                    "src": "icon_delete.png",
+                    "type": "Image"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "CIF No"
+                    "text": "CIF No",
+                    "type": "Label"
                 },
                 "lblCustomerName": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Customer Name"
+                    "text": "Customer Name",
+                    "type": "Label"
                 },
                 "lblIDNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "ID No"
+                    "text": "ID No",
+                    "type": "Label"
                 },
                 "lblReason": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Reason"
+                    "text": "Reason",
+                    "type": "Label"
                 }
             },
             {
                 "imgDelet": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "imagedrag.png"
+                    "src": "icon_delete.png",
+                    "type": "Image"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "CIF No"
+                    "text": "CIF No",
+                    "type": "Label"
                 },
                 "lblCustomerName": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Customer Name"
+                    "text": "Customer Name",
+                    "type": "Label"
                 },
                 "lblIDNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "ID No"
+                    "text": "ID No",
+                    "type": "Label"
                 },
                 "lblReason": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
-                    "text": "Reason"
+                    "text": "Reason",
+                    "type": "Label"
                 }
             }
         ],
@@ -283,7 +323,7 @@
     "selectedindex": null,
     "selectedindices": null,
     "selecteditems": null,
-    "selectedsectionindex": 0,
+    "selectedsectionindex": null,
     "selectionbehavior": "default",
     "separatorcolor": "f6f6f600",
     "separatorrequired": true,

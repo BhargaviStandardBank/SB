@@ -1,0 +1,16 @@
+{
+  "name" : "SAPGatewayAuth",
+  "type" : "sky",
+  "version" : "1.0",
+  "metaPreference" : -1,
+  "config" : "{\"custom_additional_request_headers\":{\"KonySAP-Request-Session-Key\":{\"in\":\"constant\",\"value\":\"*\"}},\"custom_request_headers\":{\"KonySAP-Request-Session-Key\":\"*\"},\"scheme\":\"http\",\"gateway\":\"connect.voltmx.com.\",\"port\":\"8000\",\"prefix\":\"KonySAP\",\"is_custom\":true,\"custom_url_path\":\"/v1/logon\",\"custom_response_session_header\":\"KonySAP-Response-Session-Key\",\"session_restrictions\":{\"session_restriction_type\":\"allow_any_number_of_sessions\"}}",
+  "policyConfig" : "{\"def_user_status\":\"pending\",\"max_login_fail\":5}",
+  "admissionPolicy" : "no_approval_needed",
+  "identityMeta" : {
+    "allow_sso" : false
+  },
+  "isIntegrityEnabled" : true,
+  "ssoenabled" : false,
+  "mapType" : "java.util.HashMap",
+  "empty" : true
+}

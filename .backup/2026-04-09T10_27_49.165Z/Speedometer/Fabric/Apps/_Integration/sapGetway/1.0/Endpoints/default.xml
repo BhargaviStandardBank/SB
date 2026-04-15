@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<endpoint name="default" type="sky" encryptSecureInfo="false">
+    <config>
+        <entry>
+            <key>ignorehttpproxy</key>
+            <value>true</value>
+        </entry>
+        <entry>
+            <key>UserName</key>
+            <value>testing</value>
+        </entry>
+        <entry>
+            <key>Scheme</key>
+            <value>http</value>
+        </entry>
+        <entry>
+            <key>Port</key>
+            <value>35099</value>
+        </entry>
+        <entry>
+            <key>Gatewayaddress</key>
+            <value>connect.voltmx.com.</value>
+        </entry>
+        <entry>
+            <key>HeaderPrefix</key>
+            <value>KonySAP</value>
+        </entry>
+        <entry>
+            <key>CallerId</key>
+            <value>vigneshwari</value>
+        </entry>
+        <entry>
+            <key>Password</key>
+            <value>Hcl@123</value>
+        </entry>
+    </config>
+    <apiThrottling/>
+    <jsonpath>false</jsonpath>
+</endpoint>

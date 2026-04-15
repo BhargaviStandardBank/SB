@@ -1,0 +1,25 @@
+{
+    "android": {
+        "Default": {
+            "mobile": {
+                "android_anydpi_v26": "",
+                "android_hdpi": "",
+                "android_mdpi": "",
+                "android_nodpi": "",
+                "android_xhdpi": "",
+                "android_xxhdpi": "",
+                "android_xxxhdpi": ""
+            },
+            "tablet": {
+                "android_anydpi_v26": "",
+                "android_hdpi": "",
+                "android_mdpi": "",
+                "android_nodpi": "",
+                "android_xhdpi": "",
+                "android_xxhdpi": "",
+                "android_xxxhdpi": ""
+            }
+        },
+        "selectedValue": "Default"
+    }
+}

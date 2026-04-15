@@ -1,0 +1,79 @@
+{
+    "FP": {
+        "spabb": false,
+        "winphone8": false,
+        "spawinphone8": false,
+        "windows8": false,
+        "spawindowstablet": false,
+        "desktopweb": true,
+        "iphone": false,
+        "spaip": false,
+        "android": false,
+        "spaan": false,
+        "ipad": false,
+        "spaipad": false,
+        "tabrcandroid": false,
+        "spaandroidtablet": false
+    },
+    "general": {
+        "urls": {
+            "konyFabricURL": "https://manage.hclvoltmx.com"
+        },
+        "codeEditor": {
+            "indentConf": {},
+            "externalEditor": {
+                "displayName": "Sublime"
+            }
+        },
+        "proxyConfig": {
+            "enableProxy": false,
+            "proxyType": "BASIC",
+            "proxyHost": "",
+            "proxyPort": "",
+            "proxyUsername": "",
+            "proxyPassword": "",
+            "noProxyHostnames": ""
+        },
+        "remoteMACConfig": {},
+        "testRecorder": {
+            "port": 9111
+        },
+        "AllowLockManagementSettings": false,
+        "inlinePreviewEnabled": false,
+        "isHtmlPreviewEnabled": false,
+        "autoCollapsePW": false,
+        "widgetHighlighterActionButtons": false,
+        "isSnapModeEnabled": true,
+        "containerPlaceholders": true,
+        "skipAppSigningRequirements": false,
+        "autoDetectIP": true,
+        "staticIP": "",
+        "autoUpdate": true,
+        "enableExternalAuth": false,
+        "authProvider": "",
+        "groupServicesByCategory": false,
+        "donotShowGenerateObjectModelUpdate": false
+    },
+    "build": {
+        "web": {
+            "postBuildAction": "buildAndPublishWeb",
+            "platforms": {
+                "desktopweb": true,
+                "adaptiveweb_mobile": false,
+                "adaptiveweb_tablet": false
+            }
+        }
+    },
+    "konyVizVersion": "10.0.5.0",
+    "previewMode": "debug",
+    "dx": {
+        "dxClient": {},
+        "general": {}
+    },
+    "starter": {
+        "general": {
+            "enableMetrics": true
+        }
+    },
+    "vizTheme": "dark"
+}

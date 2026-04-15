@@ -1,0 +1,89 @@
+{
+    "@class": "com.kony.gen.viz.model.component.KVizTextBox2",
+    "DNDConfig": null,
+    "__parentReadjusting__": false,
+    "_height_": {
+        "type": "string",
+        "value": "40dp"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "77dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_padding_": [
+        3,
+        0,
+        0,
+        0
+    ],
+    "_placeholder_": "Username",
+    "_skin_": "se8a681ae19d40aea937ddbb906b06d4",
+    "_text_": "",
+    "_top_": {
+        "type": "string",
+        "value": "7dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "346dp"
+    },
+    "autocapitalize": "none",
+    "autocomplete": false,
+    "autocorrect": false,
+    "autofilter": false,
+    "canUpdateUI": true,
+    "centerx": {
+        "type": "string",
+        "value": ""
+    },
+    "containerheight": "",
+    "containerheightmode": 1,
+    "containerweight": 100,
+    "contentalignment": 4,
+    "desktopweb": {
+        "placeholderSkin": "s096878f4d484452b8435caf7cb2221f"
+    },
+    "disabledSkins": {},
+    "focusskin": "sd21ddc16faa4af59fd3208c9460d6ee",
+    "id": "txtUserName",
+    "ide_onDone": "AS_TextField_b7c2c666d6a34331ad159e529d370183",
+    "info": null,
+    "iphone": {
+        "centerX": {
+            "type": "string",
+            "value": "50.33%"
+        },
+        "contentAlignment": 4,
+        "left": {
+            "type": "string",
+            "value": "0dp"
+        },
+        "width": {
+            "type": "string",
+            "value": "90%"
+        }
+    },
+    "iscustomlayout": false,
+    "isvisible": true,
+    "keyboardtype": "A",
+    "kuid": "udd35df2ea8d4bc29d7fa9eebf926475",
+    "mode": "A",
+    "name": "kony.ui.TextBox2",
+    "parent": "flxLoginWrapper",
+    "pf": "userwidgetmodel",
+    "placeholderskin": "s096878f4d484452b8435caf7cb2221f",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "securetextentry": false,
+    "textinputmode": "A",
+    "tooltip": "",
+    "viewtype": "default",
+    "wType": "TextField",
+    "zindex": 1
+}

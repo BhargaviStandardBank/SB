@@ -1,0 +1,16 @@
+{
+  "name" : "MicrosoftAuth",
+  "type" : "oauth2",
+  "version" : "1.0",
+  "metaPreference" : -1,
+  "config" : "{\"dependent_providers\":[],\"auth_type\":\"oauth2\",\"session_restrictions\":{\"session_restriction_type\":\"allow_any_number_of_sessions\"},\"oauthProviderType\":\"microsoft\",\"grant_type\":\"authorization_code\",\"authorization_endpoint\":\"https://login.microsoftonline.com/common/oauth2/v2.0/authorize\",\"token_endpoint\":\"https://login.microsoftonline.com/common/oauth2/v2.0/token\",\"logout_url\":\"https://login.microsoftonline.com/logout.srf\",\"client_authentication\":{\"client_id\":\"16b43975-4942-4b25-8b1d-ebc4cda4f3d4\",\"client_secret\":\"kcB8Q~F.YVkrNQZBvQNanzdSpim6Atn5pMzIFa1O\",\"authentication_scheme\":\"form\",\"client_pvt_key_jwt\":false},\"scope\":\"user.read openid email offline_access\",\"authentication_scheme\":\"header\",\"profile\":{\"endpoint\":{\"location\":\"url\",\"type\":\"direct\",\"value\":\"https://graph.microsoft.com/v1.0/me\"},\"request_method\":\"GET\",\"profile_attribute_selectors\":{\"federation_id\":\"id\",\"email\":\"mail\",\"first_name\":\"givenName\",\"last_name\":\"surname\",\"display_name\":\"displayName\",\"phone_number\":\"mobilePhone\",\"custom_profile_attribute_selectors\":{}}},\"dollarParamPresence\":{\"authorization_endpoint\":false,\"token_endpoint\":false,\"logout_url\":false,\"revoke_url\":false,\"profile_url\":false},\"enable_refresh_login\":false,\"enable_identity_pkce\":true,\"additional_data\":{\"token_request\":[],\"refresh_request\":[],\"profile_request\":[],\"authorize_request\":[],\"revoke_request\":[]}}",
+  "policyConfig" : "{\"def_user_status\":\"pending\",\"max_login_fail\":5}",
+  "admissionPolicy" : "no_approval_needed",
+  "identityMeta" : {
+    "allow_sso" : false
+  },
+  "isIntegrityEnabled" : true,
+  "ssoenabled" : false,
+  "mapType" : "java.util.HashMap",
+  "empty" : true
+}

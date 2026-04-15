@@ -1,0 +1,216 @@
+{
+    "idToKuidMapping": {
+        "androidwear": {},
+        "desktop": {
+            "Form1": "j7ec6788b546478f9fb9c1fce8b52682",
+            "SampleRowTemplate": "ed33f844adcc4bf69d324c533f049d1d",
+            "SampleSectionHeaderTemplate": "j2e2816180c645f88e7b7eb2742f9947"
+        },
+        "masters": {},
+        "mobile": {},
+        "skins": {
+            "defBtnBlockedUI": "sad650e3b554410cb830f137fe29d4c9",
+            "defBtnFocus": "sb8e942bf7c64d048aaedad5229b5bda",
+            "defBtnHover": "sacac96815eb4ea785aca546c79e8734",
+            "defBtnNormal": "s62cdfc333f0442d9fd7ac8772dce626",
+            "defBtnPressed": "se7a1b37f11b4bf5828530c358dac47d",
+            "defTextAreaBlockedUI": "s31be43304804967ad6bbe27b0fde352",
+            "defTextAreaHover": "s3969463ae1946eebf26633fd316cecc",
+            "defTextBoxBlockedUI": "s4265d3422894a7ab34eefc4bd0af188",
+            "defTextBoxFocus": "sf943759af6b4fa781b344394c817d72",
+            "defTextBoxNormal": "sf8c589c6c3e43ad84f5a2ab7cd959a4",
+            "defTextBoxPlaceholder": "s4a7920e7d954b129b2f572f4bfdf92c",
+            "sknFlxTrans": "s7f69b73dc0046ec88f3c7d2c51cf4f7",
+            "sknLblDescription": "s92dd6d32a5c426b9d9226f08bf30e34",
+            "sknLblRowHeading": "s105a07225424676bf03e45e169d8788",
+            "sknLblStrip": "s0d7abe5cfc24b2bafb60c14422a4f49",
+            "sknLblTimeStamp": "sb2062288dc74d578667106f2558e34b",
+            "sknLblWhite": "s37495e5ea3b4b7d872e613e2e36ef4b",
+            "sknSampleRowTemplate": "s00bbd048df5456498698d8fa870f780",
+            "sknSampleSectionHeaderTemplate": "s95199569ac447b292c0ab482a0da502",
+            "sknSectionHeaderLabelSkin": "s80b9df7f7684a4593dad7275d18b853",
+            "slCameraFocus": "sea51c6a38334ed3906c0be8e256cb99",
+            "slDynamicNotificationForm": "s8f615e97f6a416ea89b429c39ffb8f9",
+            "slFBlockedUIbox": "se10403881e545c88517e38d1704fe6e",
+            "slFFocusbox": "s055b30cc8544a4092521d1a3c930a38",
+            "slFSBlockedUIbox": "s4a31468fb624fe9b00cafc228a8ee66",
+            "slFSFocusSbox": "s50473dc54ea429da8f631a3be7bfda1",
+            "slFbox": "sc8a2febde83483f85dfe51f3266495d",
+            "slForm": "sc16841b2d6c4e908d933bb1292fc33b",
+            "slImage": "s372ce6ed8d64f54bf3f3988b1a69193",
+            "slSplashiOS": "sadb2a4ae49a4ce1b294cee51d344e29",
+            "slStaticNotificationForm": "s67f07083b464b808cd658e6e964f44e",
+            "slTitleBar": "sf20fb3337784b4c9f182c8886af3eaf",
+            "slWatchForm": "s817dbd68eaf429087ece72aec77a270"
+        },
+        "tablet": {},
+        "userwidgets": {
+            "com.riskrating.chart.RiskRateChart": "uddec7863ec247488f81f6c755c89cfa"
+        }
+    },
+    "kuidDependencyMap": {
+        "s00bbd048df5456498698d8fa870f780": [
+            "ed33f844adcc4bf69d324c533f049d1d"
+        ],
+        "s055b30cc8544a4092521d1a3c930a38": [
+            "uddec7863ec247488f81f6c755c89cfa",
+            "j7ec6788b546478f9fb9c1fce8b52682"
+        ],
+        "s0d7abe5cfc24b2bafb60c14422a4f49": [
+            "ed33f844adcc4bf69d324c533f049d1d"
+        ],
+        "s105a07225424676bf03e45e169d8788": [
+            "ed33f844adcc4bf69d324c533f049d1d"
+        ],
+        "s372ce6ed8d64f54bf3f3988b1a69193": [
+            "uddec7863ec247488f81f6c755c89cfa"
+        ],
+        "s37495e5ea3b4b7d872e613e2e36ef4b": [
+            "uddec7863ec247488f81f6c755c89cfa"
+        ],
+        "s4a7920e7d954b129b2f572f4bfdf92c": [
+            "uddec7863ec247488f81f6c755c89cfa"
+        ],
+        "s62cdfc333f0442d9fd7ac8772dce626": [
+            "uddec7863ec247488f81f6c755c89cfa"
+        ],
+        "s79882fadc714c50a09711c95134967b": [
+            "uddec7863ec247488f81f6c755c89cfa"
+        ],
+        "s7f69b73dc0046ec88f3c7d2c51cf4f7": [
+            "uddec7863ec247488f81f6c755c89cfa",
+            "j7ec6788b546478f9fb9c1fce8b52682"
+        ],
+        "s80b9df7f7684a4593dad7275d18b853": [
+            "j2e2816180c645f88e7b7eb2742f9947"
+        ],
+        "s92dd6d32a5c426b9d9226f08bf30e34": [
+            "ed33f844adcc4bf69d324c533f049d1d"
+        ],
+        "s95199569ac447b292c0ab482a0da502": [
+            "j2e2816180c645f88e7b7eb2742f9947"
+        ],
+        "sa525098ef3540999ca160480f255d0d": [
+            "uddec7863ec247488f81f6c755c89cfa"
+        ],
+        "sb2062288dc74d578667106f2558e34b": [
+            "ed33f844adcc4bf69d324c533f049d1d"
+        ],
+        "sb8e942bf7c64d048aaedad5229b5bda": [
+            "uddec7863ec247488f81f6c755c89cfa"
+        ],
+        "sc16841b2d6c4e908d933bb1292fc33b": [
+            "j7ec6788b546478f9fb9c1fce8b52682"
+        ],
+        "sc8a2febde83483f85dfe51f3266495d": [
+            "uddec7863ec247488f81f6c755c89cfa",
+            "j7ec6788b546478f9fb9c1fce8b52682"
+        ],
+        "sf8c589c6c3e43ad84f5a2ab7cd959a4": [
+            "uddec7863ec247488f81f6c755c89cfa"
+        ],
+        "sf943759af6b4fa781b344394c817d72": [
+            "uddec7863ec247488f81f6c755c89cfa"
+        ]
+    },
+    "kuidInfo": {
+        "androidwear": {},
+        "desktop": {
+            "ed33f844adcc4bf69d324c533f049d1d": {
+                "appName": "Speedometer",
+                "id": "SampleRowTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSampleRowTemplate"
+            },
+            "j2e2816180c645f88e7b7eb2742f9947": {
+                "appName": "Speedometer",
+                "id": "SampleSectionHeaderTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSectionHeaderTemplate"
+            },
+            "j7ec6788b546478f9fb9c1fce8b52682": {
+                "appName": "Speedometer",
+                "id": "Form1",
+                "relFormId": "Form1",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            }
+        },
+        "masters": {},
+        "mobile": {},
+        "tablet": {},
+        "userwidgets": {
+            "uddec7863ec247488f81f6c755c89cfa": {
+                "appName": "Speedometer",
+                "id": "com.riskrating.chart.RiskRateChart",
+                "templateType": "userwidgets",
+                "viewName": "RiskRateChart",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            }
+        }
+    },
+    "userWidgetsKuidToIdMap": {
+        "b9a0569a93d64153a20e861332c15add": {
+            "id": "txtRating",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "d96574456f9d41d2abd0be2d2d48d9f5": {
+            "id": "btnSubmit",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "hf11885450ca48c781ce5ef74fb7ad30": {
+            "id": "flxMainValueSubmit",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "u05f4e708b3d486e8c05ccfb88d9de3c": {
+            "id": "lblHigh",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "u0b5990fb9424af99b2d36479b600b65": {
+            "id": "lblMedium",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "u289667a3a7d453d86f82e8a3f5fb2c9": {
+            "id": "imgPin",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "u2d6593ed1214fcaba6426fef9e274e1": {
+            "id": "imgChart",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "u6b020c00e3144558f933bcb86c7b752": {
+            "id": "RiskRateChart",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart"
+        },
+        "u94d029e91ba4b3baf86b826c1ba9c22": {
+            "id": "flxPin",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "u9877fdb660a4ef29436a3bf1c1aabae": {
+            "id": "lblLow",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "ub36793c23104e149c2a74b32cbdc7eb": {
+            "id": "lblSubStandard",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "uc6436c631d9481b9035ddb7199da75e": {
+            "id": "flxMain",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "uddec7863ec247488f81f6c755c89cfa": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "ueeb74b7d9934b49a2a2803ae7214fe0": {
+            "id": "lblVeryHigh",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/Speedometer/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        }
+    }
+}

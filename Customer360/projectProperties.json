@@ -428,9 +428,9 @@
     "keyStoreFilePathandwear": "",
     "kfAppInfo": {
         "4f3cb165-da14-4aa4-8d93-3fb6a5f6a994": {
-            "appName": "StandardBank",
-            "baseId": "cabada2d-dd07-4982-a73d-fa16a29fd8a5",
-            "id": "cabada2d-dd07-4982-a73d-fa16a29fd8a5",
+            "appName": "Customer360",
+            "baseId": "7590f609-b356-4c7c-9276-bf9f735dba68",
+            "id": "7590f609-b356-4c7c-9276-bf9f735dba68",
             "version": "1.0"
         }
     },

@@ -1,0 +1,1 @@
+voltmx.appinit.setApplicationMetaConfiguration("appid", "Customer360");

@@ -10,7 +10,7 @@
             "android": {},
             "iphone": {
                 "splashConfig": {
-                    "_skin_": "s9c208d85e6e44b0acf59a3a80741609",
+                    "_skin_": "s31d68a3555540ecba384c60e2d7609f",
                     "children": []
                 }
             },
@@ -26,7 +26,7 @@
             "ipad": {
                 "landscape": {},
                 "splashConfig": {
-                    "_skin_": "s9c208d85e6e44b0acf59a3a80741609",
+                    "_skin_": "s31d68a3555540ecba384c60e2d7609f",
                     "children": []
                 }
             },

@@ -1,0 +1,56 @@
+{
+    "desktopweb": {
+        "formslist": {
+            "mvcFormObjects": [
+                "SBCommon.frmHome",
+                "ManageScheme.frmAddScheme",
+                "ManageScheme.frmRemoveScheme",
+                "ManageScheme.frmSchHisDetails",
+                "ManageScheme.frmSchemeApprover",
+                "ManageScheme.frmSchemeDetails",
+                "ManageScheme.frmSchemeList",
+                "ManageScheme.frmSchemeReqHistory"
+            ],
+            "nonmvcFormObjects": []
+        },
+        "templatesList": {
+            "mvcTemplateObjects": [
+                "com.hc.segApprover.SegApproverScheme",
+                "com.hcl.SuspensionEntries.SuspensionEntries",
+                "com.hcl.addSuspend.AddSuspend",
+                "com.hcl.dropDown.DropDown",
+                "com.hcl.hdr.FormHeader",
+                "com.hcl.labelField.LabelsField",
+                "com.hcl.lblList.LabelList",
+                "com.hcl.lblText.LabelTextBox",
+                "com.hcl.lblTextArea.LabelTextArea",
+                "com.hcl.listData.ListBoxData",
+                "com.hcl.menu.SideMenu",
+                "com.hcl.popup.AlertUp",
+                "com.hcl.schemeList.SchemeList",
+                "com.hcl.segDropDown.SegDropDown",
+                "com.hcl.segHdr.segHeader",
+                "com.hcl.segSuspend.SegSuspendList",
+                "com.hcl.srchTextBox.SrchTextBox",
+                "com.hcl.subHdr.SubHdr",
+                "com.hcl.suspenEntryHdr.SuspenEntryHdr",
+                "com.riskrating.chart.RiskRateChart",
+                "SBCommon.SampleRowTemplate",
+                "SBCommon.SampleSectionHeaderTemplate",
+                "SBCommon.TempAddSuspendRow",
+                "SBCommon.TempApproverSegRow",
+                "SBCommon.TempDropDown",
+                "SBCommon.TempRowSchemeList",
+                "SBCommon.TempRowSuspend",
+                "SBCommon.TempRowSuspensionEntry",
+                "SBCommon.TempSecHdrSuspend",
+                "SBCommon.TempSegRowInternalExpo",
+                "SBCommon.TempSegRowItems",
+                "SBCommon.TempSegSecHdr",
+                "ManageScheme.SampleRowTemplate",
+                "ManageScheme.SampleSectionHeaderTemplate"
+            ],
+            "nonmvcTemplateObjects": []
+        }
+    }
+}

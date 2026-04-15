@@ -22,7 +22,7 @@
         0,
         0
     ],
-    "_skin_": "s97a65e5f4764ddd955a941ba82e385c",
+    "_skin_": "sa863e1b4a6b4544b007ee3d6b3eb23e",
     "_text_": "",
     "_top_": {
         "type": "string",
@@ -51,7 +51,7 @@
         }
     },
     "isvisible": true,
-    "kuid": "af65623b0962430f898ee82864716111",
+    "kuid": "c0ce51ef128e4ef9825580b5c0b22def",
     "maxwidth": {
         "type": "string",
         "value": "1%"

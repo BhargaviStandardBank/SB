@@ -1,0 +1,16 @@
+{
+  "name" : "FBLogin",
+  "type" : "oauth2",
+  "version" : "1.0",
+  "metaPreference" : -1,
+  "config" : "{\"dependent_providers\":[],\"auth_type\":\"oauth2\",\"session_restrictions\":{\"session_restriction_type\":\"allow_any_number_of_sessions\"},\"oauthProviderType\":\"facebook\",\"grant_type\":\"authorization_code\",\"authorization_endpoint\":\"https://www.facebook.com/v3.0/dialog/oauth/\",\"token_endpoint\":\"https://graph.facebook.com/v3.0/oauth/access_token\",\"logout_url\":\"https://accounts.google.com/logout\",\"client_authentication\":{\"client_id\":\"380960055071720\",\"client_secret\":\"80d87a877ec97328c87c0aa184ae1aa3\",\"authentication_scheme\":\"form\",\"client_pvt_key_jwt\":false},\"scope\":\"email\",\"authentication_scheme\":\"header\",\"profile\":{\"endpoint\":{\"location\":\"url\",\"type\":\"direct\",\"value\":\"https://graph.facebook.com/me\"},\"request_method\":\"GET\",\"profile_attribute_selectors\":{\"federation_id\":\"id\",\"email\":\"\",\"first_name\":\"\",\"last_name\":\"\",\"custom_profile_attribute_selectors\":{}}},\"dollarParamPresence\":{\"authorization_endpoint\":false,\"token_endpoint\":false,\"logout_url\":false,\"revoke_url\":false,\"profile_url\":false},\"enable_global_callback\":true,\"enable_refresh_login\":false,\"enable_identity_pkce\":true,\"additional_data\":{\"token_request\":[],\"refresh_request\":[],\"profile_request\":[],\"authorize_request\":[],\"revoke_request\":[]}}",
+  "policyConfig" : "{\"def_user_status\":\"pending\",\"max_login_fail\":5}",
+  "admissionPolicy" : "no_approval_needed",
+  "identityMeta" : {
+    "allow_sso" : false
+  },
+  "isIntegrityEnabled" : true,
+  "ssoenabled" : false,
+  "mapType" : "java.util.HashMap",
+  "empty" : true
+}

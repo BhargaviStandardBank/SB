@@ -1,0 +1,89 @@
+{
+    "@class": "com.kony.gen.viz.model.component.KVizUserWidget",
+    "DNDConfig": null,
+    "_children_": [],
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 1,
+    "_padding_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_percent_": true,
+    "_skin_": "s9ad6e320360464099ce9d666399bec4",
+    "_top_": {
+        "type": "string",
+        "value": "55dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "areflexpropsreferenced": false,
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "clipbounds": false,
+    "containerweight": 0,
+    "dataDiffs": {
+        "SegDropDown": {
+            "__events__": {},
+            "__info__": {
+                "isRoot": true,
+                "kuid": "jcf85db396aa45c1a4002a1676ad810e",
+                "srcKUID": "f1f12d4bc3e8407f91a0b30f1ef9cf45",
+                "wType": "FlexContainer"
+            },
+            "isVisible": false,
+            "responsiveData": {},
+            "top": {
+                "Default": {
+                    "type": "string",
+                    "value": "55dp"
+                }
+            }
+        },
+        "segDropDwn": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "gd6298b7babe40238f69b19e0414c94d",
+                "srcKUID": "c26ceebc42a243c99873675db21b209b",
+                "wType": "Segment"
+            }
+        }
+    },
+    "enablescrolling": true,
+    "focusskin": "s9ad6e320360464099ce9d666399bec4",
+    "id": "SegDropDown",
+    "info": null,
+    "iscustomlayout": false,
+    "isdatareferenced": false,
+    "isvisible": false,
+    "kuid": "jcf85db396aa45c1a4002a1676ad810e",
+    "layouttype": 2,
+    "masterType": 0,
+    "name": "kony.ui.UserWidgetInstance",
+    "parent": "flxDropDwn",
+    "pf": "frmRequestHistory",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "sourceUserWidget": "f1f12d4bc3e8407f91a0b30f1ef9cf45",
+    "wType": "UserWidgetInstance",
+    "zindex": 1
+}

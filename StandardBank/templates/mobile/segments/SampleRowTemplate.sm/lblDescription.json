@@ -26,7 +26,7 @@
         0,
         0
     ],
-    "_skin_": "s812ffde26144a819b12a61c6aaefcc5",
+    "_skin_": "sb5f38fba4124850830aa7047c3dd569",
     "_text_": "Sub-Heading",
     "_top_": {
         "type": "string",
@@ -64,7 +64,7 @@
         "textTruncatePosition": 0
     },
     "isvisible": true,
-    "kuid": "fe7ff929b56e40ed821803557ca06946",
+    "kuid": "f8cea6372df34da682ea0b94233e7317",
     "maxnumberoflines": 3,
     "maxwidth": {
         "type": "string",

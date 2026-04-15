@@ -40,10 +40,10 @@
     "clipbounds": false,
     "containerweight": 100,
     "disabledSkins": {
-        "blockedUISkin": "slFBlockedUIbox"
+        "blockedUISkin": "slFBlockedUIbox",
+        "focusSkin": "sf51dc37fd0a40178320b8330b005a98"
     },
     "enablescrolling": true,
-    "focusskin": "sf51dc37fd0a40178320b8330b005a98",
     "id": "flxAddMethod",
     "info": null,
     "iscustomlayout": false,

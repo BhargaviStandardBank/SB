@@ -40,14 +40,14 @@
     "clipbounds": false,
     "containerweight": 100,
     "disabledSkins": {
-        "blockedUISkin": "se10403881e545c88517e38d1704fe6e"
+        "blockedUISkin": "se10403881e545c88517e38d1704fe6e",
+        "focusSkin": "sf51dc37fd0a40178320b8330b005a98"
     },
     "enablescrolling": true,
-    "focusskin": "sf51dc37fd0a40178320b8330b005a98",
     "id": "flxAppStatusHdr",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": false,
+    "isvisible": true,
     "kuid": "jbed33851bec40b984682633505f46c2",
     "layouttype": 3,
     "name": "kony.ui.FlexContainer",

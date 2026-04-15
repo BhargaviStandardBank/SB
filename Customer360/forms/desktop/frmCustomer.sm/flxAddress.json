@@ -47,7 +47,7 @@
     "id": "flxAddress",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": true,
+    "isvisible": false,
     "kuid": "g438fbb2f907418195fb99f5b59225fb",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",

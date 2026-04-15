@@ -3,8 +3,8 @@
     "DNDConfig": null,
     "_children_": [],
     "_height_": {
-        "type": "ref",
-        "value": "preferred"
+        "type": "string",
+        "value": "100%"
     },
     "_left_": {
         "type": "string",
@@ -34,7 +34,7 @@
         "value": "100%"
     },
     "areflexpropsreferenced": false,
-    "autogrowmode": 1,
+    "autogrowmode": 0,
     "canUpdateUI": true,
     "clipbounds": false,
     "containerweight": 0,
@@ -43,7 +43,7 @@
             "__events__": {},
             "__info__": {
                 "isRoot": true,
-                "kuid": "i84872acea434deea26f3e5046018914",
+                "kuid": "a00cb71ef9184ad8b01348d9ba4c21a4",
                 "srcKUID": "c63f5442a4cf47de97dccfe254bf125c",
                 "wType": "FlexContainer"
             }
@@ -51,7 +51,7 @@
         "segSuspendEntry": {
             "__events__": {},
             "__info__": {
-                "kuid": "e5761cb8c122437691bd4d8dd89f8539",
+                "kuid": "cb19d3d9623a40bcaa8e838f26ee4d19",
                 "srcKUID": "j9d4a5f806554cb5891663739cb9c4d9",
                 "wType": "Segment"
             }
@@ -64,11 +64,11 @@
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kuid": "i84872acea434deea26f3e5046018914",
+    "kuid": "a00cb71ef9184ad8b01348d9ba4c21a4",
     "layouttype": 2,
     "masterType": 0,
     "name": "kony.ui.UserWidgetInstance",
-    "parent": "flxEmployeeDetails",
+    "parent": "flxSusEntry",
     "pf": "frmSchemeDetails",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,

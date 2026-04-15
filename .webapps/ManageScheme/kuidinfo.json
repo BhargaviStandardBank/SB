@@ -1,0 +1,1487 @@
+{
+    "idToKuidMapping": {
+        "androidwear": {},
+        "desktop": {
+            "CopyFBox0g0122a027e2e45": "ba1efcfa0f384e2885edda54b53c3d18",
+            "FBox0d362f77aee3647": "ib87e0eeb4034032a05cebd7ed0afda4",
+            "SampleRowTemplate": "f7f0e7e7d39f4527b4ff869038623bbd",
+            "SampleSectionHeaderTemplate": "f9cdf17510ae49359a2100133f1e7764",
+            "TempAddSuspendRow": "c044f59dfe094920ba5ef1c054640a7c",
+            "TempApproverSegRow": "ffa905261770438594b076caf06c7d72",
+            "TempDropDown": "bdb3a212d3544a1d8b984b6ec5115694",
+            "TempRowSchemeList": "if06ef0ec1df4191a4493d2ef92cd55a",
+            "TempRowSuspend": "j134041928a74eef8197c131cc1ef455",
+            "TempRowSuspensionEntry": "a96ab81d68664b64a57b5e72383466c4",
+            "TempSecHdrSuspend": "j3266b813ef54909823cdb8729bd550a",
+            "TempSegRowInternalExpo": "h883c488f20348828f4dcea69cfb0e44",
+            "TempSegRowItems": "ee0ee43775414ede9c37dfe177fe2aae",
+            "TempSegSecHdr": "ecb86e7c332d4db09a39c1e177bac515",
+            "frmAddScheme": "i1f2b77481ed4bb5b3173775de5a5f56",
+            "frmHome": "d0ef262a1491426fb96e1524df6c7e70",
+            "frmRemoveScheme": "f0b1021f58f849d488052fd136fa251f",
+            "frmSchHisDetails": "g0b1d215244348f1886ce0780c0dde8b",
+            "frmSchemeApprover": "c3d7ef1b795b4f6c8926e58283fbe980",
+            "frmSchemeDetails": "ff34aa6a1c9840d8aa95981779e0e263",
+            "frmSchemeList": "eb38d741b1de49828a92b7bd1df297ed",
+            "frmSchemeReqHistory": "gdf467ebba5c409fb526aed95e567b1d"
+        },
+        "masters": {},
+        "mobile": {},
+        "skins": {
+            "Copyseg0a0a7c8d6a42a44": "s89226b4848242afaa373d1bbb503c30",
+            "Copyseg0db8162a1d22b45": "sf98f75909624547b453368e6fb74258",
+            "defBtnBlockedUI": "sad650e3b554410cb830f137fe29d4c9",
+            "defBtnFocus": "sbd11c8af5f14d3e8305f8d426cbc68d",
+            "defBtnHover": "sacac96815eb4ea785aca546c79e8734",
+            "defBtnNormal": "saef4727914e49a986664002e2e77935",
+            "defBtnPressed": "se7a1b37f11b4bf5828530c358dac47d",
+            "defLabel": "s6fd4673cf974e46a1ce9c0780d0cb49",
+            "defLabel0b652f737213145": "s7cf81d9965f4e2580f73e015bcaf752",
+            "defListBoxFocus": "s59b2d3f5baa4e8f9ca8e10a454f6113",
+            "defListBoxNormal": "sacbfbfbd1b04eb3bf6392c420118882",
+            "defTextAreaBlockedUI": "s31be43304804967ad6bbe27b0fde352",
+            "defTextAreaFocus": "s5d001a222964bf2a85ef142639da7cb",
+            "defTextAreaHover": "s3969463ae1946eebf26633fd316cecc",
+            "defTextAreaNormal": "sa4a1a0c9138437798a25d856019b94f",
+            "defTextAreaPlaceholder": "s76a9e9021164222bae19e91ebddc5e6",
+            "defTextBoxBlockedUI": "s4265d3422894a7ab34eefc4bd0af188",
+            "defTextBoxFocus": "sdd84d81cbc54886af49612b003bdd36",
+            "defTextBoxNormal": "s3a75e20df7f46d8ad1aeed0b9742443",
+            "defTextBoxPlaceholder": "s85979924b4444a99931e3e46fc6f061",
+            "seg2Focus": "see88d16ac7544d8aa04752cb8444eed",
+            "seg2Normal": "s6b874b2795a4bd5a9c735d32fd683e6",
+            "segTrans": "s95f7b7ba19a4021905da6255ebf3d3f",
+            "sknBtnBlue": "sda0ea60761d44c0a25aa84bc3aa754f",
+            "sknBtnGrey": "sedeb3fdc9f24301a924f5823ee4633c",
+            "sknFlx15Blck": "s4fcb5770ec540dcb31034c181dc7f6a",
+            "sknFlxBGEDF5FF": "s1860cb829f64794999ae80557fd4327",
+            "sknFlxBlue": "seec677b505042ec8974c81cdd9eb8d2",
+            "sknFlxBtnDW": "s6ea15b557ea4f59b13da97f23ee3877",
+            "sknFlxDropDwn": "sc49fad6045448ecb5c1683bd06b8538",
+            "sknFlxImagList": "s5e1a186a58b4428b83bfddb22d5c03d",
+            "sknFlxLine": "s99772d6a50d41be8eec7569621f45bd",
+            "sknFlxRow": "s2abdd57d0604d50a49f83d368893e42",
+            "sknFlxRowFocus": "s4203c3eb3a44fe6808d9cbd7663c419",
+            "sknFlxSecHdr": "sfd2685022e14fcaae416b05f0f29f47",
+            "sknFlxSrcTrans": "s13a2089eddd45cf89a10724aa9345bd",
+            "sknFlxSrcWhiteBGBlckBrdr": "s0c135c03ae94beb9e3199579c562d80",
+            "sknFlxTextBox": "s9ad6e320360464099ce9d666399bec4",
+            "sknFlxTrans": "sf51dc37fd0a40178320b8330b005a98",
+            "sknFlxUpload": "sc4c12fdeaa345868831c8dbcc255ef0",
+            "sknFlxWhite": "sa40737710954befb854aa61605f8987",
+            "sknFlxWhiteBGBlckBrdr": "sb5b61f098a64d1ea3df5ecdaa3fc9d4",
+            "sknFlxWhiteBdr": "s26fe55a3aff44d989464d248bdeae24",
+            "sknFlxWhiteBrd": "sf457513fbdd48dab0d251bee11aaa36",
+            "sknFrmBG": "sdf50b4712f3490b99e807cad450cf7d",
+            "sknLblBtn": "sd40216d45354ed6b33a799f6903bd78",
+            "sknLblDescription": "sd977c1e6fe34c819c809fa9f3f69fed",
+            "sknLblFormLevel": "s25b9f0b45394a279a766b792fe07dfb",
+            "sknLblHeading2": "s962f0e59b214f95879af6905d30c93e",
+            "sknLblHeading4Bold": "s43f863821144a3c9e436ec1b93255f7",
+            "sknLblHeading5": "s43fbdee4eda4fe7a7b2c39c4570fb37",
+            "sknLblPendingOrange": "s0a264cf01bc45d48d66f7bae1e64461",
+            "sknLblRejectedRed": "s97a677ed9764db6abde32b8ae86e0a8",
+            "sknLblRowHeading": "s6cd53101865404aa815a1e9b4d4430c",
+            "sknLblStrip": "scb1d8093ec843aba063940a701bdf8b",
+            "sknLblSuccessGreen": "sfa899aa19a243a496f6a1686edfaa7d",
+            "sknLblTimeStamp": "sb52e65ed2c3489b9debe614fe08e0d8",
+            "sknLblUnderline": "sdb805082dc0483c9e116816aaca1e77",
+            "sknLblWhite": "s6b5b344b3484b779eec3165b74af735",
+            "sknListTrans": "s6defbbed6b146e68c052b08880525e8",
+            "sknLstGreyBrdr": "s06c662dea844622bf7c89fd2299b7a8",
+            "sknPlaceHdr": "s8522b3fb9974f20b21f059d3ed3aa4a",
+            "sknSBCalender": "sd5331db0df34d57acc863f0debc5e8b",
+            "sknSampleRowTemplate": "s016c34a4bc84515b2c6d6cda8c65cdf",
+            "sknSampleSectionHeaderTemplate": "sd2b654ce68c448fa694ed70271d3d63",
+            "sknSectionHeaderLabelSkin": "s52f50a7ed1446d788cdd7f0abfea282",
+            "sknSegRow": "s8cc2b6dc718466ca1e191eb16cdc66f",
+            "sknSegRowFocus": "sebb13d664b14edb9a92fabb98b3c49b",
+            "sknSegWidget": "sce83138b73e4435923f43ee269c9ea0",
+            "sknTxtAraGrey": "sfb07fca66994ec08c3316038e53f301",
+            "sknTxtAraPlaceHdr": "s542cf77bc9948a2ba3d53035c821ecc",
+            "sknTxtArea": "s478473352194d05a2cd004c684e0f86",
+            "sknTxtBrdRed": "s1922405961c4c3fae2be0a41b9de441",
+            "sknTxtBxTrans": "s6294b281a48418cbeaf5ef4ce6475a6",
+            "sknTxtBxf6f8fa": "s2d3abbd855d4f53bac57dc78cb71ad0",
+            "slCameraFocus": "sea51c6a38334ed3906c0be8e256cb99",
+            "slDynamicNotificationForm": "s027957bfa9c4774a6eb12af1fcd3b37",
+            "slFBlockedUIbox": "se10403881e545c88517e38d1704fe6e",
+            "slFFocusbox": "s055b30cc8544a4092521d1a3c930a38",
+            "slFSBlockedUIbox": "s4a31468fb624fe9b00cafc228a8ee66",
+            "slFSFocusSbox": "s50473dc54ea429da8f631a3be7bfda1",
+            "slFSbox": "s43f7780004a479392f8fc970165a69e",
+            "slFbox": "s6973a65388f4cb0a432c780c9c80006",
+            "slForm": "s6028a0ed06a4afc9b483cc7a1bf781b",
+            "slImage": "s6c1dc937f4942579be7f22a8532eaaf",
+            "slSplashiOS": "s1896a35992d4dadb78ac46cf58ded50",
+            "slStaticNotificationForm": "sb1dd320a7bf4b1b9fab5e0f52ea6000",
+            "slTitleBar": "saaf76cd0ba243f9841d8f6a9ff455c9",
+            "slWatchForm": "s4de25b56d3a43569a13940c69a9665d",
+            "sliPhoneSegmentHeader": "seb89c878dcc4b75b2df1a5b97c45a66"
+        },
+        "tablet": {},
+        "userwidgets": {
+            "com.hc.segApprover.SegApproverScheme": "ud8ce8b8b3fa41df81b60df26c4b378a",
+            "com.hcl.SuspensionEntries.SuspensionEntries": "u66f449b675240de9af9ef1f174e36de",
+            "com.hcl.addSuspend.AddSuspend": "u062edca1c624c078badefa54a73887c",
+            "com.hcl.dropDown.DropDown": "ufca17ee1cf047d7b6454cbfbf820050",
+            "com.hcl.hdr.FormHeader": "u93cb57f9cd64c72915b72f4a0f5d06b",
+            "com.hcl.labelField.LabelsField": "u83258bf48084baface0469b063f928c",
+            "com.hcl.lblList.LabelList": "u88b2e4ec47a4b20b6d02dd1ae8b0f54",
+            "com.hcl.lblText.LabelTextBox": "u9fad283dcd34daa9c9f00f67d9f3e1c",
+            "com.hcl.lblTextArea.LabelTextArea": "g5bcf23f75374615b1a1a2986d836db1",
+            "com.hcl.listData.ListBoxData": "u9756c7c900b4cb8adbad3ec8dfad89c",
+            "com.hcl.menu.SideMenu": "u2cd516a46db4cb09d14fa8863aa5487",
+            "com.hcl.popup.AlertUp": "u931e7eb051542abbdfc3d9805efb5c9",
+            "com.hcl.schemeList.SchemeList": "u080a3c0a9a248a7a6ac4203a6447c16",
+            "com.hcl.segDropDown.SegDropDown": "u667f019482145fda573bdd6fcd6cb08",
+            "com.hcl.segHdr.segHeader": "u3dbec80e96b493b88da1a9716e195d3",
+            "com.hcl.segSuspend.SegSuspendList": "u48f89724f0946eeaca71ea7ccbcc81a",
+            "com.hcl.srchTextBox.SrchTextBox": "ud844ce7f6f44c9b8be639c039260c10",
+            "com.hcl.subHdr.SubHdr": "u5d3da15d39b4b1584e369f914c4cfae",
+            "com.hcl.suspenEntryHdr.SuspenEntryHdr": "u15078ddf1794145a315d78819700bc3",
+            "com.riskrating.chart.RiskRateChart": "u8c6dd2370ef450c82cb6d8c7feed6d2"
+        }
+    },
+    "kuidDependencyMap": {
+        "a96ab81d68664b64a57b5e72383466c4": [
+            "u66f449b675240de9af9ef1f174e36de"
+        ],
+        "ba1efcfa0f384e2885edda54b53c3d18": [
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "bdb3a212d3544a1d8b984b6ec5115694": [
+            "ufca17ee1cf047d7b6454cbfbf820050",
+            "u667f019482145fda573bdd6fcd6cb08"
+        ],
+        "c044f59dfe094920ba5ef1c054640a7c": [
+            "u062edca1c624c078badefa54a73887c"
+        ],
+        "ecb86e7c332d4db09a39c1e177bac515": [
+            "u2cd516a46db4cb09d14fa8863aa5487"
+        ],
+        "ee0ee43775414ede9c37dfe177fe2aae": [
+            "u2cd516a46db4cb09d14fa8863aa5487"
+        ],
+        "ffa905261770438594b076caf06c7d72": [
+            "ud8ce8b8b3fa41df81b60df26c4b378a"
+        ],
+        "ib87e0eeb4034032a05cebd7ed0afda4": [
+            "i1f2b77481ed4bb5b3173775de5a5f56"
+        ],
+        "if06ef0ec1df4191a4493d2ef92cd55a": [
+            "u080a3c0a9a248a7a6ac4203a6447c16"
+        ],
+        "j134041928a74eef8197c131cc1ef455": [
+            "u48f89724f0946eeaca71ea7ccbcc81a"
+        ],
+        "s016c34a4bc84515b2c6d6cda8c65cdf": [
+            "f7f0e7e7d39f4527b4ff869038623bbd"
+        ],
+        "s055b30cc8544a4092521d1a3c930a38": [
+            "u062edca1c624c078badefa54a73887c",
+            "ufca17ee1cf047d7b6454cbfbf820050",
+            "g5bcf23f75374615b1a1a2986d836db1",
+            "ud844ce7f6f44c9b8be639c039260c10",
+            "u15078ddf1794145a315d78819700bc3",
+            "u8c6dd2370ef450c82cb6d8c7feed6d2",
+            "c044f59dfe094920ba5ef1c054640a7c",
+            "ffa905261770438594b076caf06c7d72",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263",
+            "eb38d741b1de49828a92b7bd1df297ed",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "s13a2089eddd45cf89a10724aa9345bd": [
+            "u2cd516a46db4cb09d14fa8863aa5487",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "ff34aa6a1c9840d8aa95981779e0e263"
+        ],
+        "s182b762a2c544ccbdd648feab55fba7": [
+            "iab2dc76131947008db1022c56be0b1e"
+        ],
+        "s1860cb829f64794999ae80557fd4327": [
+            "u3dbec80e96b493b88da1a9716e195d3",
+            "u15078ddf1794145a315d78819700bc3",
+            "j3266b813ef54909823cdb8729bd550a",
+            "ecb86e7c332d4db09a39c1e177bac515",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263",
+            "eb38d741b1de49828a92b7bd1df297ed",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "s2217dab19384615a44ff85c720a5de5": [
+            "iab2dc76131947008db1022c56be0b1e"
+        ],
+        "s25b9f0b45394a279a766b792fe07dfb": [
+            "u062edca1c624c078badefa54a73887c",
+            "ufca17ee1cf047d7b6454cbfbf820050",
+            "u83258bf48084baface0469b063f928c",
+            "u88b2e4ec47a4b20b6d02dd1ae8b0f54",
+            "u9fad283dcd34daa9c9f00f67d9f3e1c",
+            "g5bcf23f75374615b1a1a2986d836db1",
+            "u9756c7c900b4cb8adbad3ec8dfad89c",
+            "c044f59dfe094920ba5ef1c054640a7c",
+            "ffa905261770438594b076caf06c7d72",
+            "bdb3a212d3544a1d8b984b6ec5115694",
+            "if06ef0ec1df4191a4493d2ef92cd55a",
+            "j134041928a74eef8197c131cc1ef455",
+            "a96ab81d68664b64a57b5e72383466c4",
+            "h883c488f20348828f4dcea69cfb0e44",
+            "ee0ee43775414ede9c37dfe177fe2aae",
+            "ba1efcfa0f384e2885edda54b53c3d18",
+            "ib87e0eeb4034032a05cebd7ed0afda4",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "s26fe55a3aff44d989464d248bdeae24": [
+            "u5d3da15d39b4b1584e369f914c4cfae",
+            "d0ef262a1491426fb96e1524df6c7e70",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "eb38d741b1de49828a92b7bd1df297ed"
+        ],
+        "s2abdd57d0604d50a49f83d368893e42": [
+            "ee0ee43775414ede9c37dfe177fe2aae"
+        ],
+        "s2d3abbd855d4f53bac57dc78cb71ad0": [
+            "u9fad283dcd34daa9c9f00f67d9f3e1c",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "s31316b81d8746cca1a39b7e9daa522b": [
+            "iab2dc76131947008db1022c56be0b1e"
+        ],
+        "s4203c3eb3a44fe6808d9cbd7663c419": [
+            "ee0ee43775414ede9c37dfe177fe2aae"
+        ],
+        "s43f863821144a3c9e436ec1b93255f7": [
+            "u83258bf48084baface0469b063f928c",
+            "u3dbec80e96b493b88da1a9716e195d3",
+            "u5d3da15d39b4b1584e369f914c4cfae",
+            "u15078ddf1794145a315d78819700bc3",
+            "j3266b813ef54909823cdb8729bd550a",
+            "eb38d741b1de49828a92b7bd1df297ed"
+        ],
+        "s43fbdee4eda4fe7a7b2c39c4570fb37": [
+            "u2cd516a46db4cb09d14fa8863aa5487",
+            "u931e7eb051542abbdfc3d9805efb5c9",
+            "ecb86e7c332d4db09a39c1e177bac515",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "s478473352194d05a2cd004c684e0f86": [
+            "g5bcf23f75374615b1a1a2986d836db1",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b"
+        ],
+        "s4fcb5770ec540dcb31034c181dc7f6a": [
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263"
+        ],
+        "s52f50a7ed1446d788cdd7f0abfea282": [
+            "f9cdf17510ae49359a2100133f1e7764"
+        ],
+        "s542cf77bc9948a2ba3d53035c821ecc": [
+            "g5bcf23f75374615b1a1a2986d836db1"
+        ],
+        "s58a126b217747fd8776e1c605d0ce77": [
+            "iab2dc76131947008db1022c56be0b1e"
+        ],
+        "s5d001a222964bf2a85ef142639da7cb": [
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b"
+        ],
+        "s5dc3436a96f4ed7a43380a007b5c692": [
+            "u88b2e4ec47a4b20b6d02dd1ae8b0f54"
+        ],
+        "s5e1a186a58b4428b83bfddb22d5c03d": [
+            "u88b2e4ec47a4b20b6d02dd1ae8b0f54",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "s626055990c74b8f81faa8d298276b86": [
+            "ia5938dcd4e24b99a1a0a3548445dc7a"
+        ],
+        "s6294b281a48418cbeaf5ef4ce6475a6": [
+            "ud844ce7f6f44c9b8be639c039260c10"
+        ],
+        "s6973a65388f4cb0a432c780c9c80006": [
+            "ba1efcfa0f384e2885edda54b53c3d18",
+            "ib87e0eeb4034032a05cebd7ed0afda4",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "s6b5b344b3484b779eec3165b74af735": [
+            "u8c6dd2370ef450c82cb6d8c7feed6d2"
+        ],
+        "s6c1dc937f4942579be7f22a8532eaaf": [
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "ff34aa6a1c9840d8aa95981779e0e263",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "s6cd53101865404aa815a1e9b4d4430c": [
+            "f7f0e7e7d39f4527b4ff869038623bbd"
+        ],
+        "s6defbbed6b146e68c052b08880525e8": [
+            "u88b2e4ec47a4b20b6d02dd1ae8b0f54",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "s731e43b398f4ad4818ee8cb436aee03": [
+            "u062edca1c624c078badefa54a73887c",
+            "ufca17ee1cf047d7b6454cbfbf820050",
+            "u88b2e4ec47a4b20b6d02dd1ae8b0f54",
+            "u2cd516a46db4cb09d14fa8863aa5487",
+            "u931e7eb051542abbdfc3d9805efb5c9",
+            "u3dbec80e96b493b88da1a9716e195d3",
+            "ud844ce7f6f44c9b8be639c039260c10",
+            "u8c6dd2370ef450c82cb6d8c7feed6d2",
+            "ffa905261770438594b076caf06c7d72",
+            "j134041928a74eef8197c131cc1ef455",
+            "a96ab81d68664b64a57b5e72383466c4",
+            "eb38d741b1de49828a92b7bd1df297ed"
+        ],
+        "s76a9e9021164222bae19e91ebddc5e6": [
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b"
+        ],
+        "s79882fadc714c50a09711c95134967b": [
+            "u8c6dd2370ef450c82cb6d8c7feed6d2",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263"
+        ],
+        "s8522b3fb9974f20b21f059d3ed3aa4a": [
+            "u9fad283dcd34daa9c9f00f67d9f3e1c",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "s86a673789494ad0a4a93420856d7475": [
+            "iab2dc76131947008db1022c56be0b1e"
+        ],
+        "s89d578329194107941192e82b116fac": [
+            "u062edca1c624c078badefa54a73887c",
+            "u2cd516a46db4cb09d14fa8863aa5487"
+        ],
+        "s8cc2b6dc718466ca1e191eb16cdc66f": [
+            "u66f449b675240de9af9ef1f174e36de",
+            "u48f89724f0946eeaca71ea7ccbcc81a"
+        ],
+        "s9454f0f37e74823923bebf33cc8b1f8": [
+            "ia5938dcd4e24b99a1a0a3548445dc7a"
+        ],
+        "s95f7b7ba19a4021905da6255ebf3d3f": [
+            "ud8ce8b8b3fa41df81b60df26c4b378a",
+            "ufca17ee1cf047d7b6454cbfbf820050",
+            "u080a3c0a9a248a7a6ac4203a6447c16",
+            "u667f019482145fda573bdd6fcd6cb08",
+            "u48f89724f0946eeaca71ea7ccbcc81a",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "s962f0e59b214f95879af6905d30c93e": [
+            "u93cb57f9cd64c72915b72f4a0f5d06b",
+            "u931e7eb051542abbdfc3d9805efb5c9",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "ff34aa6a1c9840d8aa95981779e0e263"
+        ],
+        "s99772d6a50d41be8eec7569621f45bd": [
+            "ecb86e7c332d4db09a39c1e177bac515"
+        ],
+        "s9ad6e320360464099ce9d666399bec4": [
+            "u062edca1c624c078badefa54a73887c",
+            "ufca17ee1cf047d7b6454cbfbf820050",
+            "u88b2e4ec47a4b20b6d02dd1ae8b0f54",
+            "u667f019482145fda573bdd6fcd6cb08",
+            "ud844ce7f6f44c9b8be639c039260c10",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "ff34aa6a1c9840d8aa95981779e0e263",
+            "eb38d741b1de49828a92b7bd1df297ed",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "sa40737710954befb854aa61605f8987": [
+            "u062edca1c624c078badefa54a73887c",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "sa525098ef3540999ca160480f255d0d": [
+            "u8c6dd2370ef450c82cb6d8c7feed6d2",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263"
+        ],
+        "sa7ed060dbc74c75a5f7d403180179c0": [
+            "u9fad283dcd34daa9c9f00f67d9f3e1c"
+        ],
+        "sa838df9eeab4d56a20b792467f798e0": [
+            "ud8ce8b8b3fa41df81b60df26c4b378a",
+            "u66f449b675240de9af9ef1f174e36de",
+            "u062edca1c624c078badefa54a73887c",
+            "ufca17ee1cf047d7b6454cbfbf820050",
+            "u2cd516a46db4cb09d14fa8863aa5487",
+            "u080a3c0a9a248a7a6ac4203a6447c16",
+            "u667f019482145fda573bdd6fcd6cb08",
+            "u48f89724f0946eeaca71ea7ccbcc81a"
+        ],
+        "sb52e65ed2c3489b9debe614fe08e0d8": [
+            "f7f0e7e7d39f4527b4ff869038623bbd"
+        ],
+        "sb5b61f098a64d1ea3df5ecdaa3fc9d4": [
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263",
+            "eb38d741b1de49828a92b7bd1df297ed",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "sbae7b20b1894e0aaca9ae6fa9c1fa39": [
+            "u062edca1c624c078badefa54a73887c",
+            "u2cd516a46db4cb09d14fa8863aa5487"
+        ],
+        "sbd11c8af5f14d3e8305f8d426cbc68d": [
+            "c3d7ef1b795b4f6c8926e58283fbe980"
+        ],
+        "scb1d8093ec843aba063940a701bdf8b": [
+            "f7f0e7e7d39f4527b4ff869038623bbd"
+        ],
+        "sd2b654ce68c448fa694ed70271d3d63": [
+            "f9cdf17510ae49359a2100133f1e7764"
+        ],
+        "sd977c1e6fe34c819c809fa9f3f69fed": [
+            "f7f0e7e7d39f4527b4ff869038623bbd"
+        ],
+        "sda0ea60761d44c0a25aa84bc3aa754f": [
+            "u931e7eb051542abbdfc3d9805efb5c9",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263"
+        ],
+        "sdd84d81cbc54886af49612b003bdd36": [
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "sdf50b4712f3490b99e807cad450cf7d": [
+            "d0ef262a1491426fb96e1524df6c7e70",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263",
+            "eb38d741b1de49828a92b7bd1df297ed",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "se1c14df4e0140f595b71735e82dcc1c": [
+            "u062edca1c624c078badefa54a73887c",
+            "u8c6dd2370ef450c82cb6d8c7feed6d2",
+            "c044f59dfe094920ba5ef1c054640a7c",
+            "ffa905261770438594b076caf06c7d72",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "seb89c878dcc4b75b2df1a5b97c45a66": [
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f"
+        ],
+        "sebb13d664b14edb9a92fabb98b3c49b": [
+            "u66f449b675240de9af9ef1f174e36de"
+        ],
+        "sedeb3fdc9f24301a924f5823ee4633c": [
+            "u931e7eb051542abbdfc3d9805efb5c9",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b"
+        ],
+        "sf457513fbdd48dab0d251bee11aaa36": [
+            "u931e7eb051542abbdfc3d9805efb5c9",
+            "u48f89724f0946eeaca71ea7ccbcc81a",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ],
+        "sf51dc37fd0a40178320b8330b005a98": [
+            "ud8ce8b8b3fa41df81b60df26c4b378a",
+            "u66f449b675240de9af9ef1f174e36de",
+            "ufca17ee1cf047d7b6454cbfbf820050",
+            "u93cb57f9cd64c72915b72f4a0f5d06b",
+            "u83258bf48084baface0469b063f928c",
+            "u88b2e4ec47a4b20b6d02dd1ae8b0f54",
+            "u9fad283dcd34daa9c9f00f67d9f3e1c",
+            "g5bcf23f75374615b1a1a2986d836db1",
+            "u9756c7c900b4cb8adbad3ec8dfad89c",
+            "u2cd516a46db4cb09d14fa8863aa5487",
+            "u931e7eb051542abbdfc3d9805efb5c9",
+            "u080a3c0a9a248a7a6ac4203a6447c16",
+            "u3dbec80e96b493b88da1a9716e195d3",
+            "u5d3da15d39b4b1584e369f914c4cfae",
+            "u8c6dd2370ef450c82cb6d8c7feed6d2",
+            "bdb3a212d3544a1d8b984b6ec5115694",
+            "if06ef0ec1df4191a4493d2ef92cd55a",
+            "j134041928a74eef8197c131cc1ef455",
+            "a96ab81d68664b64a57b5e72383466c4",
+            "h883c488f20348828f4dcea69cfb0e44",
+            "d0ef262a1491426fb96e1524df6c7e70",
+            "i1f2b77481ed4bb5b3173775de5a5f56",
+            "f0b1021f58f849d488052fd136fa251f",
+            "g0b1d215244348f1886ce0780c0dde8b",
+            "c3d7ef1b795b4f6c8926e58283fbe980",
+            "ff34aa6a1c9840d8aa95981779e0e263",
+            "eb38d741b1de49828a92b7bd1df297ed",
+            "gdf467ebba5c409fb526aed95e567b1d"
+        ]
+    },
+    "kuidInfo": {
+        "androidwear": {},
+        "desktop": {
+            "a96ab81d68664b64a57b5e72383466c4": {
+                "appName": "SBCommon",
+                "id": "TempRowSuspensionEntry",
+                "templateType": "segments",
+                "topFlexId": "flxSuspensionEntry"
+            },
+            "ba1efcfa0f384e2885edda54b53c3d18": {
+                "appName": "ManageScheme",
+                "id": "CopyFBox0g0122a027e2e45",
+                "templateType": "segments",
+                "topFlexId": "CopyFBox0g0122a027e2e45"
+            },
+            "bdb3a212d3544a1d8b984b6ec5115694": {
+                "appName": "SBCommon",
+                "id": "TempDropDown",
+                "templateType": "segments",
+                "topFlexId": "flxDropDown"
+            },
+            "c044f59dfe094920ba5ef1c054640a7c": {
+                "appName": "SBCommon",
+                "id": "TempAddSuspendRow",
+                "templateType": "segments",
+                "topFlexId": "flxAddSuspendRow"
+            },
+            "c3d7ef1b795b4f6c8926e58283fbe980": {
+                "appName": "ManageScheme",
+                "id": "frmSchemeApprover",
+                "relFormId": "frmSchemeApprover",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "d0ef262a1491426fb96e1524df6c7e70": {
+                "appName": "SBCommon",
+                "id": "frmHome",
+                "relFormId": "frmHome",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "eb38d741b1de49828a92b7bd1df297ed": {
+                "appName": "ManageScheme",
+                "id": "frmSchemeList",
+                "relFormId": "frmSchemeList",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "ecb86e7c332d4db09a39c1e177bac515": {
+                "appName": "SBCommon",
+                "id": "TempSegSecHdr",
+                "templateType": "segments",
+                "topFlexId": "flxSegSecHdr"
+            },
+            "ee0ee43775414ede9c37dfe177fe2aae": {
+                "appName": "SBCommon",
+                "id": "TempSegRowItems",
+                "templateType": "segments",
+                "topFlexId": "flxRowItems"
+            },
+            "f0b1021f58f849d488052fd136fa251f": {
+                "appName": "ManageScheme",
+                "id": "frmRemoveScheme",
+                "relFormId": "frmRemoveScheme",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "f7f0e7e7d39f4527b4ff869038623bbd": {
+                "appName": "ManageScheme",
+                "id": "SampleRowTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSampleRowTemplate"
+            },
+            "f9cdf17510ae49359a2100133f1e7764": {
+                "appName": "ManageScheme",
+                "id": "SampleSectionHeaderTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSectionHeaderTemplate"
+            },
+            "ff34aa6a1c9840d8aa95981779e0e263": {
+                "appName": "ManageScheme",
+                "id": "frmSchemeDetails",
+                "relFormId": "frmSchemeDetails",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "ffa905261770438594b076caf06c7d72": {
+                "appName": "SBCommon",
+                "id": "TempApproverSegRow",
+                "templateType": "segments",
+                "topFlexId": "flxApprover"
+            },
+            "g0b1d215244348f1886ce0780c0dde8b": {
+                "appName": "ManageScheme",
+                "id": "frmSchHisDetails",
+                "relFormId": "frmSchHisDetails",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "gdf467ebba5c409fb526aed95e567b1d": {
+                "appName": "ManageScheme",
+                "id": "frmSchemeReqHistory",
+                "relFormId": "frmSchemeReqHistory",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "h883c488f20348828f4dcea69cfb0e44": {
+                "appName": "SBCommon",
+                "id": "TempSegRowInternalExpo",
+                "templateType": "segments",
+                "topFlexId": "flxRow"
+            },
+            "i1f2b77481ed4bb5b3173775de5a5f56": {
+                "appName": "ManageScheme",
+                "id": "frmAddScheme",
+                "relFormId": "frmAddScheme",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "ia5938dcd4e24b99a1a0a3548445dc7a": {
+                "appName": "SBCommon",
+                "id": "SampleSectionHeaderTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSectionHeaderTemplate"
+            },
+            "iab2dc76131947008db1022c56be0b1e": {
+                "appName": "SBCommon",
+                "id": "SampleRowTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSampleRowTemplate"
+            },
+            "ib87e0eeb4034032a05cebd7ed0afda4": {
+                "appName": "ManageScheme",
+                "id": "FBox0d362f77aee3647",
+                "templateType": "segments",
+                "topFlexId": "FBox0d362f77aee3647"
+            },
+            "if06ef0ec1df4191a4493d2ef92cd55a": {
+                "appName": "SBCommon",
+                "id": "TempRowSchemeList",
+                "templateType": "segments",
+                "topFlexId": "flxSchemeList"
+            },
+            "j134041928a74eef8197c131cc1ef455": {
+                "appName": "SBCommon",
+                "id": "TempRowSuspend",
+                "templateType": "segments",
+                "topFlexId": "flxRowSuspend"
+            },
+            "j3266b813ef54909823cdb8729bd550a": {
+                "appName": "SBCommon",
+                "id": "TempSecHdrSuspend",
+                "templateType": "segments",
+                "topFlexId": "flxSecHdrSuspend"
+            }
+        },
+        "masters": {},
+        "mobile": {},
+        "tablet": {},
+        "userwidgets": {
+            "g5bcf23f75374615b1a1a2986d836db1": {
+                "appName": "SBCommon",
+                "id": "com.hcl.lblTextArea.LabelTextArea",
+                "templateType": "userwidgets",
+                "viewName": "LabelTextArea",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u062edca1c624c078badefa54a73887c": {
+                "appName": "SBCommon",
+                "id": "com.hcl.addSuspend.AddSuspend",
+                "templateType": "userwidgets",
+                "viewName": "AddSuspend",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u080a3c0a9a248a7a6ac4203a6447c16": {
+                "appName": "SBCommon",
+                "id": "com.hcl.schemeList.SchemeList",
+                "templateType": "userwidgets",
+                "viewName": "SchemeList",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u15078ddf1794145a315d78819700bc3": {
+                "appName": "SBCommon",
+                "id": "com.hcl.suspenEntryHdr.SuspenEntryHdr",
+                "templateType": "userwidgets",
+                "viewName": "SuspenEntryHdr",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u2cd516a46db4cb09d14fa8863aa5487": {
+                "appName": "SBCommon",
+                "id": "com.hcl.menu.SideMenu",
+                "templateType": "userwidgets",
+                "viewName": "SideMenu",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u3dbec80e96b493b88da1a9716e195d3": {
+                "appName": "SBCommon",
+                "id": "com.hcl.segHdr.segHeader",
+                "templateType": "userwidgets",
+                "viewName": "segHeader",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u48f89724f0946eeaca71ea7ccbcc81a": {
+                "appName": "SBCommon",
+                "id": "com.hcl.segSuspend.SegSuspendList",
+                "templateType": "userwidgets",
+                "viewName": "SegSuspendList",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u5d3da15d39b4b1584e369f914c4cfae": {
+                "appName": "SBCommon",
+                "id": "com.hcl.subHdr.SubHdr",
+                "templateType": "userwidgets",
+                "viewName": "SubHdr",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u667f019482145fda573bdd6fcd6cb08": {
+                "appName": "SBCommon",
+                "id": "com.hcl.segDropDown.SegDropDown",
+                "templateType": "userwidgets",
+                "viewName": "SegDropDown",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u66f449b675240de9af9ef1f174e36de": {
+                "appName": "SBCommon",
+                "id": "com.hcl.SuspensionEntries.SuspensionEntries",
+                "templateType": "userwidgets",
+                "viewName": "SuspensionEntries",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u83258bf48084baface0469b063f928c": {
+                "appName": "SBCommon",
+                "id": "com.hcl.labelField.LabelsField",
+                "templateType": "userwidgets",
+                "viewName": "LabelsField",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u88b2e4ec47a4b20b6d02dd1ae8b0f54": {
+                "appName": "SBCommon",
+                "id": "com.hcl.lblList.LabelList",
+                "templateType": "userwidgets",
+                "viewName": "LabelList",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u8c6dd2370ef450c82cb6d8c7feed6d2": {
+                "appName": "SBCommon",
+                "id": "com.riskrating.chart.RiskRateChart",
+                "templateType": "userwidgets",
+                "viewName": "RiskRateChart",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u931e7eb051542abbdfc3d9805efb5c9": {
+                "appName": "SBCommon",
+                "id": "com.hcl.popup.AlertUp",
+                "templateType": "userwidgets",
+                "viewName": "AlertUp",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u93cb57f9cd64c72915b72f4a0f5d06b": {
+                "appName": "SBCommon",
+                "id": "com.hcl.hdr.FormHeader",
+                "templateType": "userwidgets",
+                "viewName": "FormHeader",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u9756c7c900b4cb8adbad3ec8dfad89c": {
+                "appName": "SBCommon",
+                "id": "com.hcl.listData.ListBoxData",
+                "templateType": "userwidgets",
+                "viewName": "ListBoxData",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "u9fad283dcd34daa9c9f00f67d9f3e1c": {
+                "appName": "SBCommon",
+                "id": "com.hcl.lblText.LabelTextBox",
+                "templateType": "userwidgets",
+                "viewName": "LabelTextBox",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "ud844ce7f6f44c9b8be639c039260c10": {
+                "appName": "SBCommon",
+                "id": "com.hcl.srchTextBox.SrchTextBox",
+                "templateType": "userwidgets",
+                "viewName": "SrchTextBox",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "ud8ce8b8b3fa41df81b60df26c4b378a": {
+                "appName": "SBCommon",
+                "id": "com.hc.segApprover.SegApproverScheme",
+                "templateType": "userwidgets",
+                "viewName": "SegApproverScheme",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "ufca17ee1cf047d7b6454cbfbf820050": {
+                "appName": "SBCommon",
+                "id": "com.hcl.dropDown.DropDown",
+                "templateType": "userwidgets",
+                "viewName": "DropDown",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            }
+        }
+    },
+    "userWidgetsKuidToIdMap": {
+        "a071ddcef23f4cbcb214fffd50f802aa": {
+            "id": "lblListName",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.listData.ListBoxData/userwidgetmodel.sm"
+        },
+        "a093d1006b74463e9db532d3b6b40c7f": {
+            "id": "flxList",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblList.LabelList/userwidgetmodel.sm"
+        },
+        "a12e1cb5c591458b88898ceaed45d708": {
+            "id": "flxDropDown",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segDropDown.SegDropDown/userwidgetmodel.sm"
+        },
+        "a1db6652acbb4de69f4acd100eea573e": {
+            "id": "segAdd",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend/userwidgetmodel.sm"
+        },
+        "a25f7337e75143ccb4eb21aa52c73fb1": {
+            "id": "SubHdr",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.subHdr.SubHdr"
+        },
+        "a3419bec427f4af5bd6c50ef70a8daf1": {
+            "id": "segHeader",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader"
+        },
+        "a3990071b0814867b441e1db1cc05dc2": {
+            "id": "LabelTextBox",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblText.LabelTextBox"
+        },
+        "a566525803ef471db80c6bc8f1bbd2af": {
+            "id": "flxSegDropDown",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.dropDown.DropDown/userwidgetmodel.sm"
+        },
+        "a61209655d384d46aebf0e758b06b8aa": {
+            "id": "CopyimgFilter0fd5bbd1bf1db45",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "a7d430ab73874e2cbd05afad90421143": {
+            "id": "lblReason",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "a94bc69ab87742da88fc14ac5d4a1294": {
+            "id": "txtSrch",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.srchTextBox.SrchTextBox/userwidgetmodel.sm"
+        },
+        "a96ab81d68664b64a57b5e72383466c4": {
+            "id": "TempRowSuspensionEntry",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.SuspensionEntries.SuspensionEntries/userwidgetmodel.sm"
+        },
+        "afef1d0c9b3e4674b10bf6822d315126": {
+            "id": "segApprover",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hc.segApprover.SegApproverScheme/userwidgetmodel.sm"
+        },
+        "b1648ee87f9b489da46a065e8e15044e": {
+            "id": "SegSuspendList",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segSuspend.SegSuspendList"
+        },
+        "b1d9347df7af44f6abfa74e6a6efbec5": {
+            "id": "imgFilter",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "b1dea37f7803476ca1ef673b26521d76": {
+            "id": "btnCancel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "b1f94a5ca58f4f7d9f20e14a555fd1ab": {
+            "id": "segSuspend",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segSuspend.SegSuspendList/userwidgetmodel.sm"
+        },
+        "b37817749af24b949d2de5f1d4c72630": {
+            "id": "lblCustomerName",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.suspenEntryHdr.SuspenEntryHdr/userwidgetmodel.sm"
+        },
+        "b4e0176638c04ab9a8a773fdfff277e7": {
+            "id": "lblDropDownVal",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.dropDown.DropDown/userwidgetmodel.sm"
+        },
+        "b5f4a365178d40e9a6c025cc8302625d": {
+            "id": "RiskRateChart",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart"
+        },
+        "b92bff524cd340c7ad7d11494c7a9798": {
+            "id": "imgDropDwn",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.dropDown.DropDown/userwidgetmodel.sm"
+        },
+        "b9820cbf67a34dc9b198ef6c1ef7cc4a": {
+            "id": "SideMenu",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu"
+        },
+        "bb202ccb989f464b9f4c78ea0a05146c": {
+            "id": "lblSubHdr",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.subHdr.SubHdr/userwidgetmodel.sm"
+        },
+        "bdb3a212d3544a1d8b984b6ec5115694": {
+            "id": "TempDropDown",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segDropDown.SegDropDown/userwidgetmodel.sm"
+        },
+        "be75ea9f802f4d5789d71de47701056a": {
+            "id": "SchemeList",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.schemeList.SchemeList"
+        },
+        "be7704f50dd343948c177a09a9bde1ba": {
+            "id": "lblIDNo",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "c044f59dfe094920ba5ef1c054640a7c": {
+            "id": "TempAddSuspendRow",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend/userwidgetmodel.sm"
+        },
+        "c26ceebc42a243c99873675db21b209b": {
+            "id": "segDropDwn",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segDropDown.SegDropDown/userwidgetmodel.sm"
+        },
+        "c30e3f0feb7c4988bba671efd9061acc": {
+            "id": "lblCIFNO",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.suspenEntryHdr.SuspenEntryHdr/userwidgetmodel.sm"
+        },
+        "c328a426ff384c3199682ac5a555a788": {
+            "id": "FlexContainer0e91e04f1e8e74a",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblTextArea.LabelTextArea/userwidgetmodel.sm"
+        },
+        "c3593290605542c2b54693984b61859a": {
+            "id": "segSchemeList",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.schemeList.SchemeList/userwidgetmodel.sm"
+        },
+        "c3f52fc8dbc14a9aac5826ea12d83816": {
+            "id": "lblHigh",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "c5b8d2ad3685429ba917a409624c58ab": {
+            "id": "lblLow",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "c63f5442a4cf47de97dccfe254bf125c": {
+            "id": "SuspensionEntries",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.SuspensionEntries.SuspensionEntries"
+        },
+        "c6ef23890a3943529b61c4f3edb9d43a": {
+            "id": "lblDate",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "c76531a21b2d48dbb99f2bd6eb517594": {
+            "id": "DropDown",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.dropDown.DropDown"
+        },
+        "ca98f7d5bd1c4be4bfd0207f39bc16b1": {
+            "id": "flxIDNo",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "cd62fda0cb0746c6a99d098b3c694cad": {
+            "id": "CopyimgFilter0c8663a5ec8e44b",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "ce1eafc6e6124a2a818023ea9e77d238": {
+            "id": "btnExist",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "d0ba4de2bf6c4656a43345c0c1fb6579": {
+            "id": "lblAlertMessg",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "d0fda0d6ccf34ac1a4f8c17ffc18b7f6": {
+            "id": "flxDropDown",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.dropDown.DropDown/userwidgetmodel.sm"
+        },
+        "d15698e5d4894e3790afba4c890d7dab": {
+            "id": "flxDate",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "d2ed5d6babe944928e1a0fef7d632d9e": {
+            "id": "flxCIFNo",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "d577104a59e54003bb26f9625ccc064f": {
+            "id": "flxSchemeList",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.schemeList.SchemeList/userwidgetmodel.sm"
+        },
+        "d82eaf4462ac4133bdb4155d23e4aa9a": {
+            "id": "flxAddSource",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend/userwidgetmodel.sm"
+        },
+        "da969f897817423280b2ae79a83f1831": {
+            "id": "LabelsField",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.labelField.LabelsField"
+        },
+        "dc7769bed9ed483da34b4a1b7b29a73c": {
+            "id": "flxRowItems",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "dd449a9e0cde458cb8b90b60d6126929": {
+            "id": "lblReason",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.suspenEntryHdr.SuspenEntryHdr/userwidgetmodel.sm"
+        },
+        "dd545f177e9b45f7b0719f4cec54453d": {
+            "id": "flxRowSuspend",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segSuspend.SegSuspendList/userwidgetmodel.sm"
+        },
+        "e125a8935ccd4fcdb2e5439ac900fd74": {
+            "id": "imgAlert",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "e5b23e679eb6454198807a6dbb384bb5": {
+            "id": "flxAddSuspendRow",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend/userwidgetmodel.sm"
+        },
+        "e8569db592ac4b2084cb6627f34fed79": {
+            "id": "LabelList",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblList.LabelList"
+        },
+        "e90d7768f0324cda9b432950e232c26a": {
+            "id": "imgChart",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "e96ef5e3f20844929b30829768f13c7e": {
+            "id": "lblCustomerName",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "ecaffe136a7647ee89b97eff000d8e8c": {
+            "id": "lblHdr",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.hdr.FormHeader/userwidgetmodel.sm"
+        },
+        "ecb86e7c332d4db09a39c1e177bac515": {
+            "id": "TempSegSecHdr",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "ed3f8ab43402440eadc1b1b486091294": {
+            "id": "lblAlertHdr",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "ee0ee43775414ede9c37dfe177fe2aae": {
+            "id": "TempSegRowItems",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "eef1c87822f840b9a13d8c344c5b2229": {
+            "id": "lblMedium",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "f1f12d4bc3e8407f91a0b30f1ef9cf45": {
+            "id": "SegDropDown",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segDropDown.SegDropDown"
+        },
+        "f2ad940a55144e3aa422aa0e7e03c9f5": {
+            "id": "lblDetail",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.labelField.LabelsField/userwidgetmodel.sm"
+        },
+        "f3847ce1f7404c06b77ebe8c54e77072": {
+            "id": "txtArea",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblTextArea.LabelTextArea/userwidgetmodel.sm"
+        },
+        "f4aaf3ef9da64bfa878ddac37f343487": {
+            "id": "btnRequestHistory",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "f4e6eed90c164fa6830549b96133cad8": {
+            "id": "ListBoxData",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.listData.ListBoxData"
+        },
+        "f79732d604304ed48bf1dd0528b228d8": {
+            "id": "txtBox",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblText.LabelTextBox/userwidgetmodel.sm"
+        },
+        "f7c764ae02b6452f874d53ffabf3d5c9": {
+            "id": "listData",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblList.LabelList/userwidgetmodel.sm"
+        },
+        "f85baf6709bb4dd392b7803afa32c837": {
+            "id": "SegApproverScheme",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hc.segApprover.SegApproverScheme"
+        },
+        "f9aa0908d3b749fb9d7b4c2d4fac6801": {
+            "id": "lblAlertMsg2",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "faf670b7e6a4404b9408a27d5d7c3029": {
+            "id": "segMenu",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "fb104bae5f454af1af929bd09550e976": {
+            "id": "lblVeryHigh",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "fb213a1476754193a04bf69b85cda213": {
+            "id": "lblSubStandard",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "fc09117040df42089445162aef5b7424": {
+            "id": "flxSuspensionEntry",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.SuspensionEntries.SuspensionEntries/userwidgetmodel.sm"
+        },
+        "fc159ae3796344e386a4b83ca85aebcd": {
+            "id": "lblText",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblText.LabelTextBox/userwidgetmodel.sm"
+        },
+        "fc1aaea9eca344d19917503474ec233d": {
+            "id": "lblUserName",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "fc3bb8b973cb4a2f82121dfe0203e809": {
+            "id": "SuspenEntryHdr",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.suspenEntryHdr.SuspenEntryHdr"
+        },
+        "ffa905261770438594b076caf06c7d72": {
+            "id": "TempApproverSegRow",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hc.segApprover.SegApproverScheme/userwidgetmodel.sm"
+        },
+        "g0c8830bc7fb4edd989ba1b771b88b0c": {
+            "id": "lblDropDwn",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.dropDown.DropDown/userwidgetmodel.sm"
+        },
+        "g3aa0468887847ac9f391eadc5975a5d": {
+            "id": "imgLogout",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "g3afc919ddbd414fa5213603963852a7": {
+            "id": "flxSeperator",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.subHdr.SubHdr/userwidgetmodel.sm"
+        },
+        "g5bcf23f75374615b1a1a2986d836db1": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblTextArea.LabelTextArea/userwidgetmodel.sm"
+        },
+        "g5fd6faa9c094b6ab0d55bdb70f98568": {
+            "id": "AddSuspend",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend"
+        },
+        "g95e7534993a40a1b31886c33892c42a": {
+            "id": "flxDropDwnList",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblList.LabelList/userwidgetmodel.sm"
+        },
+        "gd96c00c902a4ba0bed1e5220884574f": {
+            "id": "lblIdNo",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.suspenEntryHdr.SuspenEntryHdr/userwidgetmodel.sm"
+        },
+        "gdc37fa31ba645b8b9aec8f6478430b4": {
+            "id": "lblCIFNo",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "ge11e9a96e76422084b21399f06a418c": {
+            "id": "flxLogo",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "h42f90a2d0f9463ca8898c7e3e795674": {
+            "id": "flxApprover",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hc.segApprover.SegApproverScheme/userwidgetmodel.sm"
+        },
+        "h58934e7923849c0b5270bd55a5d8cef": {
+            "id": "flxSegMenu",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "h669111080d547158d8de1eeb2af9fce": {
+            "id": "flxAddContainer",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend/userwidgetmodel.sm"
+        },
+        "h6f01aa0566e47fcbc2c5e0f7d7f5a64": {
+            "id": "SrchTextBox",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.srchTextBox.SrchTextBox"
+        },
+        "hbbfcd7d82a74b7093591483b1d28f49": {
+            "id": "LabelTextArea",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblTextArea.LabelTextArea"
+        },
+        "hbce4a2d0aea48c9bd0ff097c7071cde": {
+            "id": "flxReason",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "hc233da1ae6c4ea8b3b120ca5d2f0fd5": {
+            "id": "CopyimgFilter0j5cb0cec18c843",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "hc9419d4886f48d09099441759a0c40f": {
+            "id": "imgPin",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "i005e338cb7348aebe1813bf9a947571": {
+            "id": "imgDropDwn",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend/userwidgetmodel.sm"
+        },
+        "i1af5e8017df4c4c9ee8fd924bbf77e1": {
+            "id": "segDropDown",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.dropDown.DropDown/userwidgetmodel.sm"
+        },
+        "i2191ba14e824fe897a6290bedd4d803": {
+            "id": "flxSegSecHdr",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "i35e91c52c6243838cd58f7bdd792e84": {
+            "id": "FlexGroup0f364368a6aa841",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "i42d1c7050b948a086498544defc3e6a": {
+            "id": "lblDetailValue",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.labelField.LabelsField/userwidgetmodel.sm"
+        },
+        "i8238c3777e74aac87c488190c21573d": {
+            "id": "flxBtnsExist",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "i83b3b3c918f41abbf73db33722419c9": {
+            "id": "lblDetail",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblList.LabelList/userwidgetmodel.sm"
+        },
+        "i8b8f18ad8ef42c985bb173d09d54b36": {
+            "id": "flxRequestHistory",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "i9300a4f4a4d48c5998decb33fd84cee": {
+            "id": "lblText",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblTextArea.LabelTextArea/userwidgetmodel.sm"
+        },
+        "i986a351d779404dabb7c48374570b64": {
+            "id": "flxUserDetails",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "id44c0bcecc54708943c52c825171315": {
+            "id": "AlertUp",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp"
+        },
+        "if03b8a424604ccb997ab33252c60e49": {
+            "id": "imgLogo",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "if06ef0ec1df4191a4493d2ef92cd55a": {
+            "id": "TempRowSchemeList",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.schemeList.SchemeList/userwidgetmodel.sm"
+        },
+        "j134041928a74eef8197c131cc1ef455": {
+            "id": "TempRowSuspend",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segSuspend.SegSuspendList/userwidgetmodel.sm"
+        },
+        "j17ea7c691de4903b0721864d263719c": {
+            "id": "imgSrch",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.srchTextBox.SrchTextBox/userwidgetmodel.sm"
+        },
+        "j25778a096864214b01952daf621e02d": {
+            "id": "flxCustomerName",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "j469158a10824ae48c2867cf146bd9c6": {
+            "id": "CopyimgFilter0ec0a3683dce84e",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "j5b68a04a3d54ec693d184c40d59f06d": {
+            "id": "flxPin",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "j9c77a5c0084491691844e7b4d938125": {
+            "id": "imgDropDwn",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblList.LabelList/userwidgetmodel.sm"
+        },
+        "j9d4a5f806554cb5891663739cb9c4d9": {
+            "id": "segSuspendEntry",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.SuspensionEntries.SuspensionEntries/userwidgetmodel.sm"
+        },
+        "ja2cbe8fda184c1caaab89eeae9fb281": {
+            "id": "FormHeader",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.hdr.FormHeader"
+        },
+        "jc5a991419364e3eb538da263e1f7327": {
+            "id": "lblAddSource",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend/userwidgetmodel.sm"
+        },
+        "jea7ae052ca24cb3b35fa16e30ca9348": {
+            "id": "lblAddList",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend/userwidgetmodel.sm"
+        },
+        "u062edca1c624c078badefa54a73887c": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.addSuspend.AddSuspend/userwidgetmodel.sm"
+        },
+        "u080a3c0a9a248a7a6ac4203a6447c16": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.schemeList.SchemeList/userwidgetmodel.sm"
+        },
+        "u15078ddf1794145a315d78819700bc3": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.suspenEntryHdr.SuspenEntryHdr/userwidgetmodel.sm"
+        },
+        "u2cd516a46db4cb09d14fa8863aa5487": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
+        },
+        "u3dbec80e96b493b88da1a9716e195d3": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "u48f89724f0946eeaca71ea7ccbcc81a": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segSuspend.SegSuspendList/userwidgetmodel.sm"
+        },
+        "u5d3da15d39b4b1584e369f914c4cfae": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.subHdr.SubHdr/userwidgetmodel.sm"
+        },
+        "u667f019482145fda573bdd6fcd6cb08": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segDropDown.SegDropDown/userwidgetmodel.sm"
+        },
+        "u66f449b675240de9af9ef1f174e36de": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.SuspensionEntries.SuspensionEntries/userwidgetmodel.sm"
+        },
+        "u83258bf48084baface0469b063f928c": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.labelField.LabelsField/userwidgetmodel.sm"
+        },
+        "u88b2e4ec47a4b20b6d02dd1ae8b0f54": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblList.LabelList/userwidgetmodel.sm"
+        },
+        "u8c6dd2370ef450c82cb6d8c7feed6d2": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.riskrating.chart.RiskRateChart/userwidgetmodel.sm"
+        },
+        "u931e7eb051542abbdfc3d9805efb5c9": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.popup.AlertUp/userwidgetmodel.sm"
+        },
+        "u93cb57f9cd64c72915b72f4a0f5d06b": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.hdr.FormHeader/userwidgetmodel.sm"
+        },
+        "u9756c7c900b4cb8adbad3ec8dfad89c": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.listData.ListBoxData/userwidgetmodel.sm"
+        },
+        "u9fad283dcd34daa9c9f00f67d9f3e1c": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.lblText.LabelTextBox/userwidgetmodel.sm"
+        },
+        "ud844ce7f6f44c9b8be639c039260c10": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.srchTextBox.SrchTextBox/userwidgetmodel.sm"
+        },
+        "ud8ce8b8b3fa41df81b60df26c4b378a": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hc.segApprover.SegApproverScheme/userwidgetmodel.sm"
+        },
+        "ufca17ee1cf047d7b6454cbfbf820050": {
+            "id": "userwidgetmodel",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.dropDown.DropDown/userwidgetmodel.sm"
+        }
+    }
+}

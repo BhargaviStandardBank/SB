@@ -35,24 +35,25 @@
     "autogrowmode": 0,
     "canUpdateUI": true,
     "children": [
-        "FormHeader"
+        "FormHeader",
+        "Image0i315600b15cf45"
     ],
     "clipbounds": false,
     "containerweight": 100,
     "disabledSkins": {
-        "blockedUISkin": "slFBlockedUIbox",
-        "focusSkin": "sf51dc37fd0a40178320b8330b005a98"
+        "blockedUISkin": "se10403881e545c88517e38d1704fe6e",
+        "focusSkin": "s055b30cc8544a4092521d1a3c930a38"
     },
     "enablescrolling": true,
     "id": "flxRight",
     "info": null,
     "iscustomlayout": false,
     "isvisible": true,
-    "kuid": "b830fc4442e5422baaa617767ebd3c28",
+    "kuid": "ab847d5b3ede49ab94a3001fb96d57aa",
     "layouttype": 4,
     "name": "kony.ui.FlexContainer",
-    "parent": "flxMain",
-    "pf": "FrmSBHome",
+    "parent": "flxmain",
+    "pf": "frmSBHome",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,
     "retainflowhorizontalalignment": false,

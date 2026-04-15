@@ -1,0 +1,18 @@
+{
+    "desktopweb": {
+        "formslist": {
+            "mvcFormObjects": [
+                "Form1"
+            ],
+            "nonmvcFormObjects": []
+        },
+        "templatesList": {
+            "mvcTemplateObjects": [
+                "com.riskrating.chart.RiskRateChart",
+                "SampleRowTemplate",
+                "SampleSectionHeaderTemplate"
+            ],
+            "nonmvcTemplateObjects": []
+        }
+    }
+}

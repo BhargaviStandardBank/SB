@@ -15,7 +15,12 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "sdf50b4712f3490b99e807cad450cf7d",
+    "_pxMenuIndex": [
+        2,
+        1,
+        1
+    ],
+    "_skin_": "s57a8b238470472ca3fbd2c53a19df0f",
     "_title_": null,
     "addWidgetsdone": false,
     "allboxes": [],
@@ -45,13 +50,13 @@
     "canUpdateUI": true,
     "canvasWidth": 1200,
     "children": [
-        "flxMain"
+        "flxmain"
     ],
     "containerweight": 100,
     "controllerInfo": {
         "default": {
             "channel": "desktop",
-            "name": "FrmSBHomeController"
+            "name": "frmSBHomeController"
         }
     },
     "currentLocale": "default",
@@ -61,7 +66,7 @@
     "device": "desktopweb",
     "displayorientation": 1,
     "enabledforidletimeout": false,
-    "id": "FrmSBHome",
+    "id": "frmSBHome",
     "info": null,
     "initdone": false,
     "inputaccessoryviewtype": 4,
@@ -84,7 +89,7 @@
     "kiosk": {
         "needAppMenu": false
     },
-    "kuid": "fc512eaefe8248828e2f7f954852e301",
+    "kuid": "b9042dc94cc24cf295a929e6d2cfa98f",
     "layouttype": 2,
     "name": "kony.ui.Form2",
     "needappmenu": false,
@@ -115,7 +120,7 @@
     "spawinphone8": {
         "needAppMenu": false
     },
-    "titleBarSkin": "sbf23e11106f4c7da6f257ede4ea2aad",
+    "titleBarSkin": "sfd805a66adf456aa26f4b12b59ba040",
     "titlebar": true,
     "type": 3,
     "wType": "Form",

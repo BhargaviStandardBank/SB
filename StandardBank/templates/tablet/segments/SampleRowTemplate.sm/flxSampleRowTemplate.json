@@ -18,7 +18,7 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "sa776887e0af4ee195e7e57254230590",
+    "_skin_": "s79d6348a79340f3b9d526212d76e4dc",
     "_width_": {
         "type": "string",
         "value": "100%"
@@ -46,7 +46,7 @@
     "info": null,
     "isTemplate": true,
     "isvisible": true,
-    "kuid": "e924b7d06c1c4d2e9d6b18b9bd8927bf",
+    "kuid": "fbde43eb9bfa40a2b5128689260946d5",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",
     "parent": "SampleRowTemplate",

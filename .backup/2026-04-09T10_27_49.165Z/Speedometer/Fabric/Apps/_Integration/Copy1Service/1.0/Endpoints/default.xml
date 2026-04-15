@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<endpoint name="default" dataAdapterId="cf42e5c6-094c-4603-affa-e9d1abd15194" type="CustomDataAdapter" encryptSecureInfo="false">
+    <config>
+        <entry>
+            <key>http_auth_mode</key>
+            <value>none</value>
+        </entry>
+        <entry>
+            <key>basePath</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>scheme</key>
+            <value>https</value>
+        </entry>
+        <entry>
+            <key>identityProviderType</key>
+        </entry>
+        <entry>
+            <key>hostURL</key>
+            <value>ai-random-user-generator.p.rapidapi.com</value>
+        </entry>
+        <entry>
+            <key>identityProvider</key>
+        </entry>
+        <entry>
+            <key>authservicetype</key>
+            <value>IdentityProvider</value>
+        </entry>
+    </config>
+    <apiThrottling/>
+    <jsonpath>false</jsonpath>
+</endpoint>

@@ -267,7 +267,7 @@
     "currentgaversion": "10.0.5.0",
     "deeplinkkey": "None",
     "defaultZIndex": "1",
-    "defaultlocalekey": null,
+    "defaultlocalekey": "ar",
     "defaulttheme": "defaultTheme",
     "desktopstartupformkey": "d0ef262a1491426fb96e1524df6c7e70",
     "desktopwebaligenmentoption": "left",
@@ -418,7 +418,7 @@
     "isA11yConfigEnabled": false,
     "isDpScaleFactor": true,
     "isEASAppUpgradable": false,
-    "isI18nConfigEnabled": false,
+    "isI18nConfigEnabled": true,
     "isMVC": true,
     "isNewAppWithRespectToAndroidPackageName": "true",
     "isNewAppWithRespectToAndroidWearPackageName": "true",
@@ -429,8 +429,8 @@
     "kfAppInfo": {
         "4f3cb165-da14-4aa4-8d93-3fb6a5f6a994": {
             "appName": "SBCommon",
-            "baseId": "a7401907-506a-4dcd-be3a-73c3f5a66f3a",
-            "id": "a7401907-506a-4dcd-be3a-73c3f5a66f3a",
+            "baseId": "d915070b-39be-4cf1-884f-0d5d5decfdac",
+            "id": "d915070b-39be-4cf1-884f-0d5d5decfdac",
             "version": "1.0"
         }
     },

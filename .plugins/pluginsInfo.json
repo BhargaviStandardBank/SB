@@ -1,0 +1,76 @@
+{
+    "konyVizVersion": "10.0.5.0",
+    "pluginsInfo": {
+        "Android": {
+            "fileName": "com.pat.android_10.0.5.0.v202601131148.jar",
+            "id": "com.pat.android",
+            "version": "10.0.5.0.v202601131148"
+        },
+        "DesktopNative_Plug-in": {
+            "fileName": "com.kony.desktopnative_10.0.5.0.v202512120851.jar",
+            "id": "com.kony.desktopnative",
+            "version": "10.0.5.0.v202512120851"
+        },
+        "HCL_LotusScript": {
+            "fileName": "com.hcl.lotusscript.sdk_10.0.0.v202506301352.jar",
+            "id": "com.hcl.lotusscript.sdk",
+            "version": "10.0.0.v202506301352"
+        },
+        "HCL_MXGo": {
+            "fileName": "com.hcl.mxgo_10.0.1.v202509081956.jar",
+            "id": "com.hcl.mxgo",
+            "version": "10.0.1.v202509081956"
+        },
+        "HCL_Rosetta": {
+            "fileName": "com.hcl.rosetta.sdk_10.0.0.v202508011402.jar",
+            "id": "com.hcl.rosetta.sdk",
+            "version": "10.0.0.v202508011402"
+        },
+        "Kony_Desktop_Web": {
+            "fileName": "com.kony.desktopweb_10.0.5.0.v202512120852.jar",
+            "id": "com.kony.desktopweb",
+            "version": "10.0.5.0.v202512120852"
+        },
+        "Kony_Reference_Architecture": {
+            "fileName": "com.kony.referencearchitecture_10.0.3.0.v202510290759.jar",
+            "id": "com.kony.referencearchitecture",
+            "version": "10.0.3.0.v202510290759"
+        },
+        "Kony_Studio": {
+            "fileName": "com.pat.tool.keditor_10.0.5.0.v202602020952.jar",
+            "id": "com.pat.tool.keditor",
+            "version": "10.0.5.0.v202602020952"
+        },
+        "Kony_Web_Commons": {
+            "fileName": "com.kony.webcommons_10.0.5.0.v202602021017.jar",
+            "id": "com.kony.webcommons",
+            "version": "10.0.5.0.v202602021017"
+        },
+        "MobileFabric_Client_SDK": {
+            "fileName": "com.kony.mobile.fabric.client.sdk_10.0.3.0.v202510290906.jar",
+            "id": "com.kony.mobile.fabric.client.sdk",
+            "version": "10.0.3.0.v202510290906"
+        },
+        "SPA": {
+            "fileName": "com.kony.spa_10.0.5.0.v202512120852.jar",
+            "id": "com.kony.spa",
+            "version": "10.0.5.0.v202512120852"
+        },
+        "Tablet_Android": {
+            "fileName": "com.pat.tabrcandroid_10.0.5.0.v202601131148.jar",
+            "id": "com.pat.tabrcandroid",
+            "version": "10.0.5.0.v202601131148"
+        },
+        "Third_Party_Jars_Plug-in": {
+            "fileName": "com.kony.thirdparty.jars_10.0.3.0.v202510291352.jar",
+            "id": "com.kony.thirdparty.jars",
+            "version": "10.0.3.0.v202510291352"
+        },
+        "iOS_Plugin": {
+            "fileName": "com.kony.ios_10.0.5.0.v202601200927.jar",
+            "id": "com.kony.ios",
+            "version": "10.0.5.0.v202601200927"
+        }
+    },
+    "status": "COMPLETED"
+}

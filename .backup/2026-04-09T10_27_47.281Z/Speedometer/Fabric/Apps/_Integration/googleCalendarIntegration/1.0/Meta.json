@@ -1,0 +1,9 @@
+{
+  "serviceType" : "integration",
+  "dataAdapter" : {
+    "name" : "GoogleCalendarAPI",
+    "version" : "1.0"
+  },
+  "mapType" : "java.util.HashMap",
+  "empty" : true
+}
