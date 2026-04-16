@@ -84,6 +84,7 @@ define(function() {
             "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
             "data": [
                 [{
+                        "imgIcon": "imagedrag.png",
                         "lblMenuItem": "Suspend List",
                         "lblSectionTitle": "Label"
                     },
@@ -96,6 +97,7 @@ define(function() {
                     }]
                 ],
                 [{
+                        "imgIcon": "imagedrag.png",
                         "lblMenuItem": "Customer 360",
                         "lblSectionTitle": "Label"
                     },
@@ -131,9 +133,11 @@ define(function() {
             "top": "0dp",
             "viewType": constants.SEGUI_VIEW_TYPE_TABLEVIEW,
             "widgetDataMap": {
+                "FlexGroup0a043cf8cc66045": "FlexGroup0a043cf8cc66045",
                 "flxLine": "flxLine",
                 "flxRowItems": "flxRowItems",
                 "flxSegSecHdr": "flxSegSecHdr",
+                "imgIcon": "imgIcon",
                 "lblMenuItem": "lblMenuItem",
                 "lblSectionTitle": "lblSectionTitle"
             },

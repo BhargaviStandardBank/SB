@@ -3,7 +3,7 @@ define("StandardBank/userflxSampleRowTemplateController", {
 });
 define("StandardBank/flxSampleRowTemplateControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("StandardBank/flxSampleRowTemplateController", ["StandardBank/userflxSampleRowTemplateController", "StandardBank/flxSampleRowTemplateControllerActions"], function() {

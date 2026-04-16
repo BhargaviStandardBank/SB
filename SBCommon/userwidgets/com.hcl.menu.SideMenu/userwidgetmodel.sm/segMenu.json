@@ -51,6 +51,10 @@
         "_data_": [
             [
                 {
+                    "imgIcon": {
+                        "@class": "com.viz.ide.model.segment.ImageSegmentData",
+                        "src": "imagedrag.png"
+                    },
                     "lblMenuItem": {
                         "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
                         "text": "Suspend List",
@@ -87,6 +91,10 @@
             ],
             [
                 {
+                    "imgIcon": {
+                        "@class": "com.viz.ide.model.segment.ImageSegmentData",
+                        "src": "imagedrag.png"
+                    },
                     "lblMenuItem": {
                         "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
                         "text": "Customer 360",
@@ -113,9 +121,11 @@
         "sectionHeaderTemplateId": "ecb86e7c332d4db09a39c1e177bac515",
         "sectionheadertemplate": "flxSegSecHdr",
         "widgetdatamap": {
+            "FlexGroup0a043cf8cc66045": "FlexGroup0a043cf8cc66045",
             "flxLine": "flxLine",
             "flxRowItems": "flxRowItems",
             "flxSegSecHdr": "flxSegSecHdr",
+            "imgIcon": "imgIcon",
             "lblMenuItem": "lblMenuItem",
             "lblSectionTitle": "lblSectionTitle"
         }

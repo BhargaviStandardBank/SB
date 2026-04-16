@@ -7,7 +7,7 @@
     },
     "_left_": {
         "type": "string",
-        "value": "4%"
+        "value": "1%"
     },
     "_margin_": [
         1,
@@ -62,7 +62,7 @@
     "isvisible": true,
     "kuid": "bd2272532bc94656a1f21b62c26fd169",
     "name": "kony.ui.Label",
-    "parent": "flxSegSecHdr",
+    "parent": "FlexGroup0a043cf8cc66045",
     "pf": "TempSegSecHdr",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,

@@ -3,7 +3,7 @@ define("ManageScheme/userCopyFBox0g0122a027e2e45Controller", {
 });
 define("ManageScheme/CopyFBox0g0122a027e2e45ControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("ManageScheme/CopyFBox0g0122a027e2e45Controller", ["ManageScheme/userCopyFBox0g0122a027e2e45Controller", "ManageScheme/CopyFBox0g0122a027e2e45ControllerActions"], function() {

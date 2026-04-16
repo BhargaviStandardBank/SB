@@ -3,7 +3,7 @@ define("ManageScheme/userFBox0d362f77aee3647Controller", {
 });
 define("ManageScheme/FBox0d362f77aee3647ControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("ManageScheme/FBox0d362f77aee3647Controller", ["ManageScheme/userFBox0d362f77aee3647Controller", "ManageScheme/FBox0d362f77aee3647ControllerActions"], function() {

@@ -125,27 +125,32 @@ define("com/konymp/Login/userLoginController", function() {
 });
 define("com/konymp/Login/LoginControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
+    /** onClick defined for ButtonLogin **/
     AS_Button_cf166461bc0e488b92059122e3011eb8: function AS_Button_cf166461bc0e488b92059122e3011eb8(eventobject) {
         var self = this;
         return self.validateUsernameAndPassword.call(this);
     },
-    AS_Image_f64bf2c9f2904919aaff16a06464da4a: function AS_Image_f64bf2c9f2904919aaff16a06464da4a(eventobject, x, y) {
-        var self = this;
-        self.view.flxError.isVisible = false;
-    },
+    /** onClick defined for flxCheck **/
     AS_FlexContainer_a461bc68fcc24df8a0fe7960ddf3558b: function AS_FlexContainer_a461bc68fcc24df8a0fe7960ddf3558b(eventobject) {
         var self = this;
         this.view.imgCHeckBox.isVisible = !this.view.imgCHeckBox.isVisible;
     },
-    AS_TextField_jba7c698e7824c7693379fd6f73f080e: function AS_TextField_jba7c698e7824c7693379fd6f73f080e(eventobject, changedtext) {
+    /** onTouchStart defined for userwidgetmodel **/
+    AS_Image_f64bf2c9f2904919aaff16a06464da4a: function AS_Image_f64bf2c9f2904919aaff16a06464da4a(eventobject, x, y) {
         var self = this;
-        return self.validatePassword.call(this);
+        self.view.flxError.isVisible = false;
     },
+    /** onDone defined for txtUserName **/
     AS_TextField_b7c2c666d6a34331ad159e529d370183: function AS_TextField_b7c2c666d6a34331ad159e529d370183(eventobject, changedtext) {
         var self = this;
         return self.validateUsername.call(this);
+    },
+    /** onDone defined for txtPassword **/
+    AS_TextField_jba7c698e7824c7693379fd6f73f080e: function AS_TextField_jba7c698e7824c7693379fd6f73f080e(eventobject, changedtext) {
+        var self = this;
+        return self.validatePassword.call(this);
     }
 });
 define("com/konymp/Login/LoginController", ["com/konymp/Login/userLoginController", "com/konymp/Login/LoginControllerActions"], function() {

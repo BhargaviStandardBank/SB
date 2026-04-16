@@ -2,6 +2,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
     return {
         masterData: [{
             header: {
+                imgIcon: "icon_suspend.png",
                 lblSectionTitle: "Master Suspend List",
                 isExpanded: false
             },
@@ -38,6 +39,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             }]
         }, {
             header: {
+                imgIcon: "icon_manage.png",
                 lblSectionTitle: "Manage Scheme",
                 isExpanded: false
             },
@@ -74,6 +76,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             }]
         }, {
             header: {
+                imgIcon: "icon_customerview.png",
                 lblSectionTitle: "Customer 360",
                 isExpanded: false
             },
@@ -193,7 +196,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
 });
 define("com/hcl/menu/SideMenu/SideMenuControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/menu/SideMenu/SideMenuController", ["com/hcl/menu/SideMenu/userSideMenuController", "com/hcl/menu/SideMenu/SideMenuControllerActions"], function() {

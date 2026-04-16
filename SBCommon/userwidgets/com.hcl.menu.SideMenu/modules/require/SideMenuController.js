@@ -1,7 +1,7 @@
 define(function() {
   return {
     masterData: [{
-      header: { lblSectionTitle: "Master Suspend List", isExpanded: false},
+      header: { imgIcon: "icon_suspend.png",lblSectionTitle: "Master Suspend List", isExpanded: false},
       rows: [{ lblMenuItem: "Suspend List", formID: {
         "appName": "SuspendList",
         "friendlyName": "frmSuspendList"
@@ -29,7 +29,7 @@ define(function() {
             ]
     },
                  {
-                   header: { lblSectionTitle: "Manage Scheme", isExpanded: false },
+                   header: { imgIcon: "icon_manage.png",lblSectionTitle: "Manage Scheme", isExpanded: false },
                    rows: [{ lblMenuItem: "Scheme List", formID: {
                      "appName": "ManageScheme",
                      "friendlyName": "frmSchemeList"
@@ -57,7 +57,7 @@ define(function() {
                          ]
                  },
                  {
-                   header: { lblSectionTitle: "Customer 360", isExpanded: false },
+                   header: { imgIcon: "icon_customerview.png",lblSectionTitle: "Customer 360", isExpanded: false },
                    rows: [{ lblMenuItem: "Customer Info", formID: {
                              "appName": "Customer360",
                              "friendlyName": "frmCustomer"
