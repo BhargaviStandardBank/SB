@@ -19,7 +19,7 @@ var appConfig = {
             "_internal_logout": "https://voltmxtechnohub.hclvoltmx.net/services/IST",
             "LoginSer": "https://voltmxtechnohub.hclvoltmx.net/services/LoginSer"
         },
-        "service_doc_etag": "0000019D77EDA808",
+        "service_doc_etag": "0000019DD9215E80",
         "appId": "ec3a3fe3-fc60-4ef1-9856-60c371c055ee",
         "identity_features": {
             "reporting_params_header_allowed": true
@@ -37,6 +37,9 @@ var appConfig = {
                 "version": "1.0",
                 "url": "https://voltmxtechnohub.hclvoltmx.net/services/LoginSer"
             }
+        },
+        "Webapp": {
+            "url": "https://voltmxtechnohub.hclvoltmx.net/apps/StandardBank"
         }
     },
     runtimeAppVersion: "1.0",

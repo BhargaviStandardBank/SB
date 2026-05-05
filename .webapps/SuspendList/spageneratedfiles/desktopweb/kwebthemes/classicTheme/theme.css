@@ -4,13 +4,24 @@
 .defBtnHover,
 .defBtnNormal,
 .defBtnPressed,
+.sknBtn2A1A6A,
+.sknBtnBGTransBlue,
 .sknBtnBlue,
+.sknBtnDisable,
 .sknBtnGrey,
+.sknBtnLeftHighLite,
+.sknBtnLeftUnSelect,
+.sknBtnRightHighLite,
+.sknBtnRightUnSelect,
 .defLabel,
+.defLabel0b652f737213145,
 .sknLblBtn,
+.sknLblC8DFFF,
 .sknLblDescription,
 .sknLblFormLevel,
+.sknLblHdr,
 .sknLblHeading2,
+.sknLblHeading2White,
 .sknLblHeading4Bold,
 .sknLblHeading5,
 .sknLblPendingOrange,
@@ -21,16 +32,21 @@
 .sknLblTimeStamp,
 .sknLblUnderline,
 .sknLblWhite,
+.sknLblWhite100,
 .sknSectionHeaderLabelSkin,
 .defListBoxFocus,
 .defListBoxNormal,
 .sknListTrans,
 .sknLstGreyBrdr,
 .defTextAreaBlockedUI,
+.defTextAreaFocus,
 .defTextAreaHover,
+.defTextAreaNormal,
+.defTextAreaPlaceholder,
 .sknTxtAraGrey,
 .sknTxtAraPlaceHdr,
 .sknTxtArea,
+.skntxtAraTrans,
 .defTextBoxBlockedUI,
 .defTextBoxFocus,
 .defTextBoxNormal,
@@ -39,10 +55,12 @@
 .sknTxtBrdRed,
 .sknTxtBxTrans,
 .sknTxtBxf6f8fa,
+.sknTxtTransSUSMA,
 .sknFrmBG,
 .slForm,
 .slSplashiOS,
 .slWatchForm,
+.sknSBCalender,
 .slCameraFocus {
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px;
@@ -200,6 +218,93 @@ div[kr='item'].Copyseg0db8162a1d22b45-focus,
 
 
     background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.CopysknSegRow0dbdf66c6d46045,
+li[kr='item'].CopysknSegRow0dbdf66c6d46045-focus,
+div[kr='item'].CopysknSegRow0dbdf66c6d46045-focus,
+[kw='SegmentedUI2']>ul.CopysknSegRow0dbdf66c6d46045-active {
+
+
+
+
+
+
+
+
+
+
+    border: 0px solid #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal normal 12.8px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
 
 
 
@@ -774,6 +879,92 @@ div[kr='item'].Copyseg0db8162a1d22b45-focus,
 
 
 
+.defLabel0b652f737213145,
+[kw].defLabel0b652f737213145-hover,
+[kw].defLabel0b652f737213145-focus,
+[kw].defLabel0b652f737213145-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #14A1DE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 32.0px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .defListBoxFocus,
 [kw].defListBoxFocus-hover,
 [kw].defListBoxFocus-focus,
@@ -1222,6 +1413,268 @@ textarea[kplaceholderskin='defTextAreaBlockedUI']:-ms-input-placeholder {
 
 
 
+.defTextAreaFocus,
+[kw].defTextAreaFocus-hover,
+[kw].defTextAreaFocus-focus,
+[kw].defTextAreaFocus-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #14a1de;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #333333;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+textarea[kplaceholderskin='defTextAreaFocus']::-webkit-input-placeholder {
+
+
+
+
+
+
+
+
+
+    border: 1px solid #14a1de;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #333333;
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+textarea[kplaceholderskin='defTextAreaFocus']::-moz-placeholder {
+
+
+
+
+
+
+
+
+
+    border: 1px solid #14a1de;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #333333;
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+textarea[kplaceholderskin='defTextAreaFocus']:-ms-input-placeholder {
+
+
+
+
+
+
+
+
+
+    border: 1px solid #14a1de;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #333333;
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+
+
+
+
+
 .defTextAreaHover,
 [kw].defTextAreaHover-hover,
 [kw].defTextAreaHover-focus,
@@ -1468,6 +1921,478 @@ textarea[kplaceholderskin='defTextAreaHover']:-ms-input-placeholder {
 
 
     background-color: #ffffff;
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+
+
+
+
+
+.defTextAreaNormal,
+[kw].defTextAreaNormal-hover,
+[kw].defTextAreaNormal-focus,
+[kw].defTextAreaNormal-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #333333;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #333333;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+textarea[kplaceholderskin='defTextAreaNormal']::-webkit-input-placeholder {
+
+
+
+
+
+
+
+
+
+    border: 1px solid #333333;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #333333;
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+textarea[kplaceholderskin='defTextAreaNormal']::-moz-placeholder {
+
+
+
+
+
+
+
+
+
+    border: 1px solid #333333;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #333333;
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+textarea[kplaceholderskin='defTextAreaNormal']:-ms-input-placeholder {
+
+
+
+
+
+
+
+
+
+    border: 1px solid #333333;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #333333;
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+
+
+
+
+
+.defTextAreaPlaceholder,
+[kw].defTextAreaPlaceholder-hover,
+[kw].defTextAreaPlaceholder-focus,
+[kw].defTextAreaPlaceholder-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #999999;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+textarea[kplaceholderskin='defTextAreaPlaceholder']::-webkit-input-placeholder {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #999999;
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+textarea[kplaceholderskin='defTextAreaPlaceholder']::-moz-placeholder {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #999999;
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+textarea[kplaceholderskin='defTextAreaPlaceholder']:-ms-input-placeholder {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 17.1px Helvetica;
+
+
+
+
+
+    color: #999999;
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.0);
 
 
 
@@ -2871,6 +3796,170 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknBtn2A1A6A,
+[kw].sknBtn2A1A6A-hover,
+[kw].sknBtn2A1A6A-focus,
+[kw].sknBtn2A1A6A-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid rgba(255, 255, 255, 0.0);
+
+
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 500 13.6px Helvetica;
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #2a1a6a;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnBGTransBlue,
+[kw].sknBtnBGTransBlue-hover,
+[kw].sknBtnBGTransBlue-focus,
+[kw].sknBtnBGTransBlue-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 16.0px Helvetica;
+
+
+
+
+
+    color: #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknBtnBlue,
 [kw].sknBtnBlue-hover,
 [kw].sknBtnBlue-focus,
@@ -2961,6 +4050,97 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknBtnDisable,
+[kw].sknBtnDisable-hover,
+[kw].sknBtnDisable-focus,
+[kw].sknBtnDisable-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #ffffff;
+
+
+
+
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 500 24.0px Helvetica;
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #587387;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknBtnGrey,
 [kw].sknBtnGrey-hover,
 [kw].sknBtnGrey-focus,
@@ -3018,6 +4198,372 @@ div[kr='item'].segTrans-focus,
 
 
     background: #edf5ff;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnLeftHighLite,
+[kw].sknBtnLeftHighLite-hover,
+[kw].sknBtnLeftHighLite-focus,
+[kw].sknBtnLeftHighLite-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 16.0px Helvetica;
+
+
+
+
+
+    color: #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnLeftUnSelect,
+[kw].sknBtnLeftUnSelect-hover,
+[kw].sknBtnLeftUnSelect-focus,
+[kw].sknBtnLeftUnSelect-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 16.0px Helvetica;
+
+
+
+
+
+    color: #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnRightHighLite,
+[kw].sknBtnRightHighLite-hover,
+[kw].sknBtnRightHighLite-focus,
+[kw].sknBtnRightHighLite-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 16.0px Helvetica;
+
+
+
+
+
+    color: #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnRightUnSelect,
+[kw].sknBtnRightUnSelect-hover,
+[kw].sknBtnRightUnSelect-focus,
+[kw].sknBtnRightUnSelect-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #dedede;
+
+
+
+
+
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+
+
+
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 12.8px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #ffffff;
+
+
+
+
+
 
 
 
@@ -3593,6 +5139,86 @@ div[kr='item'].segTrans-focus,
 
 
     background-color: #666666;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknFlxLogin,
+[kw].sknFlxLogin-hover,
+[kw].sknFlxLogin-focus,
+[kw].sknFlxLogin-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #666666;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
 
 
 
@@ -4841,6 +6467,92 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknLblC8DFFF,
+[kw].sknLblC8DFFF-hover,
+[kw].sknLblC8DFFF-focus,
+[kw].sknLblC8DFFF-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #14A1DE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 32.0px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknLblDescription,
 [kw].sknLblDescription-hover,
 [kw].sknLblDescription-focus,
@@ -4989,6 +6701,92 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknLblHdr,
+[kw].sknLblHdr-hover,
+[kw].sknLblHdr-focus,
+[kw].sknLblHdr-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #14A1DE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 32.0px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknLblHeading2,
 [kw].sknLblHeading2-hover,
 [kw].sknLblHeading2-focus,
@@ -5013,6 +6811,92 @@ div[kr='item'].segTrans-focus,
     font: normal bold 19.2px Helvetica;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknLblHeading2White,
+[kw].sknLblHeading2White-hover,
+[kw].sknLblHeading2White-focus,
+[kw].sknLblHeading2White-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #14A1DE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 32.0px Helvetica;
+
+
+
+
+
+    color: #212121;
 
 
 
@@ -5845,6 +7729,92 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknLblWhite100,
+[kw].sknLblWhite100-hover,
+[kw].sknLblWhite100-focus,
+[kw].sknLblWhite100-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #14A1DE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 32.0px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknListTrans,
 [kw].sknListTrans-hover,
 [kw].sknListTrans-focus,
@@ -5904,6 +7874,134 @@ div[kw='ListBox'][kv='editableview']~ul>li.sknListTrans-hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknLoginDup,
+[kw].sknLoginDup-hover,
+[kw].sknLoginDup-focus,
+[kw].sknLoginDup-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #666666;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: linear-gradient(to right, rgba(42, 26, 106, 0.75) 1%, #2abdea 101%, rgba(42, 189, 234, 0.75) 101%);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
@@ -6224,6 +8322,82 @@ input[kplaceholderskin='sknPlaceHdr']:-ms-input-placeholder {
     -webkit-appearance: none;
 
 }
+
+
+
+
+
+
+
+
+.sknSBCalender,
+[kw].sknSBCalender-hover,
+[kw].sknSBCalender-focus,
+[kw].sknSBCalender-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 16.0px Helvetica;
+
+
+
+
+
+    color: #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6754,6 +8928,83 @@ div[kr='item'].sknSegWidget-focus,
 
 
 
+
+
+
+
+
+
+
+
+
+
+div[kw="Switch"][kt="non-ios-gt6"].sknSwt>div[kr="switch"],
+div[kw="Switch"][kt="ios-gt6"].sknSwt>div[kr="switch"] {
+
+
+
+
+
+
+
+
+    border: 0px solid #000000;
+
+
+
+
+
+}
+
+
+
+div[kw="Switch"][kt="non-ios-gt6"].sknSwt div[kr="left"],
+div[kw="Switch"][kt="ios-gt6"].sknSwt div[kr="left"] {
+    font-family: Helvetica;
+    font-size: 25px;
+    font-weight: normal;
+
+    font-style: normal;
+
+
+
+    color: #333333;
+
+
+
+
+
+    background-color: #48d874;
+
+
+
+
+
+}
+
+div[kw="Switch"][kt="non-ios-gt6"].sknSwt div[kr="right"],
+div[kw="Switch"][kt="ios-gt6"].sknSwt div[kr="right"] {
+
+    font-family: Helvetica;
+    font-size: 25px;
+    font-weight: normal;
+
+    font-style: normal;
+
+
+
+    color: #333333;
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+}
 
 
 
@@ -8255,6 +10506,426 @@ input[kplaceholderskin='sknTxtBxf6f8fa']:-ms-input-placeholder {
 
 
 
+.sknTxtTransSUSMA,
+[kw].sknTxtTransSUSMA-hover,
+[kw].sknTxtTransSUSMA-focus,
+[kw].sknTxtTransSUSMA-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 12.8px Helvetica;
+
+
+
+
+
+    color: #9e9e9e;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input[kplaceholderskin='sknTxtTransSUSMA']::-webkit-input-placeholder {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 12.8px Helvetica;
+
+
+
+
+
+    color: #9e9e9e;
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+input[kplaceholderskin='sknTxtTransSUSMA']::-moz-placeholder {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 12.8px Helvetica;
+
+
+
+
+
+    color: #9e9e9e;
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+input[kplaceholderskin='sknTxtTransSUSMA']:-ms-input-placeholder {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 12.8px Helvetica;
+
+
+
+
+
+    color: #9e9e9e;
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+
+
+
+
+
+
+.skntxtAraTrans,
+[kw].skntxtAraTrans-hover,
+[kw].skntxtAraTrans-focus,
+[kw].skntxtAraTrans-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 13.6px Helvetica;
+
+
+
+
+
+    color: #9e9e9e;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+textarea[kplaceholderskin='skntxtAraTrans']::-webkit-input-placeholder {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 13.6px Helvetica;
+
+
+
+
+
+    color: #9e9e9e;
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+textarea[kplaceholderskin='skntxtAraTrans']::-moz-placeholder {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 13.6px Helvetica;
+
+
+
+
+
+    color: #9e9e9e;
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+textarea[kplaceholderskin='skntxtAraTrans']:-ms-input-placeholder {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 13.6px Helvetica;
+
+
+
+
+
+    color: #9e9e9e;
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+    -webkit-appearance: none;
+
+}
+
+
+
+
+
+
+
 .slCameraFocus,
 [kw].slCameraFocus-hover,
 [kw].slCameraFocus-focus,
@@ -8492,7 +11163,7 @@ input[kplaceholderskin='sknTxtBxf6f8fa']:-ms-input-placeholder {
 
 
 
-    border: 0px solid #14a1de;
+    border: 1px solid #14a1de;
 
 
 
@@ -8653,7 +11324,7 @@ input[kplaceholderskin='sknTxtBxf6f8fa']:-ms-input-placeholder {
 
 
 
-    border: 0px solid #14a1de;
+    border: 1px solid #14a1de;
 
 
 
@@ -8813,7 +11484,7 @@ input[kplaceholderskin='sknTxtBxf6f8fa']:-ms-input-placeholder {
 
 
 
-    border: 0px solid #dedede;
+    border: 0px solid #666666;
 
 
 

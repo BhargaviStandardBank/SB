@@ -948,6 +948,20 @@
         "top_right_border_style": "plain",
         "wType": "Button"
     },
+    "sknChkBx": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "dedede00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "dedede00",
+        "font_name": "Helvetica",
+        "font_size": 100,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "CheckBoxGroup"
+    },
     "sknFlx15Blck": {
         "background_color": "00000046",
         "bg_type": "one",
@@ -1840,6 +1854,20 @@
         "font_style": "normal",
         "font_weight": "400",
         "wType": "Camera"
+    },
+    "slCheckBoxGroup": {
+        "background_color": "ffffff00",
+        "bg_type": "one",
+        "border_color": "00000000",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "00000000",
+        "font_name": "Helvetica",
+        "font_size": 156,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "CheckBoxGroup"
     },
     "slDynamicNotificationForm": {
         "background_color": "00000000",

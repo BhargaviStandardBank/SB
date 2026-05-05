@@ -75,6 +75,8 @@
 .sknTxtAraPlaceHdr,
 .sknTxtArea,
 .skntxtAraTrans,
+.sknChkBx,
+.slCheckBoxGroup,
 .sknSBCalender,
 .slCalendar,
 .slCameraFocus,
@@ -7515,6 +7517,81 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknChkBx,
+[kw=CheckBoxGroup]>div.sknChkBx-hover,
+[kw=CheckBoxGroup]>div.sknChkBx-focus,
+[kw=CheckBoxGroup].sknChkBx-active,
+[kw=CheckBoxGroup]>div.sknChkBx-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 14.1px Helvetica;
+
+
+
+
+
+    color: rgba(33, 33, 33, 0.7);
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknFlx15Blck,
 [kw].sknFlx15Blck-hover,
 [kw].sknFlx15Blck-focus,
@@ -14500,6 +14577,78 @@ textarea[kplaceholderskin='skntxtAraTrans']:-ms-input-placeholder {
 
     background: url(../../images/camera_focus.png) no-repeat;
 
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.slCheckBoxGroup,
+[kw=CheckBoxGroup]>div.slCheckBoxGroup-hover,
+[kw=CheckBoxGroup]>div.slCheckBoxGroup-focus,
+[kw=CheckBoxGroup].slCheckBoxGroup-active,
+[kw=CheckBoxGroup]>div.slCheckBoxGroup-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 25.0px Helvetica;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
 
 
 

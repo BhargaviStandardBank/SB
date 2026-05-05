@@ -4,7 +4,7 @@
     "_base64_": null,
     "_height_": {
         "type": "string",
-        "value": "40dp"
+        "value": "160dp"
     },
     "_left_": {
         "type": "string",
@@ -30,10 +30,10 @@
     },
     "_width_": {
         "type": "string",
-        "value": "40dp"
+        "value": "160dp"
     },
     "canUpdateUI": true,
-    "centery": {
+    "centerx": {
         "type": "string",
         "value": "50%"
     },

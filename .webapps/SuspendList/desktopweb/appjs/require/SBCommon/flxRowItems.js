@@ -23,7 +23,7 @@ define("SBCommon/flxRowItems", function() {
             "centerY": "50%",
             "id": "lblMenuItem",
             "isVisible": true,
-            "left": "4%",
+            "left": "60dp",
             "skin": "sknLblFormLevel",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,

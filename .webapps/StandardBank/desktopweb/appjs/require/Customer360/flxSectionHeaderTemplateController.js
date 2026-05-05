@@ -3,7 +3,7 @@ define("Customer360/userflxSectionHeaderTemplateController", {
 });
 define("Customer360/flxSectionHeaderTemplateControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("Customer360/flxSectionHeaderTemplateController", ["Customer360/userflxSectionHeaderTemplateController", "Customer360/flxSectionHeaderTemplateControllerActions"], function() {

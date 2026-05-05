@@ -1,9 +1,10 @@
 define(function() {
     return function(controller) {
         var SuspensionEntries = new voltmx.ui.FlexContainer(extendConfig({
-            "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
+            "height": "100%",
             "id": "SuspensionEntries",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
@@ -21,57 +22,58 @@ define(function() {
         }, controller.args[1], "SuspensionEntries"), extendConfig({}, controller.args[2], "SuspensionEntries"));
         SuspensionEntries.setDefaultUnit(voltmx.flex.DP);
         var segSuspendEntry = new voltmx.ui.SegmentedUI2(extendConfig({
-            "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "data": [{
-                "imgDelet": "imagedrag.png",
+                "imgDelet": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelet": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelet": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelet": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelet": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelet": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelet": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelet": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }],
             "groupCells": false,
+            "height": "100%",
             "id": "segSuspendEntry",
             "isVisible": true,
             "left": "0dp",

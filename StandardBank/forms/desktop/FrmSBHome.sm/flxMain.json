@@ -36,7 +36,8 @@
     "canUpdateUI": true,
     "children": [
         "flxLeft",
-        "flxRight"
+        "flxRight",
+        "SideMenu1"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -50,7 +51,7 @@
     "iscustomlayout": false,
     "isvisible": true,
     "kuid": "cbb912138d5b4debb926896d5f8790d7",
-    "layouttype": 3,
+    "layouttype": 2,
     "name": "kony.ui.FlexContainer",
     "parent": "frmSBHome",
     "pf": "frmSBHome",

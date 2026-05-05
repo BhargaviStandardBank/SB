@@ -3,7 +3,7 @@ define("SBCommon/userflxRowItemsController", {
 });
 define("SBCommon/flxRowItemsControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("SBCommon/flxRowItemsController", ["SBCommon/userflxRowItemsController", "SBCommon/flxRowItemsControllerActions"], function() {

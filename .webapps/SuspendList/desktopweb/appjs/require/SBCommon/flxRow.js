@@ -25,7 +25,7 @@ define("SBCommon/flxRow", function() {
             "skin": "sknLblFormLevel",
             "text": "Label",
             "top": "0dp",
-            "width": "8%",
+            "width": "5%",
             "zIndex": 1
         }, {
             "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
@@ -39,7 +39,7 @@ define("SBCommon/flxRow", function() {
             "skin": "sknLblFormLevel",
             "text": "Label",
             "top": "0dp",
-            "width": "7%",
+            "width": "5%",
             "zIndex": 1
         }, {
             "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
@@ -53,7 +53,7 @@ define("SBCommon/flxRow", function() {
             "skin": "sknLblFormLevel",
             "text": "Label",
             "top": "0dp",
-            "width": "3%",
+            "width": "2%",
             "zIndex": 1
         }, {
             "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
@@ -66,10 +66,10 @@ define("SBCommon/flxRow", function() {
             "left": "2%",
             "skin": "sknLblFormLevel",
             "text": "Label",
-            "width": "8%",
+            "width": "6%",
             "zIndex": 1
         }, {
-            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_RIGHT,
             "padding": [0, 1, 0, 1],
             "paddingInPixel": false
         }, {});
@@ -80,10 +80,10 @@ define("SBCommon/flxRow", function() {
             "skin": "sknLblFormLevel",
             "text": "Label",
             "top": "0dp",
-            "width": "7%",
+            "width": "5%",
             "zIndex": 1
         }, {
-            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_RIGHT,
             "padding": [0, 1, 0, 1],
             "paddingInPixel": false
         }, {});
@@ -94,10 +94,10 @@ define("SBCommon/flxRow", function() {
             "skin": "sknLblFormLevel",
             "text": "Label",
             "top": "0dp",
-            "width": "9%",
+            "width": "7%",
             "zIndex": 1
         }, {
-            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_RIGHT,
             "padding": [0, 1, 0, 1],
             "paddingInPixel": false
         }, {});
@@ -108,10 +108,10 @@ define("SBCommon/flxRow", function() {
             "skin": "sknLblFormLevel",
             "text": "Label",
             "top": "0dp",
-            "width": "7.10%",
+            "width": "5%",
             "zIndex": 1
         }, {
-            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_RIGHT,
             "padding": [0, 1, 0, 1],
             "paddingInPixel": false
         }, {});
@@ -122,10 +122,10 @@ define("SBCommon/flxRow", function() {
             "skin": "sknLblFormLevel",
             "text": "Label",
             "top": "0dp",
-            "width": "8%",
+            "width": "6%",
             "zIndex": 1
         }, {
-            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_RIGHT,
             "padding": [0, 1, 0, 1],
             "paddingInPixel": false
         }, {});
@@ -136,10 +136,10 @@ define("SBCommon/flxRow", function() {
             "skin": "sknLblFormLevel",
             "text": "label",
             "top": "0dp",
-            "width": "7.40%",
+            "width": "5.40%",
             "zIndex": 1
         }, {
-            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_RIGHT,
             "padding": [0, 1, 0, 1],
             "paddingInPixel": false
         }, {});
@@ -150,10 +150,10 @@ define("SBCommon/flxRow", function() {
             "skin": "sknLblFormLevel",
             "text": "Label",
             "top": "0dp",
-            "width": "7.40%",
+            "width": "5.40%",
             "zIndex": 1
         }, {
-            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_RIGHT,
             "padding": [0, 1, 0, 1],
             "paddingInPixel": false
         }, {});
@@ -171,7 +171,49 @@ define("SBCommon/flxRow", function() {
             "padding": [0, 1, 0, 1],
             "paddingInPixel": false
         }, {});
-        flxRow.add(lblAcctType, lblAccNo, lblBRI, lblOutstandingBal, lblInstalment, lblArrearsExcess, lblAmountDue, lblOrgLoanAmt, lblOrgLimit, lblCurrentLimit, lblInterestRate);
+        var lblOriginationDate = new voltmx.ui.Label({
+            "id": "lblOriginationDate",
+            "isVisible": true,
+            "left": "2%",
+            "skin": "sknLblFormLevel",
+            "text": "Label",
+            "top": "0dp",
+            "width": "5%",
+            "zIndex": 1
+        }, {
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 1, 0, 1],
+            "paddingInPixel": false
+        }, {});
+        var lblOriginalTerm = new voltmx.ui.Label({
+            "id": "lblOriginalTerm",
+            "isVisible": true,
+            "left": "2%",
+            "skin": "sknLblFormLevel",
+            "text": "Label",
+            "top": "0dp",
+            "width": "5%",
+            "zIndex": 1
+        }, {
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 1, 0, 1],
+            "paddingInPixel": false
+        }, {});
+        var lblRemTerm = new voltmx.ui.Label({
+            "id": "lblRemTerm",
+            "isVisible": true,
+            "left": "2%",
+            "skin": "sknLblFormLevel",
+            "text": "Label",
+            "top": "0dp",
+            "width": "5%",
+            "zIndex": 1
+        }, {
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 1, 0, 1],
+            "paddingInPixel": false
+        }, {});
+        flxRow.add(lblAcctType, lblAccNo, lblBRI, lblOutstandingBal, lblInstalment, lblArrearsExcess, lblAmountDue, lblOrgLoanAmt, lblOrgLimit, lblCurrentLimit, lblInterestRate, lblOriginationDate, lblOriginalTerm, lblRemTerm);
         return flxRow;
     }
 })

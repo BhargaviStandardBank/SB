@@ -3,7 +3,7 @@ define("SuspendList/userCopyFBox0a97028e0935b46Controller", {
 });
 define("SuspendList/CopyFBox0a97028e0935b46ControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("SuspendList/CopyFBox0a97028e0935b46Controller", ["SuspendList/userCopyFBox0a97028e0935b46Controller", "SuspendList/CopyFBox0a97028e0935b46ControllerActions"], function() {

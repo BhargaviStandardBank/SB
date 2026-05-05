@@ -19,6 +19,19 @@
         "font_name": "Helvetica",
         "wType": "Segment"
     },
+    "CopysknSegRow0dbdf66c6d46045": {
+        "background_color": "ffffff00",
+        "bg_type": "one",
+        "border_color": "dedede00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "21212100",
+        "font_name": "Helvetica",
+        "font_size": 80,
+        "forked": false,
+        "wType": "Segment"
+    },
     "defBtnBlockedUI": {
         "background_color": "E6E6E600",
         "bg_type": "one",
@@ -108,6 +121,20 @@
         "font_weight": "400",
         "wType": "Label"
     },
+    "defLabel0b652f737213145": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "14A1DE00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "21212100",
+        "font_name": "Helvetica",
+        "font_size": 200,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Label"
+    },
     "defListBoxFocus": {
         "background_color": "ffffff00",
         "bg_type": "one",
@@ -150,6 +177,20 @@
         "font_weight": "400",
         "wType": "TextArea"
     },
+    "defTextAreaFocus": {
+        "background_color": "ffffff00",
+        "bg_type": "one",
+        "border_color": "14a1de00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "33333300",
+        "font_name": "Helvetica",
+        "font_size": 107,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "TextArea"
+    },
     "defTextAreaHover": {
         "background_color": "ffffff00",
         "bg_type": "one",
@@ -158,6 +199,34 @@
         "border_type": 0,
         "border_width": 1,
         "font_color": "33333300",
+        "font_name": "Helvetica",
+        "font_size": 107,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "TextArea"
+    },
+    "defTextAreaNormal": {
+        "background_color": "ffffff00",
+        "bg_type": "one",
+        "border_color": "33333300",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "33333300",
+        "font_name": "Helvetica",
+        "font_size": 107,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "TextArea"
+    },
+    "defTextAreaPlaceholder": {
+        "background_color": "ffffff64",
+        "bg_type": "one",
+        "border_color": "33333300",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "99999900",
         "font_name": "Helvetica",
         "font_size": 107,
         "font_style": "normal",
@@ -254,6 +323,35 @@
         "font_name": "Helvetica",
         "wType": "Segment"
     },
+    "sknBtn2A1A6A": {
+        "background_color": "2a1a6a00",
+        "bg_type": "one",
+        "border_color": "ffffff64",
+        "border_style": "rc",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "ffffff00",
+        "font_name": "Helvetica",
+        "font_size": 85,
+        "font_style": "normal",
+        "font_weight": "500",
+        "forked": false,
+        "wType": "Button"
+    },
+    "sknBtnBGTransBlue": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "dedede00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "dedede00",
+        "font_name": "Helvetica",
+        "font_size": 100,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Button"
+    },
     "sknBtnBlue": {
         "background_color": "2a1a6a00",
         "bg_type": "one",
@@ -269,6 +367,21 @@
         "forked": false,
         "wType": "Button"
     },
+    "sknBtnDisable": {
+        "background_color": "58738700",
+        "bg_type": "one",
+        "border_color": "ffffff00",
+        "border_radius": 100,
+        "border_style": "custom",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "ffffff00",
+        "font_name": "Helvetica",
+        "font_size": 150,
+        "font_style": "normal",
+        "font_weight": "500",
+        "wType": "Button"
+    },
     "sknBtnGrey": {
         "background_color": "edf5ff00",
         "bg_type": "one",
@@ -282,6 +395,74 @@
         "font_style": "normal",
         "font_weight": "bold",
         "forked": false,
+        "wType": "Button"
+    },
+    "sknBtnLeftHighLite": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "dedede00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "dedede00",
+        "font_name": "Helvetica",
+        "font_size": 100,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Button"
+    },
+    "sknBtnLeftUnSelect": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "dedede00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "dedede00",
+        "font_name": "Helvetica",
+        "font_size": 100,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Button"
+    },
+    "sknBtnRightHighLite": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "dedede00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "dedede00",
+        "font_name": "Helvetica",
+        "font_size": 100,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Button"
+    },
+    "sknBtnRightUnSelect": {
+        "background_color": "ffffff00",
+        "bg_type": "one",
+        "border_bottom_color": "dedede00",
+        "border_bottom_width": 1,
+        "border_left_color": "dedede00",
+        "border_left_width": 1,
+        "border_right_color": "dedede00",
+        "border_right_width": 1,
+        "border_top_color": "dedede00",
+        "border_top_width": 1,
+        "border_type": 0,
+        "bottom_left_border_radius": 10,
+        "bottom_left_border_style": "rc",
+        "bottom_right_border_style": "plain",
+        "font_color": "21212100",
+        "font_name": "Helvetica",
+        "font_size": 80,
+        "font_style": "normal",
+        "font_weight": "400",
+        "forked": true,
+        "top_left_border_radius": 10,
+        "top_left_border_style": "rc",
+        "top_right_border_style": "plain",
         "wType": "Button"
     },
     "sknFlx15Blck": {
@@ -352,6 +533,16 @@
         "border_style": "plain",
         "border_type": 0,
         "border_width": 0,
+        "font_name": "Helvetica",
+        "wType": "FlexContainer"
+    },
+    "sknFlxLogin": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "66666600",
+        "border_style": "custom",
+        "border_type": 0,
+        "border_width": 1,
         "font_name": "Helvetica",
         "wType": "FlexContainer"
     },
@@ -534,6 +725,20 @@
         "forked": false,
         "wType": "Label"
     },
+    "sknLblC8DFFF": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "14A1DE00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "21212100",
+        "font_name": "Helvetica",
+        "font_size": 200,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Label"
+    },
     "sknLblDescription": {
         "background_color": "00000064",
         "bg_type": "one",
@@ -564,6 +769,20 @@
         "forked": false,
         "wType": "Label"
     },
+    "sknLblHdr": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "14A1DE00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "21212100",
+        "font_name": "Helvetica",
+        "font_size": 200,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Label"
+    },
     "sknLblHeading2": {
         "background_color": "00000064",
         "bg_type": "one",
@@ -577,6 +796,20 @@
         "font_style": "normal",
         "font_weight": "bold",
         "forked": false,
+        "wType": "Label"
+    },
+    "sknLblHeading2White": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "14A1DE00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "21212100",
+        "font_name": "Helvetica",
+        "font_size": 200,
+        "font_style": "normal",
+        "font_weight": "400",
         "wType": "Label"
     },
     "sknLblHeading4Bold": {
@@ -741,6 +974,20 @@
         "forked": false,
         "wType": "Label"
     },
+    "sknLblWhite100": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "14A1DE00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "21212100",
+        "font_name": "Helvetica",
+        "font_size": 200,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Label"
+    },
     "sknListTrans": {
         "background_color": "00000064",
         "bg_type": "one",
@@ -755,6 +1002,41 @@
         "font_weight": "400",
         "forked": false,
         "wType": "ListBox"
+    },
+    "sknLoginDup": {
+        "background_color": {
+            "angle": 90,
+            "colors": ["2a1a6a19", "2abdea00", "2abdea19"],
+            "cs": [
+                1,
+                101,
+                101
+            ],
+            "gradientType": "toRight",
+            "gt": "linear"
+        },
+        "background_style": "linear",
+        "bg_type": "ms_gradient",
+        "border_bottom_color": "66666600",
+        "border_bottom_width": 1,
+        "border_left_color": "66666600",
+        "border_left_width": 1,
+        "border_right_color": "66666600",
+        "border_right_width": 1,
+        "border_top_color": "66666600",
+        "border_top_width": 1,
+        "border_type": 0,
+        "bottom_left_border_radius": 0,
+        "bottom_left_border_style": "rc",
+        "bottom_right_border_radius": 0,
+        "bottom_right_border_style": "rc",
+        "font_name": "Helvetica",
+        "forked": true,
+        "top_left_border_radius": 0,
+        "top_left_border_style": "rc",
+        "top_right_border_radius": 0,
+        "top_right_border_style": "rc",
+        "wType": "FlexContainer"
     },
     "sknLstGreyBrdr": {
         "background_color": "f6f8fa23",
@@ -786,6 +1068,20 @@
         "font_weight": "400",
         "forked": false,
         "wType": "TextField"
+    },
+    "sknSBCalender": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "dedede00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "dedede00",
+        "font_name": "Helvetica",
+        "font_size": 100,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Calendar"
     },
     "sknSampleRowTemplate": {
         "background_color": "ffffff00",
@@ -867,6 +1163,22 @@
         "border_width": 0,
         "font_name": "Helvetica",
         "wType": "Segment"
+    },
+    "sknSwt": {
+        "bg_type": "one",
+        "border_color": "00000000",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_name": "Helvetica",
+        "font_size": 156,
+        "font_style": "normal",
+        "font_weight": "normal",
+        "left_background_color": "48d87400",
+        "left_font_color": "33333300",
+        "right_background_color": "ffffff64",
+        "right_font_color": "33333300",
+        "wType": "Switch"
     },
     "sknTxtAraGrey": {
         "background_color": "f6f8fa00",
@@ -958,6 +1270,36 @@
         "forked": false,
         "wType": "TextField"
     },
+    "sknTxtTransSUSMA": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "dedede00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "9e9e9e00",
+        "font_name": "Helvetica",
+        "font_size": 80,
+        "font_style": "normal",
+        "font_weight": "400",
+        "forked": false,
+        "wType": "TextField"
+    },
+    "skntxtAraTrans": {
+        "background_color": "ffffff64",
+        "bg_type": "one",
+        "border_color": "33333300",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_color": "9e9e9e00",
+        "font_name": "Helvetica",
+        "font_size": 85,
+        "font_style": "normal",
+        "font_weight": "400",
+        "forked": false,
+        "wType": "TextArea"
+    },
     "slCameraFocus": {
         "background_image": "camera_focus.png",
         "background_image_dimensions": {
@@ -1000,7 +1342,7 @@
         "border_color": "14a1de00",
         "border_style": "custom",
         "border_type": 0,
-        "border_width": 0,
+        "border_width": 1,
         "font_name": "Helvetica",
         "wType": "FlexContainer"
     },
@@ -1020,7 +1362,7 @@
         "border_color": "14a1de00",
         "border_style": "custom",
         "border_type": 0,
-        "border_width": 0,
+        "border_width": 1,
         "wType": "FlexScrollContainer"
     },
     "slFSbox": {
@@ -1036,8 +1378,8 @@
     "slFbox": {
         "background_color": "00000064",
         "bg_type": "one",
-        "border_color": "dedede00",
-        "border_style": "plain",
+        "border_color": "66666600",
+        "border_style": "custom",
         "border_type": 0,
         "border_width": 0,
         "font_name": "Helvetica",

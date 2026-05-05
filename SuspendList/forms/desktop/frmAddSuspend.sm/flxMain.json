@@ -35,8 +35,8 @@
     "autogrowmode": 0,
     "canUpdateUI": true,
     "children": [
-        "flxLeft",
-        "flxRight"
+        "flxRight",
+        "SideMenu"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -50,7 +50,7 @@
     "iscustomlayout": false,
     "isvisible": true,
     "kuid": "fce261207e1f4a5399398c2120951e6f",
-    "layouttype": 3,
+    "layouttype": 2,
     "name": "kony.ui.FlexContainer",
     "parent": "frmAddSuspend",
     "pf": "frmAddSuspend",

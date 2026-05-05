@@ -47,10 +47,10 @@
         }
     },
     "disabledSkins": {
-        "blockedUISkin": "se10403881e545c88517e38d1704fe6e"
+        "blockedUISkin": "se10403881e545c88517e38d1704fe6e",
+        "focusSkin": "s4203c3eb3a44fe6808d9cbd7663c419"
     },
     "enablescrolling": true,
-    "focusskin": "s4203c3eb3a44fe6808d9cbd7663c419",
     "id": "flxRowItems",
     "info": null,
     "isTemplate": true,

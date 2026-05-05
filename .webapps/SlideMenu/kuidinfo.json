@@ -1,0 +1,194 @@
+{
+    "idToKuidMapping": {
+        "androidwear": {},
+        "desktop": {
+            "SampleRowTemplate": "e57343eb98f34b91aabe3511ecd5d25b",
+            "SampleSectionHeaderTemplate": "ba1bff5657d54a00b799aa7860ffb471",
+            "frmHome": "b23449b85b3f46e69247792535603db8",
+            "tmpContent": "db1a720c377e449eabda96b947d6bf9c",
+            "tmpMenu": "b2ab69ad6b704abb9908c922c5823cac"
+        },
+        "masters": {},
+        "mobile": {},
+        "skins": {
+            "CopydefBtnNormal0j67934920d7c46": "sfbc27606b3d4489882d7c3e60d28b7b",
+            "CopydefLabel0aa6c7e6fed644f": "s74af7100a2a458bb6ff3ee34872bbc0",
+            "Copyseg0f32878a8ca7f4a": "s36720f8bf394e65b6b011bba8b94a66",
+            "CopyslFbox0b87d163dc5dd4e": "s1806c707e63495c99ddc2ee13c2838f",
+            "CopyslFbox0c895d4865b2744": "s0bc6f9463e44427b7697eb37a877a1a",
+            "CopyslFbox0d6be07b4bd7645": "sff9e25281154c278e75e0f213bfb9be",
+            "CopyslFbox0f270a5ff5eea43": "sb8a4472f2cb4d2d9ee9f4cb92b88be3",
+            "CopyslFbox0i1e7cde5e25743": "sc2c109b33704f7abe46fd1537c96b03",
+            "CopyslFbox0j1194d827e1845": "sf01a15659254f99ab94a921a7cb200e",
+            "CopyslFbox0j9ad81d1887942": "s3a5d63587704558869e154a3e9bee37",
+            "defBtnBlockedUI": "sad650e3b554410cb830f137fe29d4c9",
+            "defBtnFocus": "sf723903b85946e2b859b00d7e08d94a",
+            "defBtnHover": "sacac96815eb4ea785aca546c79e8734",
+            "defBtnNormal": "s52596e89d4149cda2afb38c1acee8e9",
+            "defBtnPressed": "se7a1b37f11b4bf5828530c358dac47d",
+            "defLabel": "s337b4f5711e453f9a8d8b5e20c586c3",
+            "defTextAreaBlockedUI": "s31be43304804967ad6bbe27b0fde352",
+            "defTextAreaHover": "s3969463ae1946eebf26633fd316cecc",
+            "defTextBoxBlockedUI": "s4265d3422894a7ab34eefc4bd0af188",
+            "seg2Focus": "s67becaeac7a4667aca4efaad8f0a0a9",
+            "seg2Normal": "s2d4bf5e81d7477682f00c3b3d91952c",
+            "sknLblDescription": "sf4fe85ebf9c406f9515f8dbc1c36174",
+            "sknLblRowHeading": "sa7c5a1b7d744c8abc0e47bae133062b",
+            "sknLblStrip": "s38ae859d198480ea57b0d7de0fee4ee",
+            "sknLblTimeStamp": "s713ac5f60f4499785439c1127754be3",
+            "sknSampleRowTemplate": "sec9af392b7443bbae3380d900eb3591",
+            "sknSampleSectionHeaderTemplate": "s2d16c38546641798193bbdb5e9307cc",
+            "sknSectionHeaderLabelSkin": "s7f4f12f0de44567936e7a722988f3c0",
+            "slCameraFocus": "sea51c6a38334ed3906c0be8e256cb99",
+            "slDynamicNotificationForm": "s6d532ad170c4dda8c975eeec9ac27bf",
+            "slFBlockedUIbox": "se10403881e545c88517e38d1704fe6e",
+            "slFFocusbox": "s055b30cc8544a4092521d1a3c930a38",
+            "slFSBlockedUIbox": "s4a31468fb624fe9b00cafc228a8ee66",
+            "slFSFocusSbox": "s50473dc54ea429da8f631a3be7bfda1",
+            "slFbox": "s57cf2baa54d4d7ab375842a4b4ea271",
+            "slForm": "s679c6c468334eebbd10aee3854bd37c",
+            "slImage": "sb4065064a3d4c5cac3a5afc45a51112",
+            "slSplashiOS": "se4653a408254ae8987830efb42ae3c2",
+            "slStaticNotificationForm": "s09c2959e0cf452dbd00620219b3710d",
+            "slTitleBar": "s54c41ff65d947b799b3edd7a22e0222",
+            "slWatchForm": "s93f96ebf45a4a9e9b39670383010a38",
+            "sliPhoneSegmentHeader": "s54e39026bfb41d283808f0be26906af"
+        },
+        "tablet": {},
+        "userwidgets": {}
+    },
+    "kuidDependencyMap": {
+        "b2ab69ad6b704abb9908c922c5823cac": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "db1a720c377e449eabda96b947d6bf9c": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "s055b30cc8544a4092521d1a3c930a38": [
+            "db1a720c377e449eabda96b947d6bf9c",
+            "b2ab69ad6b704abb9908c922c5823cac",
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "s0bc6f9463e44427b7697eb37a877a1a": [
+            "db1a720c377e449eabda96b947d6bf9c"
+        ],
+        "s1806c707e63495c99ddc2ee13c2838f": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "s2d16c38546641798193bbdb5e9307cc": [
+            "ba1bff5657d54a00b799aa7860ffb471"
+        ],
+        "s2d4bf5e81d7477682f00c3b3d91952c": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "s337b4f5711e453f9a8d8b5e20c586c3": [
+            "db1a720c377e449eabda96b947d6bf9c"
+        ],
+        "s36720f8bf394e65b6b011bba8b94a66": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "s38ae859d198480ea57b0d7de0fee4ee": [
+            "e57343eb98f34b91aabe3511ecd5d25b"
+        ],
+        "s3a5d63587704558869e154a3e9bee37": [
+            "b2ab69ad6b704abb9908c922c5823cac"
+        ],
+        "s54e39026bfb41d283808f0be26906af": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "s57cf2baa54d4d7ab375842a4b4ea271": [
+            "db1a720c377e449eabda96b947d6bf9c",
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "s679c6c468334eebbd10aee3854bd37c": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "s67becaeac7a4667aca4efaad8f0a0a9": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "s713ac5f60f4499785439c1127754be3": [
+            "e57343eb98f34b91aabe3511ecd5d25b"
+        ],
+        "s74af7100a2a458bb6ff3ee34872bbc0": [
+            "b2ab69ad6b704abb9908c922c5823cac"
+        ],
+        "s7f4f12f0de44567936e7a722988f3c0": [
+            "ba1bff5657d54a00b799aa7860ffb471"
+        ],
+        "sa7c5a1b7d744c8abc0e47bae133062b": [
+            "e57343eb98f34b91aabe3511ecd5d25b"
+        ],
+        "sb4065064a3d4c5cac3a5afc45a51112": [
+            "b2ab69ad6b704abb9908c922c5823cac",
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "sb8a4472f2cb4d2d9ee9f4cb92b88be3": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "sc2c109b33704f7abe46fd1537c96b03": [
+            "b2ab69ad6b704abb9908c922c5823cac"
+        ],
+        "sec9af392b7443bbae3380d900eb3591": [
+            "e57343eb98f34b91aabe3511ecd5d25b"
+        ],
+        "sf01a15659254f99ab94a921a7cb200e": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "sf4fe85ebf9c406f9515f8dbc1c36174": [
+            "e57343eb98f34b91aabe3511ecd5d25b"
+        ],
+        "sf723903b85946e2b859b00d7e08d94a": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "sfbc27606b3d4489882d7c3e60d28b7b": [
+            "b23449b85b3f46e69247792535603db8"
+        ],
+        "sff9e25281154c278e75e0f213bfb9be": [
+            "b23449b85b3f46e69247792535603db8"
+        ]
+    },
+    "kuidInfo": {
+        "androidwear": {},
+        "desktop": {
+            "b23449b85b3f46e69247792535603db8": {
+                "appName": "SlideMenu",
+                "id": "frmHome",
+                "relFormId": "frmHome",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "b2ab69ad6b704abb9908c922c5823cac": {
+                "appName": "SlideMenu",
+                "id": "tmpMenu",
+                "templateType": "segments",
+                "topFlexId": "flxRowTemplate"
+            },
+            "ba1bff5657d54a00b799aa7860ffb471": {
+                "appName": "SlideMenu",
+                "id": "SampleSectionHeaderTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSectionHeaderTemplate"
+            },
+            "db1a720c377e449eabda96b947d6bf9c": {
+                "appName": "SlideMenu",
+                "id": "tmpContent",
+                "templateType": "segments",
+                "topFlexId": "flxContent"
+            },
+            "e57343eb98f34b91aabe3511ecd5d25b": {
+                "appName": "SlideMenu",
+                "id": "SampleRowTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSampleRowTemplate"
+            }
+        },
+        "masters": {},
+        "mobile": {},
+        "tablet": {},
+        "userwidgets": {}
+    },
+    "userWidgetsKuidToIdMap": {}
+}

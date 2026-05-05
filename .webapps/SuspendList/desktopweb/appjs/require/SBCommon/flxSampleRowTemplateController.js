@@ -3,7 +3,7 @@ define("SBCommon/userflxSampleRowTemplateController", {
 });
 define("SBCommon/flxSampleRowTemplateControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("SBCommon/flxSampleRowTemplateController", ["SBCommon/userflxSampleRowTemplateController", "SBCommon/flxSampleRowTemplateControllerActions"], function() {

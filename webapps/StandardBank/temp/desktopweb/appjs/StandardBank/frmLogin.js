@@ -313,17 +313,16 @@ define("StandardBank/frmLogin", function() {
             }, {});
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var flxHdr = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "centerX": "50%",
                 "clipBounds": false,
-                "height": "48dp",
                 "id": "flxHdr",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_HORIZONTAL,
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
                 "top": "20dp",
-                "width": "80%",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
                 "zIndex": 1,
                 "appName": "StandardBank"
             }, {
@@ -331,38 +330,22 @@ define("StandardBank/frmLogin", function() {
             }, {});
             flxHdr.setDefaultUnit(voltmx.flex.DP);
             var Image0ac9ec7023fc445 = new voltmx.ui.Image2({
-                "centerY": "50%",
-                "height": "40dp",
+                "centerX": "50%",
+                "height": "160dp",
                 "id": "Image0ac9ec7023fc445",
                 "isVisible": true,
                 "left": "0dp",
                 "skin": "slImage",
                 "src": "sblogo.png",
                 "top": "9dp",
-                "width": "40dp",
+                "width": "160dp",
                 "zIndex": 1
             }, {
                 "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
                 "padding": [0, 0, 0, 0],
                 "paddingInPixel": false
             }, {});
-            var lblHdr = new voltmx.ui.Label({
-                "height": "100%",
-                "id": "lblHdr",
-                "isVisible": true,
-                "left": "0dp",
-                "right": "0dp",
-                "skin": "sknLblHdr",
-                "text": "Standard Bank",
-                "top": "0dp",
-                "width": "74.95%",
-                "zIndex": 1
-            }, {
-                "contentAlignment": constants.CONTENT_ALIGN_CENTER,
-                "padding": [0, 0, 5, 0],
-                "paddingInPixel": false
-            }, {});
-            flxHdr.add(Image0ac9ec7023fc445, lblHdr);
+            flxHdr.add(Image0ac9ec7023fc445);
             var flxContent = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "centerX": "50%",

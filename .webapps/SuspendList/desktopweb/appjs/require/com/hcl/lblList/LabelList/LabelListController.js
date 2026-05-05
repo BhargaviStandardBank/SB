@@ -3,7 +3,7 @@ define("com/hcl/lblList/LabelList/userLabelListController", function() {
 });
 define("com/hcl/lblList/LabelList/LabelListControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/lblList/LabelList/LabelListController", ["com/hcl/lblList/LabelList/userLabelListController", "com/hcl/lblList/LabelList/LabelListControllerActions"], function() {

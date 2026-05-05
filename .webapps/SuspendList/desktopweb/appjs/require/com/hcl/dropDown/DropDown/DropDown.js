@@ -4,7 +4,6 @@ define(function() {
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
-            "focusSkin": "sknFlxTrans",
             "height": "100dp",
             "id": "DropDown",
             "isVisible": true,

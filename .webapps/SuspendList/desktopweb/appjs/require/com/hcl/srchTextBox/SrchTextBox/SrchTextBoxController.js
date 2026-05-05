@@ -3,7 +3,7 @@ define("com/hcl/srchTextBox/SrchTextBox/userSrchTextBoxController", function() {
 });
 define("com/hcl/srchTextBox/SrchTextBox/SrchTextBoxControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/srchTextBox/SrchTextBox/SrchTextBoxController", ["com/hcl/srchTextBox/SrchTextBox/userSrchTextBoxController", "com/hcl/srchTextBox/SrchTextBox/SrchTextBoxControllerActions"], function() {

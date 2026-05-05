@@ -1,0 +1,1 @@
+{"desktopweb":{"templates":["flxSampleRowTemplate.js","flxSectionHeaderTemplate.js","flxContent.js","flxRowTemplate.js"],"templateControllers":["flxSampleRowTemplateController.js","flxSectionHeaderTemplateController.js","flxContentController.js","flxRowTemplateController.js"],"navigation":["navigation/NavigationModel.js","navigation/NavigationController.js"],"models":[]}}

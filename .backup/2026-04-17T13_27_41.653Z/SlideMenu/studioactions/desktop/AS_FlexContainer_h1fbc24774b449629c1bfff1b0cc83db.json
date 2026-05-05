@@ -1,0 +1,36 @@
+{
+    "AS_FlexContainer_h1fbc24774b449629c1bfff1b0cc83db": {
+        "id": "AS_FlexContainer_h1fbc24774b449629c1bfff1b0cc83db",
+        "type": "ACTION_SEQUENCE",
+        "params": [{
+            "datatype": "collection",
+            "name": "eventobject"
+        }, {
+            "datatype": "collection",
+            "name": "context"
+        }],
+        "contextObj": {
+            "name": "frmHome",
+            "type": "forms",
+            "platform": null,
+            "KUID": "b23449b85b3f46e69247792535603db8"
+        },
+        "language": "js",
+        "eventType": "onHover",
+        "actions": [{
+            "id": "INVOKE_FUNCTION__gcd30a906121439a829d7e2e42409589",
+            "type": "INVOKE_FUNCTION",
+            "sequenceKUID": "onHoverSidebar",
+            "display": "onHoverSidebar",
+            "inputparams": [{
+                "name": "widgetRef"
+            }, {
+                "name": "context"
+            }],
+            "parentId": null,
+            "callbackType": null,
+            "disabled": null,
+            "source": "controller"
+        }]
+    }
+}

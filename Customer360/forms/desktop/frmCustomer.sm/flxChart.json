@@ -48,7 +48,7 @@
     "id": "flxChart",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": true,
+    "isvisible": false,
     "kuid": "be019b64fdae4e4fb2162aa5ce5a2083",
     "layouttype": 4,
     "name": "kony.ui.FlexContainer",

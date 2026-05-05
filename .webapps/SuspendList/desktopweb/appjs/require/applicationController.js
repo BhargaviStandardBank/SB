@@ -81,6 +81,16 @@ define({
             "classname": "LabelTextBox",
             "name": "com.hcl.lblText.LabelTextBox"
         });
+        voltmx.mvc.registry.add("com.hcl.lblTextArea.LabelTextArea", {
+            "viewName": "LabelTextArea",
+            "controllerName": "LabelTextAreaController",
+            "appName": "SBCommon"
+        });
+        voltmx.application.registerMaster({
+            "namespace": "com.hcl.lblTextArea",
+            "classname": "LabelTextArea",
+            "name": "com.hcl.lblTextArea.LabelTextArea"
+        });
         voltmx.mvc.registry.add("com.hcl.listData.ListBoxData", {
             "viewName": "ListBoxData",
             "controllerName": "ListBoxDataController",
@@ -181,6 +191,16 @@ define({
             "classname": "SuspenEntryHdr",
             "name": "com.hcl.suspenEntryHdr.SuspenEntryHdr"
         });
+        voltmx.mvc.registry.add("com.riskrating.chart.RiskRateChart", {
+            "viewName": "RiskRateChart",
+            "controllerName": "RiskRateChartController",
+            "appName": "SBCommon"
+        });
+        voltmx.application.registerMaster({
+            "namespace": "com.riskrating.chart",
+            "classname": "RiskRateChart",
+            "name": "com.riskrating.chart.RiskRateChart"
+        });
         voltmx.mvc.registry.add("flxSampleRowTemplate", {
             "viewName": "flxSampleRowTemplate",
             "controllerName": "flxSampleRowTemplateController",
@@ -189,11 +209,6 @@ define({
         voltmx.mvc.registry.add("flxSectionHeaderTemplate", {
             "viewName": "flxSectionHeaderTemplate",
             "controllerName": "flxSectionHeaderTemplateController",
-            "appName": "SBCommon"
-        });
-        voltmx.mvc.registry.add("flxAddSuspendRow", {
-            "viewName": "flxAddSuspendRow",
-            "controllerName": "flxAddSuspendRowController",
             "appName": "SBCommon"
         });
         voltmx.mvc.registry.add("flxApprover", {
@@ -292,11 +307,14 @@ define({
             "appName": "SuspendList"
         });
         setAppBehaviors();
+        if (typeof startBackgroundWorker != "undefined") {
+            startBackgroundWorker();
+        }
     },
     postAppInitCallBack: function(eventObj) {},
     appmenuseq: function() {
         new voltmx.mvc.Navigation({
-            "friendlyName": "frmAddSuspend",
+            "friendlyName": "frmSuspendList",
             "appName": "SuspendList"
         }).navigate();
     }

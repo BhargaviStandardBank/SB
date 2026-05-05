@@ -60,7 +60,7 @@
         "lblText": {
             "__events__": {},
             "__info__": {
-                "kuid": "ddc5227ffdc340179f898faca66ad21d",
+                "kuid": "gedc17001a3e4b76b207002f9a1d2a07",
                 "srcKUID": "fc159ae3796344e386a4b83ca85aebcd",
                 "wType": "Label"
             },
@@ -70,7 +70,7 @@
         "txtBox": {
             "__events__": {},
             "__info__": {
-                "kuid": "d9f0a7b0086a467a9a961fd0c64b86da",
+                "kuid": "b3f5f2b8c63242c19749c2056c1ec3c7",
                 "srcKUID": "f79732d604304ed48bf1dd0528b228d8",
                 "wType": "TextField"
             },

@@ -79,7 +79,7 @@ define("SBCommon/flxSuspensionEntry", function() {
             "clipBounds": false,
             "focusSkin": "sknFlxTrans",
             "id": "flxDelete",
-            "isVisible": false,
+            "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "2%",
             "isModalContainer": false,

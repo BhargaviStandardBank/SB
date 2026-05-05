@@ -51,7 +51,7 @@
     "kuid": "haf0d36bacc24cfd8099a31d42385581",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",
-    "parent": "flxCustomerInfo",
+    "parent": "flxContInfo",
     "pf": "frmCustomer",
     "responsiveconfig": {
         "offset": {

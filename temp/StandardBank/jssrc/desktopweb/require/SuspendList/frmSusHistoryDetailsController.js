@@ -2,7 +2,7 @@ define("SuspendList/userfrmSusHistoryDetailsController", {
     onNavigate: function() {
         this.view.btnReturnHistory.onClick = this.returnToHistory.bind(this);
         this.view.btnAccept.onClick = this.onClickAccept.bind(this);
-        this.view.btnReturnHistory.onClick = this.returnHistory();
+        this.view.btnReturnHistory.onClick = this.returnHistory;
         this.populateHistoryDetails();
         //this.populateApprovalStatus();
     },

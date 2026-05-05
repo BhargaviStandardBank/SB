@@ -1,7 +1,13 @@
 define("com/hcl/menu/SideMenu/userSideMenuController", function() {
     return {
+        CONFIG: {
+            MIN_WIDTH: "60dp",
+            MAX_WIDTH: "200dp",
+            ANIMATION_DURATION: 0.25
+        },
         masterData: [{
             header: {
+                imgIcon: "icon_suspend.png",
                 lblSectionTitle: "Master Suspend List",
                 isExpanded: false
             },
@@ -31,10 +37,14 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
                 }
             }, {
                 lblMenuItem: "Approvers",
-                formID: "frmScoredOffer"
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmApprovers"
+                }
             }]
         }, {
             header: {
+                imgIcon: "icon_manage.png",
                 lblSectionTitle: "Manage Scheme",
                 isExpanded: false
             },
@@ -71,6 +81,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             }]
         }, {
             header: {
+                imgIcon: "icon_customerview.png",
                 lblSectionTitle: "Customer 360",
                 isExpanded: false
             },
@@ -80,43 +91,98 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
                     "appName": "Customer360",
                     "friendlyName": "frmCustomer"
                 }
-            }, {
-                lblMenuItem: "Request History",
-                formID: {
-                    "appName": "ManageScheme",
-                    "friendlyName": "frmSchemeReqHistory"
-                }
-            }, {
-                lblMenuItem: "Add Scheme",
-                formID: {
-                    "appName": "ManageScheme",
-                    "friendlyName": "frmAddScheme"
-                }
-            }, {
-                lblMenuItem: "Remove Scheme",
-                formID: {
-                    "appName": "ManageScheme",
-                    "friendlyName": "frmRemoveScheme"
-                }
-            }, {
-                lblMenuItem: "Approvers",
-                formID: {
-                    "appName": "ManageScheme",
-                    "friendlyName": "frmSchemeApprover"
-                }
             }]
-        }],
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Financial Spreading & Risk Rating",
+                isExpanded: false
+            },
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Queue Manager",
+                isExpanded: false
+            },
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Reporting / Dashboard",
+                isExpanded: false
+            },
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Home",
+                isExpanded: false,
+                formID: {
+                    "appName": "StandardBank",
+                    "friendlyName": "frmSBHome"
+                }
+            },
+        }, ],
         constructor: function() {
             this.view.preShow = this.invokePreShow.bind(this);
             this.view.segMenu.onRowClick = this.onRowItemClick.bind(this);
+            this.view.flxSideMenu.width = '60dp';
+            this.view.flxSideMenu.onHover = (widgetRef, context) => {
+                    if (context.eventType === "enter") {
+                        this.expandSidebar1();
+                    } else if (context.eventType === "leave") {
+                        this.collapseSidebar(); // Assuming you have a collapse function
+                    }
+                }
+                //this.view.flxSegMenu.onHover = this.handleMenuHover.bind(this);
+        },
+        expandSidebar1: function() {
+            var animConfig = {
+                duration: 0.3,
+                fillMode: voltmx.anim.FILL_MODE_FORWARDS
+            };
+            // Animate Side Menu
+            this.view.flxSideMenu.animate(voltmx.ui.createAnimation({
+                100: {
+                    width: "250dp"
+                }
+            }), animConfig, {});
+            // Animate Main Content
+            //     this.view.flxMainContent.animate(
+            //         voltmx.ui.createAnimation({ 100: { left: "250dp" } }), 
+            //         animConfig, 
+            //         {}
+            //     );
+            this.isCollapsed = false;
+            //this._updateMenuToIconAndText();
+        },
+        collapseSidebar: function() {
+            var anim = voltmx.ui.createAnimation({
+                100: {
+                    width: "60dp"
+                }
+            });
+            this.view.flxSideMenu.animate(anim, {
+                duration: 0.3,
+                fillMode: voltmx.anim.FILL_MODE_FORWARDS
+            }, {});
+            //     this.view.flxMainContent.animate(
+            //       voltmx.ui.createAnimation({
+            //         100: { left: "70dp" }
+            //       }),
+            //       { duration: 0.3 },
+            //       {}
+            //     );
+            this.isCollapsed = true;
+            //this._updateMenuToIconOnly();
         },
         invokePreShow: function() {
             try {
                 this.view.segMenu.widgetDataMap = {
                     lblSectionTitle: "lblSectionTitle",
+                    imgIcon: "imgIcon",
                     lblMenuItem: "lblMenuItem",
                     flxSegSecHdr: "flxSegSecHdr"
                 };
+                this.view.flxSegMenu.width = this.CONFIG.MIN_WIDTH;
                 // Check if we are currently on the Home Form
                 const currentForm = voltmx.application.getCurrentForm().id;
                 // ES6 Ternary: If landing on Home, collapse all; otherwise, keep current state
@@ -135,10 +201,40 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             });
             this.refreshMenu();
         },
+        handleMenuHover: function(widget, context) {
+            // context.eventType provides "enter" or "leave"
+            if (context.eventType === constants.ONHOVER_MOUSE_ENTER) {
+                this.animateMenu(this.CONFIG.MAX_WIDTH);
+            } else if (context.eventType === constants.ONHOVER_MOUSE_LEAVE) {
+                this.animateMenu(this.CONFIG.MIN_WIDTH);
+                // Optional: Collapse any open accordion sections when mouse leaves
+                this.collapseAllSections();
+            }
+        },
+        animateMenu: function(targetWidth) {
+            this.view.flxSegMenu.animate(voltmx.ui.createAnimation({
+                "100": {
+                    "width": targetWidth,
+                    "stepConfig": {
+                        "timingFunction": constants.ANIMATION_SERIES_EASE_IN_OUT
+                    }
+                }
+            }), {
+                "delay": 0,
+                "iterationCount": 1,
+                "fillMode": constants.ANIMATION_DIRECTION_FORWARDS,
+                "duration": this.CONFIG.ANIMATION_DURATION
+            }, {
+                "animationEnd": function() {}
+            });
+        },
         refreshMenu: function() {
             const segmentData = this.masterData.map((section, index) => {
                 const headerObj = {
                     lblSectionTitle: section.header.lblSectionTitle,
+                    imgIcon: {
+                        src: section.header.imgIcon
+                    },
                     flxSegSecHdr: {
                         onClick: () => this.onSectionClicked(index)
                     }
@@ -151,12 +247,23 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             this.view.forceLayout();
         },
         onSectionClicked: function(sectionIndex) {
-            const currentState = this.masterData[sectionIndex].header.isExpanded;
-            // Logic: Collapse others (Accordion style)
+            const section = this.masterData[sectionIndex];
+            // 1. Check if the clicked section is "Home"
+            if (section.header.lblSectionTitle === "Home") {
+                try {
+                    const nav = new voltmx.mvc.Navigation(section.header.formID);
+                    nav.navigate();
+                    return; // Exit function so it doesn't try to expand
+                } catch (e) {
+                    voltmx.print("Home Navigation Failed: " + e.message);
+                }
+            }
+            // 2. Normal Accordion Logic for other sections
+            const currentState = section.header.isExpanded;
             this.masterData.forEach(item => {
                 item.header.isExpanded = false;
             });
-            this.masterData[sectionIndex].header.isExpanded = !currentState;
+            section.header.isExpanded = !currentState;
             this.refreshMenu();
         },
         onRowItemClick: function() {
@@ -179,7 +286,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
 });
 define("com/hcl/menu/SideMenu/SideMenuControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/menu/SideMenu/SideMenuController", ["com/hcl/menu/SideMenu/userSideMenuController", "com/hcl/menu/SideMenu/SideMenuControllerActions"], function() {

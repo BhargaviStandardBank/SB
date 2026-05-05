@@ -48,7 +48,7 @@
     "id": "flxInsuranceAss",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": true,
+    "isvisible": false,
     "kuid": "je3e87f3208e456f96de124478613d0f",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",

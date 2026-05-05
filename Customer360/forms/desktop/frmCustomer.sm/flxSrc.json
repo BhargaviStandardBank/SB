@@ -42,7 +42,9 @@
         "flxInsuranceInfo",
         "flxOpInfo",
         "flxRiskTypes",
-        "flxRiskInsight"
+        "flxRiskInsight",
+        "flxContInfo",
+        "flxPersonalInfoData"
     ],
     "clipbounds": false,
     "containerweight": 100,

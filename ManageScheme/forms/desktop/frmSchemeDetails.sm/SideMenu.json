@@ -39,12 +39,36 @@
     "clipbounds": false,
     "containerweight": 0,
     "dataDiffs": {
+        "CopyimgLogout0d29fe4496d0f49": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "i07c59de9ede4f9d81e098bf614a7033",
+                "srcKUID": "g4b3fa2624fc4e338b5fd19c203e73ae",
+                "wType": "Image"
+            }
+        },
+        "Label0cff1e13b3a6943": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "h91e97a66ee34ec5a07d9592c4cd1a3a",
+                "srcKUID": "d8a1a550d6ad40d1bb3d3a6a97b08ca8",
+                "wType": "Label"
+            }
+        },
         "SideMenu": {
             "__events__": {},
             "__info__": {
                 "isRoot": true,
                 "kuid": "c238e45c9f7546bcb5e8302af6286e3c",
                 "srcKUID": "b9820cbf67a34dc9b198ef6c1ef7cc4a",
+                "wType": "FlexContainer"
+            }
+        },
+        "filxHome": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "c7c9d1099af349cab9a0e99f1a2e67a7",
+                "srcKUID": "a8edadff36174d098ff77872d87c3519",
                 "wType": "FlexContainer"
             }
         },
@@ -62,6 +86,14 @@
                 "kuid": "g27af44cfff54af197b2eef63fb0d17e",
                 "srcKUID": "h58934e7923849c0b5270bd55a5d8cef",
                 "wType": "FlexScrollContainer"
+            }
+        },
+        "flxSideMenu": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "e7584b3321b3453d9aa19d46d040db0a",
+                "srcKUID": "hf57196de09a45da969991bb5e0e1970",
+                "wType": "FlexContainer"
             }
         },
         "flxUserDetails": {
@@ -86,6 +118,14 @@
                 "kuid": "f76e95eab2ec4fd9a444b9215503ceac",
                 "srcKUID": "g3aa0468887847ac9f391eadc5975a5d",
                 "wType": "Image"
+            }
+        },
+        "lblHome": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "gfbf2e486c044b8daebed85ecc7071f9",
+                "srcKUID": "f941f0a42d824dce810efdd7728fbe26",
+                "wType": "Label"
             }
         },
         "lblUserName": {

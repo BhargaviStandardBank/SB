@@ -3,7 +3,6 @@ define("SBCommon/flxRowItems", function() {
         var flxRowItems = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "focusSkin": "sknFlxRowFocus",
             "height": "40px",
             "id": "flxRowItems",
             "isVisible": true,
@@ -23,7 +22,7 @@ define("SBCommon/flxRowItems", function() {
             "centerY": "50%",
             "id": "lblMenuItem",
             "isVisible": true,
-            "left": "4%",
+            "left": "60dp",
             "skin": "sknLblFormLevel",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,

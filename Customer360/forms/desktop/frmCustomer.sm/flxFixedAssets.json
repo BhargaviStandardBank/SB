@@ -48,7 +48,7 @@
     "id": "flxFixedAssets",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": true,
+    "isvisible": false,
     "kuid": "ba74145026d2442ca1eeaf3e761063ce",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",

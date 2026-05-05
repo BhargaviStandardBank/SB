@@ -1,0 +1,19 @@
+{
+    "desktopweb": {
+        "formslist": {
+            "mvcFormObjects": [
+                "frmHome"
+            ],
+            "nonmvcFormObjects": []
+        },
+        "templatesList": {
+            "mvcTemplateObjects": [
+                "SampleRowTemplate",
+                "SampleSectionHeaderTemplate",
+                "tmpContent",
+                "tmpMenu"
+            ],
+            "nonmvcTemplateObjects": []
+        }
+    }
+}

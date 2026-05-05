@@ -1,0 +1,119 @@
+{
+    "controllerTemplateInfoMapping": {
+        "desktopweb": {
+            "flxContentController_desktop": [
+                "flxContentController"
+            ],
+            "flxRowTemplateController_desktop": [
+                "flxRowTemplateController"
+            ],
+            "flxSampleRowTemplateController_desktop": [
+                "flxSampleRowTemplateController"
+            ],
+            "flxSectionHeaderTemplateController_desktop": [
+                "flxSectionHeaderTemplateController"
+            ]
+        }
+    },
+    "controllerformInfoMapping": {
+        "desktopweb": {
+            "frmHomeController_desktop": [
+                "frmHomeController"
+            ]
+        }
+    },
+    "formControllerInfoMapping": {
+        "desktopweb": {
+            "frmHome": {
+                "controllerActionDir": "frmHomeController",
+                "controllerChannel": "desktop",
+                "controllerName": "frmHomeController"
+            }
+        }
+    },
+    "formsifcMapping": {
+        "desktopweb": {
+            "frmHome": {
+                "ControllerExtensions": [],
+                "appName": "SlideMenu",
+                "controllerInfo": {
+                    "controllerActionName": "frmHomeController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "frmHomeController"
+                },
+                "enableModelDriven": false,
+                "friendlyName": "frmHome",
+                "isMDAForm": false
+            }
+        }
+    },
+    "templateControllerInfoMapping": {
+        "desktopweb": {
+            "SampleRowTemplate": {
+                "controllerActionDir": "flxSampleRowTemplateController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxSampleRowTemplateController"
+            },
+            "SampleSectionHeaderTemplate": {
+                "controllerActionDir": "flxSectionHeaderTemplateController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxSectionHeaderTemplateController"
+            },
+            "tmpContent": {
+                "controllerActionDir": "flxContentController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxContentController"
+            },
+            "tmpMenu": {
+                "controllerActionDir": "flxRowTemplateController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxRowTemplateController"
+            }
+        }
+    },
+    "templatesifcMapping": {
+        "desktopweb": {
+            "flxContent": {
+                "appName": "SlideMenu",
+                "controllerInfo": {
+                    "controllerActionName": "flxContentController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxContentController"
+                },
+                "friendlyName": "flxContent",
+                "templateId": "flxContent"
+            },
+            "flxRowTemplate": {
+                "appName": "SlideMenu",
+                "controllerInfo": {
+                    "controllerActionName": "flxRowTemplateController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxRowTemplateController"
+                },
+                "friendlyName": "flxRowTemplate",
+                "templateId": "flxRowTemplate"
+            },
+            "flxSampleRowTemplate": {
+                "appName": "SlideMenu",
+                "controllerInfo": {
+                    "controllerActionName": "flxSampleRowTemplateController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSampleRowTemplateController"
+                },
+                "friendlyName": "flxSampleRowTemplate",
+                "templateId": "flxSampleRowTemplate"
+            },
+            "flxSectionHeaderTemplate": {
+                "appName": "SlideMenu",
+                "controllerInfo": {
+                    "controllerActionName": "flxSectionHeaderTemplateController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSectionHeaderTemplateController"
+                },
+                "friendlyName": "flxSectionHeaderTemplate",
+                "templateId": "flxSectionHeaderTemplate"
+            }
+        }
+    },
+    "userwidgetsifcMapping": {}
+}

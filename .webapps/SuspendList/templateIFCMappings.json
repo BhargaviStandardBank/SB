@@ -22,9 +22,6 @@
             "FBox0d0966f03c9db44Controller_desktop": [
                 "FBox0d0966f03c9db44Controller"
             ],
-            "flxAddSuspendRowController_desktop": [
-                "flxAddSuspendRowController"
-            ],
             "flxApproverController_desktop": [
                 "flxApproverController"
             ],
@@ -266,11 +263,6 @@
                 "controllerChannel": "desktop",
                 "controllerName": "flxSectionHeaderTemplateController"
             },
-            "TempAddSuspendRow": {
-                "controllerActionDir": "flxAddSuspendRowController",
-                "controllerChannel": "desktop",
-                "controllerName": "flxAddSuspendRowController"
-            },
             "TempApproverSegRow": {
                 "controllerActionDir": "flxApproverController",
                 "controllerChannel": "desktop",
@@ -320,16 +312,6 @@
     },
     "templatesifcMapping": {
         "desktopweb": {
-            "SBCommon.flxAddSuspendRow": {
-                "appName": "SBCommon",
-                "controllerInfo": {
-                    "controllerActionName": "flxAddSuspendRowController",
-                    "controllerChannel": "desktop",
-                    "controllerName": "flxAddSuspendRowController"
-                },
-                "friendlyName": "flxAddSuspendRow",
-                "templateId": "flxAddSuspendRow"
-            },
             "SBCommon.flxApprover": {
                 "appName": "SBCommon",
                 "controllerInfo": {
@@ -513,6 +495,11 @@
             "classname": "LabelTextBox",
             "namespace": "com.hcl.lblText"
         },
+        "com.hcl.lblTextArea.LabelTextArea": {
+            "appName": "SBCommon",
+            "classname": "LabelTextArea",
+            "namespace": "com.hcl.lblTextArea"
+        },
         "com.hcl.listData.ListBoxData": {
             "appName": "SBCommon",
             "classname": "ListBoxData",
@@ -562,6 +549,11 @@
             "appName": "SBCommon",
             "classname": "SuspenEntryHdr",
             "namespace": "com.hcl.suspenEntryHdr"
+        },
+        "com.riskrating.chart.RiskRateChart": {
+            "appName": "SBCommon",
+            "classname": "RiskRateChart",
+            "namespace": "com.riskrating.chart"
         }
     }
 }

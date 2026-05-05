@@ -1,0 +1,117 @@
+{
+    "idToKuidMapping": {
+        "androidwear": {},
+        "desktop": {
+            "Form1": "a1f6670ba74642f8b1fcd5b7973a0abf",
+            "SampleRowTemplate": "d91aa56012c142f5a5ea3e6561b3ea83",
+            "SampleSectionHeaderTemplate": "g299c682036b4ea0a4f6647f6c6ef1b7"
+        },
+        "masters": {},
+        "mobile": {},
+        "skins": {
+            "defBtnBlockedUI": "sad650e3b554410cb830f137fe29d4c9",
+            "defBtnFocus": "s9ca03d2391744388eff612854767329",
+            "defBtnHover": "sacac96815eb4ea785aca546c79e8734",
+            "defBtnNormal": "sf606ae2bb944f91900cceb20c636f18",
+            "defBtnPressed": "se7a1b37f11b4bf5828530c358dac47d",
+            "defLabel": "s5bc72ba2f1041738009e8ef3e649166",
+            "defTextAreaBlockedUI": "s31be43304804967ad6bbe27b0fde352",
+            "defTextAreaHover": "s3969463ae1946eebf26633fd316cecc",
+            "defTextBoxBlockedUI": "s4265d3422894a7ab34eefc4bd0af188",
+            "sknLblDescription": "se44be6578b04ff4b403415f852d9042",
+            "sknLblRowHeading": "s5eb97123a1d4ef5944d916ce8c6969c",
+            "sknLblStrip": "s44bd0f8cfb14e2e8f7fa12b120aa0cd",
+            "sknLblTimeStamp": "sc6df71beeed43928758ced55a9cca44",
+            "sknSampleRowTemplate": "sad054ba4399450d8a068ab96e2f7175",
+            "sknSampleSectionHeaderTemplate": "s3170e216abc437485ce2fd59963652c",
+            "sknSectionHeaderLabelSkin": "sc1f1b5b077e4da6b6ada84b3b40d28c",
+            "slCameraFocus": "sea51c6a38334ed3906c0be8e256cb99",
+            "slDynamicNotificationForm": "sf6c88f43b7440bf82a0530a71074e5d",
+            "slFBlockedUIbox": "se10403881e545c88517e38d1704fe6e",
+            "slFFocusbox": "s055b30cc8544a4092521d1a3c930a38",
+            "slFSBlockedUIbox": "s4a31468fb624fe9b00cafc228a8ee66",
+            "slFSFocusSbox": "s50473dc54ea429da8f631a3be7bfda1",
+            "slFbox": "s41bd9d4104f4a0cb75dd3b87cad848f",
+            "slForm": "sa7fb45c778a46f09ed6fe6c8f37eb05",
+            "slSplashiOS": "sfe70c8302b743f38b6d8a35e2572b93",
+            "slStaticNotificationForm": "s6e198561d5149d4a267f2376293e4f7",
+            "slTitleBar": "sb80044fa33640458c132b5f84c2d005",
+            "slWatchForm": "s034cd0abea742678f172b0d16c2eac4"
+        },
+        "tablet": {},
+        "userwidgets": {}
+    },
+    "kuidDependencyMap": {
+        "s055b30cc8544a4092521d1a3c930a38": [
+            "a1f6670ba74642f8b1fcd5b7973a0abf"
+        ],
+        "s3170e216abc437485ce2fd59963652c": [
+            "g299c682036b4ea0a4f6647f6c6ef1b7"
+        ],
+        "s41bd9d4104f4a0cb75dd3b87cad848f": [
+            "a1f6670ba74642f8b1fcd5b7973a0abf"
+        ],
+        "s44bd0f8cfb14e2e8f7fa12b120aa0cd": [
+            "d91aa56012c142f5a5ea3e6561b3ea83"
+        ],
+        "s5bc72ba2f1041738009e8ef3e649166": [
+            "a1f6670ba74642f8b1fcd5b7973a0abf"
+        ],
+        "s5eb97123a1d4ef5944d916ce8c6969c": [
+            "d91aa56012c142f5a5ea3e6561b3ea83"
+        ],
+        "s9ca03d2391744388eff612854767329": [
+            "a1f6670ba74642f8b1fcd5b7973a0abf"
+        ],
+        "sa7fb45c778a46f09ed6fe6c8f37eb05": [
+            "a1f6670ba74642f8b1fcd5b7973a0abf"
+        ],
+        "sad054ba4399450d8a068ab96e2f7175": [
+            "d91aa56012c142f5a5ea3e6561b3ea83"
+        ],
+        "sc1f1b5b077e4da6b6ada84b3b40d28c": [
+            "g299c682036b4ea0a4f6647f6c6ef1b7"
+        ],
+        "sc6df71beeed43928758ced55a9cca44": [
+            "d91aa56012c142f5a5ea3e6561b3ea83"
+        ],
+        "se44be6578b04ff4b403415f852d9042": [
+            "d91aa56012c142f5a5ea3e6561b3ea83"
+        ],
+        "sf606ae2bb944f91900cceb20c636f18": [
+            "a1f6670ba74642f8b1fcd5b7973a0abf"
+        ]
+    },
+    "kuidInfo": {
+        "androidwear": {},
+        "desktop": {
+            "a1f6670ba74642f8b1fcd5b7973a0abf": {
+                "appName": "sampleAnimation",
+                "id": "Form1",
+                "relFormId": "Form1",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
+            },
+            "d91aa56012c142f5a5ea3e6561b3ea83": {
+                "appName": "sampleAnimation",
+                "id": "SampleRowTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSampleRowTemplate"
+            },
+            "g299c682036b4ea0a4f6647f6c6ef1b7": {
+                "appName": "sampleAnimation",
+                "id": "SampleSectionHeaderTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSectionHeaderTemplate"
+            }
+        },
+        "masters": {},
+        "mobile": {},
+        "tablet": {},
+        "userwidgets": {}
+    },
+    "userWidgetsKuidToIdMap": {}
+}

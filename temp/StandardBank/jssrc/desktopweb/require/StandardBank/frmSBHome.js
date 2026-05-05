@@ -8,7 +8,7 @@ define("StandardBank/frmSBHome", function() {
                 "height": "100%",
                 "id": "flxmain",
                 "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
@@ -25,7 +25,7 @@ define("StandardBank/frmSBHome", function() {
                 "clipBounds": false,
                 "height": "100%",
                 "id": "flxLeft",
-                "isVisible": true,
+                "isVisible": false,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
@@ -68,11 +68,11 @@ define("StandardBank/frmSBHome", function() {
                 "id": "flxRight",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
+                "left": "60dp",
                 "isModalContainer": false,
+                "right": "0dp",
                 "skin": "sknFlxTrans",
                 "top": "0dp",
-                "width": "85%",
                 "zIndex": 1,
                 "appName": "StandardBank"
             }, {
@@ -125,7 +125,29 @@ define("StandardBank/frmSBHome", function() {
                 "paddingInPixel": false
             }, {});
             flxRight.add(FormHeader, Image0i315600b15cf45);
-            flxmain.add(flxLeft, flxRight);
+            var SideMenu1 = new com.hcl.menu.SideMenu({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "focusSkin": "sknFlxTrans",
+                "height": "100%",
+                "id": "SideMenu1",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "60dp",
+                "zIndex": 10,
+                "appName": "SBCommon",
+                "overrides": {}
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxmain.add(flxLeft, flxRight, SideMenu1);
             this.breakpointResetData = {};
             this.breakpointData = {
                 maxBreakpointWidth: 1366,

@@ -3,7 +3,6 @@ define("SBCommon/flxSegSecHdr", function() {
         var flxSegSecHdr = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "focusSkin": "sknFlxBGEDF5FF",
             "height": "40px",
             "id": "flxSegSecHdr",
             "isVisible": true,
@@ -39,14 +38,14 @@ define("SBCommon/flxSegSecHdr", function() {
         FlexGroup0a043cf8cc66045.setDefaultUnit(voltmx.flex.DP);
         var imgIcon = new voltmx.ui.Image2({
             "centerY": "50%",
-            "height": "25dp",
+            "height": "30dp",
             "id": "imgIcon",
             "isVisible": true,
             "left": "1%",
             "skin": "slImage",
             "src": "imagedrag.png",
             "top": "0dp",
-            "width": "25dp",
+            "width": "60dp",
             "zIndex": 1
         }, {
             "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
@@ -71,7 +70,6 @@ define("SBCommon/flxSegSecHdr", function() {
         FlexGroup0a043cf8cc66045.add(imgIcon, lblSectionTitle);
         var flxLine = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-            "centerY": "29%",
             "clipBounds": false,
             "focusSkin": "sknFlxLine",
             "height": "1%",

@@ -48,10 +48,10 @@
         }
     },
     "disabledSkins": {
-        "blockedUISkin": "se10403881e545c88517e38d1704fe6e"
+        "blockedUISkin": "se10403881e545c88517e38d1704fe6e",
+        "focusSkin": "s1860cb829f64794999ae80557fd4327"
     },
     "enablescrolling": true,
-    "focusskin": "s1860cb829f64794999ae80557fd4327",
     "id": "flxSegSecHdr",
     "info": null,
     "isTemplate": true,

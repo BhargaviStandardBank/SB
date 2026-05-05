@@ -8,7 +8,7 @@ define("SuspendList/frmAddSuspend", function() {
                 "height": "100%",
                 "id": "flxMain",
                 "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
@@ -20,47 +20,6 @@ define("SuspendList/frmAddSuspend", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBdr",
-                "top": "0dp",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "SuspendList"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
-            var SideMenu = new com.hcl.menu.SideMenu({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "100%",
-                "id": "SideMenu",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {}
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -68,11 +27,12 @@ define("SuspendList/frmAddSuspend", function() {
                 "id": "flxRight",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
+                "left": "60dp",
                 "isModalContainer": false,
+                "right": "0dp",
                 "skin": "sknFlxTrans",
                 "top": "0dp",
-                "width": "85%",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
                 "zIndex": 1,
                 "appName": "SuspendList"
             }, {
@@ -883,7 +843,28 @@ define("SuspendList/frmAddSuspend", function() {
                 "paddingInPixel": false
             }, {});
             flxSuspend.setDefaultUnit(voltmx.flex.DP);
-            flxSuspend.add();
+            var SuspensionEntries = new com.hcl.SuspensionEntries.SuspensionEntries({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "100%",
+                "id": "SuspensionEntries",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {}
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxSuspend.add(SuspensionEntries);
             flxSuspensionEntry.add(SubHdr1, flxInner, segHeader, flxSuspend);
             var FlexContainer0ea5b05548d784e = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
@@ -938,7 +919,28 @@ define("SuspendList/frmAddSuspend", function() {
             FlexContainer0ea5b05548d784e.add(btnSubmit, btnDiscard);
             flxSrc.add(flxAddSusList, flxSuspensionEntry, FlexContainer0ea5b05548d784e);
             flxRight.add(FormHeader, flxSrc);
-            flxMain.add(flxLeft, flxRight);
+            var SideMenu = new com.hcl.menu.SideMenu({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "100%",
+                "id": "SideMenu",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "60dp",
+                "zIndex": 10,
+                "appName": "SBCommon",
+                "overrides": {}
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxMain.add(flxRight, SideMenu);
             var flxAlert = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,

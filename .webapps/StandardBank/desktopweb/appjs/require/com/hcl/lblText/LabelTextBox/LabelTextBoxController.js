@@ -3,7 +3,7 @@ define("com/hcl/lblText/LabelTextBox/userLabelTextBoxController", function() {
 });
 define("com/hcl/lblText/LabelTextBox/LabelTextBoxControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/lblText/LabelTextBox/LabelTextBoxController", ["com/hcl/lblText/LabelTextBox/userLabelTextBoxController", "com/hcl/lblText/LabelTextBox/LabelTextBoxControllerActions"], function() {

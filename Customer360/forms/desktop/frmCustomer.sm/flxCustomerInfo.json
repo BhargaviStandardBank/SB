@@ -47,13 +47,9 @@
         "flxMarketSegment",
         "flxOtherBankers",
         "flxRouteToHeadOff",
-        "flxBusinessTelNum",
         "flxRegistrationDate",
-        "flxEmailAddress",
-        "flxFax",
         "flxApplicantName",
-        "flxIDNum",
-        "flxAddress"
+        "flxIDNum"
     ],
     "clipbounds": false,
     "containerweight": 100,

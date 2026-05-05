@@ -46,7 +46,7 @@ define(function() {
             "secureTextEntry": false,
             "skin": "sknTxtBxf6f8fa",
             "textInputMode": constants.TEXTBOX_INPUT_MODE_ANY,
-            "top": "3dp",
+            "top": "5dp",
             "width": "300dp",
             "zIndex": 1
         }, controller.args[0], "txtBox"), extendConfig({

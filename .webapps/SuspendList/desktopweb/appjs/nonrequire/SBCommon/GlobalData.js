@@ -1,7 +1,3 @@
-/** * GlobalData.js - Centralized Repository
- * Mention in Documentation: Storing high-density financial data in a shared module 
- * improves performance by preventing redundant memory allocation across micro-apps.
- */
 const GlobalData = {
     financialRecords: [{
         type: "CHEQ",
@@ -78,80 +74,82 @@ const GlobalData = {
         date: "15/11/2021",
         term: "72 months",
         rem: "48 months"
+    }],
+    suspensionEntries: [{
+        cif: "23280545",
+        id: "111235",
+        name: "Zuri Nkosi",
+        reason: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     }, {
-        type: "CHEQ",
-        accNo: "30170935",
-        bri: "8",
-        balance: "5500.25",
-        instalment: "0.00",
-        arrears: "0.00",
-        due: "0.00",
-        origAmount: "10000.00",
-        origLimit: "10000.00",
-        currLimit: "10000.00",
-        rate: "5%",
-        date: "12/03/2020",
-        term: "12 months",
-        rem: "6 months"
+        cif: "25323522",
+        id: "232558",
+        name: "Amari Nkosi",
+        reason: "Lorem ipsum dolor sit amet consectetur."
     }, {
-        type: "LOAN",
-        accNo: "60814590",
-        bri: "99",
-        balance: "450.00",
-        instalment: "150.00",
-        arrears: "0.00",
-        due: "150.00",
-        origAmount: "15000.00",
-        origLimit: "15000.00",
-        currLimit: "14000.00",
-        rate: "12%",
-        date: "05/06/2022",
-        term: "36 months",
-        rem: "24 months"
+        cif: "85245623",
+        id: "998524",
+        name: "Chege Nkosi",
+        reason: "Lorem ipsum dolor sit amet consectetur."
     }, {
-        type: "HMLN",
-        accNo: "362986380",
-        bri: "9",
-        balance: "500200.00",
-        instalment: "6000.00",
-        arrears: "0.00",
-        due: "6000.00",
-        origAmount: "950000.00",
-        origLimit: "950000.00",
-        currLimit: "950000.00",
-        rate: "8.5%",
-        date: "22/01/2019",
-        term: "360 months",
-        rem: "280 months"
+        cif: "99855824",
+        id: "220232134",
+        name: "HCL Software",
+        reason: "Lorem ipsum dolor sit amet consectetur."
     }, {
-        type: "CARD",
-        accNo: "5520578240169555",
-        bri: "3",
-        balance: "120.00",
-        instalment: "50.00",
-        arrears: "0.00",
-        due: "50.00",
-        origAmount: "25000.00",
-        origLimit: "25000.00",
-        currLimit: "24000.00",
-        rate: "20%",
-        date: "14/09/2023",
-        term: "12 months",
-        rem: "11 months"
+        cif: "22355678",
+        id: "652445342",
+        name: "HCL South America",
+        reason: "Lorem ipsum dolor sit amet consectetur."
+    }],
+    collateralData: [{
+        type: "Suretyship",
+        detail: "Partial Liability",
+        account: "0123456789",
+        value: "R 35k"
     }, {
-        type: "VAF",
-        accNo: "70437080010",
-        bri: "6",
-        balance: "15000.00",
-        instalment: "2000.00",
-        arrears: "4000.00",
-        due: "6000.00",
-        origAmount: "200000.00",
-        origLimit: "200000.00",
-        currLimit: "180000.00",
-        rate: "10%",
-        date: "30/08/2024",
-        term: "60 months",
-        rem: "55 months"
+        type: "Suretyship",
+        detail: "Partial Liability",
+        account: "9876543210",
+        value: "R 35k"
+    }, {
+        type: "Policy Cession",
+        detail: "Full Liability",
+        account: "0192837465",
+        value: "R 1m"
+    }, {
+        type: "Policy Cession",
+        detail: "Full Liability",
+        account: "0123456789",
+        value: "R 500k"
+    }, {
+        type: "Policy Cession",
+        detail: "Full Liability",
+        account: "0123456789",
+        value: "R 500k"
+    }, {
+        type: "Policy Cession",
+        detail: "Full Liability",
+        account: "0123456789",
+        value: "R 500k"
+    }, {
+        type: "Policy Cession",
+        detail: "Full Liability",
+        account: "0123456789",
+        value: "R 500k"
+    }, {
+        type: "Policy Cession",
+        detail: "Full Liability",
+        account: "0123456789",
+        value: "R 500k"
+    }, {
+        type: "Policy Cession",
+        detail: "Full Liability",
+        account: "0123456789",
+        value: "R 500k"
+    }, {
+        type: "Policy Cession",
+        detail: "Full Liability",
+        account: "0123456789",
+        value: "R 500k"
     }]
 };
