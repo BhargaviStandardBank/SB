@@ -1,0 +1,132 @@
+{
+    "@class": "com.kony.gen.viz.model.component.KVizUserWidget",
+    "DNDConfig": null,
+    "_children_": [],
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 1,
+    "_padding_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_percent_": true,
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_top_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "android": {},
+    "androidwearos": {},
+    "areflexpropsreferenced": false,
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "clipbounds": false,
+    "containerweight": 0,
+    "dataDiffs": {
+        "FlexContainer0e91e04f1e8e74a": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "i0c6be8ea9b347ab80724ed543d5c9d5",
+                "srcKUID": "c328a426ff384c3199682ac5a555a788",
+                "wType": "FlexContainer"
+            },
+            "responsiveData": {},
+            "top": {
+                "Default": {
+                    "type": "string",
+                    "value": "5dp"
+                }
+            }
+        },
+        "LabelTextArea": {
+            "__events__": {},
+            "__info__": {
+                "isRoot": true,
+                "kuid": "aba57037ca7e4b158a1b19138c094c04",
+                "srcKUID": "hbbfcd7d82a74b7093591483b1d28f49",
+                "wType": "FlexContainer"
+            }
+        },
+        "lblText": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "h929ff4743c34ffb96f753818f4b21d4",
+                "srcKUID": "i9300a4f4a4d48c5998decb33fd84cee",
+                "wType": "Label"
+            },
+            "responsiveData": {},
+            "text": "Watchlist History"
+        },
+        "txtArea": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "da335202ea9341f7b3b4bfd5d8f2a9b0",
+                "srcKUID": "f3847ce1f7404c06b77ebe8c54e77072",
+                "wType": "TextArea"
+            },
+            "placeholder": "Watchlist",
+            "responsiveData": {}
+        }
+    },
+    "desktopweb": {},
+    "enablescrolling": true,
+    "focusskin": null,
+    "id": "WatchHistory",
+    "info": null,
+    "ipad": {},
+    "iphone": {},
+    "iscustomlayout": false,
+    "isdatareferenced": false,
+    "isvisible": true,
+    "kiosk": {},
+    "kuid": "aba57037ca7e4b158a1b19138c094c04",
+    "layouttype": 4,
+    "masterType": 0,
+    "name": "kony.ui.UserWidgetInstance",
+    "parent": "flxWatchHistory",
+    "pf": "frmCustomer",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "sourceUserWidget": "hbbfcd7d82a74b7093591483b1d28f49",
+    "spa": {},
+    "spaan": {},
+    "spaandroidtablet": {},
+    "spabb": {},
+    "spaip": {},
+    "spaipad": {},
+    "spamobile": {},
+    "spatablet": {},
+    "spawindowstablet": {},
+    "spawinphone8": {},
+    "tabrcandroid": {},
+    "vizProps": {
+        "hidewidgethierarchy": false
+    },
+    "wType": "UserWidgetInstance",
+    "windows10": {},
+    "windows8": {},
+    "winphone10": {},
+    "winphone8": {},
+    "zindex": 1
+}

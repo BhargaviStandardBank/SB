@@ -3,7 +3,7 @@ define("ManageScheme/userflxSampleRowTemplateController", {
 });
 define("ManageScheme/flxSampleRowTemplateControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("ManageScheme/flxSampleRowTemplateController", ["ManageScheme/userflxSampleRowTemplateController", "ManageScheme/flxSampleRowTemplateControllerActions"], function() {

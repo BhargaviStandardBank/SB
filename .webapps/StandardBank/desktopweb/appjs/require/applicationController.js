@@ -417,6 +417,9 @@ define({
             "appName": "StandardBank"
         });
         setAppBehaviors();
+        if (typeof startBackgroundWorker != "undefined") {
+            startBackgroundWorker();
+        }
     },
     postAppInitCallBack: function(eventObj) {},
     appmenuseq: function() {

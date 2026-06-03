@@ -423,7 +423,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
 });
 define("com/hcl/menu/SideMenu/SideMenuControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/menu/SideMenu/SideMenuController", ["com/hcl/menu/SideMenu/userSideMenuController", "com/hcl/menu/SideMenu/SideMenuControllerActions"], function() {

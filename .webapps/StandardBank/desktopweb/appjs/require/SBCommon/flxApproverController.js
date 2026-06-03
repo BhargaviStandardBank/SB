@@ -3,7 +3,7 @@ define("SBCommon/userflxApproverController", {
 });
 define("SBCommon/flxApproverControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("SBCommon/flxApproverController", ["SBCommon/userflxApproverController", "SBCommon/flxApproverControllerActions"], function() {

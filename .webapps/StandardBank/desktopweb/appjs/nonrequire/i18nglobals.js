@@ -1,1 +1,0 @@
-voltmx.appinit.setApplicationMetaConfiguration("appid", "StandardBank");
