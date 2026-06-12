@@ -25,6 +25,7 @@ function skinsInit() {
     sknslTitleBar05676fd2e088747 = "sknslTitleBar05676fd2e088747";
     slCalendar = "slCalendar";
     slCameraFocus = "slCameraFocus";
+    slCheckBoxGroup = "slCheckBoxGroup";
     slDynamicNotificationForm = "slDynamicNotificationForm";
     slFBlockedUIbox = "slFBlockedUIbox";
     slFFocusbox = "slFFocusbox";

@@ -1,6 +1,6 @@
 define("StandardBank/userfrmSBHomeController", {
     onNavigate: function() {
-        this.view.SideMenu.imgLogout.onTouchEnd = this.logOut;
+        //this.view.SideMenu.imgLogout.onTouchEnd = this.logOut;
         //this.view.flxLeft.width = '70dp';
         //this.view.flxLeft.onTouchMove = this.handleMenuHover.bind(this);
     },

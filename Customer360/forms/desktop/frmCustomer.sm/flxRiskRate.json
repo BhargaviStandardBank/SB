@@ -41,7 +41,7 @@
     "children": [
         "lblHdrRiskType",
         "RiskRateChart",
-        "flxRiskFields"
+        "FlexContainer0e954e1006a6642"
     ],
     "clipbounds": false,
     "containerweight": 100,

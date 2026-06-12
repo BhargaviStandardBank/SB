@@ -4,7 +4,7 @@ voltmx.appinit.setApplicationMetaConfiguration("defaultLocale", "ar");
 voltmx.appinit.setApplicationMetaConfiguration("locales", ["ar", "en", "es", "fa", "fr", "my", "ps", "ru", "rw", "so", "sw", "tg", "uk"]);
 voltmx.appinit.setApplicationMetaConfiguration("i18nArray", []);
 voltmx.appinit.setApplicationMetaConfiguration("localization", "true");
-voltmx.appinit.setApplicationMetaConfiguration("i18nVersion", "1809651383");
+voltmx.appinit.setApplicationMetaConfiguration("i18nVersion", "1127536542");
 //startup.js
 var appConfig = {
     appId: "SBCommon",
@@ -22,7 +22,7 @@ var appConfig = {
         "integsvc": {
             "_internal_logout": "https://voltmxtechnohub.hclvoltmx.net/services/IST"
         },
-        "service_doc_etag": "0000019D77C38EB0",
+        "service_doc_etag": "0000019DF8078298",
         "appId": "ff621e7f-f19e-42dd-8730-2c67b0bd5f53",
         "identity_features": {
             "reporting_params_header_allowed": true
@@ -34,7 +34,10 @@ var appConfig = {
         },
         "baseId": "d915070b-39be-4cf1-884f-0d5d5decfdac",
         "app_default_version": "1.0",
-        "services_meta": {}
+        "services_meta": {},
+        "Webapp": {
+            "url": "https://voltmxtechnohub.hclvoltmx.net/apps/SBCommon"
+        }
     },
     runtimeAppVersion: "1.0",
     eventTypes: ["FormEntry", "Error", "Crash"],

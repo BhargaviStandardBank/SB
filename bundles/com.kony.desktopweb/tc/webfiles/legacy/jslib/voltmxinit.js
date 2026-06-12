@@ -211,7 +211,7 @@ voltmx.appinit = {
         "jslib/voltmxutils.js", "jslib/voltmxi18n.js", "jslib/voltmxwidgets.js",
         "jslib/voltmxskinutils.js", "jslib/voltmxflexutils.js", "jslib/voltmxwidgetapiutils.js",
         "jslib/voltmximageutils.js", "jslib/voltmxtouchwidgets.js", "jslib/voltmxformwidget.js",
-        "jslib/voltmxappmenu.js", "jslib/voltmxnetwork.js", "jslib/voltmxworker.js",
+        "jslib/voltmxappmenu.js", "jslib/voltmxnetwork.js", "jslib/voltmxeventsource.js", "jslib/voltmxworker.js",
         "jslib/voltmxlabelwidget.js", "jslib/voltmxbuttonwidget.js", "jslib/voltmxsliderwidget.js",
         "jslib/voltmxtextfieldautocomplete.js", "jslib/voltmxtextfieldpassword.js",
         "jslib/voltmxradiobuttongroup.js", "jslib/voltmxlistboxgroup.js", "jslib/voltmxtextareawidget.js",
@@ -226,7 +226,8 @@ voltmx.appinit = {
         "jslib/voltmxphoneapi.js", "jslib/voltmxtimerapi.js", "jslib/voltmxapm.js",
         "jslib/voltmxcrypto.js", "jslib/tparty/crypto/cryptojslib-min.js", "jslib/tparty/requirejs/require.js",
         "jslib/voltmxmvc.js", "jslib/voltmxuserwidget.js", "jslib/voltmxcollectionview.js", "jslib/voltmxnosqlapi.js",
-        "jslib/voltmximagepinchzoom.js", "jslib/voltmxcamerawidget.js", "jslib/voltmxcop.js", "jslib/voltmxcredentialmanager.js"
+        "jslib/voltmximagepinchzoom.js", "jslib/voltmxcamerawidget.js", "jslib/voltmxcop.js", "jslib/voltmxcredentialmanager.js",
+        "jslib/tparty/eventsource/fetch-event-source-bundle.js"
     ],
     asyncDebugFiles: ["jslib/tparty/jasmine/jasmine.js", "jslib/tparty/jasmine/jamsinecucumber.js",
         "jslib/tparty/jasmine/jasmine-feature-runner.js", "jslib/tparty/jasmine/testDefinitions.js",

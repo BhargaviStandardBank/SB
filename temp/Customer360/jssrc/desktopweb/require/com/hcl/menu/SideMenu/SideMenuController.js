@@ -1,8 +1,146 @@
 define("com/hcl/menu/SideMenu/userSideMenuController", function() {
     return {
+        CONFIG: {
+            MIN_WIDTH: "60dp",
+            MAX_WIDTH: "200dp",
+            ANIMATION_DURATION: 0.25
+        },
         masterData: [{
             header: {
-                lblSectionTitle: "Master Suspend List",
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Simple Light Touch(SLT)",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Loan Eligibility",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
+            }, {
+                lblMenuItem: "Scored Offer View(PPB)",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRequestHistory"
+                }
+            }, {
+                lblMenuItem: "Scored Offer View(BCB)",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmAddSuspend"
+                }
+            }, {
+                lblMenuItem: "Offer Manger",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRemoveSuspend"
+                }
+            }, {
+                lblMenuItem: "Scoring API",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmApprovers"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Complex Lending",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Originate Application",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
+            }, ]
+        }, {
+            header: {
+                imgIcon: "icon_view.png",
+                lblSectionTitle: "Customer 360",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "View Customer Info",
+                formID: {
+                    "appName": "Customer360",
+                    "appInfo": "Customer 360"
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "View Application",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_financialrisk.png",
+                lblSectionTitle: "Financial Spreading & Risk Rating",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Spread Financials",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Rate Counterparty",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "View BBRS Ratings",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "BBRS Insights",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_queue.png",
+                lblSectionTitle: "Queue Manager",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "POR Queues",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Branch (all)",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "RWAE (all)",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "RWAE my queue",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Suspend List",
                 isExpanded: false
             },
             rows: [{
@@ -38,7 +176,8 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             }]
         }, {
             header: {
-                lblSectionTitle: "Manage Scheme",
+                imgIcon: "icon_manage.png",
+                lblSectionTitle: "Scheme Maintenance",
                 isExpanded: false
             },
             rows: [{
@@ -74,11 +213,18 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             }]
         }, {
             header: {
-                lblSectionTitle: "Customer 360",
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Reporting / Dashboard",
                 isExpanded: false
             },
             rows: [{
-                lblMenuItem: "Customer Info",
+                lblMenuItem: "SLT Dashboard",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "CAMS Dashboard",
                 formID: {
                     "appName": "Customer360",
                     "friendlyName": "frmCustomer"
@@ -86,21 +232,26 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             }]
         }, {
             header: {
-                lblSectionTitle: "Financial Spreading & Risk Rating",
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Credit Solution Engineering",
                 isExpanded: false
             },
+            rows: [{
+                lblMenuItem: "Demand Planning App",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Dev Ops Board",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
         }, {
             header: {
-                lblSectionTitle: "Queue Manager",
-                isExpanded: false
-            },
-        }, {
-            header: {
-                lblSectionTitle: "Reporting / Dashboard",
-                isExpanded: false
-            },
-        }, {
-            header: {
+                imgIcon: "icon_home.png",
                 lblSectionTitle: "Home",
                 isExpanded: false,
                 formID: {
@@ -110,16 +261,70 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             },
         }, ],
         constructor: function() {
+            this.view.flxUserDetails.isVisible = false;
             this.view.preShow = this.invokePreShow.bind(this);
             this.view.segMenu.onRowClick = this.onRowItemClick.bind(this);
+            this.view.flxSideMenu.width = '60dp';
+            this.view.flxSideMenu.onHover = (widgetRef, context) => {
+                    if (context.eventType === "enter") {
+                        this.expandSidebar1();
+                    } else if (context.eventType === "leave") {
+                        this.collapseSidebar(); // Assuming you have a collapse function
+                    }
+                }
+                //this.view.flxSegMenu.onHover = this.handleMenuHover.bind(this);
+        },
+        expandSidebar1: function() {
+            var animConfig = {
+                duration: 0.3,
+                fillMode: voltmx.anim.FILL_MODE_FORWARDS
+            };
+            // Animate Side Menu
+            this.view.flxSideMenu.animate(voltmx.ui.createAnimation({
+                100: {
+                    width: "250dp"
+                }
+            }), animConfig, {});
+            // Animate Main Content
+            //     this.view.flxMainContent.animate(
+            //         voltmx.ui.createAnimation({ 100: { left: "250dp" } }), 
+            //         animConfig, 
+            //         {}
+            //     );
+            this.isCollapsed = false;
+            //this.view.flxUserDetails.isVisible = true;
+            //this._updateMenuToIconAndText();
+        },
+        collapseSidebar: function() {
+            var anim = voltmx.ui.createAnimation({
+                100: {
+                    width: "60dp"
+                }
+            });
+            this.view.flxSideMenu.animate(anim, {
+                duration: 0.3,
+                fillMode: voltmx.anim.FILL_MODE_FORWARDS
+            }, {});
+            //     this.view.flxMainContent.animate(
+            //       voltmx.ui.createAnimation({
+            //         100: { left: "70dp" }
+            //       }),
+            //       { duration: 0.3 },
+            //       {}
+            //     );
+            this.isCollapsed = true;
+            this.view.flxUserDetails.isVisible = false;
+            //this._updateMenuToIconOnly();
         },
         invokePreShow: function() {
             try {
                 this.view.segMenu.widgetDataMap = {
                     lblSectionTitle: "lblSectionTitle",
+                    imgIcon: "imgIcon",
                     lblMenuItem: "lblMenuItem",
                     flxSegSecHdr: "flxSegSecHdr"
                 };
+                // this.view.flxSegMenu.width = this.CONFIG.MIN_WIDTH;
                 // Check if we are currently on the Home Form
                 const currentForm = voltmx.application.getCurrentForm().id;
                 // ES6 Ternary: If landing on Home, collapse all; otherwise, keep current state
@@ -138,10 +343,40 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             });
             this.refreshMenu();
         },
+        handleMenuHover: function(widget, context) {
+            // context.eventType provides "enter" or "leave"
+            if (context.eventType === constants.ONHOVER_MOUSE_ENTER) {
+                this.animateMenu(this.CONFIG.MAX_WIDTH);
+            } else if (context.eventType === constants.ONHOVER_MOUSE_LEAVE) {
+                this.animateMenu(this.CONFIG.MIN_WIDTH);
+                // Optional: Collapse any open accordion sections when mouse leaves
+                this.collapseAllSections();
+            }
+        },
+        animateMenu: function(targetWidth) {
+            this.view.flxSideMenu.animate(voltmx.ui.createAnimation({
+                "100": {
+                    "width": targetWidth,
+                    "stepConfig": {
+                        "timingFunction": constants.ANIMATION_SERIES_EASE_IN_OUT
+                    }
+                }
+            }), {
+                "delay": 0,
+                "iterationCount": 1,
+                "fillMode": constants.ANIMATION_DIRECTION_FORWARDS,
+                "duration": this.CONFIG.ANIMATION_DURATION
+            }, {
+                "animationEnd": function() {}
+            });
+        },
         refreshMenu: function() {
             const segmentData = this.masterData.map((section, index) => {
                 const headerObj = {
                     lblSectionTitle: section.header.lblSectionTitle,
+                    imgIcon: {
+                        src: section.header.imgIcon
+                    },
                     flxSegSecHdr: {
                         onClick: () => this.onSectionClicked(index)
                     }
@@ -180,7 +415,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
                 return new Promise((resolve, reject) => {
                     try {
                         const nav = new voltmx.mvc.Navigation(selectedItem.formID);
-                        nav.navigate();
+                        nav.navigate(selectedItem);
                         resolve();
                     } catch (e) {
                         // Throwing exception instead of print for better debugging

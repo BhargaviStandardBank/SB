@@ -131,7 +131,8 @@
         }
     },
     "disabledSkins": {
-        "rowFocusSkin": "s89d578329194107941192e82b116fac"
+        "rowFocusSkin": "s89d578329194107941192e82b116fac",
+        "sectionHeaderSkin": "sa838df9eeab4d56a20b792467f798e0"
     },
     "focusedindex": null,
     "focuseditem": null,
@@ -171,7 +172,7 @@
     "rowtemplate": null,
     "screenlevelwidget": false,
     "seccounter": 1,
-    "sectionheaderskin": "sa838df9eeab4d56a20b792467f798e0",
+    "sectionheaderskin": null,
     "selectedRows": null,
     "selectedState": false,
     "selectedindex": null,

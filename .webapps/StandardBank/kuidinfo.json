@@ -37,6 +37,7 @@
             "frmSchemeDetails": "ff34aa6a1c9840d8aa95981779e0e263",
             "frmSchemeList": "eb38d741b1de49828a92b7bd1df297ed",
             "frmSchemeReqHistory": "gdf467ebba5c409fb526aed95e567b1d",
+            "frmSimpleTouch": "ea43b8599b514431a19a70ee3765cd6c",
             "frmSusHistoryDetails": "c90a367208c449e99c953ce6105b4852",
             "frmSuspendList": "gf31725c71ed47438d69308ab3147476"
         },
@@ -61,6 +62,7 @@
             "CopyTXT1": "s096878f4d484452b8435caf7cb2221f",
             "CopydefLabel0h1461925391e41": "sfdba1118de046979935b7ddac31b1ca",
             "Copyseg0a0a7c8d6a42a44": "s89226b4848242afaa373d1bbb503c30",
+            "Copyseg0d05953f4f05a4e": "s452d3ef6ba84ccfbd0eb7151241b1e7",
             "Copyseg0db8162a1d22b45": "sf98f75909624547b453368e6fb74258",
             "CopysknFlxTrans0h765602371c448": "sbbdc2687d224befb3579ec6e8041e7b",
             "CopysknSegRow0dbdf66c6d46045": "s5c647207cd347dd9d908e3cab19dc0a",
@@ -96,7 +98,10 @@
             "sknBtnLeftUnSelect": "s9cefc6db1714d36a75305255a6aaf42",
             "sknBtnRightHighLite": "s4c8c41112f64636a3e19289ec233759",
             "sknBtnRightUnSelect": "s0b832878dcd444db484ebed85364f19",
+            "sknBtnSelect": "sf1e22f7f85441509d27d5a5bc29dd4a",
+            "sknBtnUnSelect": "se80c79bfad1461d8cbb84a5c694e3f3",
             "sknChkBx": "s6b37c1019bd40678c4af9e1edb8157d",
+            "sknFlexMenu": "sb9abbe20c604650b6e8f1350a08a33b",
             "sknFlx15Blck": "s4fcb5770ec540dcb31034c181dc7f6a",
             "sknFlxBGEDF5FF": "s1860cb829f64794999ae80557fd4327",
             "sknFlxBlue": "seec677b505042ec8974c81cdd9eb8d2",
@@ -114,6 +119,7 @@
             "sknFlxTrans": "sf51dc37fd0a40178320b8330b005a98",
             "sknFlxUpload": "sc4c12fdeaa345868831c8dbcc255ef0",
             "sknFlxWhite": "sa40737710954befb854aa61605f8987",
+            "sknFlxWhite20Opac": "s6e3972249124f138cdcce49999b73ae",
             "sknFlxWhiteBGBlckBrdr": "sb5b61f098a64d1ea3df5ecdaa3fc9d4",
             "sknFlxWhiteBdr": "s26fe55a3aff44d989464d248bdeae24",
             "sknFlxWhiteBrd": "sf457513fbdd48dab0d251bee11aaa36",
@@ -136,6 +142,8 @@
             "sknLblUnderline": "sdb805082dc0483c9e116816aaca1e77",
             "sknLblWhite": "s6b5b344b3484b779eec3165b74af735",
             "sknLblWhite100": "s98a327c02aa4e598219382eb46f53f3",
+            "sknLblWhiteFormLevel": "s1135cc54a3d4b58b2d5135629905a04",
+            "sknLblWhiteHeading5": "s7c10d00dc2040adbf2683f630b41bae",
             "sknListTrans": "s6defbbed6b146e68c052b08880525e8",
             "sknLoginDup": "se7c73455bc445d2a6c7798e2b9bf6c3",
             "sknLstGreyBrdr": "s06c662dea844622bf7c89fd2299b7a8",
@@ -281,6 +289,9 @@
             "gf31725c71ed47438d69308ab3147476",
             "fd1b30e466a64beb9bdbf382fbeca372"
         ],
+        "s05881987e4d444f9b3a47e5d7e805e2": [
+            "e50eb304d4434b44bb19d9d456f60988"
+        ],
         "s096878f4d484452b8435caf7cb2221f": [
             "u2a49f260cdb41d0af8a5a9bc114786a"
         ],
@@ -292,6 +303,12 @@
         ],
         "s10114318b774bcbb2b59d561773d006": [
             "e50eb304d4434b44bb19d9d456f60988"
+        ],
+        "s1021ab91029437d9878e6c656849959": [
+            "i78594f83e85428d807f7407a7230884"
+        ],
+        "s1135cc54a3d4b58b2d5135629905a04": [
+            "ee0ee43775414ede9c37dfe177fe2aae"
         ],
         "s12214dab1bf4aef9ef902aa294ca6b1": [
             "u2a49f260cdb41d0af8a5a9bc114786a"
@@ -323,7 +340,6 @@
             "u3dbec80e96b493b88da1a9716e195d3",
             "u15078ddf1794145a315d78819700bc3",
             "j3266b813ef54909823cdb8729bd550a",
-            "ecb86e7c332d4db09a39c1e177bac515",
             "i1f2b77481ed4bb5b3173775de5a5f56",
             "f0b1021f58f849d488052fd136fa251f",
             "g0b1d215244348f1886ce0780c0dde8b",
@@ -348,6 +364,9 @@
         "s204c0d432a843b89e19a44c427490f8": [
             "bbe785e7c70a42b1a0f1d90a4164979e"
         ],
+        "s20df77836964d1eae2eb637ca51b233": [
+            "i78594f83e85428d807f7407a7230884"
+        ],
         "s22010a4357d49fe9d437ba8a14ee3fa": [
             "b3941861ce7a4c94b3034d07763602b7"
         ],
@@ -371,7 +390,6 @@
             "j134041928a74eef8197c131cc1ef455",
             "a96ab81d68664b64a57b5e72383466c4",
             "h883c488f20348828f4dcea69cfb0e44",
-            "ee0ee43775414ede9c37dfe177fe2aae",
             "ba1efcfa0f384e2885edda54b53c3d18",
             "ib87e0eeb4034032a05cebd7ed0afda4",
             "i1f2b77481ed4bb5b3173775de5a5f56",
@@ -396,15 +414,10 @@
             "d0ef262a1491426fb96e1524df6c7e70",
             "c3d7ef1b795b4f6c8926e58283fbe980",
             "eb38d741b1de49828a92b7bd1df297ed",
-            "e50eb304d4434b44bb19d9d456f60988",
             "a409e394b4ac4113bb8749073dcc42d0",
             "hc49b07b3c25470dbf2dc684fe978f27",
             "f78a4ff587e14e07931342f33674083b",
-            "c90a367208c449e99c953ce6105b4852",
-            "b9042dc94cc24cf295a929e6d2cfa98f"
-        ],
-        "s2abdd57d0604d50a49f83d368893e42": [
-            "ee0ee43775414ede9c37dfe177fe2aae"
+            "c90a367208c449e99c953ce6105b4852"
         ],
         "s2d3abbd855d4f53bac57dc78cb71ad0": [
             "u9fad283dcd34daa9c9f00f67d9f3e1c",
@@ -412,6 +425,9 @@
             "f0b1021f58f849d488052fd136fa251f",
             "a409e394b4ac4113bb8749073dcc42d0",
             "f78a4ff587e14e07931342f33674083b"
+        ],
+        "s3122bd7fda84b5db53bedce9b16331d": [
+            "b7fd01d74749414db9fa8c4abffd4df9"
         ],
         "s31316b81d8746cca1a39b7e9daa522b": [
             "iab2dc76131947008db1022c56be0b1e"
@@ -437,6 +453,9 @@
         "s416e7c2ccdb495ba9d73bbb160d1d0b": [
             "bbe785e7c70a42b1a0f1d90a4164979e"
         ],
+        "s4190c2fe84a46d696dff2fc3cb29158": [
+            "i78594f83e85428d807f7407a7230884"
+        ],
         "s423e1fc53c14457995c4057a191bc88": [
             "u2a49f260cdb41d0af8a5a9bc114786a"
         ],
@@ -455,10 +474,12 @@
         "s43fbdee4eda4fe7a7b2c39c4570fb37": [
             "u2cd516a46db4cb09d14fa8863aa5487",
             "u931e7eb051542abbdfc3d9805efb5c9",
-            "ecb86e7c332d4db09a39c1e177bac515",
             "i1f2b77481ed4bb5b3173775de5a5f56",
             "f0b1021f58f849d488052fd136fa251f",
             "a409e394b4ac4113bb8749073dcc42d0"
+        ],
+        "s46a89cd48204177a6e4da858c85a829": [
+            "i78594f83e85428d807f7407a7230884"
         ],
         "s478473352194d05a2cd004c684e0f86": [
             "g5bcf23f75374615b1a1a2986d836db1",
@@ -529,6 +550,9 @@
         "s64ec0b02eaf43e09f2934b821e928b2": [
             "ed77104da48340a7b62b70b5743a767b"
         ],
+        "s6566a84dad7413ea9f40a53fb509d32": [
+            "ea43b8599b514431a19a70ee3765cd6c"
+        ],
         "s66bec51bb204dbb9b3a458dea741b34": [
             "u2a49f260cdb41d0af8a5a9bc114786a"
         ],
@@ -561,6 +585,9 @@
             "gdf467ebba5c409fb526aed95e567b1d",
             "c6aca67b00cb4b5abc935743a2fbfd43"
         ],
+        "s6e3972249124f138cdcce49999b73ae": [
+            "u93cb57f9cd64c72915b72f4a0f5d06b"
+        ],
         "s6e784f6cfe4447e864e15e4a790f446": [
             "c3568c1c25b04c35b14521264443f4e8"
         ],
@@ -570,9 +597,13 @@
         "s7010508e1a14b4e938bf9a79f8884f6": [
             "u2a49f260cdb41d0af8a5a9bc114786a"
         ],
+        "s715febf403b4d598cebb5fee402cedc": [
+            "i78594f83e85428d807f7407a7230884"
+        ],
         "s731e43b398f4ad4818ee8cb436aee03": [
             "u062edca1c624c078badefa54a73887c",
             "ufca17ee1cf047d7b6454cbfbf820050",
+            "u93cb57f9cd64c72915b72f4a0f5d06b",
             "u88b2e4ec47a4b20b6d02dd1ae8b0f54",
             "u2cd516a46db4cb09d14fa8863aa5487",
             "u931e7eb051542abbdfc3d9805efb5c9",
@@ -602,11 +633,19 @@
         "s79d6348a79340f3b9d526212d76e4dc": [
             "ebb9f90ec3334abd88e3b9eb5e6e2374"
         ],
+        "s7c10d00dc2040adbf2683f630b41bae": [
+            "ecb86e7c332d4db09a39c1e177bac515"
+        ],
         "s7ce7a13eec945ab81c91eaea931eaf9": [
             "e50eb304d4434b44bb19d9d456f60988"
         ],
         "s820d64300bb4c42b368040e8a2610e5": [
+            "u93cb57f9cd64c72915b72f4a0f5d06b",
+            "u2cd516a46db4cb09d14fa8863aa5487",
             "fd1b30e466a64beb9bdbf382fbeca372"
+        ],
+        "s845d5f55c7740e79f9f62d823a0d2bc": [
+            "b7fd01d74749414db9fa8c4abffd4df9"
         ],
         "s8522b3fb9974f20b21f059d3ed3aa4a": [
             "u9fad283dcd34daa9c9f00f67d9f3e1c",
@@ -632,7 +671,6 @@
             "u48f89724f0946eeaca71ea7ccbcc81a"
         ],
         "s90295047f1640be87b77f9b30f76f35": [
-            "ecb86e7c332d4db09a39c1e177bac515",
             "e50eb304d4434b44bb19d9d456f60988"
         ],
         "s9131b1d5940458f853cc30bd3fe34f9": [
@@ -653,8 +691,6 @@
             "f78a4ff587e14e07931342f33674083b"
         ],
         "s962f0e59b214f95879af6905d30c93e": [
-            "u93cb57f9cd64c72915b72f4a0f5d06b",
-            "u2cd516a46db4cb09d14fa8863aa5487",
             "u931e7eb051542abbdfc3d9805efb5c9",
             "i1f2b77481ed4bb5b3173775de5a5f56",
             "f0b1021f58f849d488052fd136fa251f",
@@ -682,6 +718,7 @@
             "ff34aa6a1c9840d8aa95981779e0e263",
             "eb38d741b1de49828a92b7bd1df297ed",
             "gdf467ebba5c409fb526aed95e567b1d",
+            "e50eb304d4434b44bb19d9d456f60988",
             "a409e394b4ac4113bb8749073dcc42d0",
             "f78a4ff587e14e07931342f33674083b",
             "c6aca67b00cb4b5abc935743a2fbfd43",
@@ -715,7 +752,6 @@
             "u66f449b675240de9af9ef1f174e36de",
             "u062edca1c624c078badefa54a73887c",
             "ufca17ee1cf047d7b6454cbfbf820050",
-            "u2cd516a46db4cb09d14fa8863aa5487",
             "u080a3c0a9a248a7a6ac4203a6447c16",
             "u667f019482145fda573bdd6fcd6cb08",
             "u48f89724f0946eeaca71ea7ccbcc81a"
@@ -763,14 +799,18 @@
         "sb6cbece48d94f20baa9f69271b90cbb": [
             "bbe785e7c70a42b1a0f1d90a4164979e"
         ],
+        "sb9abbe20c604650b6e8f1350a08a33b": [
+            "u93cb57f9cd64c72915b72f4a0f5d06b",
+            "u2cd516a46db4cb09d14fa8863aa5487",
+            "ea43b8599b514431a19a70ee3765cd6c",
+            "e50eb304d4434b44bb19d9d456f60988",
+            "b9042dc94cc24cf295a929e6d2cfa98f"
+        ],
         "sbae7b20b1894e0aaca9ae6fa9c1fa39": [
             "u062edca1c624c078badefa54a73887c"
         ],
         "sbb575827ed74b96a98d6bae92619217": [
             "u2a49f260cdb41d0af8a5a9bc114786a"
-        ],
-        "sbc2f31b4b5246349130e38ff949e183": [
-            "e50eb304d4434b44bb19d9d456f60988"
         ],
         "sbc4e35399994d59a79bff653660cf8d": [
             "u441594068224e36b88b8f43200bf78c"
@@ -822,7 +862,6 @@
             "g0b1d215244348f1886ce0780c0dde8b",
             "c3d7ef1b795b4f6c8926e58283fbe980",
             "ff34aa6a1c9840d8aa95981779e0e263",
-            "e50eb304d4434b44bb19d9d456f60988",
             "a409e394b4ac4113bb8749073dcc42d0",
             "hc49b07b3c25470dbf2dc684fe978f27",
             "f78a4ff587e14e07931342f33674083b",
@@ -858,11 +897,15 @@
         ],
         "se1c14df4e0140f595b71735e82dcc1c": [
             "u062edca1c624c078badefa54a73887c",
+            "u93cb57f9cd64c72915b72f4a0f5d06b",
             "i1f2b77481ed4bb5b3173775de5a5f56",
             "f0b1021f58f849d488052fd136fa251f"
         ],
         "se7c73455bc445d2a6c7798e2b9bf6c3": [
             "fd1b30e466a64beb9bdbf382fbeca372"
+        ],
+        "se80c79bfad1461d8cbb84a5c694e3f3": [
+            "e50eb304d4434b44bb19d9d456f60988"
         ],
         "se8a681ae19d40aea937ddbb906b06d4": [
             "u2a49f260cdb41d0af8a5a9bc114786a"
@@ -884,7 +927,6 @@
             "i1f2b77481ed4bb5b3173775de5a5f56",
             "f0b1021f58f849d488052fd136fa251f",
             "g0b1d215244348f1886ce0780c0dde8b",
-            "e50eb304d4434b44bb19d9d456f60988",
             "a409e394b4ac4113bb8749073dcc42d0",
             "f78a4ff587e14e07931342f33674083b",
             "c90a367208c449e99c953ce6105b4852"
@@ -892,8 +934,10 @@
         "seec677b505042ec8974c81cdd9eb8d2": [
             "e50eb304d4434b44bb19d9d456f60988"
         ],
+        "sf035f3cd24247bc9692166877f1bfce": [
+            "ea43b8599b514431a19a70ee3765cd6c"
+        ],
         "sf457513fbdd48dab0d251bee11aaa36": [
-            "u2cd516a46db4cb09d14fa8863aa5487",
             "u931e7eb051542abbdfc3d9805efb5c9",
             "i1f2b77481ed4bb5b3173775de5a5f56",
             "f0b1021f58f849d488052fd136fa251f",
@@ -909,7 +953,6 @@
             "ud8ce8b8b3fa41df81b60df26c4b378a",
             "u66f449b675240de9af9ef1f174e36de",
             "ufca17ee1cf047d7b6454cbfbf820050",
-            "u93cb57f9cd64c72915b72f4a0f5d06b",
             "u83258bf48084baface0469b063f928c",
             "u88b2e4ec47a4b20b6d02dd1ae8b0f54",
             "u9fad283dcd34daa9c9f00f67d9f3e1c",
@@ -928,7 +971,10 @@
             "j134041928a74eef8197c131cc1ef455",
             "a96ab81d68664b64a57b5e72383466c4",
             "h883c488f20348828f4dcea69cfb0e44",
+            "ee0ee43775414ede9c37dfe177fe2aae",
+            "ecb86e7c332d4db09a39c1e177bac515",
             "d0ef262a1491426fb96e1524df6c7e70",
+            "ea43b8599b514431a19a70ee3765cd6c",
             "i1f2b77481ed4bb5b3173775de5a5f56",
             "f0b1021f58f849d488052fd136fa251f",
             "g0b1d215244348f1886ce0780c0dde8b",
@@ -993,6 +1039,12 @@
             },
             "b3941861ce7a4c94b3034d07763602b7": {
                 "appName": "Customer360",
+                "id": "SampleSectionHeaderTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSectionHeaderTemplate"
+            },
+            "b7fd01d74749414db9fa8c4abffd4df9": {
+                "appName": "SimpleLightTouch",
                 "id": "SampleSectionHeaderTemplate",
                 "templateType": "segments",
                 "topFlexId": "flxSectionHeaderTemplate"
@@ -1104,6 +1156,16 @@
                 "id": "CopyFBox0a97028e0935b46",
                 "templateType": "segments",
                 "topFlexId": "CopyFBox0a97028e0935b46"
+            },
+            "ea43b8599b514431a19a70ee3765cd6c": {
+                "appName": "SimpleLightTouch",
+                "id": "frmSimpleTouch",
+                "relFormId": "frmSimpleTouch",
+                "templateType": "forms",
+                "widgetInfo": {
+                    "mapWgtPltfrms": [],
+                    "videoWgtPltfrms": []
+                }
             },
             "eb38d741b1de49828a92b7bd1df297ed": {
                 "appName": "ManageScheme",
@@ -1264,6 +1326,12 @@
                     "mapWgtPltfrms": [],
                     "videoWgtPltfrms": []
                 }
+            },
+            "i78594f83e85428d807f7407a7230884": {
+                "appName": "SimpleLightTouch",
+                "id": "SampleRowTemplate",
+                "templateType": "segments",
+                "topFlexId": "flxSampleRowTemplate"
             },
             "ia5938dcd4e24b99a1a0a3548445dc7a": {
                 "appName": "SBCommon",
@@ -1581,6 +1649,10 @@
             "id": "CopyimgFilter0fd5bbd1bf1db45",
             "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
         },
+        "a76d07791cf54efaba1f1e8298ba60ef": {
+            "id": "FlexContainer0cfbd412f8d984f",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.hdr.FormHeader/userwidgetmodel.sm"
+        },
         "a7d430ab73874e2cbd05afad90421143": {
             "id": "lblReason",
             "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
@@ -1600,6 +1672,10 @@
         "afef1d0c9b3e4674b10bf6822d315126": {
             "id": "segApprover",
             "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hc.segApprover.SegApproverScheme/userwidgetmodel.sm"
+        },
+        "b0c2e11d0fcb43188eaca020aca70ab0": {
+            "id": "FlexContainer0c5eafe3e5fdf45",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.hdr.FormHeader/userwidgetmodel.sm"
         },
         "b1648ee87f9b489da46a065e8e15044e": {
             "id": "SegSuspendList",
@@ -1857,6 +1933,10 @@
             "id": "lblDropDwn",
             "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.dropDown.DropDown/userwidgetmodel.sm"
         },
+        "g18338682f7440699865c7b3b0649058": {
+            "id": "Label0b2fdf6dd443b44",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.hdr.FormHeader/userwidgetmodel.sm"
+        },
         "g3aa0468887847ac9f391eadc5975a5d": {
             "id": "imgLogout",
             "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.menu.SideMenu/userwidgetmodel.sm"
@@ -1996,6 +2076,10 @@
         "j469158a10824ae48c2867cf146bd9c6": {
             "id": "CopyimgFilter0ec0a3683dce84e",
             "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.segHdr.segHeader/userwidgetmodel.sm"
+        },
+        "j4a298acc2ce463686107bdf619e3c57": {
+            "id": "imgLogout",
+            "path": "/Users/bhargavisiryapreddy/Desktop/Bhargavi/WSSB/SBCommon/userwidgets/com.hcl.hdr.FormHeader/userwidgetmodel.sm"
         },
         "j5b68a04a3d54ec693d184c40d59f06d": {
             "id": "flxPin",

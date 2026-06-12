@@ -9,7 +9,7 @@ define("SBCommon/flxRowItems", function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxRow",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -23,7 +23,7 @@ define("SBCommon/flxRowItems", function() {
             "id": "lblMenuItem",
             "isVisible": true,
             "left": "60dp",
-            "skin": "sknLblFormLevel",
+            "skin": "sknLblWhiteFormLevel",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
             "zIndex": 1

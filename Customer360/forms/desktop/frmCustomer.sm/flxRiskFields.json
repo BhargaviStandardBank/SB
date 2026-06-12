@@ -24,8 +24,8 @@
     },
     "_skin_": "sf51dc37fd0a40178320b8330b005a98",
     "_top_": {
-        "type": "string",
-        "value": "69dp"
+        "type": "number",
+        "value": "0"
     },
     "_width_": {
         "type": "string",
@@ -36,9 +36,6 @@
     "canUpdateUI": true,
     "children": [
         "flxPD",
-        "flxReason1",
-        "flxReason2",
-        "flxReason3",
         "flxRatingScore",
         "flxHide",
         "flxRiskScoreLCY",
@@ -70,7 +67,7 @@
         "render": false
     },
     "kuid": "i2ff8b210323429c8f1e3518a3a31abd",
-    "layouttype": 5,
+    "layouttype": 4,
     "name": "kony.ui.FlexContainer",
     "nativemac": {
         "render": true
@@ -79,7 +76,7 @@
         "render": true
     },
     "paddinginpixel": true,
-    "parent": "flxRiskRate",
+    "parent": "FlexContainer0e954e1006a6642",
     "pf": "frmCustomer",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,

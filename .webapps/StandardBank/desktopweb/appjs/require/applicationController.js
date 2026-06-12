@@ -289,6 +289,16 @@ define({
         voltmx.mvc.registry.add("flxSampleRowTemplate", {
             "viewName": "flxSampleRowTemplate",
             "controllerName": "flxSampleRowTemplateController",
+            "appName": "SimpleLightTouch"
+        });
+        voltmx.mvc.registry.add("flxSectionHeaderTemplate", {
+            "viewName": "flxSectionHeaderTemplate",
+            "controllerName": "flxSectionHeaderTemplateController",
+            "appName": "SimpleLightTouch"
+        });
+        voltmx.mvc.registry.add("flxSampleRowTemplate", {
+            "viewName": "flxSampleRowTemplate",
+            "controllerName": "flxSampleRowTemplateController",
             "appName": "ManageScheme"
         });
         voltmx.mvc.registry.add("flxSectionHeaderTemplate", {
@@ -335,6 +345,11 @@ define({
             "viewName": "frmHome",
             "controllerName": "frmHomeController",
             "appName": "SBCommon"
+        });
+        voltmx.mvc.registry.add("frmSimpleTouch", {
+            "viewName": "frmSimpleTouch",
+            "controllerName": "frmSimpleTouchController",
+            "appName": "SimpleLightTouch"
         });
         voltmx.mvc.registry.add("frmAddScheme", {
             "viewName": "frmAddScheme",
@@ -427,5 +442,8 @@ define({
             "friendlyName": "frmLogin",
             "appName": "StandardBank"
         }).navigate();
+    },
+    makeCall: function(eventobject) {
+        voltmx.phone.dial(eventobject.text);
     }
 });

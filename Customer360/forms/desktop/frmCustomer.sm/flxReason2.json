@@ -25,7 +25,7 @@
     "_skin_": "s79882fadc714c50a09711c95134967b",
     "_top_": {
         "type": "string",
-        "value": "0dp"
+        "value": "16dp"
     },
     "_width_": {
         "type": "string",
@@ -35,7 +35,7 @@
     "autogrowmode": 1,
     "canUpdateUI": true,
     "children": [
-        "Reason2"
+        "CopyReason0efec4db8bdd744"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -48,10 +48,10 @@
     "info": null,
     "iscustomlayout": false,
     "isvisible": true,
-    "kuid": "i8b03ae9214447ac8ef4544ab9782313",
+    "kuid": "a64ee42fe51e4fc5bea0936dbec320db",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",
-    "parent": "flxRiskFields",
+    "parent": "flxRiskReasons",
     "pf": "frmCustomer",
     "responsiveconfig": {
         "offset": {

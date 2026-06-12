@@ -108,7 +108,7 @@ SHA-256-Digest: 7vfwq1xKy4OrqMcEfMt4Aw+cgWrmX6+cVKz4C77Wog0=
 
 Name: design_import/migration/modules/migration/generateForms/common/for
  mGenerate.js
-SHA-256-Digest: JNErFfEzUQYkUGsc1YKGLXu8umljlw0nWAwEkHE0cnc=
+SHA-256-Digest: VS5t9huJQ7GIpRV7gmorSALjmMANEee9/ySu/pGBfik=
 
 Name: design_import/migration/modules/migration/generateForms/widgetConf
  igTemplates/desktopWeb/breakPointsConfig.js
@@ -455,7 +455,7 @@ Name: design_import/migration/modules/migration/generateForms/common/for
 SHA-256-Digest: uVGU40f2tGZGqk4+qEcOROXUDeA3mfEFjF9CtUjA0zo=
 
 Name: pluginDL.js
-SHA-256-Digest: b9JtyWnlU91RXG5sFq7JkH+/I3lHh30bvmAyUgzEYEA=
+SHA-256-Digest: daLJTWU4z84zxn5lSfXmdRIOKi0uGqmuvdKFVUwEyMo=
 
 Name: design_import/domino/wizard/domino/selectedAppIdentitySvc/viewConf
  ig.js

@@ -234,5 +234,8 @@ define({
     postAppInitCallBack: function(eventObj) {},
     appmenuseq: function() {
         new voltmx.mvc.Navigation("frmHome").navigate();
+    },
+    makeCall: function(eventobject) {
+        voltmx.phone.dial(eventobject.text);
     }
 });

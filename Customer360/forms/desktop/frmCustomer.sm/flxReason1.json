@@ -35,7 +35,7 @@
     "autogrowmode": 1,
     "canUpdateUI": true,
     "children": [
-        "Reason1"
+        "CopyReason0e4a8784fb61849"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -48,10 +48,10 @@
     "info": null,
     "iscustomlayout": false,
     "isvisible": true,
-    "kuid": "ed06d288325f4f91a0ff18f7e10d659e",
+    "kuid": "hc97eff1c67b462a9dd0761e243c6c52",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",
-    "parent": "flxRiskFields",
+    "parent": "flxRiskReasons",
     "pf": "frmCustomer",
     "responsiveconfig": {
         "offset": {

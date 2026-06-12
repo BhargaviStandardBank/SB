@@ -143,7 +143,8 @@ if($KI.net) {
         removeIntegrityCheck : $KI.net.removeIntegrityCheck,
         setIntegrityCheck : $KI.net.setIntegrityCheck,
         urlDecode : $KI.net.urlDecode,
-        urlEncode : $KI.net.urlEncode
+        urlEncode : $KI.net.urlEncode,
+        EventSource : $KI.net.EventSource
     };
 }
 

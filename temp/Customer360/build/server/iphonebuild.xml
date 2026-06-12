@@ -274,6 +274,7 @@
 		cordovaversion=${cordovaversion}
 		isCarAppEnabled=${isCarAppEnabled}
 		enableiOSLiveActivity=${enableiOSLiveActivity}
+		isLiveActivityTemplateCreatedInIris=${isLiveActivityTemplateCreatedInIris}
 		live_act_configurations=${live_act_configurations}
 		live_act_attributes=${live_act_attributes}
 		cordovapath=${cordovapath}
@@ -801,25 +802,6 @@
 		</if>
 	</target>
 
-	<target name="copyliveactivities">
-		<echo message="Live Actvities Configurations."/>
-		<if>
-			<equals arg1="${enableiOSLiveActivity}" arg2="true"/>
-			<then>
-				<mkdir dir="iphonekbf/LiveActivities" />
-				<echo message="Copying swift files of Attributes and Configurations subfolder under Live Activities folder."/>
-				<copy todir="iphonekbf/LiveActivities" overwrite="true">
-					<fileset dir="${project.loc}/modules/LiveActivities" includes="*/**"/>
-				</copy>
-				<mkdir dir="iphonekbf/LiveActivities/LiveActivitiesImages" />
-				<echo message="Copying live activities images of LiveActivities folder."/>
-				<copy todir="iphonekbf/LiveActivities/LiveActivitiesImages" overwrite="true">
-					<fileset dir="${project.loc}/resources/LiveActivities" includes="*/**"/>
-				</copy>
-			</then>
-		</if>
-	</target>	
-
 	<target name="copywearables">
 		<!--
 		This target will execute whenever watch is enabled in project properties file. 
@@ -1186,7 +1168,7 @@
 		</if>
 	</target>
 
-	<target name="buildKAR" depends="copyjssrc,copywearables,copyssmodules,copycarapp,copyliveactivities,copyappextensions,copyiphoneappicons,protectedKAR,precompile" >
+	<target name="buildKAR" depends="copyjssrc,copywearables,copyssmodules,copycarapp,copyappextensions,copyiphoneappicons,protectedKAR,precompile" >
 
 		<echo message="Creating iphone kbf KAR file" />
 		<if>
@@ -1603,6 +1585,10 @@
 			</exec>
 		</sequential>
 	</macrodef>
-		
-	<target name="cibuildKAR" depends="init,instrument_codeCoverage,buildResources,copywearables,copyssmodules,copycarapp,copyliveactivities,copyappextensions,copyiphoneappicons,protectedKAR,precompile,genkar" />
+
+	<target name="cibuildKAR-pre" depends="init,instrument_codeCoverage,buildResources" />
+
+	<target name="cibuildKAR-post" depends="init,copywearables,copyssmodules,copycarapp,copyappextensions,copyiphoneappicons,protectedKAR,precompile,genkar" />
+
+	<target name="cibuildKAR" depends="cibuildKAR-pre,cibuildKAR-post" />
 </project>

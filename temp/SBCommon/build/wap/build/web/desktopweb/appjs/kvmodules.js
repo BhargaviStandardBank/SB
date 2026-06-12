@@ -234,6 +234,9 @@ define('applicationController',{
     postAppInitCallBack: function(eventObj) {},
     appmenuseq: function() {
         new voltmx.mvc.Navigation("frmHome").navigate();
+    },
+    makeCall: function(eventobject) {
+        voltmx.phone.dial(eventobject.text);
     }
 });
 
@@ -896,14 +899,13 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
-            "focusSkin": "sknFlxTrans",
-            "height": "8%",
+            "height": "60px",
             "id": "FormHeader",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "100%",
             "zIndex": 1,
@@ -919,7 +921,7 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "id": "lblHdr",
             "isVisible": true,
             "left": "24dp",
-            "skin": "sknLblHeading2",
+            "skin": "sknLblHeading2White",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
             "zIndex": 1
@@ -928,7 +930,78 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, controller.args[1], "lblHdr"), extendConfig({}, controller.args[2], "lblHdr"));
-        FormHeader.add(lblHdr);
+        var FlexContainer0cfbd412f8d984f = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": false,
+            "height": "100%",
+            "id": "FlexContainer0cfbd412f8d984f",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+            "reverseLayoutDirection": true,
+            "isModalContainer": false,
+            "right": "24dp",
+            "skin": "slFbox",
+            "top": "0dp",
+            "width": "40%",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "FlexContainer0cfbd412f8d984f"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "FlexContainer0cfbd412f8d984f"), extendConfig({}, controller.args[2], "FlexContainer0cfbd412f8d984f"));
+        FlexContainer0cfbd412f8d984f.setDefaultUnit(voltmx.flex.DP);
+        var imgLogout = new voltmx.ui.Image2(extendConfig({
+            "centerY": "50%",
+            "height": "32dp",
+            "id": "imgLogout",
+            "isVisible": true,
+            "right": "0dp",
+            "skin": "slImage",
+            "src": "icon_logout.png",
+            "top": "23dp",
+            "width": "32dp",
+            "zIndex": 1
+        }, controller.args[0], "imgLogout"), extendConfig({
+            "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "imgLogout"), extendConfig({}, controller.args[2], "imgLogout"));
+        var FlexContainer0c5eafe3e5fdf45 = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "centerY": "50%",
+            "clipBounds": false,
+            "height": "80%",
+            "id": "FlexContainer0c5eafe3e5fdf45",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "isModalContainer": false,
+            "right": "25dp",
+            "skin": "sknFlxWhite20Opac",
+            "top": "35dp",
+            "width": "1px",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "FlexContainer0c5eafe3e5fdf45"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "FlexContainer0c5eafe3e5fdf45"), extendConfig({}, controller.args[2], "FlexContainer0c5eafe3e5fdf45"));
+        FlexContainer0c5eafe3e5fdf45.setDefaultUnit(voltmx.flex.DP);
+        FlexContainer0c5eafe3e5fdf45.add();
+        var Label0b2fdf6dd443b44 = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "id": "Label0b2fdf6dd443b44",
+            "isVisible": true,
+            "right": "24dp",
+            "skin": "sknLblHeading2White",
+            "text": "UserName",
+            "top": "13dp",
+            "width": voltmx.flex.USE_PREFERRED_SIZE,
+            "zIndex": 1
+        }, controller.args[0], "Label0b2fdf6dd443b44"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "Label0b2fdf6dd443b44"), extendConfig({}, controller.args[2], "Label0b2fdf6dd443b44"));
+        FlexContainer0cfbd412f8d984f.add(imgLogout, FlexContainer0c5eafe3e5fdf45, Label0b2fdf6dd443b44);
+        FormHeader.add(lblHdr, FlexContainer0cfbd412f8d984f);
         FormHeader.compInstData = {}
         return FormHeader;
     }
@@ -1384,9 +1457,146 @@ define('com/hcl/listData/ListBoxData/ListBoxData',[],function() {
 ;
 define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
     return {
+        CONFIG: {
+            MIN_WIDTH: "60dp",
+            MAX_WIDTH: "200dp",
+            ANIMATION_DURATION: 0.25
+        },
         masterData: [{
             header: {
-                lblSectionTitle: "Master Suspend List",
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Simple Light Touch(SLT)",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Loan Eligibility",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
+            }, {
+                lblMenuItem: "Scored Offer View(PPB)",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRequestHistory"
+                }
+            }, {
+                lblMenuItem: "Scored Offer View(BCB)",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmAddSuspend"
+                }
+            }, {
+                lblMenuItem: "Offer Manger",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRemoveSuspend"
+                }
+            }, {
+                lblMenuItem: "Scoring API",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmApprovers"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Complex Lending",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Originate Application",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
+            }, ]
+        }, {
+            header: {
+                imgIcon: "icon_view.png",
+                lblSectionTitle: "Customer 360",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "View Customer Info",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "View Application",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_financialrisk.png",
+                lblSectionTitle: "Financial Spreading & Risk Rating",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Spread Financials",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Rate Counterparty",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "View BBRS Ratings",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "BBRS Insights",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_queue.png",
+                lblSectionTitle: "Queue Manager",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "POR Queues",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Branch (all)",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "RWAE (all)",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "RWAE my queue",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Suspend List",
                 isExpanded: false
             },
             rows: [{
@@ -1422,7 +1632,8 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             }]
         }, {
             header: {
-                lblSectionTitle: "Manage Scheme",
+                imgIcon: "icon_manage.png",
+                lblSectionTitle: "Scheme Maintenance",
                 isExpanded: false
             },
             rows: [{
@@ -1458,11 +1669,18 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             }]
         }, {
             header: {
-                lblSectionTitle: "Customer 360",
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Reporting / Dashboard",
                 isExpanded: false
             },
             rows: [{
-                lblMenuItem: "Customer Info",
+                lblMenuItem: "SLT Dashboard",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "CAMS Dashboard",
                 formID: {
                     "appName": "Customer360",
                     "friendlyName": "frmCustomer"
@@ -1470,21 +1688,26 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             }]
         }, {
             header: {
-                lblSectionTitle: "Financial Spreading & Risk Rating",
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Credit Solution Engineering",
                 isExpanded: false
             },
+            rows: [{
+                lblMenuItem: "Demand Planning App",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Dev Ops Board",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
         }, {
             header: {
-                lblSectionTitle: "Queue Manager",
-                isExpanded: false
-            },
-        }, {
-            header: {
-                lblSectionTitle: "Reporting / Dashboard",
-                isExpanded: false
-            },
-        }, {
-            header: {
+                imgIcon: "icon_home.png",
                 lblSectionTitle: "Home",
                 isExpanded: false,
                 formID: {
@@ -1494,16 +1717,70 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             },
         }, ],
         constructor: function() {
+            this.view.flxUserDetails.isVisible = false;
             this.view.preShow = this.invokePreShow.bind(this);
             this.view.segMenu.onRowClick = this.onRowItemClick.bind(this);
+            this.view.flxSideMenu.width = '60dp';
+            this.view.flxSideMenu.onHover = (widgetRef, context) => {
+                    if (context.eventType === "enter") {
+                        this.expandSidebar1();
+                    } else if (context.eventType === "leave") {
+                        this.collapseSidebar(); // Assuming you have a collapse function
+                    }
+                }
+                //this.view.flxSegMenu.onHover = this.handleMenuHover.bind(this);
+        },
+        expandSidebar1: function() {
+            var animConfig = {
+                duration: 0.3,
+                fillMode: voltmx.anim.FILL_MODE_FORWARDS
+            };
+            // Animate Side Menu
+            this.view.flxSideMenu.animate(voltmx.ui.createAnimation({
+                100: {
+                    width: "250dp"
+                }
+            }), animConfig, {});
+            // Animate Main Content
+            //     this.view.flxMainContent.animate(
+            //         voltmx.ui.createAnimation({ 100: { left: "250dp" } }), 
+            //         animConfig, 
+            //         {}
+            //     );
+            this.isCollapsed = false;
+            //this.view.flxUserDetails.isVisible = true;
+            //this._updateMenuToIconAndText();
+        },
+        collapseSidebar: function() {
+            var anim = voltmx.ui.createAnimation({
+                100: {
+                    width: "60dp"
+                }
+            });
+            this.view.flxSideMenu.animate(anim, {
+                duration: 0.3,
+                fillMode: voltmx.anim.FILL_MODE_FORWARDS
+            }, {});
+            //     this.view.flxMainContent.animate(
+            //       voltmx.ui.createAnimation({
+            //         100: { left: "70dp" }
+            //       }),
+            //       { duration: 0.3 },
+            //       {}
+            //     );
+            this.isCollapsed = true;
+            this.view.flxUserDetails.isVisible = false;
+            //this._updateMenuToIconOnly();
         },
         invokePreShow: function() {
             try {
                 this.view.segMenu.widgetDataMap = {
                     lblSectionTitle: "lblSectionTitle",
+                    imgIcon: "imgIcon",
                     lblMenuItem: "lblMenuItem",
                     flxSegSecHdr: "flxSegSecHdr"
                 };
+                // this.view.flxSegMenu.width = this.CONFIG.MIN_WIDTH;
                 // Check if we are currently on the Home Form
                 const currentForm = voltmx.application.getCurrentForm().id;
                 // ES6 Ternary: If landing on Home, collapse all; otherwise, keep current state
@@ -1522,10 +1799,40 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             });
             this.refreshMenu();
         },
+        handleMenuHover: function(widget, context) {
+            // context.eventType provides "enter" or "leave"
+            if (context.eventType === constants.ONHOVER_MOUSE_ENTER) {
+                this.animateMenu(this.CONFIG.MAX_WIDTH);
+            } else if (context.eventType === constants.ONHOVER_MOUSE_LEAVE) {
+                this.animateMenu(this.CONFIG.MIN_WIDTH);
+                // Optional: Collapse any open accordion sections when mouse leaves
+                this.collapseAllSections();
+            }
+        },
+        animateMenu: function(targetWidth) {
+            this.view.flxSideMenu.animate(voltmx.ui.createAnimation({
+                "100": {
+                    "width": targetWidth,
+                    "stepConfig": {
+                        "timingFunction": constants.ANIMATION_SERIES_EASE_IN_OUT
+                    }
+                }
+            }), {
+                "delay": 0,
+                "iterationCount": 1,
+                "fillMode": constants.ANIMATION_DIRECTION_FORWARDS,
+                "duration": this.CONFIG.ANIMATION_DURATION
+            }, {
+                "animationEnd": function() {}
+            });
+        },
         refreshMenu: function() {
             const segmentData = this.masterData.map((section, index) => {
                 const headerObj = {
                     lblSectionTitle: section.header.lblSectionTitle,
+                    imgIcon: {
+                        src: section.header.imgIcon
+                    },
                     flxSegSecHdr: {
                         onClick: () => this.onSectionClicked(index)
                     }
@@ -1595,17 +1902,16 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
-            "focusSkin": "sknFlxTrans",
             "height": "100%",
             "id": "SideMenu",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
-            "width": "100%",
-            "zIndex": 1,
+            "width": "60dp",
+            "zIndex": 10,
             "onBreakpointHandler": onBreakpointHandler,
             "breakpoints": [640, 1024, 1366],
             "appName": "SBCommon"
@@ -1613,10 +1919,28 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "paddingInPixel": false
         }, controller.args[1], "SideMenu"), extendConfig({}, controller.args[2], "SideMenu"));
         SideMenu.setDefaultUnit(voltmx.flex.DP);
+        var flxSideMenu = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": true,
+            "height": "100%",
+            "id": "flxSideMenu",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "left": "0dp",
+            "isModalContainer": false,
+            "skin": "sknFlexMenu",
+            "top": "0dp",
+            "width": "60dp",
+            "zIndex": 10,
+            "appName": "SBCommon"
+        }, controller.args[0], "flxSideMenu"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "flxSideMenu"), extendConfig({}, controller.args[2], "flxSideMenu"));
+        flxSideMenu.setDefaultUnit(voltmx.flex.DP);
         var flxLogo = new voltmx.ui.FlexContainer(extendConfig({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "height": "120dp",
+            "height": "8%",
             "id": "flxLogo",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
@@ -1624,7 +1948,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "isModalContainer": false,
             "skin": "sknFlxTrans",
             "top": "0dp",
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "flxLogo"), extendConfig({
@@ -1632,21 +1956,36 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
         }, controller.args[1], "flxLogo"), extendConfig({}, controller.args[2], "flxLogo"));
         flxLogo.setDefaultUnit(voltmx.flex.DP);
         var imgLogo = new voltmx.ui.Image2(extendConfig({
-            "centerX": "50%",
             "centerY": "50%",
-            "height": "100dp",
+            "height": "60dp",
             "id": "imgLogo",
             "isVisible": true,
+            "left": "0dp",
             "skin": "slImage",
             "src": "sblogo.png",
-            "width": "100%",
+            "width": "60dp",
             "zIndex": 1
         }, controller.args[0], "imgLogo"), extendConfig({
             "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, controller.args[1], "imgLogo"), extendConfig({}, controller.args[2], "imgLogo"));
-        flxLogo.add(imgLogo);
+        var Label0cff1e13b3a6943 = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "height": "60dp",
+            "id": "Label0cff1e13b3a6943",
+            "isVisible": true,
+            "left": "30dp",
+            "right": "0dp",
+            "skin": "sknLblHeading2White",
+            "text": "Standard Bank",
+            "zIndex": 1
+        }, controller.args[0], "Label0cff1e13b3a6943"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_CENTER,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "Label0cff1e13b3a6943"), extendConfig({}, controller.args[2], "Label0cff1e13b3a6943"));
+        flxLogo.add(imgLogo, Label0cff1e13b3a6943);
         var flxSegMenu = new voltmx.ui.FlexScrollContainer(extendConfig({
             "allowHorizontalBounce": false,
             "allowVerticalBounce": true,
@@ -1654,7 +1993,6 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "bounces": true,
             "clipBounds": false,
             "enableScrolling": true,
-            "focusSkin": "sknFlxSrcTrans",
             "horizontalScrollIndicator": true,
             "id": "flxSegMenu",
             "isVisible": true,
@@ -1665,7 +2003,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "skin": "sknFlxSrcTrans",
             "top": "120dp",
             "verticalScrollIndicator": true,
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1
         }, controller.args[0], "flxSegMenu"), extendConfig({
             "paddingInPixel": false
@@ -1675,6 +2013,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
             "data": [
                 [{
+                        "imgIcon": "imagedrag.png",
                         "lblMenuItem": "Suspend List",
                         "lblSectionTitle": "Label"
                     },
@@ -1687,6 +2026,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
                     }]
                 ],
                 [{
+                        "imgIcon": "imagedrag.png",
                         "lblMenuItem": "Customer 360",
                         "lblSectionTitle": "Label"
                     },
@@ -1703,10 +2043,8 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "pageOffDotImage": "pageoffdot.png",
             "pageOnDotImage": "pageondot.png",
             "retainSelection": false,
-            "rowFocusSkin": "seg2Focus",
-            "rowSkin": "seg2Normal",
+            "rowSkin": "segTrans",
             "rowTemplate": "flxRowItems",
-            "sectionHeaderSkin": "sliPhoneSegmentHeader",
             "sectionHeaderTemplate": "flxSegSecHdr",
             "selectionBehavior": constants.SEGUI_DEFAULT_BEHAVIOR,
             "separatorColor": "aaaaaa00",
@@ -1716,13 +2054,15 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "top": "0dp",
             "viewType": constants.SEGUI_VIEW_TYPE_TABLEVIEW,
             "widgetDataMap": {
+                "FlexGroup0a043cf8cc66045": "FlexGroup0a043cf8cc66045",
                 "flxLine": "flxLine",
                 "flxRowItems": "flxRowItems",
                 "flxSegSecHdr": "flxSegSecHdr",
+                "imgIcon": "imgIcon",
                 "lblMenuItem": "lblMenuItem",
                 "lblSectionTitle": "lblSectionTitle"
             },
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "segMenu"), extendConfig({
@@ -1730,6 +2070,57 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "paddingInPixel": false
         }, controller.args[1], "segMenu"), extendConfig({}, controller.args[2], "segMenu"));
         flxSegMenu.add(segMenu);
+        var filxHome = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "bottom": "70dp",
+            "clipBounds": false,
+            "focusSkin": "sknFlxTrans",
+            "height": "64dp",
+            "id": "filxHome",
+            "isVisible": false,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "left": "0dp",
+            "isModalContainer": false,
+            "skin": "sknFlxTrans",
+            "width": "250dp",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "filxHome"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "filxHome"), extendConfig({}, controller.args[2], "filxHome"));
+        filxHome.setDefaultUnit(voltmx.flex.DP);
+        var lblHome = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "id": "lblHome",
+            "isVisible": true,
+            "left": "5%",
+            "skin": "sknLblHeading5",
+            "text": "Home",
+            "width": voltmx.flex.USE_PREFERRED_SIZE,
+            "zIndex": 1
+        }, controller.args[0], "lblHome"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "lblHome"), extendConfig({}, controller.args[2], "lblHome"));
+        var CopyimgLogout0d29fe4496d0f49 = new voltmx.ui.Image2(extendConfig({
+            "centerX": "85%",
+            "centerY": "50%",
+            "height": "35dp",
+            "id": "CopyimgLogout0d29fe4496d0f49",
+            "isVisible": false,
+            "left": "0dp",
+            "skin": "slImage",
+            "src": "icon_logout.png",
+            "top": "0dp",
+            "width": "35dp",
+            "zIndex": 1
+        }, controller.args[0], "CopyimgLogout0d29fe4496d0f49"), extendConfig({
+            "imageScaleMode": constants.IMAGE_SCALE_MODE_FIT_TO_DIMENSIONS,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "CopyimgLogout0d29fe4496d0f49"), extendConfig({}, controller.args[2], "CopyimgLogout0d29fe4496d0f49"));
+        filxHome.add(lblHome, CopyimgLogout0d29fe4496d0f49);
         var flxUserDetails = new voltmx.ui.FlexContainer(extendConfig({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "bottom": "0dp",
@@ -1737,12 +2128,12 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "focusSkin": "sknFlxTrans",
             "height": "64dp",
             "id": "flxUserDetails",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
             "skin": "sknFlxTrans",
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "flxUserDetails"), extendConfig({
@@ -1781,7 +2172,8 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "paddingInPixel": false
         }, controller.args[1], "imgLogout"), extendConfig({}, controller.args[2], "imgLogout"));
         flxUserDetails.add(lblUserName, imgLogout);
-        SideMenu.add(flxLogo, flxSegMenu, flxUserDetails);
+        flxSideMenu.add(flxLogo, flxSegMenu, filxHome, flxUserDetails);
+        SideMenu.add(flxSideMenu);
         SideMenu.compInstData = {}
         return SideMenu;
     }
@@ -4115,14 +4507,13 @@ define("flxRowItems", [],function() {
         var flxRowItems = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "focusSkin": "sknFlxRowFocus",
             "height": "40px",
             "id": "flxRowItems",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxRow",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -4135,8 +4526,8 @@ define("flxRowItems", [],function() {
             "centerY": "50%",
             "id": "lblMenuItem",
             "isVisible": true,
-            "left": "4%",
-            "skin": "sknLblFormLevel",
+            "left": "60dp",
+            "skin": "sknLblWhiteFormLevel",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
             "zIndex": 1
@@ -4155,14 +4546,13 @@ define("flxSegSecHdr", [],function() {
         var flxSegSecHdr = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "focusSkin": "sknFlxBGEDF5FF",
             "height": "40px",
             "id": "flxSegSecHdr",
             "isVisible": true,
             "layoutType": voltmx.flex.FLOW_VERTICAL,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxBGEDF5FF",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -4171,12 +4561,46 @@ define("flxSegSecHdr", [],function() {
             "paddingInPixel": false
         }, {});
         flxSegSecHdr.setDefaultUnit(voltmx.flex.DP);
+        var FlexGroup0a043cf8cc66045 = new voltmx.ui.FlexContainer({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": false,
+            "focusSkin": "slFFocusbox",
+            "height": "100%",
+            "id": "FlexGroup0a043cf8cc66045",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+            "left": "0dp",
+            "isModalContainer": false,
+            "skin": "sknFlxTrans",
+            "top": "0dp",
+            "width": "100%",
+            "appName": "SBCommon"
+        }, {
+            "paddingInPixel": false
+        }, {});
+        FlexGroup0a043cf8cc66045.setDefaultUnit(voltmx.flex.DP);
+        var imgIcon = new voltmx.ui.Image2({
+            "centerY": "50%",
+            "height": "30dp",
+            "id": "imgIcon",
+            "isVisible": true,
+            "left": "1%",
+            "skin": "slImage",
+            "src": "imagedrag.png",
+            "top": "0dp",
+            "width": "60dp",
+            "zIndex": 1
+        }, {
+            "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, {});
         var lblSectionTitle = new voltmx.ui.Label({
             "centerY": "50%",
             "id": "lblSectionTitle",
             "isVisible": true,
-            "left": "4%",
-            "skin": "sknLblHeading5",
+            "left": "1%",
+            "skin": "sknLblWhiteHeading5",
             "text": "Label",
             "top": "0",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
@@ -4186,14 +4610,14 @@ define("flxSegSecHdr", [],function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, {});
+        FlexGroup0a043cf8cc66045.add(imgIcon, lblSectionTitle);
         var flxLine = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-            "centerY": "29%",
             "clipBounds": false,
             "focusSkin": "sknFlxLine",
             "height": "1%",
             "id": "flxLine",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
@@ -4207,7 +4631,7 @@ define("flxSegSecHdr", [],function() {
         }, {});
         flxLine.setDefaultUnit(voltmx.flex.DP);
         flxLine.add();
-        flxSegSecHdr.add(lblSectionTitle, flxLine);
+        flxSegSecHdr.add(FlexGroup0a043cf8cc66045, flxLine);
         return flxSegSecHdr;
     }
 })

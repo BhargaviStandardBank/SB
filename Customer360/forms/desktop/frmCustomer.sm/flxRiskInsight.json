@@ -38,7 +38,8 @@
         "flxRiskRate",
         "flxInsight",
         "flxWatchList",
-        "flxBureau"
+        "flxBureau",
+        "flxEnvironmentSocialRisk"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -50,7 +51,7 @@
     "id": "flxRiskInsight",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": true,
+    "isvisible": false,
     "kuid": "c522165678d348b29d505e8d2a6f4874",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",

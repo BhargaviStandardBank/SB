@@ -289,6 +289,16 @@ define('applicationController',{
         voltmx.mvc.registry.add("flxSampleRowTemplate", {
             "viewName": "flxSampleRowTemplate",
             "controllerName": "flxSampleRowTemplateController",
+            "appName": "SimpleLightTouch"
+        });
+        voltmx.mvc.registry.add("flxSectionHeaderTemplate", {
+            "viewName": "flxSectionHeaderTemplate",
+            "controllerName": "flxSectionHeaderTemplateController",
+            "appName": "SimpleLightTouch"
+        });
+        voltmx.mvc.registry.add("flxSampleRowTemplate", {
+            "viewName": "flxSampleRowTemplate",
+            "controllerName": "flxSampleRowTemplateController",
             "appName": "ManageScheme"
         });
         voltmx.mvc.registry.add("flxSectionHeaderTemplate", {
@@ -335,6 +345,11 @@ define('applicationController',{
             "viewName": "frmHome",
             "controllerName": "frmHomeController",
             "appName": "SBCommon"
+        });
+        voltmx.mvc.registry.add("frmSimpleTouch", {
+            "viewName": "frmSimpleTouch",
+            "controllerName": "frmSimpleTouchController",
+            "appName": "SimpleLightTouch"
         });
         voltmx.mvc.registry.add("frmAddScheme", {
             "viewName": "frmAddScheme",
@@ -427,6 +442,9 @@ define('applicationController',{
             "friendlyName": "frmLogin",
             "appName": "StandardBank"
         }).navigate();
+    },
+    makeCall: function(eventobject) {
+        voltmx.phone.dial(eventobject.text);
     }
 });
 define("com/hc/segApprover/SegApproverScheme/userSegApproverSchemeController", [],function() {
@@ -591,7 +609,7 @@ define("com/hcl/SuspensionEntries/SuspensionEntries/userSuspensionEntriesControl
 });
 define("com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesController", ["com/hcl/SuspensionEntries/SuspensionEntries/userSuspensionEntriesController", "com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesControllerActions"], function() {
@@ -1093,14 +1111,13 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
-            "focusSkin": "sknFlxTrans",
-            "height": "8%",
+            "height": "60px",
             "id": "FormHeader",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "100%",
             "zIndex": 1,
@@ -1116,7 +1133,7 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "id": "lblHdr",
             "isVisible": true,
             "left": "24dp",
-            "skin": "sknLblHeading2",
+            "skin": "sknLblHeading2White",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
             "zIndex": 1
@@ -1125,7 +1142,78 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, controller.args[1], "lblHdr"), extendConfig({}, controller.args[2], "lblHdr"));
-        FormHeader.add(lblHdr);
+        var FlexContainer0cfbd412f8d984f = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": false,
+            "height": "100%",
+            "id": "FlexContainer0cfbd412f8d984f",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+            "reverseLayoutDirection": true,
+            "isModalContainer": false,
+            "right": "24dp",
+            "skin": "slFbox",
+            "top": "0dp",
+            "width": "40%",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "FlexContainer0cfbd412f8d984f"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "FlexContainer0cfbd412f8d984f"), extendConfig({}, controller.args[2], "FlexContainer0cfbd412f8d984f"));
+        FlexContainer0cfbd412f8d984f.setDefaultUnit(voltmx.flex.DP);
+        var imgLogout = new voltmx.ui.Image2(extendConfig({
+            "centerY": "50%",
+            "height": "32dp",
+            "id": "imgLogout",
+            "isVisible": true,
+            "right": "0dp",
+            "skin": "slImage",
+            "src": "icon_logout.png",
+            "top": "23dp",
+            "width": "32dp",
+            "zIndex": 1
+        }, controller.args[0], "imgLogout"), extendConfig({
+            "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "imgLogout"), extendConfig({}, controller.args[2], "imgLogout"));
+        var FlexContainer0c5eafe3e5fdf45 = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "centerY": "50%",
+            "clipBounds": false,
+            "height": "80%",
+            "id": "FlexContainer0c5eafe3e5fdf45",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "isModalContainer": false,
+            "right": "25dp",
+            "skin": "sknFlxWhite20Opac",
+            "top": "35dp",
+            "width": "1px",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "FlexContainer0c5eafe3e5fdf45"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "FlexContainer0c5eafe3e5fdf45"), extendConfig({}, controller.args[2], "FlexContainer0c5eafe3e5fdf45"));
+        FlexContainer0c5eafe3e5fdf45.setDefaultUnit(voltmx.flex.DP);
+        FlexContainer0c5eafe3e5fdf45.add();
+        var Label0b2fdf6dd443b44 = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "id": "Label0b2fdf6dd443b44",
+            "isVisible": true,
+            "right": "24dp",
+            "skin": "sknLblHeading2White",
+            "text": "UserName",
+            "top": "13dp",
+            "width": voltmx.flex.USE_PREFERRED_SIZE,
+            "zIndex": 1
+        }, controller.args[0], "Label0b2fdf6dd443b44"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "Label0b2fdf6dd443b44"), extendConfig({}, controller.args[2], "Label0b2fdf6dd443b44"));
+        FlexContainer0cfbd412f8d984f.add(imgLogout, FlexContainer0c5eafe3e5fdf45, Label0b2fdf6dd443b44);
+        FormHeader.add(lblHdr, FlexContainer0cfbd412f8d984f);
         FormHeader.compInstData = {}
         return FormHeader;
     }
@@ -1135,7 +1223,7 @@ define("com/hcl/labelField/LabelsField/userLabelsFieldController", [],function()
 });
 define("com/hcl/labelField/LabelsField/LabelsFieldControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/labelField/LabelsField/LabelsFieldController", ["com/hcl/labelField/LabelsField/userLabelsFieldController", "com/hcl/labelField/LabelsField/LabelsFieldControllerActions"], function() {
@@ -1337,7 +1425,7 @@ define("com/hcl/lblText/LabelTextBox/userLabelTextBoxController", [],function() 
 });
 define("com/hcl/lblText/LabelTextBox/LabelTextBoxControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/lblText/LabelTextBox/LabelTextBoxController", ["com/hcl/lblText/LabelTextBox/userLabelTextBoxController", "com/hcl/lblText/LabelTextBox/LabelTextBoxControllerActions"], function() {
@@ -1419,7 +1507,7 @@ define("com/hcl/lblTextArea/LabelTextArea/userLabelTextAreaController", [],funct
 });
 define("com/hcl/lblTextArea/LabelTextArea/LabelTextAreaControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/lblTextArea/LabelTextArea/LabelTextAreaController", ["com/hcl/lblTextArea/LabelTextArea/userLabelTextAreaController", "com/hcl/lblTextArea/LabelTextArea/LabelTextAreaControllerActions"], function() {
@@ -1581,255 +1669,261 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             ANIMATION_DURATION: 0.25
         },
         masterData: [{
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Simple Light Touch(SLT)",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Loan Eligibility",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmSuspendList"
-                    }
-                }, {
-                    lblMenuItem: "Scored Offer View(PPB)",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmRequestHistory"
-                    }
-                }, {
-                    lblMenuItem: "Scored Offer View(BCB)",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmAddSuspend"
-                    }
-                }, {
-                    lblMenuItem: "Offer Manger",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmRemoveSuspend"
-                    }
-                }, {
-                    lblMenuItem: "Scoring API",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmApprovers"
-                    }
-                }]
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Simple Light Touch(SLT)",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Loan Eligibility",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Complex Lending",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Originate Application",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmSuspendList"
-                    }
-                }, ]
+                lblMenuItem: "Scored Offer View(PPB)",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRequestHistory"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_view.png",
-                    lblSectionTitle: "Customer 360",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "View Customer Info",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "View Application",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
+                lblMenuItem: "Scored Offer View(BCB)",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmAddSuspend"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Financial Spreading & Risk Rating",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Spread Financials",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "Rate Counterparty",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "View BBRS Ratings",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "BBRS Insights",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
+                lblMenuItem: "Offer Manger",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRemoveSuspend"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Queue Manager",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "POR Queues",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "Branch (all)",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "RWAE (all)",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "RWAE my queue",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
+                lblMenuItem: "Scoring API",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmApprovers"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Complex Lending",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Originate Application",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
+            }, ]
+        }, {
+            header: {
+                imgIcon: "icon_view.png",
+                lblSectionTitle: "Customer 360",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "View Customer Info",
+                formID: {
+                    "appName": "Customer360",
+                    "appInfo": "Customer 360",
+                    "friendlyName": "frmCustomer"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Suspend List",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Suspend List",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmSuspendList"
-                    }
-                }, {
-                    lblMenuItem: "Request History",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmRequestHistory"
-                    }
-                }, {
-                    lblMenuItem: "Add Suspend",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmAddSuspend"
-                    }
-                }, {
-                    lblMenuItem: "Remove Suspend",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmRemoveSuspend"
-                    }
-                }, {
-                    lblMenuItem: "Approvers",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmApprovers"
-                    }
-                }]
+                lblMenuItem: "View Application",
+                formID: {
+                    "appName": "Customer360",
+                    "appInfo": "Customer 360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_financialrisk.png",
+                lblSectionTitle: "Financial Spreading /n & Risk Rating",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Spread Financials",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_manage.png",
-                    lblSectionTitle: "Scheme Maintenance",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Scheme List",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmSchemeList"
-                    }
-                }, {
-                    lblMenuItem: "Request History",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmSchemeReqHistory"
-                    }
-                }, {
-                    lblMenuItem: "Add Scheme",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmAddScheme"
-                    }
-                }, {
-                    lblMenuItem: "Remove Scheme",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmRemoveScheme"
-                    }
-                }, {
-                    lblMenuItem: "Approvers",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmSchemeApprover"
-                    }
-                }]
+                lblMenuItem: "Rate Counterparty",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Reporting / Dashboard",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "SLT Dashboard",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "CAMS Dashboard",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
+                lblMenuItem: "View BBRS Ratings",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Credit Solution Engineering",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Demand Planning App",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "Dev Ops Board",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
-            }
-            //       {
-            //         header: { imgIcon: "icon_suspend.png",lblSectionTitle: "Home", isExpanded: false,
-            //                  formID: { "appName": "StandardBank", "friendlyName": "frmSBHome" }
-            //                 },
-            //       },
-        ],
+                lblMenuItem: "BBRS Insights",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_queue.png",
+                lblSectionTitle: "Queue Manager",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "POR Queues",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Branch (all)",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "RWAE (all)",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "RWAE my queue",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Suspend List",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Suspend List",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
+            }, {
+                lblMenuItem: "Request History",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRequestHistory"
+                }
+            }, {
+                lblMenuItem: "Add Suspend",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmAddSuspend"
+                }
+            }, {
+                lblMenuItem: "Remove Suspend",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRemoveSuspend"
+                }
+            }, {
+                lblMenuItem: "Approvers",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmApprovers"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_manage.png",
+                lblSectionTitle: "Scheme Maintenance",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Scheme List",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmSchemeList"
+                }
+            }, {
+                lblMenuItem: "Request History",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmSchemeReqHistory"
+                }
+            }, {
+                lblMenuItem: "Add Scheme",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmAddScheme"
+                }
+            }, {
+                lblMenuItem: "Remove Scheme",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmRemoveScheme"
+                }
+            }, {
+                lblMenuItem: "Approvers",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmSchemeApprover"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Reporting / Dashboard",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "SLT Dashboard",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "CAMS Dashboard",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Credit Solution Engineering",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Demand Planning App",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Dev Ops Board",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_home.png",
+                lblSectionTitle: "Home",
+                isExpanded: false,
+                formID: {
+                    "appName": "StandardBank",
+                    "friendlyName": "frmSBHome"
+                }
+            },
+        }, ],
         constructor: function() {
             this.view.flxUserDetails.isVisible = false;
             this.view.preShow = this.invokePreShow.bind(this);
@@ -1862,7 +1956,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             //         {}
             //     );
             this.isCollapsed = false;
-            this.view.flxUserDetails.isVisible = true;
+            //this.view.flxUserDetails.isVisible = true;
             //this._updateMenuToIconAndText();
         },
         collapseSidebar: function() {
@@ -1985,7 +2079,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
                 return new Promise((resolve, reject) => {
                     try {
                         const nav = new voltmx.mvc.Navigation(selectedItem.formID);
-                        nav.navigate();
+                        nav.navigate(selectedItem);
                         resolve();
                     } catch (e) {
                         // Throwing exception instead of print for better debugging
@@ -2022,7 +2116,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "60dp",
             "zIndex": 10,
@@ -2042,7 +2136,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxWhiteBrd",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "60dp",
             "zIndex": 10,
@@ -2091,7 +2185,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "isVisible": true,
             "left": "30dp",
             "right": "0dp",
-            "skin": "sknLblHeading2",
+            "skin": "sknLblHeading2White",
             "text": "Standard Bank",
             "zIndex": 1
         }, controller.args[0], "Label0cff1e13b3a6943"), extendConfig({
@@ -2162,7 +2256,6 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
                 "appName": "SBCommon",
                 "friendlyName": "flxRowItems"
             }),
-            "sectionHeaderSkin": "sliPhoneSegmentHeader",
             "sectionHeaderTemplate": kony.mvc.resolveNameFromContext({
                 "appName": "SBCommon",
                 "friendlyName": "flxSegSecHdr"
@@ -2198,7 +2291,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "focusSkin": "sknFlxTrans",
             "height": "64dp",
             "id": "filxHome",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
@@ -2304,7 +2397,7 @@ define("com/hcl/popup/AlertUp/userAlertUpController", [],function() {
 });
 define("com/hcl/popup/AlertUp/AlertUpControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/popup/AlertUp/AlertUpController", ["com/hcl/popup/AlertUp/userAlertUpController", "com/hcl/popup/AlertUp/AlertUpControllerActions"], function() {
@@ -2743,7 +2836,7 @@ define("com/hcl/segHdr/segHeader/usersegHeaderController", [],function() {
 });
 define("com/hcl/segHdr/segHeader/segHeaderControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/segHdr/segHeader/segHeaderController", ["com/hcl/segHdr/segHeader/usersegHeaderController", "com/hcl/segHdr/segHeader/segHeaderControllerActions"], function() {
@@ -3186,7 +3279,7 @@ define("com/hcl/srchTextBox/SrchTextBox/userSrchTextBoxController", [],function(
 });
 define("com/hcl/srchTextBox/SrchTextBox/SrchTextBoxControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/srchTextBox/SrchTextBox/SrchTextBoxController", ["com/hcl/srchTextBox/SrchTextBox/userSrchTextBoxController", "com/hcl/srchTextBox/SrchTextBox/SrchTextBoxControllerActions"], function() {
@@ -3453,7 +3546,7 @@ define("com/riskrating/chart/RiskRateChart/userRiskRateChartController", [],func
 });
 define("com/riskrating/chart/RiskRateChart/RiskRateChartControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/riskrating/chart/RiskRateChart/RiskRateChartController", ["com/riskrating/chart/RiskRateChart/userRiskRateChartController", "com/riskrating/chart/RiskRateChart/RiskRateChartControllerActions"], function() {
@@ -5003,7 +5096,7 @@ define("com/konymp/linechart/userlinechartController", ['com/konymp/linechart/ko
 });
 define("com/konymp/linechart/linechartControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/konymp/linechart/linechartController", ["com/konymp/linechart/userlinechartController", "com/konymp/linechart/linechartControllerActions"], function() {
@@ -6661,7 +6754,7 @@ define("SBCommon/flxRowItems", [],function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxRow",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -6675,7 +6768,7 @@ define("SBCommon/flxRowItems", [],function() {
             "id": "lblMenuItem",
             "isVisible": true,
             "left": "60dp",
-            "skin": "sknLblFormLevel",
+            "skin": "sknLblWhiteFormLevel",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
             "zIndex": 1
@@ -6699,7 +6792,7 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "layoutType": voltmx.flex.FLOW_VERTICAL,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxBGEDF5FF",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -6718,7 +6811,7 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "layoutType": voltmx.flex.FLOW_HORIZONTAL,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "slFbox",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "appName": "SBCommon"
@@ -6747,7 +6840,7 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "id": "lblSectionTitle",
             "isVisible": true,
             "left": "1%",
-            "skin": "sknLblHeading5",
+            "skin": "sknLblWhiteHeading5",
             "text": "Label",
             "top": "0",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
@@ -6764,7 +6857,7 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "focusSkin": "sknFlxLine",
             "height": "1%",
             "id": "flxLine",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
@@ -6780,6 +6873,130 @@ define("SBCommon/flxSegSecHdr", [],function() {
         flxLine.add();
         flxSegSecHdr.add(FlexGroup0a043cf8cc66045, flxLine);
         return flxSegSecHdr;
+    }
+});
+define("SimpleLightTouch/flxSampleRowTemplate", [],function() {
+    return function(controller) {
+        var flxSampleRowTemplate = new voltmx.ui.FlexContainer({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": true,
+            "height": "75dp",
+            "id": "flxSampleRowTemplate",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "isModalContainer": false,
+            "skin": "sknSampleRowTemplate",
+            "width": "100%",
+            "appName": "SimpleLightTouch"
+        }, {
+            "paddingInPixel": false
+        }, {});
+        flxSampleRowTemplate.setDefaultUnit(voltmx.flex.DP);
+        var lblHeading = new voltmx.ui.Label({
+            "id": "lblHeading",
+            "isVisible": true,
+            "left": "4%",
+            "maxWidth": "50%",
+            "skin": "sknLblRowHeading",
+            "text": "Heading",
+            "textStyle": {},
+            "top": "8.00%",
+            "width": "45%",
+            "zIndex": 1
+        }, {
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, {});
+        var lblDescription = new voltmx.ui.Label({
+            "bottom": "10%",
+            "id": "lblDescription",
+            "isVisible": true,
+            "left": "4%",
+            "maxNumberOfLines": 3,
+            "maxWidth": "70%",
+            "skin": "sknLblDescription",
+            "text": "Sub-Heading",
+            "textStyle": {},
+            "textTruncatePosition": constants.TEXT_TRUNCATE_NONE,
+            "top": "42%",
+            "width": "70%",
+            "zIndex": 1
+        }, {
+            "contentAlignment": constants.CONTENT_ALIGN_TOP_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, {});
+        var lblTime = new voltmx.ui.Label({
+            "id": "lblTime",
+            "isVisible": true,
+            "right": "9%",
+            "skin": "sknLblTimeStamp",
+            "text": "Timestamp",
+            "textStyle": {},
+            "top": "10%",
+            "width": voltmx.flex.USE_PREFERRED_SIZE,
+            "zIndex": 1
+        }, {
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, {});
+        var lblStrip = new voltmx.ui.Label({
+            "height": "100%",
+            "id": "lblStrip",
+            "isVisible": true,
+            "left": "0dp",
+            "maxWidth": "1%",
+            "skin": "sknLblStrip",
+            "textStyle": {},
+            "top": "0dp",
+            "width": voltmx.flex.USE_PREFERRED_SIZE,
+            "zIndex": 1
+        }, {
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, {});
+        flxSampleRowTemplate.add(lblHeading, lblDescription, lblTime, lblStrip);
+        return flxSampleRowTemplate;
+    }
+});
+define("SimpleLightTouch/flxSectionHeaderTemplate", [],function() {
+    return function(controller) {
+        var flxSectionHeaderTemplate = new voltmx.ui.FlexContainer({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": true,
+            "height": "45dp",
+            "id": "flxSectionHeaderTemplate",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "isModalContainer": false,
+            "skin": "sknSampleSectionHeaderTemplate",
+            "width": "100%",
+            "appName": "SimpleLightTouch"
+        }, {
+            "paddingInPixel": false
+        }, {});
+        flxSectionHeaderTemplate.setDefaultUnit(voltmx.flex.DP);
+        var lblHeading = new voltmx.ui.Label({
+            "centerY": "50%",
+            "id": "lblHeading",
+            "isVisible": true,
+            "left": "4%",
+            "maxWidth": "50%",
+            "skin": "sknSectionHeaderLabelSkin",
+            "text": "Heading",
+            "textStyle": {},
+            "width": "75%",
+            "zIndex": 1
+        }, {
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, {});
+        flxSectionHeaderTemplate.add(lblHeading);
+        return flxSectionHeaderTemplate;
     }
 });
 define("ManageScheme/CopyFBox0g0122a027e2e45", [],function() {
@@ -7755,6 +7972,34 @@ define("SBCommon/flxSegSecHdrController", ["SBCommon/userflxSegSecHdrController"
     return voltmx.visualizer.mixinControllerActions(controller, controllerActions);
 });
 
+define("SimpleLightTouch/userflxSampleRowTemplateController", {
+    //Type your controller code here 
+});
+define("SimpleLightTouch/flxSampleRowTemplateControllerActions", {
+    /*
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+    */
+});
+define("SimpleLightTouch/flxSampleRowTemplateController", ["SimpleLightTouch/userflxSampleRowTemplateController", "SimpleLightTouch/flxSampleRowTemplateControllerActions"], function() {
+    var controller = require("SimpleLightTouch/userflxSampleRowTemplateController");
+    var controllerActions = ["SimpleLightTouch/flxSampleRowTemplateControllerActions"];
+    return voltmx.visualizer.mixinControllerActions(controller, controllerActions);
+});
+
+define("SimpleLightTouch/userflxSectionHeaderTemplateController", {
+    //Type your controller code here 
+});
+define("SimpleLightTouch/flxSectionHeaderTemplateControllerActions", {
+    /*
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+    */
+});
+define("SimpleLightTouch/flxSectionHeaderTemplateController", ["SimpleLightTouch/userflxSectionHeaderTemplateController", "SimpleLightTouch/flxSectionHeaderTemplateControllerActions"], function() {
+    var controller = require("SimpleLightTouch/userflxSectionHeaderTemplateController");
+    var controllerActions = ["SimpleLightTouch/flxSectionHeaderTemplateControllerActions"];
+    return voltmx.visualizer.mixinControllerActions(controller, controllerActions);
+});
+
 define("ManageScheme/userCopyFBox0g0122a027e2e45Controller", {
     //Type your controller code here 
 });
@@ -8002,6 +8247,15 @@ define("SBCommon/navigation/NavigationController", {
     //Add your navigation controller code here.
 });
 
+define("SimpleLightTouch/navigation/NavigationModel", { 
+    "Application": {},
+    "Forms" : {},
+    "UIModules" : {}
+});
+define("SimpleLightTouch/navigation/NavigationController", {
+    //Add your navigation controller code here.
+});
+
 define("ManageScheme/navigation/NavigationModel", { 
     "Application": {},
     "Forms" : {},
@@ -8038,6 +8292,6 @@ define("StandardBank/navigation/NavigationController", {
     //Add your navigation controller code here.
 });
 
-require(['applicationController','com/hc/segApprover/SegApproverScheme/SegApproverSchemeController','com/hc/segApprover/SegApproverScheme/SegApproverScheme','com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesController','com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntries','com/hcl/addSuspend/AddSuspend/AddSuspendController','com/hcl/addSuspend/AddSuspend/AddSuspend','com/hcl/dropDown/DropDown/DropDownController','com/hcl/dropDown/DropDown/DropDown','com/hcl/hdr/FormHeader/FormHeaderController','com/hcl/hdr/FormHeader/FormHeader','com/hcl/labelField/LabelsField/LabelsFieldController','com/hcl/labelField/LabelsField/LabelsField','com/hcl/lblList/LabelList/LabelListController','com/hcl/lblList/LabelList/LabelList','com/hcl/lblText/LabelTextBox/LabelTextBoxController','com/hcl/lblText/LabelTextBox/LabelTextBox','com/hcl/lblTextArea/LabelTextArea/LabelTextAreaController','com/hcl/lblTextArea/LabelTextArea/LabelTextArea','com/hcl/listData/ListBoxData/ListBoxDataController','com/hcl/listData/ListBoxData/ListBoxData','com/hcl/menu/SideMenu/SideMenuController','com/hcl/menu/SideMenu/SideMenu','com/hcl/popup/AlertUp/AlertUpController','com/hcl/popup/AlertUp/AlertUp','com/hcl/schemeList/SchemeList/SchemeListController','com/hcl/schemeList/SchemeList/SchemeList','com/hcl/segDropDown/SegDropDown/SegDropDownController','com/hcl/segDropDown/SegDropDown/SegDropDown','com/hcl/segHdr/segHeader/segHeaderController','com/hcl/segHdr/segHeader/segHeader','com/hcl/segSuspend/SegSuspendList/SegSuspendListController','com/hcl/segSuspend/SegSuspendList/SegSuspendList','com/hcl/srchTextBox/SrchTextBox/SrchTextBoxController','com/hcl/srchTextBox/SrchTextBox/SrchTextBox','com/hcl/subHdr/SubHdr/SubHdrController','com/hcl/subHdr/SubHdr/SubHdr','com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdrController','com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdr','com/riskrating/chart/RiskRateChart/RiskRateChartController','com/riskrating/chart/RiskRateChart/RiskRateChart','com/konymp/halfdonutup/analytics','com/konymp/halfdonutup/konyLogger','com/konymp/halfdonutup/halfdonutupController','com/konymp/halfdonutup/halfdonutup','com/konymp/halfdonutup/halfdonutupConfig','com/konymp/linechart/analytics','com/konymp/linechart/konyLogger','com/konymp/linechart/linechartController','com/konymp/linechart/linechart','com/konymp/linechart/linechartConfig','com/konymp/Login/LoginController','com/konymp/Login/Login','SBCommon/flxSampleRowTemplate','SBCommon/flxSectionHeaderTemplate','SBCommon/flxApprover','SBCommon/flxDropDown','SBCommon/flxSchemeList','SBCommon/flxRowSuspend','SBCommon/flxSuspensionEntry','SBCommon/flxSecHdrSuspend','SBCommon/flxRow','SBCommon/flxRowItems','SBCommon/flxSegSecHdr','ManageScheme/CopyFBox0g0122a027e2e45','ManageScheme/FBox0d362f77aee3647','ManageScheme/flxSampleRowTemplate','ManageScheme/flxSectionHeaderTemplate','Customer360/flxSampleRowTemplate','Customer360/flxSectionHeaderTemplate','SuspendList/CopyFBox0a97028e0935b46','SuspendList/CopyFBox0b0f2be1354c748','SuspendList/CopyFBox0d3d990ec800b4e','SuspendList/CopyFBox0d55305060deb43','SuspendList/CopyFBox0ec887391a0be42','SuspendList/CopyFBox0e4f6c0b85bd540','SuspendList/FBox0d0966f03c9db44','SuspendList/flxSampleRowTemplate','SuspendList/flxSectionHeaderTemplate','StandardBank/flxSampleRowTemplate','StandardBank/flxSectionHeaderTemplate','SBCommon/flxSampleRowTemplateController','SBCommon/flxSectionHeaderTemplateController','SBCommon/flxApproverController','SBCommon/flxDropDownController','SBCommon/flxSchemeListController','SBCommon/flxRowSuspendController','SBCommon/flxSuspensionEntryController','SBCommon/flxSecHdrSuspendController','SBCommon/flxRowController','SBCommon/flxRowItemsController','SBCommon/flxSegSecHdrController','ManageScheme/CopyFBox0g0122a027e2e45Controller','ManageScheme/FBox0d362f77aee3647Controller','ManageScheme/flxSampleRowTemplateController','ManageScheme/flxSectionHeaderTemplateController','Customer360/flxSampleRowTemplateController','Customer360/flxSectionHeaderTemplateController','SuspendList/CopyFBox0a97028e0935b46Controller','SuspendList/CopyFBox0b0f2be1354c748Controller','SuspendList/CopyFBox0d3d990ec800b4eController','SuspendList/CopyFBox0d55305060deb43Controller','SuspendList/CopyFBox0ec887391a0be42Controller','SuspendList/CopyFBox0e4f6c0b85bd540Controller','SuspendList/FBox0d0966f03c9db44Controller','SuspendList/flxSampleRowTemplateController','SuspendList/flxSectionHeaderTemplateController','StandardBank/flxSampleRowTemplateController','StandardBank/flxSectionHeaderTemplateController','SBCommon/navigation/NavigationModel','SBCommon/navigation/NavigationController','ManageScheme/navigation/NavigationModel','ManageScheme/navigation/NavigationController','Customer360/navigation/NavigationModel','Customer360/navigation/NavigationController','SuspendList/navigation/NavigationModel','SuspendList/navigation/NavigationController','StandardBank/navigation/NavigationModel','StandardBank/navigation/NavigationController'], function(){});
+require(['applicationController','com/hc/segApprover/SegApproverScheme/SegApproverSchemeController','com/hc/segApprover/SegApproverScheme/SegApproverScheme','com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesController','com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntries','com/hcl/addSuspend/AddSuspend/AddSuspendController','com/hcl/addSuspend/AddSuspend/AddSuspend','com/hcl/dropDown/DropDown/DropDownController','com/hcl/dropDown/DropDown/DropDown','com/hcl/hdr/FormHeader/FormHeaderController','com/hcl/hdr/FormHeader/FormHeader','com/hcl/labelField/LabelsField/LabelsFieldController','com/hcl/labelField/LabelsField/LabelsField','com/hcl/lblList/LabelList/LabelListController','com/hcl/lblList/LabelList/LabelList','com/hcl/lblText/LabelTextBox/LabelTextBoxController','com/hcl/lblText/LabelTextBox/LabelTextBox','com/hcl/lblTextArea/LabelTextArea/LabelTextAreaController','com/hcl/lblTextArea/LabelTextArea/LabelTextArea','com/hcl/listData/ListBoxData/ListBoxDataController','com/hcl/listData/ListBoxData/ListBoxData','com/hcl/menu/SideMenu/SideMenuController','com/hcl/menu/SideMenu/SideMenu','com/hcl/popup/AlertUp/AlertUpController','com/hcl/popup/AlertUp/AlertUp','com/hcl/schemeList/SchemeList/SchemeListController','com/hcl/schemeList/SchemeList/SchemeList','com/hcl/segDropDown/SegDropDown/SegDropDownController','com/hcl/segDropDown/SegDropDown/SegDropDown','com/hcl/segHdr/segHeader/segHeaderController','com/hcl/segHdr/segHeader/segHeader','com/hcl/segSuspend/SegSuspendList/SegSuspendListController','com/hcl/segSuspend/SegSuspendList/SegSuspendList','com/hcl/srchTextBox/SrchTextBox/SrchTextBoxController','com/hcl/srchTextBox/SrchTextBox/SrchTextBox','com/hcl/subHdr/SubHdr/SubHdrController','com/hcl/subHdr/SubHdr/SubHdr','com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdrController','com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdr','com/riskrating/chart/RiskRateChart/RiskRateChartController','com/riskrating/chart/RiskRateChart/RiskRateChart','com/konymp/halfdonutup/analytics','com/konymp/halfdonutup/konyLogger','com/konymp/halfdonutup/halfdonutupController','com/konymp/halfdonutup/halfdonutup','com/konymp/halfdonutup/halfdonutupConfig','com/konymp/linechart/analytics','com/konymp/linechart/konyLogger','com/konymp/linechart/linechartController','com/konymp/linechart/linechart','com/konymp/linechart/linechartConfig','com/konymp/Login/LoginController','com/konymp/Login/Login','SBCommon/flxSampleRowTemplate','SBCommon/flxSectionHeaderTemplate','SBCommon/flxApprover','SBCommon/flxDropDown','SBCommon/flxSchemeList','SBCommon/flxRowSuspend','SBCommon/flxSuspensionEntry','SBCommon/flxSecHdrSuspend','SBCommon/flxRow','SBCommon/flxRowItems','SBCommon/flxSegSecHdr','SimpleLightTouch/flxSampleRowTemplate','SimpleLightTouch/flxSectionHeaderTemplate','ManageScheme/CopyFBox0g0122a027e2e45','ManageScheme/FBox0d362f77aee3647','ManageScheme/flxSampleRowTemplate','ManageScheme/flxSectionHeaderTemplate','Customer360/flxSampleRowTemplate','Customer360/flxSectionHeaderTemplate','SuspendList/CopyFBox0a97028e0935b46','SuspendList/CopyFBox0b0f2be1354c748','SuspendList/CopyFBox0d3d990ec800b4e','SuspendList/CopyFBox0d55305060deb43','SuspendList/CopyFBox0ec887391a0be42','SuspendList/CopyFBox0e4f6c0b85bd540','SuspendList/FBox0d0966f03c9db44','SuspendList/flxSampleRowTemplate','SuspendList/flxSectionHeaderTemplate','StandardBank/flxSampleRowTemplate','StandardBank/flxSectionHeaderTemplate','SBCommon/flxSampleRowTemplateController','SBCommon/flxSectionHeaderTemplateController','SBCommon/flxApproverController','SBCommon/flxDropDownController','SBCommon/flxSchemeListController','SBCommon/flxRowSuspendController','SBCommon/flxSuspensionEntryController','SBCommon/flxSecHdrSuspendController','SBCommon/flxRowController','SBCommon/flxRowItemsController','SBCommon/flxSegSecHdrController','SimpleLightTouch/flxSampleRowTemplateController','SimpleLightTouch/flxSectionHeaderTemplateController','ManageScheme/CopyFBox0g0122a027e2e45Controller','ManageScheme/FBox0d362f77aee3647Controller','ManageScheme/flxSampleRowTemplateController','ManageScheme/flxSectionHeaderTemplateController','Customer360/flxSampleRowTemplateController','Customer360/flxSectionHeaderTemplateController','SuspendList/CopyFBox0a97028e0935b46Controller','SuspendList/CopyFBox0b0f2be1354c748Controller','SuspendList/CopyFBox0d3d990ec800b4eController','SuspendList/CopyFBox0d55305060deb43Controller','SuspendList/CopyFBox0ec887391a0be42Controller','SuspendList/CopyFBox0e4f6c0b85bd540Controller','SuspendList/FBox0d0966f03c9db44Controller','SuspendList/flxSampleRowTemplateController','SuspendList/flxSectionHeaderTemplateController','StandardBank/flxSampleRowTemplateController','StandardBank/flxSectionHeaderTemplateController','SBCommon/navigation/NavigationModel','SBCommon/navigation/NavigationController','SimpleLightTouch/navigation/NavigationModel','SimpleLightTouch/navigation/NavigationController','ManageScheme/navigation/NavigationModel','ManageScheme/navigation/NavigationController','Customer360/navigation/NavigationModel','Customer360/navigation/NavigationController','SuspendList/navigation/NavigationModel','SuspendList/navigation/NavigationController','StandardBank/navigation/NavigationModel','StandardBank/navigation/NavigationController'], function(){});
 define("sparequirefileslist", function(){});
 

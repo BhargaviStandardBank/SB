@@ -3447,7 +3447,68 @@ Object.defineProperty(window, 'constants', {configurable:false, enumerable:false
         {keey:'WIDGET_ALIGN_TOP_LEFT', value:'topleft'},
         {keey:'WIDGET_ALIGN_TOP_RIGHT', value:'topright'},
         {keey:'WIDGET_DIRECTION_LTR', value:'ltr'},
-        {keey:'WIDGET_DIRECTION_RTL', value:'rtl'}
+        {keey:'WIDGET_DIRECTION_RTL', value:'rtl'},
+        {keey:'HTTP_STATUS', value:{
+            NO_CONTENT: 204,
+            BAD_REQUEST: 400,
+            INTERNAL_SERVER_ERROR: 500,
+            TOO_MANY_REQUESTS: 429,
+            OK: 200,
+            INFORMATIONAL_RESPONSES: 100,
+            REDIRECTION_MESSAGES: 399
+        }},
+        {keey:'VALIDATION_ERRORS', value:{
+            ERROR_NAME: 'INVALID_INPUT_EXCEPTION',
+            ERROR_CODE: 101,
+            ERROR_MESSAGE: {
+                URL_MESSAGE: "url is required and must be a non-empty string",
+                CONFIG_MESSAGE: "config must be an object",
+                METHOD_MESSAGE: "method must be a valid HTTP method (GET, POST, etc.)",
+                HEADERS_MESSAGE: "headers must be an object",
+                BODY_MESSAGE: "body must be a string, object, or null",
+                RETRY_MESSAGE: "retry must be an object",
+                RETRY_ENABLE_MESSAGE: "retry.enable must be a boolean",
+                RETRY_VERIFY_NO_CONTENT_MESSAGE: "retry.verifyNoContent must be a boolean",
+            }
+        }},
+        {keey:'IO_EXCEPTION', value:{
+            ERROR_CODE: 102,
+            ERROR_MESSAGE: {
+                CONNECTION_ERROR_MESSAGE: "Connection Error"
+            },
+            ERROR_NAME: 'IO_EXCEPTION'
+        }},
+        {keey:'HTTP_EXCEPTION', value:{
+            ERROR_MESSAGE: {
+                UNAUTHORIZED_CONNECTION_MESSAGE: "Unauthorized Connection"
+            },
+            ERROR_NAME: 'HTTP_EXCEPTION'
+        }},
+        {keey:'INVALID_SSE_RESPONSE_EXCEPTION', value:{
+            ERROR_CODE: 104,
+            ERROR_MESSAGE: {
+                INVALID_SSE_RESPONSE_MESSAGE: "Invalid SSE response: Content-Type is not text/event-stream"
+            },
+            ERROR_NAME: 'INVALID_SSE_RESPONSE_EXCEPTION'
+        }},
+        {keey:'UNKNOWN_EXCEPTION', value:{
+            ERROR_CODE: 103,
+            ERROR_MESSAGE: {
+                UNKNOWN_ERROR_MESSAGE: "An unexpected error occurred while processing the EventSource"
+            },
+            ERROR_NAME: 'UNKNOWN_EXCEPTION'
+        }},
+        {keey:'HANDLER_ERROR_MESSAGE', value: "Expected a callback function to register or null to unregister, but received"},
+        {keey:'CONTENT_TYPE', value: 'content-type'},
+        {keey:'TEXT_EVENT_STREAM', value: 'text/event-stream'},
+        {keey:'RETRIABLE_HTTP_ERROR', value: 'Retriable HTTP error encountered.'},
+        {keey:'STATUS', value:'Status'},
+        {keey:'FETCH_EVENT_BUNDLE_SOURCE_JS', value: 'fetch-eventsource-bundle-js library is not loaded'},
+        {keey:'UNKNOWN_ERROR', value: 'Unknown error'},
+        {keey:'CONNECTION_CLOSED', value: 'Connection closed'},
+        {keey:'HTTP_ERROR', value: 'HTTP error'},
+        {keey:'SERVER_CLOSED_CONNECTION', value: 'Server closed connection'},
+        {keey:'VOLTMX_EVENT_SOURCE', value: "voltmx.net.EventSource: "}
     ]);
 
     return _ns;

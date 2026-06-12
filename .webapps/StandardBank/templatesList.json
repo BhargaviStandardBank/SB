@@ -3,6 +3,7 @@
         "formslist": {
             "mvcFormObjects": [
                 "SBCommon.frmHome",
+                "SimpleLightTouch.frmSimpleTouch",
                 "ManageScheme.frmAddScheme",
                 "ManageScheme.frmRemoveScheme",
                 "ManageScheme.frmSchHisDetails",
@@ -55,6 +56,8 @@
                 "SBCommon.TempSegRowInternalExpo",
                 "SBCommon.TempSegRowItems",
                 "SBCommon.TempSegSecHdr",
+                "SimpleLightTouch.SampleRowTemplate",
+                "SimpleLightTouch.SampleSectionHeaderTemplate",
                 "ManageScheme.SampleRowTemplate",
                 "ManageScheme.SampleSectionHeaderTemplate",
                 "com.konymp.halfdonutup",

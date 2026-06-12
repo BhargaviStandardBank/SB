@@ -8,7 +8,7 @@ define("Customer360/frmCustomer", function() {
                 "height": "100%",
                 "id": "flxMain",
                 "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
@@ -20,22 +20,6 @@ define("Customer360/frmCustomer", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBdr",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
             var SideMenu = new com.hcl.menu.SideMenu({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "focusSkin": "sknFlxTrans",
@@ -48,17 +32,23 @@ define("Customer360/frmCustomer", function() {
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
                 "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
+                "width": "60dp",
+                "zIndex": 10,
                 "appName": "SBCommon",
-                "overrides": {}
+                "overrides": {
+                    "imgLogo": {
+                        "src": "sblogo.png"
+                    },
+                    "imgLogout": {
+                        "src": "icon_logout.png"
+                    }
+                }
             }, {
                 "paddingInPixel": false,
                 "overrides": {}
             }, {
                 "overrides": {}
             });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexScrollContainer({
                 "allowHorizontalBounce": false,
                 "allowVerticalBounce": true,
@@ -71,13 +61,13 @@ define("Customer360/frmCustomer", function() {
                 "id": "flxRight",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
+                "left": "60dp",
                 "pagingEnabled": false,
+                "right": "0dp",
                 "scrollDirection": voltmx.flex.SCROLL_VERTICAL,
                 "skin": "sknFlxSrcTrans",
                 "top": "0dp",
                 "verticalScrollIndicator": true,
-                "width": "85%",
                 "zIndex": 1
             }, {
                 "paddingInPixel": false
@@ -85,26 +75,21 @@ define("Customer360/frmCustomer", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "8%",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
                 "overrides": {
-                    "FormHeader": {
-                        "centerY": "viz.val_cleared",
-                        "top": "0dp"
-                    },
-                    "lblHdr": {
-                        "text": "Customer Profile"
+                    "imgLogout": {
+                        "src": "icon_logout.png"
                     }
                 }
             }, {
@@ -121,7 +106,7 @@ define("Customer360/frmCustomer", function() {
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
                 "left": "24dp",
                 "isModalContainer": false,
-                "top": "0dp",
+                "top": "24dp",
                 "width": "96%",
                 "zIndex": 1,
                 "appName": "Customer360"
@@ -175,6 +160,60 @@ define("Customer360/frmCustomer", function() {
             }, {
                 "overrides": {}
             });
+            var flxSrch = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "48dp",
+                "id": "flxSrch",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "8dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxSrch.setDefaultUnit(voltmx.flex.DP);
+            var SrchTextBox = new com.hcl.srchTextBox.SrchTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "focusSkin": "slFFocusbox",
+                "height": "100%",
+                "id": "SrchTextBox",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "24dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTextBox",
+                "top": "0dp",
+                "width": "63%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "SrchTextBox": {
+                        "height": "100%",
+                        "left": "24dp",
+                        "top": "0dp",
+                        "width": "63%"
+                    },
+                    "imgSrch": {
+                        "src": "icon_srch.png"
+                    },
+                    "txtSrch": {
+                        "placeholder": "Search with CIF"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxSrch.add(SrchTextBox);
             var flxCustomerInfo = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "gutterX": "12dp",
@@ -976,66 +1015,6 @@ define("Customer360/frmCustomer", function() {
                 "overrides": {}
             });
             flxRouteToHeadOff.add(RouteToHeadOff);
-            var flxBusinessTelNum = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "clipBounds": false,
-                "id": "flxBusinessTelNum",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "responsiveConfig": {
-                    "offset": {
-                        "640": 0,
-                        "1024": 0,
-                        "1366": 0
-                    },
-                    "span": {
-                        "640": 6,
-                        "1024": 4,
-                        "1366": 4
-                    }
-                },
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxBusinessTelNum.setDefaultUnit(voltmx.flex.DP);
-            var BusinessTelNum = new com.hcl.lblText.LabelTextBox({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "BusinessTelNum",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "LabelTextBox": {
-                        "width": "100%"
-                    },
-                    "lblText": {
-                        "text": "Business Tel Number"
-                    },
-                    "txtBox": {
-                        "text": "0775449345",
-                        "width": "100%"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxBusinessTelNum.add(BusinessTelNum);
             var flxRegistrationDate = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -1107,126 +1086,6 @@ define("Customer360/frmCustomer", function() {
                 "noOfMonths": 1
             });
             flxRegistrationDate.add(lblRegDate, calCustInfo);
-            var flxEmailAddress = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "clipBounds": false,
-                "id": "flxEmailAddress",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "responsiveConfig": {
-                    "offset": {
-                        "640": 0,
-                        "1024": 0,
-                        "1366": 0
-                    },
-                    "span": {
-                        "640": 6,
-                        "1024": 4,
-                        "1366": 4
-                    }
-                },
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxEmailAddress.setDefaultUnit(voltmx.flex.DP);
-            var EmailAddress = new com.hcl.lblText.LabelTextBox({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "EmailAddress",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "LabelTextBox": {
-                        "width": "100%"
-                    },
-                    "lblText": {
-                        "text": "Email Address"
-                    },
-                    "txtBox": {
-                        "text": "info@8020marketingug.co",
-                        "width": "100%"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxEmailAddress.add(EmailAddress);
-            var flxFax = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "clipBounds": false,
-                "id": "flxFax",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "responsiveConfig": {
-                    "offset": {
-                        "640": 0,
-                        "1024": 0,
-                        "1366": 0
-                    },
-                    "span": {
-                        "640": 6,
-                        "1024": 4,
-                        "1366": 4
-                    }
-                },
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxFax.setDefaultUnit(voltmx.flex.DP);
-            var Fax = new com.hcl.lblText.LabelTextBox({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "Fax",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "LabelTextBox": {
-                        "width": "100%"
-                    },
-                    "lblText": {
-                        "text": "Fax"
-                    },
-                    "txtBox": {
-                        "placeholder": "Fax",
-                        "width": "100%"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxFax.add(Fax);
             var flxApplicantName = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -1358,54 +1217,8 @@ define("Customer360/frmCustomer", function() {
                 "overrides": {}
             });
             flxIDNum.add(IDNum);
-            var flxAddress = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "clipBounds": false,
-                "id": "flxAddress",
-                "isVisible": false,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "responsiveConfig": {
-                    "offset": {
-                        "640": 0,
-                        "1024": 0,
-                        "1366": 0
-                    },
-                    "span": {
-                        "640": 6,
-                        "1024": 4,
-                        "1366": 12
-                    }
-                },
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxAddress.setDefaultUnit(voltmx.flex.DP);
-            var btnAddress = new voltmx.ui.Button({
-                "height": "40dp",
-                "id": "btnAddress",
-                "isVisible": true,
-                "right": "0dp",
-                "skin": "sknBtnBGTransBlue",
-                "text": "Address",
-                "top": 0,
-                "width": voltmx.flex.USE_PREFERRED_SIZE,
-                "zIndex": 1
-            }, {
-                "contentAlignment": constants.CONTENT_ALIGN_CENTER,
-                "displayText": true,
-                "padding": [24, 4, 24, 4],
-                "paddingInPixel": true
-            }, {});
-            flxAddress.add(btnAddress);
-            flxCustomerInfo.add(flxProfileType, flxCIFNumber, flxEntityName, flxEntiryRegNum, flxEntityType, flxIdentityNum, flxFullLegalName, flxRegolatorySector, flxISICCode, flxMarketSegment, flxOtherBankers, flxRouteToHeadOff, flxBusinessTelNum, flxRegistrationDate, flxEmailAddress, flxFax, flxApplicantName, flxIDNum, flxAddress);
-            flxCustomerDetails.add(SubHdr, flxCustomerInfo);
+            flxCustomerInfo.add(flxProfileType, flxCIFNumber, flxEntityName, flxEntiryRegNum, flxEntityType, flxIdentityNum, flxFullLegalName, flxRegolatorySector, flxISICCode, flxMarketSegment, flxOtherBankers, flxRouteToHeadOff, flxRegistrationDate, flxApplicantName, flxIDNum);
+            flxCustomerDetails.add(SubHdr, flxSrch, flxCustomerInfo);
             var flxTabs = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -1424,6 +1237,165 @@ define("Customer360/frmCustomer", function() {
                 "paddingInPixel": false
             }, {});
             flxTabs.setDefaultUnit(voltmx.flex.DP);
+            var flxContactInfo = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "40dp",
+                "id": "flxContactInfo",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0",
+                "width": "10%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxContactInfo.setDefaultUnit(voltmx.flex.DP);
+            var lblContactInfo = new voltmx.ui.Label({
+                "centerX": "50%",
+                "centerY": "50%",
+                "id": "lblContactInfo",
+                "isVisible": true,
+                "left": "2dp",
+                "skin": "sknLblHeading4Bold",
+                "text": "Contact Information",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var flxLineContInfo = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "bottom": "0dp",
+                "clipBounds": false,
+                "height": "5dp",
+                "id": "flxLineContInfo",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxBlue",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxLineContInfo.setDefaultUnit(voltmx.flex.DP);
+            flxLineContInfo.add();
+            flxContactInfo.add(lblContactInfo, flxLineContInfo);
+            var flxOperationalInfo = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "40dp",
+                "id": "flxOperationalInfo",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "2%",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0",
+                "width": "13%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxOperationalInfo.setDefaultUnit(voltmx.flex.DP);
+            var lblOperationalInfo = new voltmx.ui.Label({
+                "centerX": "50%",
+                "centerY": "50%",
+                "id": "lblOperationalInfo",
+                "isVisible": true,
+                "left": "2dp",
+                "skin": "sknLblHeading4Bold",
+                "text": "Operational Information",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var flxOpInfoLine = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "bottom": "0dp",
+                "clipBounds": false,
+                "height": "5dp",
+                "id": "flxOpInfoLine",
+                "isVisible": false,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxBlue",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxOpInfoLine.setDefaultUnit(voltmx.flex.DP);
+            flxOpInfoLine.add();
+            flxOperationalInfo.add(lblOperationalInfo, flxOpInfoLine);
+            var flxPersonalInfo = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "40dp",
+                "id": "flxPersonalInfo",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "2%",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0",
+                "width": "11%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxPersonalInfo.setDefaultUnit(voltmx.flex.DP);
+            var lblPersonalInfo = new voltmx.ui.Label({
+                "centerX": "50%",
+                "centerY": "50%",
+                "id": "lblPersonalInfo",
+                "isVisible": true,
+                "left": "2dp",
+                "skin": "sknLblHeading4Bold",
+                "text": "Personal Information",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var flxLinePersonalInfo = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "bottom": "0dp",
+                "clipBounds": false,
+                "height": "5dp",
+                "id": "flxLinePersonalInfo",
+                "isVisible": false,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxBlue",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxLinePersonalInfo.setDefaultUnit(voltmx.flex.DP);
+            flxLinePersonalInfo.add();
+            flxPersonalInfo.add(lblPersonalInfo, flxLinePersonalInfo);
             var flxInternalExpo = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -1431,7 +1403,7 @@ define("Customer360/frmCustomer", function() {
                 "id": "flxInternalExpo",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0",
+                "left": "2%",
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
                 "top": "0",
@@ -1463,7 +1435,7 @@ define("Customer360/frmCustomer", function() {
                 "clipBounds": false,
                 "height": "5dp",
                 "id": "flxInternalLine",
-                "isVisible": true,
+                "isVisible": false,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
@@ -1482,7 +1454,7 @@ define("Customer360/frmCustomer", function() {
                 "clipBounds": false,
                 "height": "40dp",
                 "id": "flxFixedAssets",
-                "isVisible": true,
+                "isVisible": false,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "2%",
                 "isModalContainer": false,
@@ -1583,112 +1555,6 @@ define("Customer360/frmCustomer", function() {
             flxCollateralLine.setDefaultUnit(voltmx.flex.DP);
             flxCollateralLine.add();
             flxCollateral.add(lblCollateral, flxCollateralLine);
-            var flxInsuranceAss = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "40dp",
-                "id": "flxInsuranceAss",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "2%",
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0",
-                "width": "13%",
-                "zIndex": 1,
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxInsuranceAss.setDefaultUnit(voltmx.flex.DP);
-            var lblInsuranceAss = new voltmx.ui.Label({
-                "centerX": "50%",
-                "centerY": "50%",
-                "id": "lblInsuranceAss",
-                "isVisible": true,
-                "left": "2dp",
-                "skin": "sknLblHeading4Bold",
-                "text": "Insurance / Assurance",
-                "width": voltmx.flex.USE_PREFERRED_SIZE,
-                "zIndex": 1
-            }, {
-                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
-                "padding": [0, 0, 0, 0],
-                "paddingInPixel": false
-            }, {});
-            var flxInsuranceLine = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "bottom": "0dp",
-                "clipBounds": false,
-                "height": "5dp",
-                "id": "flxInsuranceLine",
-                "isVisible": false,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxBlue",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxInsuranceLine.setDefaultUnit(voltmx.flex.DP);
-            flxInsuranceLine.add();
-            flxInsuranceAss.add(lblInsuranceAss, flxInsuranceLine);
-            var flxOperationalInfo = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "40dp",
-                "id": "flxOperationalInfo",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "2%",
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0",
-                "width": "13.30%",
-                "zIndex": 1,
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxOperationalInfo.setDefaultUnit(voltmx.flex.DP);
-            var lblOperationalInfo = new voltmx.ui.Label({
-                "centerX": "50%",
-                "centerY": "50%",
-                "id": "lblOperationalInfo",
-                "isVisible": true,
-                "left": "2dp",
-                "skin": "sknLblHeading4Bold",
-                "text": "Operational Information",
-                "width": voltmx.flex.USE_PREFERRED_SIZE,
-                "zIndex": 1
-            }, {
-                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
-                "padding": [0, 0, 0, 0],
-                "paddingInPixel": false
-            }, {});
-            var flxOpInfoLine = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "bottom": "0dp",
-                "clipBounds": false,
-                "height": "5dp",
-                "id": "flxOpInfoLine",
-                "isVisible": false,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxBlue",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxOpInfoLine.setDefaultUnit(voltmx.flex.DP);
-            flxOpInfoLine.add();
-            flxOperationalInfo.add(lblOperationalInfo, flxOpInfoLine);
             var flxRiskRating = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -1742,7 +1608,166 @@ define("Customer360/frmCustomer", function() {
             flxRiskRatingLine.setDefaultUnit(voltmx.flex.DP);
             flxRiskRatingLine.add();
             flxRiskRating.add(lblRiskRating, flxRiskRatingLine);
-            flxTabs.add(flxInternalExpo, flxFixedAssets, flxCollateral, flxInsuranceAss, flxOperationalInfo, flxRiskRating);
+            var flxInsuranceAss = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "40dp",
+                "id": "flxInsuranceAss",
+                "isVisible": false,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "2%",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0",
+                "width": "13%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxInsuranceAss.setDefaultUnit(voltmx.flex.DP);
+            var lblInsuranceAss = new voltmx.ui.Label({
+                "centerX": "50%",
+                "centerY": "50%",
+                "id": "lblInsuranceAss",
+                "isVisible": true,
+                "left": "2dp",
+                "skin": "sknLblHeading4Bold",
+                "text": "Insurance / Assurance",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var flxInsuranceLine = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "bottom": "0dp",
+                "clipBounds": false,
+                "height": "5dp",
+                "id": "flxInsuranceLine",
+                "isVisible": false,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxBlue",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxInsuranceLine.setDefaultUnit(voltmx.flex.DP);
+            flxInsuranceLine.add();
+            flxInsuranceAss.add(lblInsuranceAss, flxInsuranceLine);
+            var flxScoredLendingInsi = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "40dp",
+                "id": "flxScoredLendingInsi",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "2%",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0",
+                "width": "13%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxScoredLendingInsi.setDefaultUnit(voltmx.flex.DP);
+            var lblScoredLendingInsights = new voltmx.ui.Label({
+                "centerX": "50%",
+                "centerY": "50%",
+                "id": "lblScoredLendingInsights",
+                "isVisible": true,
+                "left": "2dp",
+                "skin": "sknLblHeading4Bold",
+                "text": "Scored Lending Insights",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var flxLineScoredLend = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "bottom": "0dp",
+                "clipBounds": false,
+                "height": "5dp",
+                "id": "flxLineScoredLend",
+                "isVisible": false,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxBlue",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxLineScoredLend.setDefaultUnit(voltmx.flex.DP);
+            flxLineScoredLend.add();
+            flxScoredLendingInsi.add(lblScoredLendingInsights, flxLineScoredLend);
+            var flxEconomicGrowth = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "40dp",
+                "id": "flxEconomicGrowth",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "2%",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0",
+                "width": "13%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxEconomicGrowth.setDefaultUnit(voltmx.flex.DP);
+            var lblEconomicGrowth = new voltmx.ui.Label({
+                "centerX": "50%",
+                "centerY": "50%",
+                "id": "lblEconomicGrowth",
+                "isVisible": true,
+                "left": "2dp",
+                "skin": "sknLblHeading4Bold",
+                "text": "Economic Group",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var flxLineEconomicGrowth = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "bottom": "0dp",
+                "clipBounds": false,
+                "height": "5dp",
+                "id": "flxLineEconomicGrowth",
+                "isVisible": false,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxBlue",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxLineEconomicGrowth.setDefaultUnit(voltmx.flex.DP);
+            flxLineEconomicGrowth.add();
+            flxEconomicGrowth.add(lblEconomicGrowth, flxLineEconomicGrowth);
+            flxTabs.add(flxContactInfo, flxOperationalInfo, flxPersonalInfo, flxInternalExpo, flxFixedAssets, flxCollateral, flxRiskRating, flxInsuranceAss, flxScoredLendingInsi, flxEconomicGrowth);
             var flxSegData = new voltmx.ui.FlexScrollContainer({
                 "allowHorizontalBounce": false,
                 "allowVerticalBounce": true,
@@ -1752,7 +1777,7 @@ define("Customer360/frmCustomer", function() {
                 "enableScrolling": true,
                 "horizontalScrollIndicator": true,
                 "id": "flxSegData",
-                "isVisible": true,
+                "isVisible": false,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
                 "left": "0dp",
                 "pagingEnabled": false,
@@ -2204,7 +2229,7 @@ define("Customer360/frmCustomer", function() {
                 "clipBounds": false,
                 "height": "400dp",
                 "id": "flxChart",
-                "isVisible": true,
+                "isVisible": false,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
                 "left": "0dp",
                 "isModalContainer": false,
@@ -5458,7 +5483,7 @@ define("Customer360/frmCustomer", function() {
                 "id": "btnRisk1",
                 "isVisible": true,
                 "skin": "sknBtnLeftHighLite",
-                "text": "CRI",
+                "text": "BRI",
                 "width": "115dp",
                 "zIndex": 1
             }, {
@@ -5472,7 +5497,39 @@ define("Customer360/frmCustomer", function() {
                 "id": "btnRisk2",
                 "isVisible": true,
                 "left": "0",
-                "skin": "sknBtnRightUnSelect",
+                "skin": "sknBtnUnSelect",
+                "text": "CRI",
+                "top": "0",
+                "width": "115dp",
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_CENTER,
+                "displayText": true,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var btnRisk3 = new voltmx.ui.Button({
+                "height": "40dp",
+                "id": "btnRisk3",
+                "isVisible": true,
+                "left": "0",
+                "skin": "sknBtnUnSelect",
+                "text": "ERI",
+                "top": "0",
+                "width": "115dp",
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_CENTER,
+                "displayText": true,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var btnRisk4 = new voltmx.ui.Button({
+                "height": "40dp",
+                "id": "btnRisk4",
+                "isVisible": true,
+                "left": "0",
+                "skin": "sknBtnUnSelect",
                 "text": "BBRS",
                 "top": "0",
                 "width": "115dp",
@@ -5483,7 +5540,23 @@ define("Customer360/frmCustomer", function() {
                 "padding": [0, 0, 0, 0],
                 "paddingInPixel": false
             }, {});
-            flxRiskTypes.add(btnRisk1, btnRisk2);
+            var btnRisk5 = new voltmx.ui.Button({
+                "height": "40dp",
+                "id": "btnRisk5",
+                "isVisible": true,
+                "left": "0",
+                "skin": "sknBtnRightUnSelect",
+                "text": "CRS",
+                "top": "0",
+                "width": "115dp",
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_CENTER,
+                "displayText": true,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            flxRiskTypes.add(btnRisk1, btnRisk2, btnRisk3, btnRisk4, btnRisk5);
             var flxRiskInsight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "bottom": "16dp",
@@ -5525,7 +5598,7 @@ define("Customer360/frmCustomer", function() {
                 "isVisible": true,
                 "left": "24dp",
                 "skin": "sknLblHeading4Bold",
-                "text": "Risk Rating - CRI",
+                "text": "Risk Rating - BRI",
                 "top": "17dp",
                 "width": voltmx.flex.USE_PREFERRED_SIZE,
                 "zIndex": 1
@@ -5595,24 +5668,38 @@ define("Customer360/frmCustomer", function() {
             }, {
                 "overrides": {}
             });
-            var flxRiskFields = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "gutterX": "12dp",
-                "gutterY": "16dp",
+            var FlexContainer0e954e1006a6642 = new voltmx.ui.FlexContainer({
                 "clipBounds": false,
-                "id": "flxRiskFields",
+                "height": "220dp",
+                "id": "FlexContainer0e954e1006a6642",
                 "isVisible": true,
-                "layoutType": voltmx.flex.RESPONSIVE_GRID,
+                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "left": "50%",
                 "isModalContainer": false,
-                "right": "0dp",
                 "skin": "sknFlxTrans",
-                "top": "69dp",
+                "top": "50dp",
                 "width": "50%",
                 "zIndex": 1,
                 "appName": "Customer360"
             }, {
-                "padding": [12, 1, 12, 12],
-                "paddingInPixel": true
+                "paddingInPixel": false
+            }, {});
+            FlexContainer0e954e1006a6642.setDefaultUnit(voltmx.flex.DP);
+            var flxRiskFields = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxRiskFields",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "isModalContainer": false,
+                "right": "0dp",
+                "skin": "sknFlxTrans",
+                "top": 0,
+                "width": "50%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
             }, {});
             flxRiskFields.setDefaultUnit(voltmx.flex.DP);
             var flxPD = new voltmx.ui.FlexContainer({
@@ -5671,174 +5758,6 @@ define("Customer360/frmCustomer", function() {
                 "overrides": {}
             });
             flxPD.add(ProbabilityDefault);
-            var flxReason1 = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "clipBounds": false,
-                "id": "flxReason1",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "responsiveConfig": {
-                    "offset": {
-                        "640": 0,
-                        "1024": 0,
-                        "1366": 0
-                    },
-                    "span": {
-                        "640": 6,
-                        "1024": 4,
-                        "1366": 6
-                    }
-                },
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxReason1.setDefaultUnit(voltmx.flex.DP);
-            var Reason1 = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "Reason1",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "Reason1"
-                    },
-                    "lblDetailValue": {
-                        "text": "reason1"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxReason1.add(Reason1);
-            var flxReason2 = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "clipBounds": false,
-                "id": "flxReason2",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "responsiveConfig": {
-                    "offset": {
-                        "640": 0,
-                        "1024": 0,
-                        "1366": 0
-                    },
-                    "span": {
-                        "640": 6,
-                        "1024": 4,
-                        "1366": 6
-                    }
-                },
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxReason2.setDefaultUnit(voltmx.flex.DP);
-            var Reason2 = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "Reason2",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "Reason2"
-                    },
-                    "lblDetailValue": {
-                        "text": "reason2"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxReason2.add(Reason2);
-            var flxReason3 = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "clipBounds": false,
-                "id": "flxReason3",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "responsiveConfig": {
-                    "offset": {
-                        "640": 0,
-                        "1024": 0,
-                        "1366": 0
-                    },
-                    "span": {
-                        "640": 6,
-                        "1024": 4,
-                        "1366": 6
-                    }
-                },
-                "appName": "Customer360"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxReason3.setDefaultUnit(voltmx.flex.DP);
-            var Reason3 = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "Reason3",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "Reason3"
-                    },
-                    "lblDetailValue": {
-                        "text": "reason3"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxReason3.add(Reason3);
             var flxRatingScore = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -5847,7 +5766,7 @@ define("Customer360/frmCustomer", function() {
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
-                "top": "0dp",
+                "top": "16dp",
                 "width": "100%",
                 "zIndex": 1,
                 "responsiveConfig": {
@@ -5903,7 +5822,7 @@ define("Customer360/frmCustomer", function() {
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
-                "top": "0dp",
+                "top": "16dp",
                 "width": "100%",
                 "zIndex": 1,
                 "responsiveConfig": {
@@ -5923,9 +5842,9 @@ define("Customer360/frmCustomer", function() {
                 "paddingInPixel": false
             }, {});
             flxHide.setDefaultUnit(voltmx.flex.DP);
-            var CopyProbabilityDefault0a7a45985d3a143 = new com.hcl.labelField.LabelsField({
+            var hide = new com.hcl.labelField.LabelsField({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "CopyProbabilityDefault0a7a45985d3a143",
+                "id": "hide",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
                 "left": "0dp",
@@ -5943,7 +5862,7 @@ define("Customer360/frmCustomer", function() {
             }, {
                 "overrides": {}
             });
-            flxHide.add(CopyProbabilityDefault0a7a45985d3a143);
+            flxHide.add(hide);
             var flxRiskScoreLCY = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -5952,7 +5871,7 @@ define("Customer360/frmCustomer", function() {
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
-                "top": "0dp",
+                "top": "16dp",
                 "width": "100%",
                 "zIndex": 1,
                 "responsiveConfig": {
@@ -6008,7 +5927,7 @@ define("Customer360/frmCustomer", function() {
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
-                "top": "0dp",
+                "top": "16dp",
                 "width": "100%",
                 "zIndex": 1,
                 "responsiveConfig": {
@@ -6056,8 +5975,195 @@ define("Customer360/frmCustomer", function() {
                 "overrides": {}
             });
             flxRiskScoreFCY.add(CopyRiskScoreGrade0fa0a4b9ab6cd45);
-            flxRiskFields.add(flxPD, flxReason1, flxReason2, flxReason3, flxRatingScore, flxHide, flxRiskScoreLCY, flxRiskScoreFCY);
-            flxRiskRate.add(lblHdrRiskType, RiskRateChart, flxRiskFields);
+            flxRiskFields.add(flxPD, flxRatingScore, flxHide, flxRiskScoreLCY, flxRiskScoreFCY);
+            var flxRiskReasons = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxRiskReasons",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "isModalContainer": false,
+                "right": "0dp",
+                "skin": "sknFlxTrans",
+                "top": "0",
+                "width": "50%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxRiskReasons.setDefaultUnit(voltmx.flex.DP);
+            var flxReason1 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxReason1",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 6
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxReason1.setDefaultUnit(voltmx.flex.DP);
+            var CopyReason0e4a8784fb61849 = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyReason0e4a8784fb61849",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Reason1"
+                    },
+                    "lblDetailValue": {
+                        "text": "reason1"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxReason1.add(CopyReason0e4a8784fb61849);
+            var flxReason2 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxReason2",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "16dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 6
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxReason2.setDefaultUnit(voltmx.flex.DP);
+            var CopyReason0efec4db8bdd744 = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyReason0efec4db8bdd744",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Reason2"
+                    },
+                    "lblDetailValue": {
+                        "text": "reason2"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxReason2.add(CopyReason0efec4db8bdd744);
+            var flxReason3 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxReason3",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "16dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 6
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxReason3.setDefaultUnit(voltmx.flex.DP);
+            var CopyReason0a8e0ca5a8a5844 = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyReason0a8e0ca5a8a5844",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Reason3"
+                    },
+                    "lblDetailValue": {
+                        "text": "reason3"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxReason3.add(CopyReason0a8e0ca5a8a5844);
+            flxRiskReasons.add(flxReason1, flxReason2, flxReason3);
+            FlexContainer0e954e1006a6642.add(flxRiskFields, flxRiskReasons);
+            flxRiskRate.add(lblHdrRiskType, RiskRateChart, FlexContainer0e954e1006a6642);
             var flxInsight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -6407,7 +6513,7 @@ define("Customer360/frmCustomer", function() {
                         "top": "0dp"
                     },
                     "lblSubHdr": {
-                        "text": "Affordable Insight"
+                        "text": "Affordability Insight"
                     }
                 }
             }, {
@@ -7144,6 +7250,7 @@ define("Customer360/frmCustomer", function() {
             var flxReason = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
+                "focusSkin": "slFFocusbox",
                 "id": "flxReason",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
@@ -7160,7 +7267,7 @@ define("Customer360/frmCustomer", function() {
                     },
                     "span": {
                         "640": 6,
-                        "1024": 4,
+                        "1024": 6,
                         "1366": 6
                     }
                 },
@@ -7169,9 +7276,9 @@ define("Customer360/frmCustomer", function() {
                 "paddingInPixel": false
             }, {});
             flxReason.setDefaultUnit(voltmx.flex.DP);
-            var Reason = new com.hcl.lblText.LabelTextBox({
+            var LabelTextArea = new com.hcl.lblTextArea.LabelTextArea({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "Reason",
+                "id": "LabelTextArea",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
                 "left": "0dp",
@@ -7183,16 +7290,14 @@ define("Customer360/frmCustomer", function() {
                 "zIndex": 1,
                 "appName": "SBCommon",
                 "overrides": {
-                    "LabelTextBox": {
-                        "width": "100%",
-                        "zIndex": 1
+                    "FlexContainer0e91e04f1e8e74a": {
+                        "top": "5dp"
                     },
                     "lblText": {
                         "text": "Reason for applicant added to watchlist"
                     },
-                    "txtBox": {
-                        "text": "------",
-                        "width": "100%"
+                    "txtArea": {
+                        "placeholder": "--------"
                     }
                 }
             }, {
@@ -7201,10 +7306,11 @@ define("Customer360/frmCustomer", function() {
             }, {
                 "overrides": {}
             });
-            flxReason.add(Reason);
+            flxReason.add(LabelTextArea);
             var flxWatchHistory = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
+                "focusSkin": "slFFocusbox",
                 "id": "flxWatchHistory",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
@@ -7221,7 +7327,7 @@ define("Customer360/frmCustomer", function() {
                     },
                     "span": {
                         "640": 6,
-                        "1024": 4,
+                        "1024": 6,
                         "1366": 6
                     }
                 },
@@ -7230,9 +7336,9 @@ define("Customer360/frmCustomer", function() {
                 "paddingInPixel": false
             }, {});
             flxWatchHistory.setDefaultUnit(voltmx.flex.DP);
-            var WatchListHis = new com.hcl.lblText.LabelTextBox({
+            var WatchHistory = new com.hcl.lblTextArea.LabelTextArea({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "WatchListHis",
+                "id": "WatchHistory",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
                 "left": "0dp",
@@ -7244,16 +7350,14 @@ define("Customer360/frmCustomer", function() {
                 "zIndex": 1,
                 "appName": "SBCommon",
                 "overrides": {
-                    "LabelTextBox": {
-                        "width": "100%",
-                        "zIndex": 1
+                    "FlexContainer0e91e04f1e8e74a": {
+                        "top": "5dp"
                     },
                     "lblText": {
                         "text": "Watchlist History"
                     },
-                    "txtBox": {
-                        "placeholder": "Watchlist history",
-                        "width": "100%"
+                    "txtArea": {
+                        "placeholder": "Watchlist"
                     }
                 }
             }, {
@@ -7262,7 +7366,7 @@ define("Customer360/frmCustomer", function() {
             }, {
                 "overrides": {}
             });
-            flxWatchHistory.add(WatchListHis);
+            flxWatchHistory.add(WatchHistory);
             flxGridWatchList.add(flxWatchListYes, flxGroupWatchList, flxWatchListDate, flxExpLimitAmt, flxIrregular, flxCodeStatus, flxReason, flxWatchHistory);
             flxWatchListDetails.add(lblSubHdrWatchList, flxGridWatchList);
             flxWatchList.add(flxWatchListDetails);
@@ -7276,7 +7380,7 @@ define("Customer360/frmCustomer", function() {
                 "left": "0dp",
                 "isModalContainer": false,
                 "skin": "sknFlxWhiteBGBlckBrdr",
-                "top": 810,
+                "top": 850,
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "Customer360"
@@ -8589,21 +8693,1985 @@ define("Customer360/frmCustomer", function() {
             flxExtractDate.add(ExtractDate);
             flxGridBureau.add(flxCustIdentity, flxBureauBounce, flxBureauMatch, flxBureauArrears, flxBureauStatus, flxBureauMaxArrears, flxBureauScore1, flxBureauScore2, flxNoOfBArrears, flxBTotalInstal, flxBScore, flxBNoRp, flxBNumRpMatched, flxBNegStatus, flxBRpCheques, flxBNumberRpArr, flxBMatchRp, flxBStatusRp, flxBOtherArrearsRp, flxBTotalInstalments, flxBBouncesChequeRp, flxExtractDate);
             flxBureau.add(lblSubHdrBureau, flxGridBureau);
-            flxRiskInsight.add(flxRiskRate, flxInsight, flxWatchList, flxBureau);
-            flxSrc.add(flxCustomerDetails, flxTabs, flxSegData, flxChart, flxCollaInfo, flxInsuranceInfo, flxOpInfo, flxRiskTypes, flxRiskInsight);
+            var flxEnvironmentSocialRisk = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "flxEnvironmentSocialRisk",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxWhiteBGBlckBrdr",
+                "top": 1200,
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxEnvironmentSocialRisk.setDefaultUnit(voltmx.flex.DP);
+            var lblSubEnvironmentSocial = new com.hcl.subHdr.SubHdr({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "45dp",
+                "id": "lblSubEnvironmentSocial",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "right": "0dp",
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "SubHdr": {
+                        "centerY": "viz.val_cleared",
+                        "top": "0dp"
+                    },
+                    "lblSubHdr": {
+                        "text": "Environment and Social Risk"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            var flxGridEnvironmentAndSocial = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "gutterX": "12dp",
+                "gutterY": "12dp",
+                "clipBounds": false,
+                "id": "flxGridEnvironmentAndSocial",
+                "isVisible": true,
+                "layoutType": voltmx.flex.RESPONSIVE_GRID,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "padding": [12, 12, 12, 12],
+                "paddingInPixel": true
+            }, {});
+            flxGridEnvironmentAndSocial.setDefaultUnit(voltmx.flex.DP);
+            var flxEnvApplicantName = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxEnvApplicantName",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxEnvApplicantName.setDefaultUnit(voltmx.flex.DP);
+            var EnvApplicantName = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "EnvApplicantName",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Applicant Name"
+                    },
+                    "lblDetailValue": {
+                        "text": "Ventures"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxEnvApplicantName.add(EnvApplicantName);
+            var flxTransRiskAss = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxTransRiskAss",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxTransRiskAss.setDefaultUnit(voltmx.flex.DP);
+            var TransRiskAss = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "TransRiskAss",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Transaction Risk Asseseement"
+                    },
+                    "lblDetailValue": {
+                        "text": "Low"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxTransRiskAss.add(TransRiskAss);
+            var flxClientRiskAss = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxClientRiskAss",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxClientRiskAss.setDefaultUnit(voltmx.flex.DP);
+            var ClientRiskAss = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "ClientRiskAss",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Client Risk Assessment"
+                    },
+                    "lblDetailValue": {
+                        "text": "Low"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxClientRiskAss.add(ClientRiskAss);
+            var flxReferenceNumber = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxReferenceNumber",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxReferenceNumber.setDefaultUnit(voltmx.flex.DP);
+            var RefernceNumber = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "RefernceNumber",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Reference Number"
+                    },
+                    "lblDetailValue": {
+                        "text": "2307972"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxReferenceNumber.add(RefernceNumber);
+            var flxTransacOnExceptionsList = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxTransacOnExceptionsList",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxTransacOnExceptionsList.setDefaultUnit(voltmx.flex.DP);
+            var TransacExceptionList = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "TransacExceptionList",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Transaction on Exceptions List"
+                    },
+                    "lblDetailValue": {
+                        "text": "No"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxTransacOnExceptionsList.add(TransacExceptionList);
+            var flxEquatorPrincipleTrans = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxEquatorPrincipleTrans",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxEquatorPrincipleTrans.setDefaultUnit(voltmx.flex.DP);
+            var EquatorPrincipleTrans = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "EquatorPrincipleTrans",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Equator Principle Transaction "
+                    },
+                    "lblDetailValue": {
+                        "text": "No"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxEquatorPrincipleTrans.add(EquatorPrincipleTrans);
+            var flxRiskAssessmentDate = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxRiskAssessmentDate",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxRiskAssessmentDate.setDefaultUnit(voltmx.flex.DP);
+            var RiskAssessmentDate = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "RiskAssessmentDate",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Risk Assessment Date"
+                    },
+                    "lblDetailValue": {
+                        "text": "2023-12-07"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxRiskAssessmentDate.add(RiskAssessmentDate);
+            var flxRiskSocialCommentary = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxRiskSocialCommentary",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 6
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxRiskSocialCommentary.setDefaultUnit(voltmx.flex.DP);
+            var RiskSocialCommentary = new com.hcl.lblTextArea.LabelTextArea({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "RiskSocialCommentary",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "FlexContainer0e91e04f1e8e74a": {
+                        "top": "5dp"
+                    },
+                    "LabelTextArea": {
+                        "zIndex": 1
+                    },
+                    "lblText": {
+                        "text": "Environment ad/or Socal Risk Commentary"
+                    },
+                    "txtArea": {
+                        "placeholder": "--------"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxRiskSocialCommentary.add(RiskSocialCommentary);
+            flxGridEnvironmentAndSocial.add(flxEnvApplicantName, flxTransRiskAss, flxClientRiskAss, flxReferenceNumber, flxTransacOnExceptionsList, flxEquatorPrincipleTrans, flxRiskAssessmentDate, flxRiskSocialCommentary);
+            flxEnvironmentSocialRisk.add(lblSubEnvironmentSocial, flxGridEnvironmentAndSocial);
+            flxRiskInsight.add(flxRiskRate, flxInsight, flxWatchList, flxBureau, flxEnvironmentSocialRisk);
+            var flxContInfo = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "bottom": "16dp",
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "flxContInfo",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxWhiteBGBlckBrdr",
+                "top": "16dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxContInfo.setDefaultUnit(voltmx.flex.DP);
+            var flxContactData = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "gutterX": "12dp",
+                "gutterY": "12dp",
+                "clipBounds": false,
+                "id": "flxContactData",
+                "isVisible": true,
+                "layoutType": voltmx.flex.RESPONSIVE_GRID,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "appName": "Customer360"
+            }, {
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            flxContactData.setDefaultUnit(voltmx.flex.DP);
+            var flxBusinessTelNum = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxBusinessTelNum",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxBusinessTelNum.setDefaultUnit(voltmx.flex.DP);
+            var BusinessTelNum = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "BusinessTelNum",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "width": "100%"
+                    },
+                    "lblText": {
+                        "text": "Business Tel Number"
+                    },
+                    "txtBox": {
+                        "text": "0775449345",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxBusinessTelNum.add(BusinessTelNum);
+            var flxEmailAddress = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxEmailAddress",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxEmailAddress.setDefaultUnit(voltmx.flex.DP);
+            var EmailAddress = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "EmailAddress",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "width": "100%"
+                    },
+                    "lblText": {
+                        "text": "Email Address"
+                    },
+                    "txtBox": {
+                        "text": "info@8020marketingug.co",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxEmailAddress.add(EmailAddress);
+            var flxFax = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxFax",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxFax.setDefaultUnit(voltmx.flex.DP);
+            var Fax = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "Fax",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "width": "100%"
+                    },
+                    "lblText": {
+                        "text": "Fax"
+                    },
+                    "txtBox": {
+                        "placeholder": "Fax",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxFax.add(Fax);
+            flxContactData.add(flxBusinessTelNum, flxEmailAddress, flxFax);
+            var flxPostalAddress = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxPostalAddress",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "16dp",
+                "width": "99%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxPostalAddress.setDefaultUnit(voltmx.flex.DP);
+            var flxPostalData = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxPostalData",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "50%",
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxPostalData.setDefaultUnit(voltmx.flex.DP);
+            var CopyLabel0a06d794b2e4b41 = new voltmx.ui.Label({
+                "id": "CopyLabel0a06d794b2e4b41",
+                "isVisible": true,
+                "left": "24dp",
+                "skin": "sknLblHeading4Bold",
+                "text": "Postal Address",
+                "top": "16dp",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var CopyFlexContainer0cea8919b3a5a43 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "gutterX": "12dp",
+                "gutterY": "12dp",
+                "clipBounds": false,
+                "id": "CopyFlexContainer0cea8919b3a5a43",
+                "isVisible": true,
+                "layoutType": voltmx.flex.RESPONSIVE_GRID,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "16dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "padding": [12, 12, 12, 12],
+                "paddingInPixel": true
+            }, {});
+            CopyFlexContainer0cea8919b3a5a43.setDefaultUnit(voltmx.flex.DP);
+            var CopyflxStreet0hcddc934da2c48 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxStreet0hcddc934da2c48",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 12,
+                        "1366": 12
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxStreet0hcddc934da2c48.setDefaultUnit(voltmx.flex.DP);
+            var CopyStreet0i429f61e9b0b4b = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyStreet0i429f61e9b0b4b",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "zIndex": 1
+                    },
+                    "lblText": {
+                        "text": "Street Address"
+                    },
+                    "txtBox": {
+                        "placeholder": "Street Address",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxStreet0hcddc934da2c48.add(CopyStreet0i429f61e9b0b4b);
+            var CopyflxZipCode0dc700078f54744 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxZipCode0dc700078f54744",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 12,
+                        "1366": 12
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxZipCode0dc700078f54744.setDefaultUnit(voltmx.flex.DP);
+            var CopyZipCode0c7ef633c40d949 = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyZipCode0c7ef633c40d949",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "zIndex": 1
+                    },
+                    "lblText": {
+                        "text": "Zip Code"
+                    },
+                    "txtBox": {
+                        "placeholder": "Zip Code",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxZipCode0dc700078f54744.add(CopyZipCode0c7ef633c40d949);
+            var CopyflxState0db785d6795cb45 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxState0db785d6795cb45",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 12,
+                        "1366": 12
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxState0db785d6795cb45.setDefaultUnit(voltmx.flex.DP);
+            var CopyState0eb3bd5c1da4645 = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyState0eb3bd5c1da4645",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "zIndex": 1
+                    },
+                    "lblText": {
+                        "text": "State"
+                    },
+                    "txtBox": {
+                        "placeholder": "State",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxState0db785d6795cb45.add(CopyState0eb3bd5c1da4645);
+            var CopyflxCity0c1be6283d6524d = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxCity0c1be6283d6524d",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 12,
+                        "1366": 12
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxCity0c1be6283d6524d.setDefaultUnit(voltmx.flex.DP);
+            var CopyCity0g9e44060abec47 = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyCity0g9e44060abec47",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "zIndex": 1
+                    },
+                    "lblText": {
+                        "text": "City"
+                    },
+                    "txtBox": {
+                        "placeholder": "City",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxCity0c1be6283d6524d.add(CopyCity0g9e44060abec47);
+            CopyFlexContainer0cea8919b3a5a43.add(CopyflxStreet0hcddc934da2c48, CopyflxZipCode0dc700078f54744, CopyflxState0db785d6795cb45, CopyflxCity0c1be6283d6524d);
+            flxPostalData.add(CopyLabel0a06d794b2e4b41, CopyFlexContainer0cea8919b3a5a43);
+            var flxPostalMap = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "350dp",
+                "id": "flxPostalMap",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "8dp",
+                "width": "50%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxPostalMap.setDefaultUnit(voltmx.flex.DP);
+            var mapPostal = new voltmx.ui.Image2({
+                "centerX": "50%",
+                "centerY": "50%",
+                "height": "100%",
+                "id": "mapPostal",
+                "isVisible": true,
+                "left": "120dp",
+                "skin": "slImage",
+                "src": "mapimage.png",
+                "top": "229dp",
+                "width": "100%",
+                "zIndex": 1
+            }, {
+                "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            flxPostalMap.add(mapPostal);
+            flxPostalAddress.add(flxPostalData, flxPostalMap);
+            var chkAddress = new voltmx.ui.CheckBoxGroup({
+                "height": "50dp",
+                "id": "chkAddress",
+                "isVisible": true,
+                "left": "16dp",
+                "masterData": [
+                    ["PostaAdd", "Is postal address same as physical address"]
+                ],
+                "skin": "sknChkBx",
+                "top": "8dp",
+                "width": "100%",
+                "zIndex": 1
+            }, {
+                "itemOrientation": constants.CHECKBOX_ITEM_ORIENTATION_VERTICAL,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var flxPhysicalAddress = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxPhysicalAddress",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "16dp",
+                "width": "99%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxPhysicalAddress.setDefaultUnit(voltmx.flex.DP);
+            var flxPhysicalAddData = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxPhysicalAddData",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "50%",
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxPhysicalAddData.setDefaultUnit(voltmx.flex.DP);
+            var CopyLabel0ffc0e0209fe44a = new voltmx.ui.Label({
+                "id": "CopyLabel0ffc0e0209fe44a",
+                "isVisible": true,
+                "left": "24dp",
+                "skin": "sknLblHeading4Bold",
+                "text": "Physical Address",
+                "top": "16dp",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var CopyFlexContainer0ae2c5f966df249 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "gutterX": "12dp",
+                "gutterY": "12dp",
+                "clipBounds": false,
+                "id": "CopyFlexContainer0ae2c5f966df249",
+                "isVisible": true,
+                "layoutType": voltmx.flex.RESPONSIVE_GRID,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "16dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "padding": [12, 12, 12, 12],
+                "paddingInPixel": true
+            }, {});
+            CopyFlexContainer0ae2c5f966df249.setDefaultUnit(voltmx.flex.DP);
+            var CopyflxStreet0ged92e4c638f46 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxStreet0ged92e4c638f46",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 12,
+                        "1366": 12
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxStreet0ged92e4c638f46.setDefaultUnit(voltmx.flex.DP);
+            var CopyStreet0b0303562e0fa41 = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyStreet0b0303562e0fa41",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "zIndex": 1
+                    },
+                    "lblText": {
+                        "text": "Street Address"
+                    },
+                    "txtBox": {
+                        "placeholder": "Street Address",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxStreet0ged92e4c638f46.add(CopyStreet0b0303562e0fa41);
+            var CopyflxZipCode0c514250096fa4a = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxZipCode0c514250096fa4a",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 12,
+                        "1366": 12
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxZipCode0c514250096fa4a.setDefaultUnit(voltmx.flex.DP);
+            var CopyZipCode0ce19684f96ba47 = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyZipCode0ce19684f96ba47",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "zIndex": 1
+                    },
+                    "lblText": {
+                        "text": "Zip Code"
+                    },
+                    "txtBox": {
+                        "placeholder": "Zip Code",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxZipCode0c514250096fa4a.add(CopyZipCode0ce19684f96ba47);
+            var CopyflxState0bc195eda4d134f = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxState0bc195eda4d134f",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 12,
+                        "1366": 12
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxState0bc195eda4d134f.setDefaultUnit(voltmx.flex.DP);
+            var CopyState0edac75584cb84a = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyState0edac75584cb84a",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "zIndex": 1
+                    },
+                    "lblText": {
+                        "text": "State"
+                    },
+                    "txtBox": {
+                        "placeholder": "State",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxState0bc195eda4d134f.add(CopyState0edac75584cb84a);
+            var CopyflxCity0i4adf638fbf540 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxCity0i4adf638fbf540",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 12,
+                        "1366": 12
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxCity0i4adf638fbf540.setDefaultUnit(voltmx.flex.DP);
+            var CopyCity0gd10de842da145 = new com.hcl.lblText.LabelTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyCity0gd10de842da145",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelTextBox": {
+                        "zIndex": 1
+                    },
+                    "lblText": {
+                        "text": "City"
+                    },
+                    "txtBox": {
+                        "placeholder": "City",
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxCity0i4adf638fbf540.add(CopyCity0gd10de842da145);
+            CopyFlexContainer0ae2c5f966df249.add(CopyflxStreet0ged92e4c638f46, CopyflxZipCode0c514250096fa4a, CopyflxState0bc195eda4d134f, CopyflxCity0i4adf638fbf540);
+            flxPhysicalAddData.add(CopyLabel0ffc0e0209fe44a, CopyFlexContainer0ae2c5f966df249);
+            var flxPhysicalMap = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "350dp",
+                "id": "flxPhysicalMap",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "50%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxPhysicalMap.setDefaultUnit(voltmx.flex.DP);
+            var CopymapPostal0b10c1be1facb47 = new voltmx.ui.Image2({
+                "centerX": "50%",
+                "centerY": "50%",
+                "height": "100%",
+                "id": "CopymapPostal0b10c1be1facb47",
+                "isVisible": true,
+                "left": "120dp",
+                "skin": "slImage",
+                "src": "mapimage.png",
+                "top": "8dp",
+                "width": "100%",
+                "zIndex": 1
+            }, {
+                "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            flxPhysicalMap.add(CopymapPostal0b10c1be1facb47);
+            flxPhysicalAddress.add(flxPhysicalAddData, flxPhysicalMap);
+            flxContInfo.add(flxContactData, flxPostalAddress, chkAddress, flxPhysicalAddress);
+            var flxPersonalData = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxPersonalData",
+                "isVisible": false,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxPersonalData.setDefaultUnit(voltmx.flex.DP);
+            var flxPersonalInfoData = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "bottom": "16dp",
+                "gutterX": "12dp",
+                "gutterY": "16dp",
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "flxPersonalInfoData",
+                "isVisible": true,
+                "layoutType": voltmx.flex.RESPONSIVE_GRID,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxWhiteBGBlckBrdr",
+                "top": "16dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "padding": [12, 8, 12, 12],
+                "paddingInPixel": true
+            }, {});
+            flxPersonalInfoData.setDefaultUnit(voltmx.flex.DP);
+            var flxIncomeTax = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "flxIncomeTax",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxIncomeTax.setDefaultUnit(voltmx.flex.DP);
+            var IncomeTax = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "IncomeTax",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Income Tax Number"
+                    },
+                    "lblDetailValue": {
+                        "text": "2358001",
+                        "top": "16dp"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxIncomeTax.add(IncomeTax);
+            var flxDateOfBirth = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxDateOfBirth",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxDateOfBirth.setDefaultUnit(voltmx.flex.DP);
+            var lblDateOfBirth = new voltmx.ui.Label({
+                "id": "lblDateOfBirth",
+                "isVisible": true,
+                "left": "0dp",
+                "skin": "sknLblFormLevel",
+                "text": "Date Of Birth",
+                "top": "0dp",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var claDateOfBirth = new voltmx.ui.Calendar({
+                "calendarIcon": "icon_cal.png",
+                "dateComponents": [9, 9, 2015],
+                "dateFormat": "dd/MM/yyyy",
+                "day": 9,
+                "formattedDate": "09/09/2015",
+                "height": "40dp",
+                "hour": 0,
+                "id": "claDateOfBirth",
+                "isVisible": true,
+                "left": "0dp",
+                "minutes": 0,
+                "month": 9,
+                "seconds": 0,
+                "skin": "sknSBCalender",
+                "top": "5dp",
+                "viewType": constants.CALENDAR_VIEW_TYPE_DEFAULT,
+                "width": "100%",
+                "year": 2015,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [16, 0, 0, 0],
+                "paddingInPixel": true
+            }, {
+                "noOfMonths": 1
+            });
+            flxDateOfBirth.add(lblDateOfBirth, claDateOfBirth);
+            flxPersonalInfoData.add(flxIncomeTax, flxDateOfBirth);
+            var flxMaritalInfo = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "bottom": "16dp",
+                "gutterX": "12dp",
+                "gutterY": "16dp",
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "flxMaritalInfo",
+                "isVisible": true,
+                "layoutType": voltmx.flex.RESPONSIVE_GRID,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxWhiteBGBlckBrdr",
+                "top": "16dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "Customer360"
+            }, {
+                "padding": [12, 8, 12, 12],
+                "paddingInPixel": true
+            }, {});
+            flxMaritalInfo.setDefaultUnit(voltmx.flex.DP);
+            var CopyflxMaritalStat0j25a34e4c08c48 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxMaritalStat0j25a34e4c08c48",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxMaritalStat0j25a34e4c08c48.setDefaultUnit(voltmx.flex.DP);
+            var CopyMaritalStatus0c0e6e7b632044d = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyMaritalStatus0c0e6e7b632044d",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Marital Status"
+                    },
+                    "lblDetailValue": {
+                        "text": "Married",
+                        "top": "16dp"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxMaritalStat0j25a34e4c08c48.add(CopyMaritalStatus0c0e6e7b632044d);
+            var CopyflxConsentSpouse0bb25b51158b342 = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "CopyflxConsentSpouse0bb25b51158b342",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxConsentSpouse0bb25b51158b342.setDefaultUnit(voltmx.flex.DP);
+            var CopylblConsentSpouse0g10f8ef0107e4c = new voltmx.ui.Label({
+                "id": "CopylblConsentSpouse0g10f8ef0107e4c",
+                "isVisible": true,
+                "left": "0dp",
+                "skin": "sknLblFormLevel",
+                "text": "Spouse Consent Require",
+                "top": "0dp",
+                "width": voltmx.flex.USE_PREFERRED_SIZE,
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var CopyrdoHowMarried0bab3e95fe13947 = new voltmx.ui.RadioButtonGroup({
+                "id": "CopyrdoHowMarried0bab3e95fe13947",
+                "isVisible": true,
+                "left": "0",
+                "masterData": [
+                    ["No", "No"],
+                    ["Yes", "Yes"]
+                ],
+                "selectedKey": "No",
+                "skin": "slRadioButtonGroup",
+                "top": "5dp",
+                "width": "100%",
+                "zIndex": 1
+            }, {
+                "itemOrientation": constants.RADIOGROUP_ITEM_ORIENTATION_HORIZONTAL,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            CopyflxConsentSpouse0bb25b51158b342.add(CopylblConsentSpouse0g10f8ef0107e4c, CopyrdoHowMarried0bab3e95fe13947);
+            var CopyflxHowMarried0a57a1af762e54b = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxHowMarried0a57a1af762e54b",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxHowMarried0a57a1af762e54b.setDefaultUnit(voltmx.flex.DP);
+            var CopyHowMarried0i2557a44081c41 = new com.hcl.lblList.LabelList({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopyHowMarried0i2557a44081c41",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "flxDropDwnList": {
+                        "height": "35dp",
+                        "right": "3dp",
+                        "top": "2dp",
+                        "width": "35dp"
+                    },
+                    "imgDropDwn": {
+                        "src": "icon_dropdwn.png"
+                    },
+                    "lblDetail": {
+                        "text": "How Married"
+                    },
+                    "listData": {
+                        "masterData": [
+                            ["opt1", "ICOP"]
+                        ],
+                        "width": "100%"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxHowMarried0a57a1af762e54b.add(CopyHowMarried0i2557a44081c41);
+            var CopyflxSpouseName0c8e09239ade44b = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxSpouseName0c8e09239ade44b",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxSpouseName0c8e09239ade44b.setDefaultUnit(voltmx.flex.DP);
+            var CopySpouseName0ca6efba79ae944 = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopySpouseName0ca6efba79ae944",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Spouse Name"
+                    },
+                    "lblDetailValue": {
+                        "text": "Eunice Buzwani",
+                        "top": "16dp"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxSpouseName0c8e09239ade44b.add(CopySpouseName0ca6efba79ae944);
+            var CopyflxSpouseIdentityNo0i9f0b8629b0a4f = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "focusSkin": "slFFocusbox",
+                "id": "CopyflxSpouseIdentityNo0i9f0b8629b0a4f",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 3
+                    }
+                },
+                "appName": "Customer360"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            CopyflxSpouseIdentityNo0i9f0b8629b0a4f.setDefaultUnit(voltmx.flex.DP);
+            var CopySpouseIdentityNum0a1b84f29322547 = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CopySpouseIdentityNum0a1b84f29322547",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "lblDetail": {
+                        "text": "Spouse Identity Number"
+                    },
+                    "lblDetailValue": {
+                        "text": "324219679",
+                        "top": "16dp"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            CopyflxSpouseIdentityNo0i9f0b8629b0a4f.add(CopySpouseIdentityNum0a1b84f29322547);
+            flxMaritalInfo.add(CopyflxMaritalStat0j25a34e4c08c48, CopyflxConsentSpouse0bb25b51158b342, CopyflxHowMarried0a57a1af762e54b, CopyflxSpouseName0c8e09239ade44b, CopyflxSpouseIdentityNo0i9f0b8629b0a4f);
+            flxPersonalData.add(flxPersonalInfoData, flxMaritalInfo);
+            flxSrc.add(flxCustomerDetails, flxTabs, flxSegData, flxChart, flxCollaInfo, flxInsuranceInfo, flxOpInfo, flxRiskTypes, flxRiskInsight, flxContInfo, flxPersonalData);
             flxRight.add(FormHeader, flxSrc);
-            flxMain.add(flxLeft, flxRight);
+            flxMain.add(SideMenu, flxRight);
             this.breakpointResetData = {};
             this.breakpointData = {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader": {
-                    "centerY": "",
-                    "top": "0dp"
+                "SideMenu.imgLogo": {
+                    "src": "sblogo.png"
                 },
-                "FormHeader.lblHdr": {
-                    "text": "Customer Profile"
+                "SideMenu.imgLogout": {
+                    "src": "icon_logout.png"
+                },
+                "FormHeader.imgLogout": {
+                    "src": "icon_logout.png"
                 },
                 "SubHdr": {
                     "centerY": "",
@@ -8611,6 +10679,15 @@ define("Customer360/frmCustomer", function() {
                 },
                 "SubHdr.lblSubHdr": {
                     "text": "Customer Information"
+                },
+                "SrchTextBox": {
+                    "height": "100%",
+                    "left": "24dp",
+                    "top": "0dp",
+                    "width": "63%"
+                },
+                "SrchTextBox.imgSrch": {
+                    "src": "icon_srch.png"
                 },
                 "CIFNumber.lblDetail": {
                     "text": "CIF Number"
@@ -8756,35 +10833,6 @@ define("Customer360/frmCustomer", function() {
                 "RouteToHeadOff.lblDetailValue": {
                     "height": "40dp",
                     "text": "No"
-                },
-                "BusinessTelNum": {
-                    "width": "100%"
-                },
-                "BusinessTelNum.lblText": {
-                    "text": "Business Tel Number"
-                },
-                "BusinessTelNum.txtBox": {
-                    "text": "0775449345",
-                    "width": "100%"
-                },
-                "EmailAddress": {
-                    "width": "100%"
-                },
-                "EmailAddress.lblText": {
-                    "text": "Email Address"
-                },
-                "EmailAddress.txtBox": {
-                    "text": "info@8020marketingug.co",
-                    "width": "100%"
-                },
-                "Fax": {
-                    "width": "100%"
-                },
-                "Fax.lblText": {
-                    "text": "Fax"
-                },
-                "Fax.txtBox": {
-                    "width": "100%"
                 },
                 "ApplicantsName.flxDropDwnList": {
                     "height": "30dp",
@@ -9200,24 +11248,6 @@ define("Customer360/frmCustomer", function() {
                 "ProbabilityDefault.lblDetailValue": {
                     "text": "12"
                 },
-                "Reason1.lblDetail": {
-                    "text": "Reason1"
-                },
-                "Reason1.lblDetailValue": {
-                    "text": "reason1"
-                },
-                "Reason2.lblDetail": {
-                    "text": "Reason2"
-                },
-                "Reason2.lblDetailValue": {
-                    "text": "reason2"
-                },
-                "Reason3.lblDetail": {
-                    "text": "Reason3"
-                },
-                "Reason3.lblDetailValue": {
-                    "text": "reason3"
-                },
                 "RiskScoreGrade.lblDetail": {
                     "text": "Rating Score"
                 },
@@ -9235,6 +11265,24 @@ define("Customer360/frmCustomer", function() {
                 },
                 "CopyRiskScoreGrade0fa0a4b9ab6cd45.lblDetailValue": {
                     "text": "FCY"
+                },
+                "CopyReason0e4a8784fb61849.lblDetail": {
+                    "text": "Reason1"
+                },
+                "CopyReason0e4a8784fb61849.lblDetailValue": {
+                    "text": "reason1"
+                },
+                "CopyReason0efec4db8bdd744.lblDetail": {
+                    "text": "Reason2"
+                },
+                "CopyReason0efec4db8bdd744.lblDetailValue": {
+                    "text": "reason2"
+                },
+                "CopyReason0a8e0ca5a8a5844.lblDetail": {
+                    "text": "Reason3"
+                },
+                "CopyReason0a8e0ca5a8a5844.lblDetailValue": {
+                    "text": "reason3"
                 },
                 "SubHdr2": {
                     "centerY": "",
@@ -9272,7 +11320,7 @@ define("Customer360/frmCustomer", function() {
                     "top": "0dp"
                 },
                 "lblAffSubHdr.lblSubHdr": {
-                    "text": "Affordable Insight"
+                    "text": "Affordability Insight"
                 },
                 "DebitServiceRatio.lblDetail": {
                     "text": "Debit Service Ratio"
@@ -9348,26 +11396,17 @@ define("Customer360/frmCustomer", function() {
                     "text": "15,000,000",
                     "width": "100%"
                 },
-                "Reason": {
-                    "width": "100%",
-                    "zIndex": 1
+                "LabelTextArea.FlexContainer0e91e04f1e8e74a": {
+                    "top": "5dp"
                 },
-                "Reason.lblText": {
+                "LabelTextArea.lblText": {
                     "text": "Reason for applicant added to watchlist"
                 },
-                "Reason.txtBox": {
-                    "text": "------",
-                    "width": "100%"
+                "WatchHistory.FlexContainer0e91e04f1e8e74a": {
+                    "top": "5dp"
                 },
-                "WatchListHis": {
-                    "width": "100%",
-                    "zIndex": 1
-                },
-                "WatchListHis.lblText": {
+                "WatchHistory.lblText": {
                     "text": "Watchlist History"
-                },
-                "WatchListHis.txtBox": {
-                    "width": "100%"
                 },
                 "lblSubHdrBureau": {
                     "centerY": "",
@@ -9507,6 +11546,208 @@ define("Customer360/frmCustomer", function() {
                 },
                 "ExtractDate.lblDetailValue": {
                     "text": "2023-12-09"
+                },
+                "lblSubEnvironmentSocial": {
+                    "centerY": "",
+                    "top": "0dp"
+                },
+                "lblSubEnvironmentSocial.lblSubHdr": {
+                    "text": "Environment and Social Risk"
+                },
+                "EnvApplicantName.lblDetail": {
+                    "text": "Applicant Name"
+                },
+                "EnvApplicantName.lblDetailValue": {
+                    "text": "Ventures"
+                },
+                "TransRiskAss.lblDetail": {
+                    "text": "Transaction Risk Asseseement"
+                },
+                "TransRiskAss.lblDetailValue": {
+                    "text": "Low"
+                },
+                "ClientRiskAss.lblDetail": {
+                    "text": "Client Risk Assessment"
+                },
+                "ClientRiskAss.lblDetailValue": {
+                    "text": "Low"
+                },
+                "RefernceNumber.lblDetail": {
+                    "text": "Reference Number"
+                },
+                "RefernceNumber.lblDetailValue": {
+                    "text": "2307972"
+                },
+                "TransacExceptionList.lblDetail": {
+                    "text": "Transaction on Exceptions List"
+                },
+                "TransacExceptionList.lblDetailValue": {
+                    "text": "No"
+                },
+                "EquatorPrincipleTrans.lblDetail": {
+                    "text": "Equator Principle Transaction "
+                },
+                "EquatorPrincipleTrans.lblDetailValue": {
+                    "text": "No"
+                },
+                "RiskAssessmentDate.lblDetail": {
+                    "text": "Risk Assessment Date"
+                },
+                "RiskAssessmentDate.lblDetailValue": {
+                    "text": "2023-12-07"
+                },
+                "RiskSocialCommentary.FlexContainer0e91e04f1e8e74a": {
+                    "top": "5dp"
+                },
+                "RiskSocialCommentary": {
+                    "zIndex": 1
+                },
+                "RiskSocialCommentary.lblText": {
+                    "text": "Environment ad/or Socal Risk Commentary"
+                },
+                "BusinessTelNum": {
+                    "width": "100%"
+                },
+                "BusinessTelNum.lblText": {
+                    "text": "Business Tel Number"
+                },
+                "BusinessTelNum.txtBox": {
+                    "text": "0775449345",
+                    "width": "100%"
+                },
+                "EmailAddress": {
+                    "width": "100%"
+                },
+                "EmailAddress.lblText": {
+                    "text": "Email Address"
+                },
+                "EmailAddress.txtBox": {
+                    "text": "info@8020marketingug.co",
+                    "width": "100%"
+                },
+                "Fax": {
+                    "width": "100%"
+                },
+                "Fax.lblText": {
+                    "text": "Fax"
+                },
+                "Fax.txtBox": {
+                    "width": "100%"
+                },
+                "CopyStreet0i429f61e9b0b4b": {
+                    "zIndex": 1
+                },
+                "CopyStreet0i429f61e9b0b4b.lblText": {
+                    "text": "Street Address"
+                },
+                "CopyStreet0i429f61e9b0b4b.txtBox": {
+                    "width": "100%"
+                },
+                "CopyZipCode0c7ef633c40d949": {
+                    "zIndex": 1
+                },
+                "CopyZipCode0c7ef633c40d949.lblText": {
+                    "text": "Zip Code"
+                },
+                "CopyZipCode0c7ef633c40d949.txtBox": {
+                    "width": "100%"
+                },
+                "CopyState0eb3bd5c1da4645": {
+                    "zIndex": 1
+                },
+                "CopyState0eb3bd5c1da4645.lblText": {
+                    "text": "State"
+                },
+                "CopyState0eb3bd5c1da4645.txtBox": {
+                    "width": "100%"
+                },
+                "CopyCity0g9e44060abec47": {
+                    "zIndex": 1
+                },
+                "CopyCity0g9e44060abec47.lblText": {
+                    "text": "City"
+                },
+                "CopyCity0g9e44060abec47.txtBox": {
+                    "width": "100%"
+                },
+                "CopyStreet0b0303562e0fa41": {
+                    "zIndex": 1
+                },
+                "CopyStreet0b0303562e0fa41.lblText": {
+                    "text": "Street Address"
+                },
+                "CopyStreet0b0303562e0fa41.txtBox": {
+                    "width": "100%"
+                },
+                "CopyZipCode0ce19684f96ba47": {
+                    "zIndex": 1
+                },
+                "CopyZipCode0ce19684f96ba47.lblText": {
+                    "text": "Zip Code"
+                },
+                "CopyZipCode0ce19684f96ba47.txtBox": {
+                    "width": "100%"
+                },
+                "CopyState0edac75584cb84a": {
+                    "zIndex": 1
+                },
+                "CopyState0edac75584cb84a.lblText": {
+                    "text": "State"
+                },
+                "CopyState0edac75584cb84a.txtBox": {
+                    "width": "100%"
+                },
+                "CopyCity0gd10de842da145": {
+                    "zIndex": 1
+                },
+                "CopyCity0gd10de842da145.lblText": {
+                    "text": "City"
+                },
+                "CopyCity0gd10de842da145.txtBox": {
+                    "width": "100%"
+                },
+                "IncomeTax.lblDetail": {
+                    "text": "Income Tax Number"
+                },
+                "IncomeTax.lblDetailValue": {
+                    "text": "2358001",
+                    "top": "16dp"
+                },
+                "CopyMaritalStatus0c0e6e7b632044d.lblDetail": {
+                    "text": "Marital Status"
+                },
+                "CopyMaritalStatus0c0e6e7b632044d.lblDetailValue": {
+                    "text": "Married",
+                    "top": "16dp"
+                },
+                "CopyHowMarried0i2557a44081c41.flxDropDwnList": {
+                    "height": "35dp",
+                    "right": "3dp",
+                    "top": "2dp",
+                    "width": "35dp"
+                },
+                "CopyHowMarried0i2557a44081c41.imgDropDwn": {
+                    "src": "icon_dropdwn.png"
+                },
+                "CopyHowMarried0i2557a44081c41.lblDetail": {
+                    "text": "How Married"
+                },
+                "CopyHowMarried0i2557a44081c41.listData": {
+                    "width": "100%"
+                },
+                "CopySpouseName0ca6efba79ae944.lblDetail": {
+                    "text": "Spouse Name"
+                },
+                "CopySpouseName0ca6efba79ae944.lblDetailValue": {
+                    "text": "Eunice Buzwani",
+                    "top": "16dp"
+                },
+                "CopySpouseIdentityNum0a1b84f29322547.lblDetail": {
+                    "text": "Spouse Identity Number"
+                },
+                "CopySpouseIdentityNum0a1b84f29322547.lblDetailValue": {
+                    "text": "324219679",
+                    "top": "16dp"
                 }
             }
             this.add(flxMain);

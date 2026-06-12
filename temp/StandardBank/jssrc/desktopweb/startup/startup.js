@@ -18,7 +18,7 @@ var appConfig = {
             "_internal_logout": "https://voltmxtechnohub.hclvoltmx.net/services/IST",
             "LoginSer": "https://voltmxtechnohub.hclvoltmx.net/services/LoginSer"
         },
-        "service_doc_etag": "0000019DD9215E80",
+        "service_doc_etag": "0000019EB5D31878",
         "appId": "ec3a3fe3-fc60-4ef1-9856-60c371c055ee",
         "identity_features": {
             "reporting_params_header_allowed": true

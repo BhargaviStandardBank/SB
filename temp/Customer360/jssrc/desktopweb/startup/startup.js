@@ -17,7 +17,7 @@ var appConfig = {
         "integsvc": {
             "_internal_logout": "https://voltmxtechnohub.hclvoltmx.net/services/IST"
         },
-        "service_doc_etag": "0000019D77CB4F10",
+        "service_doc_etag": "0000019EB5DD6530",
         "appId": "940abcbd-e3e1-49b1-ab40-3580b2b4604b",
         "identity_features": {
             "reporting_params_header_allowed": true
@@ -29,7 +29,10 @@ var appConfig = {
         },
         "baseId": "7590f609-b356-4c7c-9276-bf9f735dba68",
         "app_default_version": "1.0",
-        "services_meta": {}
+        "services_meta": {},
+        "Webapp": {
+            "url": "https://voltmxtechnohub.hclvoltmx.net/apps/Customer360"
+        }
     },
     runtimeAppVersion: "1.0",
     eventTypes: ["FormEntry", "Error", "Crash"],

@@ -46,7 +46,7 @@
     "id": "flxLine",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": true,
+    "isvisible": false,
     "kuid": "b0a5f9dbde2e401c85d36d44af525fc9",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",

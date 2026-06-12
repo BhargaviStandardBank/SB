@@ -1,7 +1,7 @@
 //app.js file
 //FP Appended Customer360/voltmx_sdk.js-----------------------------------------------------------
  /*
-  * voltmx-sdk-ide Version 10.0.3.0
+  * voltmx-sdk-ide Version 10.0.7.0
   */
  /**
   * Volt MX namespace
@@ -212,7 +212,7 @@
  voltmx.sdk.isLicenseUrlAvailable = true;
  voltmx.sdk.isOAuthLogoutInProgress = false;
  voltmx.sdk.constants = voltmx.sdk.constants || {};
- voltmx.sdk.version = "10.0.3.0";
+ voltmx.sdk.version = "10.0.7.0";
  voltmx.sdk.logsdk = new voltmxSdkLogger();
  voltmx.sdk.syncService = null;
  voltmx.sdk.dataStore = voltmx.sdk.dataStore || new voltmxDataStore();
@@ -1357,7 +1357,26 @@
      /**custom params for oauth**/
      CUSTOM_QUERY_PARAMS_FOR_OAUTH: "customQueryParamsForOAuth",
      CUSTOM_OAUTH_PARAMS: "customOAuthParams",
-     LOGOUT_OPTIONS: "logoutOptions"
+     LOGOUT_OPTIONS: "logoutOptions",
+     /** SSE Constants **/
+     STREAM_CLOSED_CODE: 1028,
+     STREAM_CLOSED_MESSAGE: "Stream connection closed successfully by user",
+     STREAM_ERROR_CODE: 1029,
+     STREAM_ALREADY_CLOSED_MESSAGE: "Stream connection is already closed",
+     STREAM_NOT_STARTED_MESSAGE: "Stream connection has not been initiated yet",
+     STREAM_FAILED_MESSAGE: "An internal error occurred while trying to close the connection",
+     HANDLE_STATE: {
+         IDLE: "idle",
+         IN_PROGRESS: "in_progress",
+         CLOSED: "closed"
+     },
+     CONNECTION_STATES: {
+         IDLE: 'idle',
+         IN_PROGRESS: 'in_progress',
+         OPEN: 'open',
+         ERROR: 'error',
+         CLOSED: 'closed'
+     }
  };
  if (typeof(voltmx.sdk) === "undefined") {
      voltmx.sdk = {};
@@ -7280,6 +7299,176 @@
          return null;
      }
  };
+
+ function EventSourceConnector(url, headers, data, successCallback, failureCallback, options, httpMethod) {
+     this.url = this.validateURL(url);
+     this.options = this.validateOptions(options);
+     var retryOptions = (this.options.retry && typeof this.options.retry === 'object') ? this.options.retry : {};
+     this.config = {
+         method: (httpMethod || voltmx.sdk.constants.HTTP_METHOD_POST),
+         headers: headers || {},
+         retry: {}
+     };
+     if (typeof data !== 'undefined') {
+         this.config.body = data;
+     }
+     // Android & iOS only
+     if ("requestTimeout" in this.options) {
+         this.config.requestTimeout = this.options.requestTimeout;
+     }
+     if ("enable" in retryOptions) {
+         this.config.retry.enable = retryOptions.enable;
+     }
+     if ("verifyNoContent" in retryOptions) {
+         this.config.retry.verifyNoContent = retryOptions.verifyNoContent;
+     }
+     // Android & iOS only
+     if ("interval" in retryOptions) {
+         this.config.retry.interval = retryOptions.interval;
+     }
+     if ("maxInterval" in retryOptions) {
+         this.config.retry.maxInterval = retryOptions.maxInterval;
+     }
+     this.config.headers[voltmx.sdk.constants.HTTP_CONTENT_HEADER] = voltmx.sdk.constants.CONTENT_TYPE_JSON;
+     this.successCallback = successCallback;
+     this.failureCallback = failureCallback;
+     this.state = voltmx.sdk.constants.CONNECTION_STATES.IDLE;
+     this._isTerminated = false;
+ }
+ EventSourceConnector.prototype.validateURL = function(url) {
+     if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+         throw new Error("Invalid URL");
+     }
+     return url;
+ };
+ EventSourceConnector.prototype.validateOptions = function(options) {
+     var _options = {};
+     if (options && typeof options !== 'object') {
+         throw new Error('Invalid options payload');
+     }
+     for (var option in options) {
+         _options[option] = options[option];
+     }
+     return _options;
+ };
+ EventSourceConnector._sseCloseHandleBindingMap = new WeakMap();
+ EventSourceConnector.prototype.open = function() {
+     var self = this;
+     this.eventSource = new voltmx.net.EventSource(this.url, this.config);
+     this.state = voltmx.sdk.constants.CONNECTION_STATES.IN_PROGRESS;
+     this.eventSource.onOpen = function(evt) {
+         self.state = voltmx.sdk.constants.CONNECTION_STATES.OPEN;
+         voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+     };
+     this.eventSource.onMessage = function(evt) {
+         voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+     };
+     this.eventSource.onError = function(evt) {
+         self.state = voltmx.sdk.constants.CONNECTION_STATES.ERROR;
+         voltmx.sdk.verifyAndCallClosure(self.failureCallback, evt);
+         var retryEnabled = !!(self.config && self.config.retry && self.config.retry.enable);
+         if (!retryEnabled) {
+             self._isTerminated = true;
+             self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+             if (self.options && self.options._sseCloseHandleRef) {
+                 voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                     handler: null,
+                     state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                 });
+             }
+         }
+     };
+     this.eventSource.onClose = function(evt) {
+         if (!self._isTerminated) {
+             self._isTerminated = true;
+             self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+             if (self.options && self.options._sseCloseHandleRef) {
+                 voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                     handler: null,
+                     state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                 });
+             }
+             voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+         }
+     };
+     this.eventSource.open();
+ };
+ EventSourceConnector.prototype.close = function(successCallback, failureCallback) {
+     var _success = (typeof successCallback === 'function') ? successCallback : function() {};
+     var _failure = (typeof failureCallback === 'function') ? failureCallback : function() {};
+     try {
+         if (this.state === voltmx.sdk.constants.CONNECTION_STATES.CLOSED || this._isTerminated) {
+             _failure({
+                 code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                 message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+             });
+             return;
+         }
+         if (!this.eventSource || typeof this.eventSource.close !== 'function') {
+             _failure({
+                 code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                 message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+             });
+             return;
+         }
+         this._isTerminated = true;
+         this.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+         this.eventSource.close();
+         this.eventSource = null;
+         if (this.options && this.options._sseCloseHandleRef) {
+             voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(this.options._sseCloseHandleRef, {
+                 handler: null,
+                 state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+             });
+         }
+         _success({
+             code: voltmx.sdk.constants.STREAM_CLOSED_CODE,
+             message: voltmx.sdk.constants.STREAM_CLOSED_MESSAGE
+         });
+     } catch (err) {
+         _failure({
+             code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+             message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+         });
+     }
+ };
+ EventSourceConnector.createSSECloseHandle = function() {
+     var handle = {
+         close: function(success, failure) {
+             var connectorClose = voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.get(handle);
+             if (connectorClose && typeof connectorClose.handler === "function" && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS) {
+                 connectorClose.handler(success, failure);
+             } else if (connectorClose && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.CLOSED) {
+                 // Correctly identify that it was already closed
+                 failure && failure({
+                     code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                     message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+                 });
+             } else {
+                 failure && failure({
+                     code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                     message: voltmx.sdk.constants.STREAM_NOT_STARTED_MESSAGE
+                 });
+             }
+         }
+     };
+     voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+         handler: handle,
+         state: voltmx.sdk.constants.HANDLE_STATE.IDLE
+     });
+     return handle;
+ };
+ EventSourceConnector.registerSSECloseHandle = function(connectorInstance, existingHandle) {
+     var handle = existingHandle || voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+     voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+         handler: function(success, failure) {
+             connectorInstance.close(success, failure);
+         },
+         state: voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS
+     });
+     return handle;
+ };
+ voltmx.sdk.EventSourceConnector = EventSourceConnector;
  voltmx.logger = voltmx.logger || {};
  voltmx.logger.createNewLogger = function(loggerName, loggerConfig) {
      parseConfig = function(loggerConfig) {
@@ -7552,13 +7741,33 @@
       * @param {object} options - XMLHttpRequest options like withCredentials value.
       */
      this.invokeOperation = function(operationName, headers, data, successCallback, failureCallback, options) {
+         var sseCloseHandle = null;
+         var internalOptions = options;
+         if (options && options.sse) {
+             internalOptions = {};
+             for (var optionKey in options) {
+                 if (options.hasOwnProperty(optionKey)) {
+                     internalOptions[optionKey] = options[optionKey];
+                 }
+             }
+             sseCloseHandle = voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+             internalOptions._sseCloseHandleRef = sseCloseHandle;
+         }
+
          function invokeOperationHandler() {
-             _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+             if (options && options.sse) {
+                 _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, internalOptions);
+             } else {
+                 _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+             }
          }
          if (voltmx.sdk.skipAnonymousCall) {
              invokeOperationHandler();
          } else {
              voltmx.sdk.claimsRefresh(invokeOperationHandler, failureCallback);
+         }
+         if (options && options.sse) {
+             return sseCloseHandle;
          }
      };
      /**
@@ -7769,17 +7978,26 @@
              if (xhr && !(status && err)) {
                  err = xhr;
              }
-             if (isRetryNeeded === true && retryServiceCall(err) === true) {
-                 voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
-                 invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
-                 return;
+             if (options && options.sse) {
+                 voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
+             } else {
+                 if (isRetryNeeded === true && retryServiceCall(err) === true) {
+                     voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
+                     invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
+                     return;
+                 }
+                 voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
+                 voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
+                 voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
              }
-             voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
-             voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
-             voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
          }
          voltmx.sdk.logsdk.perf("Executing network call for _invokeOperation : " + operationName);
-         networkProvider.post(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, null, options);
+         if (options && options.sse) {
+             networkProvider.eventSource(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, options);
+             return;
+         } else {
+             networkProvider.post(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, null, options);
+         }
      }
      voltmx.sdk.processIntegrationErrorResponse = function(err, isAsync, callBack) {
          if (err[voltmx.sdk.constants.MF_CODE]) {
@@ -7858,6 +8076,9 @@
          } else {
              return voltmx.sdk.processIntegrationErrorResponse(res, false);
          }
+     }
+     this.getFileStorage = function() {
+         return voltmx.sdk.FileStorageClasses.import(this.getUrl());
      }
  }
  voltmx.sdk.claimsRefreshSync = function() {
@@ -13037,7 +13258,43 @@
              url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
          }
          voltmxNetHttpRequest(url, null, headers, "GET", voltmxContentType, successCallback, failureCallback, options);
+     };
+     this.eventSource = function(url, params, headers, successCallback, failureCallback, options) {
+         if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+             voltmx.sdk.verifyAndCallClosure(failureCallback, "url cannot be null or empty");
+             return;
+         }
+         //Appending global params
+         if (voltmx.sdk.isNullOrUndefined(params)) {
+             params = {};
+         }
+         if (!voltmx.sdk.isNullOrUndefined(voltmx.sdk.currentInstance)) {
+             url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
+         }
+         return voltmxNetEventSourceRequest(url, params, headers, voltmx.sdk.constants.HTTP_METHOD_POST, successCallback, failureCallback, options);
+     };
+ }
+
+ function voltmxNetEventSourceRequest(url, params, headers, httpMethod, successCallback, failureCallback, options) {
+     // give failure call back if network is not available
+     if (!voltmx.net.isNetworkAvailable(constants.NETWORK_TYPE_ANY)) {
+         var errorObj = {};
+         errorObj.httpresponse = {};
+         errorObj[voltmx.sdk.constants.MF_OPSTATUS] = voltmx.sdk.errorcodes.connectivity_error_code;
+         errorObj[voltmx.sdk.constants.MF_ERROR_CODE] = voltmx.sdk.errorcodes.connectivity_error_code;
+         errorObj[voltmx.sdk.constants.MF_ERROR_MSG] = voltmx.sdk.errormessages.connectivity_error_message;
+         errorObj.httpresponse.headers = {};
+         errorObj.httpresponse.url = url;
+         failureCallback(errorObj);
+         return;
      }
+     options = options || {};
+     headers = headers || {};
+     var eventSourceConnector = new voltmx.sdk.EventSourceConnector(url, headers, params, successCallback, failureCallback, options, httpMethod);
+     eventSourceConnector.open();
+     // 3. Register and return the handle
+     var sseCloseHandleRef = options && options._sseCloseHandleRef;
+     return voltmx.sdk.EventSourceConnector.registerSSECloseHandle(eventSourceConnector, sseCloseHandleRef);
  }
 
  function voltmxNetHttpRequest(url, params, headers, httpMethod, voltmxContentType, successCallback, failureCallback, options) {
@@ -14678,7 +14935,7 @@
      }
  })();
 //FP Appended KAnnotationsPopup.js-----------------------------------------------------------
-var project_params=null,annotationDataPREVIEW=null,doEdit=!1,editSelectedItem=null,currIndices={},coords=[],rowreset=!1,swipedIndices={},animationObj,enableLoggerSwitch=!1,fileLoc,mainLoc,flushLimitcounter=0,flushLimit=3,konyapiprintsarr=[],konyapiprintsindex=0,filecreated=!1,rawBytesObj,fileChangesPathFP=[],segdataCloudTablet=[{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!0,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Review screens and write your comments.",lblHeading:"Notes",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{skin:""}}],segdataLocalSwitchon=[{btnSwithLogs:{isVisible:!0,skin:"sknBtnOn",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!0,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:{text:"View ",skin:"sknFocusLogsLabelDesp"},lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{isVisible:!1,skin:""}}],segdataLocalSwitchoff=[{btnSwithLogs:{isVisible:!0,src:"offimg.png",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Turn ON to fetch and view logs.",lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{isVisible:!1,skin:""}}],segdataCloudSwitchon=[{btnSwithLogs:{isVisible:!0,skin:"sknBtnOn",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!0,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:{text:"View ",skin:"sknFocusLogsLabelDesp"},lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!0,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Review screens and write your comments.",lblHeading:"Notes",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{skin:""}}],segdataCloudSwitchoff=[{btnSwithLogs:{isVisible:!0,src:"offimg.png",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Turn ON to fetch and view logs.",lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!0,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Review screens and write your comments.",lblHeading:"Notes",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{skin:""}}],flxFPHeader=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"10%",id:"flxFPHeader",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",isModalContainer:!1,skin:"sknlblHeaderTemenosBlue",top:"5%",width:"100%",zIndex:1},{},{});flxFPHeader.setDefaultUnit(voltmx.flex.DP);var imgFPExitPreview=new voltmx.ui.Image2({centerY:"50%",height:"40dp",id:"imgFPExitPreview",isVisible:!0,left:"3%",skin:"slImage",onTouchStart:lblFPExitPreviewCallback,src:"Exit_icon.png",width:"40dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),imgHeaderDrag=new voltmx.ui.Image2({centerX:"50%",centerY:"80%",height:"40dp",id:"imgHeaderDrag",isVisible:!0,skin:"slImage",src:"Drag_dots_icon.png",width:"40dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),imgFPReset=new voltmx.ui.Image2({centerY:"50%",height:"40dp",id:"imgFPReset",isVisible:!0,onTouchStart:lblFPResetCallback,right:"3%",skin:"slImage",src:"Reload_icon.png",width:"40dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{});flxFPHeader.add(imgFPExitPreview,imgHeaderDrag,imgFPReset);var flxFPFooter=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,bottom:0,clipBounds:!0,height:"10%",id:"flxFPFooter",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",isModalContainer:!1,skin:"sknlblHeaderTemenosBlue",top:"85%",width:"100%",zIndex:1},{},{});flxFPFooter.setDefaultUnit(voltmx.flex.DP);var imgFooterDrag=new voltmx.ui.Image2({centerX:"50%",centerY:"20%",height:"40dp",id:"imgFooterDrag",isVisible:!0,skin:"slImage",src:"Drag_dots_icon.png",width:"40dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),flxalignFPFooterRight=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"100%",id:"flxalignFPFooterRight",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,isModalContainer:!1,onClick:btnFPViewSrcCallback,right:"3%",skin:"sknlblHeaderTemenosBlue",width:"170dp",zIndex:1,bottom:0},{},{});flxalignFPFooterRight.setDefaultUnit(voltmx.flex.DP);var imgFPCode=new voltmx.ui.Image2({centerY:"50%",height:"40%",id:"imgFPCode",isVisible:!0,left:"0%",skin:"slImage",src:"Code_icon.png",width:"60dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),lblViewSource=new voltmx.ui.Label({centerY:"50%",id:"lblViewSource",isVisible:!0,left:"30%",skin:"sknlblHeaderFP",text:"Source Code",textStyle:{},width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP});flxalignFPFooterRight.add(imgFPCode,lblViewSource);flxFPFooter.add(imgFooterDrag,flxalignFPFooterRight);var __projectDetailsParams=function(e){var i=voltmx.ds.read("kv_project"),t={};if(null!=i&&0<i.length){t.proj_guid=i[0].project_guid;t.acc_guid=i[0].account_guid;t.annotation_id=e;t.widget_id=e;t.channel=i[0].channel}return t},segmentData=function(e){var i=[],t=project_params.widget_id;if(null==e||null==e.comments[t])return i;for(var s in e.comments[t]){var l=e.comments[t];if(1==l[s].active){var n=l[s].lastModifiedTime;n=new Date(n);var o=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],r="AM",a=n.getHours(),g=n.getMinutes();if(12<a){a=a-12;r="PM"}if(0==a){a=12}if(9>=g){g="0"+g}var d=o[n.getMonth()]+" "+n.getDate()+", "+a+":"+g+" "+r;l[s].formattedlmt=d;i.push(l[s])}}i.sort(function(e,i){return new Date(i.lastModifiedTime)-new Date(e.lastModifiedTime)});return i},setSegmentData_popupBottomPreview=function(e){annotationDataPREVIEW=e;e.length;currentfrmFP=voltmx.application.getCurrentForm();var i=voltmx.ds.read("kvsession")[0],t=i.userDetails;if(null==e||0==e.length){if(currentfrmFP.segPopupPreview){currentfrmFP.segPopupPreview.isVisible=!1}if(currentfrmFP.lblNoNotes){currentfrmFP.lblNoNotes.setVisibility(!0)}}else{if(currentfrmFP.lblNoNotes){currentfrmFP.lblNoNotes.setVisibility(!1)}if(currentfrmFP.segPopupPreview){currentfrmFP.segPopupPreview.setData(e);currentfrmFP.segPopupPreview.setVisibility(!0)}}},__annotationData=function(){var e=fpas.readAnnotationFromDataStore(project_params);return segmentData(e)},__showPopupWidBottomContext=function(){var e=__annotationData();setSegmentData_popupBottomPreview(e)},__refreshSegmentData=function(){var e=__annotationData();setSegmentData_popupBottomPreview(e)};function txtAreaCallback(){}var __addAppendCommentFP=function(){var e=voltmx.application.getCurrentForm(),i=voltmx.os.deviceInfo().name.toLowerCase();if("Android"==i){e.windowSoftInputMode=constants.FORM_ADJUST_PAN}doEdit=!1;var t={},s=e.txtAreaNotesAV.text&&e.txtAreaNotesAV.text.trim();if(null==s||""==s)return;t.comment=s;fpas.addOrAppendAnnotationTODS(project_params,t,function(i){if(400==i.status){var t=segmentData(i.data);setSegmentData_popupBottomPreview(t);e.txtAreaNotesAV.text="";syncWithCloudDBUtil(function(e){if(200==e.status){__refreshSegmentData()}})}})};function getTransAnimDefinition(e){try{var i=voltmx.ui.createAnimation({100:{left:e}});return{definition:i,config:{duration:1,iterationCount:1,delay:0,fillMode:voltmx.anim.FILL_MODE_FORWARDS}}}catch(e){}}function panGestureHandler(e,i,t){try{var s=t.sectionIndex,l=t.rowIndex,n=t.widgetInfo,o=t.widgetInfo.id;currIndices.secIndex=t.sectionIndex;currIndices.rowIndex=t.rowIndex;var r=0,a=0,g,d,p=voltmx.os.deviceInfo().name.toLowerCase();a=parseInt(i.translationX);coords.push(a);if(3==i.gestureState){r=1==coords.length?coords[0]:coords[coords.length-1]-coords[0];if("segPopupPreview"==o){g=-256;if(/^(androidtab||windows)$/.test(p)){d="-21%"}else d="-10%"}else{g=-140;d="-18.5%"}if(r>g){animationObj=getTransAnimDefinition("0%");coords=[];n.animateRows({rows:[{sectionIndex:t.sectionIndex,rowIndex:t.rowIndex}],widgets:["flxMainTemplate"],animation:animationObj})}else{if(swipedIndices.rowIndex==t.rowIndex&&swipedIndices.secIndex==t.sectionIndex){swipedIndices={}}else{swipedIndices.rowIndex=t.rowIndex;swipedIndices.secIndex=t.sectionIndex}animationObj=getTransAnimDefinition(d);n.animateRows({rows:[{sectionIndex:t.sectionIndex,rowIndex:t.rowIndex}],widgets:["flxMainTemplate"],animation:animationObj})}}else if(2==i.gestureState){animationObj=getTransAnimDefinition(a+"px");n.animateRows({rows:[{sectionIndex:t.sectionIndex,rowIndex:t.rowIndex}],widgets:["flxMainTemplate"],animation:animationObj})}}catch(e){}}function delete_callback(e,i,t){try{var s=currentfrmFP.segPopupPreview.data,l=[];l.push(s[t]);__deleteCommentFP(l)}catch(e){}}var __deleteCommentFP=function(e){currentfrmFP=voltmx.application.getCurrentForm();if(null!=e&&0<e.length){var i=e[0],t=voltmx.ds.read("kvsession")[0],s=t.userDetails;if(i.createdById==s.user_guid){delete i.template;fpas.deleteCommentFROMDS(project_params,i,function(e){if(400==e.status){var i=segmentData(e.data);setSegmentData_popupBottomPreview(i);syncWithCloudDBUtil(function(e){if(200==e.status){__refreshSegmentData()}})}})}}},syncWithCloudDBUtil=function(e){var i=[];fpnotes.updateNotesToRemoteDB(project_params,function(t){if(200==t.status){fpnotes.fetchNotesFromRemoteDB(project_params,function(t){if(200==t.status&&null!=t.data){i=segmentData(t.data)}else{var s=fpas.readAnnotationFromDataStore(project_params);i=segmentData(s)}setSegmentData_popupBottomPreview(i);e({status:200})})}else{e({status:200})}})},onShakeFpApp=function(){var e=voltmx.application.getCurrentForm();if(null==e.flxMainAV||null==e.flxLogs){e.remove(flxMainAV);e.add(flxMainAV);e.enableOnScrollWidgetPositionForSubwidgets=!0;e.flxMainAV.setVisibility(!0)}if("LOCAL"==voltmx.store.getItem("FP_Type")){if("android"===voltmx.store.getItem("PLATFORMNAME_FP")||"iphone"===voltmx.store.getItem("PLATFORMNAME_FP")||"ipad"===voltmx.store.getItem("PLATFORMNAME_FP")){if(!0===e.segoptions.isVisible){e.flxMainAV.flxLogs.top="75.30%";e.flxMainAV.flxLogs.height="35.70%"}if(enableLoggerSwitch)e.flxMainAV.flxLogs.segoptions.setData(segdataLocalSwitchon);else e.flxMainAV.flxLogs.segoptions.setData(segdataLocalSwitchoff);voltmx.accelerometer.unregisterAccelerationEvents(["shake"])}else{e.flxMainAV.setVisibility(!1);voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForMenuInChildApp);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForTwoFingerSwipe);if("iphone"===voltmx.store.getItem("PLATFORMNAME_FP")){voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter)}voltmx.application.launchApplication(null);return}}else{if("android"===voltmx.store.getItem("PLATFORMNAME_FP")||"iphone"===voltmx.store.getItem("PLATFORMNAME_FP")||"ipad"===voltmx.store.getItem("PLATFORMNAME_FP")){if(enableLoggerSwitch)e.flxMainAV.flxLogs.segoptions.setData(segdataCloudSwitchon);else e.flxMainAV.flxLogs.segoptions.setData(segdataCloudSwitchoff);if(!0===e.segoptions.isVisible){e.flxMainAV.flxLogs.top="64.30%";e.flxMainAV.flxLogs.height="35.70%"}}else{e.flxMainAV.flxLogs.segoptions.setData(segdataCloudTablet);if("0%"!=e.flxLogs.top){e.flxMainAV.flxLogs.top="75.30%";e.flxMainAV.flxLogs.height="35.70%"}}voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);if(null==e||e==void 0)return;if(null==e.info||e.info==void 0)return;ann_id=e.info.kuid;project_params=__projectDetailsParams(ann_id);__showPopupWidBottomContext();syncWithCloudDBUtil(function(i){if(200==i.status){e.txtAreaNotesAV.text="";__refreshSegmentData()}})}e.flxMainAV.setVisibility(!0);e.flxEmptyFrame.setVisibility(!0);e.flxMainAV.flxLogs.setVisibility(!0)};function apppostappinitFuncPreview(){if(["iphone","ipad"].includes(voltmx.store.getItem("PLATFORMNAME_FP"))){try{voltmx.store.setItem("FlagForAC","FALSE");voltmx.application.addWidgetToWindowForAppViewer(flxFPHeader);voltmx.application.addWidgetToWindowForAppViewer(flxFPFooter)}catch(e){voltmx.print("ios header and footer api error: "+e)}}addWidgets_flexContainer();var e=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"100%",id:"flxMainAV",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",skin:"CopyslFbox0e4fbf5879e9d4a",top:"0dp",width:"100%",zIndex:1},{},{});e.setDefaultUnit(voltmx.flex.DP);var i=voltmx.os.deviceInfo().name.toLowerCase(),t={};if("windows"==i||"windowsphone"==i){t={fingers:1,pressDuration:1}}else{t={fingers:2,pressDuration:1}}try{gestureIDForMenuInChildApp=voltmx.application.setGestureRecognizerForAllForms(3,t,function(e,i){if(3==voltmx.os.toNumber(i.gestureType)&&1==voltmx.os.toNumber(i.gesturesetUpParams.pressDuration)){onShakeFpApp()}})}catch(e){voltmx.print("error in function callbackSingleTapGesture:"+e.message)}var i=voltmx.os.deviceInfo().name.toLowerCase(),s={};if("windows"==i||"windowsphone"==i){s={fingers:2,swipedistance:30}}else{s={fingers:2,swipedistance:30,swipevelocity:60}}try{gestureIDForTwoFingerSwipe=voltmx.application.setGestureRecognizerForAllForms(2,s,function(e,i){if(2==voltmx.os.toNumber(i.gestureType)){if(2==voltmx.os.toNumber(i.swipeDirection)){if("iphone"===voltmx.store.getItem("PLATFORMNAME_FP")){voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter)}voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForMenuInChildApp);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForTwoFingerSwipe);unsubscribeLogListenerFP();voltmx.application.launchApplication(null)}}})}catch(e){voltmx.print("error in function callbackSingleTapGesture:"+e.message)}voltmx.accelerometer.registerAccelerationEvents({shake:onShakeFpApp})}function initializeFlxLogsOptions(){FBox0jb9868bd2b2546=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!1,height:"33.33%",id:"FBox0jb9868bd2b2546",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,isModalContainer:!1,skin:"slFbox0j120281168d143",width:"100%"},{},{});FBox0jb9868bd2b2546.setDefaultUnit(voltmx.flex.DP);var e=new voltmx.ui.Button({centerY:"50%",height:"30dp",id:"btnSwithLogs",isVisible:!0,right:"5.40%",onClick:btnSwitchLogsCallback,skin:"sknBtnOff",text:"",top:"23dp",width:"44dp",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[0,0,0,0],paddingInPixel:!1},{}),i=new voltmx.ui.Label({id:"lblHeading",isVisible:!0,left:"6%",skin:"sknLogsHeading",text:"Label",textStyle:{letterSpacing:0,strikeThrough:!1},top:"25%",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1}),t=new voltmx.ui.Label({id:"lblDesc",isVisible:!0,left:"6%",skin:"sknLogsDesc",text:"Label",textStyle:{letterSpacing:0,strikeThrough:!1},top:"60%",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1}),s=new voltmx.ui.Image2({centerY:"50%",height:"40dp",id:"imgArrow",isVisible:!0,right:"5.40%",skin:"slImage0ec814d65503e48",src:"imagedrag.png",top:"40dp",width:"30px",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),l=new voltmx.ui.Image2({height:"10dp",id:"imgLogsArrow",isVisible:!0,left:"15%",skin:"slImage0ec814d65503e48",src:"imagedrag.png",top:"66%",width:"15dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),n=new voltmx.ui.Image2({height:"25dp",id:"imgExit",isVisible:!0,left:"5.10%",skin:"slImage0ec814d65503e48",src:"imagedrag.png",top:"22%",width:"15dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),o=new voltmx.ui.Label({centerX:"50%",height:"2px",id:"lblLine",isVisible:!0,skin:"sknLabelSeparator",text:"",textStyle:{letterSpacing:0,strikeThrough:!1},top:"95%",width:"90%",zIndex:1,blur:{enabled:!1,value:0}},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1});FBox0jb9868bd2b2546.add(e,i,t,l,s,n,o)}function btnExitAppNotesCallBack(){if("iphone"===voltmx.store.getItem("PLATFORMNAME_FP")){voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter)}var e=voltmx.application.getCurrentForm();e.flxMainAV.setVisibility(!1);voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForMenuInChildApp);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForTwoFingerSwipe);unsubscribeLogListenerFP();voltmx.application.launchApplication(null)}function btnSwitchLogsCallback(){var e=voltmx.application.getCurrentForm();if(enableLoggerSwitch){enableLoggerSwitch=!1;e.lblLogs.text="";e.lblLogsPrint.text="";unsubscribeLogListenerFP();e.flxMainAV.flxLogs.height="35.70%";e.flxLogs.segoptions.setDataAt({btnSwithLogs:{isVisible:!0,skin:"sknBtnOff",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Turn ON to fetch and view logs.",lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},0)}else{redirectKonyPrintFP();subscribeLogListenerFP();e.flxMainAV.flxLogs.height="35.70%";e.flxLogs.segoptions.setDataAt({btnSwithLogs:{isVisible:!0,skin:"sknBtnOn",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!0,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:{text:"View ",skin:"sknFocusLogsLabelDesp"},lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},0)}}function ImageResizeanimationCallback(){var e=voltmx.application.getCurrentForm();e.flxLogs.height="35.7%";e.flxLogsOptions.isVisible=!1;e.flxScrollLogs.isVisible=!1;e.flxMainAV.flxLogs.top="75.30%";e.segoptions.isVisible=!0;e.flxMainAV.isVisible=!1;voltmx.accelerometer.registerAccelerationEvents({shake:onShakeFpApp})}function ImageResizeCallback(){var e=voltmx.application.getCurrentForm();e.flxLogs.animate(voltmx.ui.createAnimation({100:{top:"100%",stepConfig:{timingFunction:voltmx.anim.EASE}}}),{delay:0,iterationCount:1,fillMode:voltmx.anim.FILL_MODE_FORWARDS,duration:.75},{animationEnd:ImageResizeanimationCallback})}function ImageBackanimationCallback(){var e=voltmx.application.getCurrentForm();e.flxLogsOptions.isVisible=!1;e.flxScrollLogs.isVisible=!1;e.segoptions.isVisible=!0;e.flxLogs.height="35.7%"}function ImageBackCallback(){var e=voltmx.application.getCurrentForm();e.flxEmptyFrame.isVisible=!0;if("LOCAL"==voltmx.store.getItem("FP_Type"))var i="75.3%";else{if("android"===voltmx.store.getItem("PLATFORMNAME_FP")||"iphone"===voltmx.store.getItem("PLATFORMNAME_FP"))var i="64.3%";else var i="75.3%"}e.flxLogs.animate(voltmx.ui.createAnimation({100:{top:i,stepConfig:{timingFunction:voltmx.anim.FILL_MODE_FORWARDS}}}),{delay:0,iterationCount:1,fillMode:voltmx.anim.FILL_MODE_FORWARDS,duration:.5},{animationEnd:ImageBackanimationCallback})}function btnPrintsCallback(){var e=voltmx.application.getCurrentForm();if("android"==voltmx.os.deviceInfo().name.toLowerCase())e.flxLogsOptions.btnPrints.skin="sknFocusLogsLabels";else e.flxLogsOptions.btnPrints.skin="sknFocusLogsLabelsios";e.flxLogsOptions.btnFullLogs.skin="sknLogsOptionLabels";e.lblLogsPrint.isVisible=!0;e.lblLogs.isVisible=!1}function btnFullLogsCallback(){var e=voltmx.application.getCurrentForm();e.flxLogsOptions.btnPrints.skin="sknLogsOptionLabels";if("android"==voltmx.os.deviceInfo().name.toLowerCase())e.flxLogsOptions.btnFullLogs.skin="sknFocusLogsLabels";else e.flxLogsOptions.btnFullLogs.skin="sknFocusLogsLabelsios";e.lblLogsPrint.isVisible=!1;e.lblLogs.isVisible=!0}function permissionStatusCallbackforExternalStorage(e){if(e.status==voltmx.application.PERMISSION_GRANTED){downloadFileInDownloadsFolder()}else if(e.status==voltmx.application.PERMISSION_DENIED){alert("Please enable the Storage permission in Device Settings to download the file")}}function downloadFileInDownloadsFolder(){var e=voltmx.application.getCurrentForm(),i="/storage/emulated/0/Download"+"/logs";try{new voltmx.io.File(i).createFile();if(!0===filecreated){rawBytesObj=new voltmx.io.File(fileLoc).read();var t=new voltmx.io.File(i).write(rawBytesObj.readAsText()+e.lblLogs.text)}else var t=new voltmx.io.File(i).write(e.lblLogs.text);if(t){alert("File Saved in "+i+".txt")}else{alert("file not saved")}}catch(e){voltmx.print("Error downloadFileInDownloadsFolder"+e)}}function imgDownloadCallback(){try{var e=voltmx.application.getCurrentForm();if("android"==voltmx.os.deviceInfo().name.toLowerCase()){if("function"==typeof voltmx.io.FileSystem.getExternalFilesDir){var i=voltmx.io.FileSystem.getExternalFilesDir(),t=i+"/"+voltmx.store.getItem("CHILDAPP_NAME");try{new voltmx.io.File(t).createFile();if(!0===filecreated){rawBytesObj=new voltmx.io.File(fileLoc).read();var s=new voltmx.io.File(t).write(rawBytesObj.readAsText()+e.lblLogs.text)}else var s=new voltmx.io.File(t).write(e.lblLogs.text);if(s){alert("File Saved in "+t+".txt")}else{alert("file not saved")}}catch(e){voltmx.print("Error inside loop imgDownloadCallback"+e)}}else{var l=voltmx.application.checkPermission(voltmx.os.RESOURCE_EXTERNAL_STORAGE,{isAccessModeAlways:!0});if(l.status==voltmx.application.PERMISSION_DENIED){voltmx.application.requestPermission(voltmx.os.RESOURCE_EXTERNAL_STORAGE,permissionStatusCallbackforExternalStorage)}else if(l.status==voltmx.application.PERMISSION_GRANTED){downloadFileInDownloadsFolder()}}}else{if(!0===filecreated){rawBytesObj=new voltmx.io.File(fileLoc).read();var n=rawBytesObj.readAsText()+e.lblLogs.text}else{var n=e.lblLogs.text}voltmx.runOnMainThread(mainthread,[]);function mainthread(){var e=objc.import("UIActivityViewController"),i=e.alloc().initWithActivityItemsApplicationActivities([n],null);i.excludedActivityTypes=[UIActivityTypeAddToReadingList,UIActivityTypeAirDrop,UIActivityTypeAssignToContact,UIActivityTypeCopyToPasteboard,UIActivityTypeMail,UIActivityTypeMessage,UIActivityTypeOpenInIBooks,UIActivityTypePostToFacebook,UIActivityTypePostToFlickr,UIActivityTypePostToTencentWeibo,UIActivityTypePostToTwitter,UIActivityTypePostToVimeo,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll,UIActivityTypeMarkupAsPDF];var t=objc.import("UIApplication"),s=t.sharedApplication().keyWindow.rootViewController;if("ipad"===voltmx.store.getItem("PLATFORMNAME_FP")){var l=i.popoverPresentationController;l.sourceView=s.topViewController.view.subviews[0].subviews[0].subviews[0];l.permittedArrowDirections=[]}s.presentViewControllerAnimatedCompletion(i,!0,null)}}}catch(e){voltmx.print("Error imgDownloadCallback: "+e)}}function btnClearCallback(){var e=voltmx.application.getCurrentForm();konyapiprintsarr.length=0;e.lblLogs.text="";e.lblLogsPrint.text="";if(!0===filecreated)var i=new voltmx.io.File(fileLoc).write("")}function SegmentRowClickCallback(e,i,t){var s=voltmx.application.getCurrentForm();s.flxEmptyFrame.isVisible=!1;var l=s.segoptions.selectedRowItems;if("Logs"===l[0].lblHeading){if(enableLoggerSwitch){s.segoptions.isVisible=!1;s.flxLogsOptions.isVisible=!0;s.flxScrollLogs.isVisible=!0;s.btnPrints.isVisible=!0;s.btnFullLogs.isVisible=!0;s.imgDownload.isVisible=!0;s.btnClear.isVisible=!0;s.btnNotes.isVisible=!1;s.flxLogs.animate(voltmx.ui.createAnimation({100:{top:"0%",stepConfig:{timingFunction:voltmx.anim.EASE}}}),{delay:0,iterationCount:1,fillMode:voltmx.anim.FILL_MODE_FORWARDS,duration:.5});s.flxLogs.height="100%";btnFullLogsCallback()}}else if("Notes"===l[0].lblHeading){if("android"==voltmx.os.deviceInfo().name.toLowerCase())s.flxLogsOptions.btnNotes.skin="sknFocusNotes";else s.flxLogsOptions.btnNotes.skin="sknFocusNotesios";s.segoptions.isVisible=!1;s.flxLogsOptions.isVisible=!0;s.btnPrints.isVisible=!1;s.btnFullLogs.isVisible=!1;s.imgDownload.isVisible=!1;s.btnClear.isVisible=!1;s.btnNotes.isVisible=!0;s.flxScrollLogs.isVisible=!1;s.flxLogs.animate(voltmx.ui.createAnimation({100:{top:"0%",stepConfig:{timingFunction:voltmx.anim.EASE}}}),{delay:0,iterationCount:1,fillMode:voltmx.anim.FILL_MODE_FORWARDS,duration:.5});s.flxLogs.height="100%";s.flxLogs.flxNoteAV.isVisible=!0}else if("Exit Preview"===l[0].lblHeading.text){btnExitAppNotesCallBack()}}function subscribeLogListenerFP(){voltmx.logger.subscribeLogListener(logListenerFP)}function unsubscribeLogListenerFP(){voltmx.logger.unsubscribeLogListener()}function logListenerFP(e){try{if(voltmx&&voltmx.application&&voltmx.application.getCurrentForm){var t=voltmx.application.getCurrentForm();if(null!==e&&{}!==e&&"null"!==e){var s=JSON.stringify(e);s=s.substring(1);for(var l=s.split("\""),n="",o=1;o<l.length;o++){if("Kony_API_Prints"===l[o].substr(1,15))n=n.trim()+" \n\n "+l[o]+" \n\n "}if(0<konyapiprintsarr.length)t.lblLogsPrint.text=konyapiprintsarr.join("\n ");if(""!=n)konyapiprintsarr[konyapiprintsindex++]=n;s=l.join("\n ");if(flushLimitcounter<flushLimit){flushLimitcounter=flushLimitcounter+1;t.lblLogs.text+=s}else{flushLimitcounter=0;if(!1===filecreated){filecreated=!0;mainLoc=voltmx.io.FileSystem.getDataDirectoryPath();fileLoc=mainLoc+"/logs.txt";if(new voltmx.io.File(fileLoc).exists())new voltmx.io.File(fileLoc).remove(!0);logFile=new voltmx.io.File(fileLoc).createFile()}var r=new voltmx.io.File(fileLoc).write(t.lblLogs.text,!0);t.lblLogs.text=s}}}}catch(e){try{if(""!=n)konyapiprintsarr[konyapiprintsindex++]=n}catch(e){}}}function overrideprintFP(e){loggerObj.info(e)}function redirectKonyPrintFP(){konyapiprintsarr.length=0;enableLoggerSwitch=!0;var e=new voltmx.logger.createLoggerConfig;loggerObj=new voltmx.logger.createNewLogger("Kony_API_Prints",e);e.logLevel=voltmx.logger.logLevel.ALL.value;e.statementsLimit=30;voltmx.logger.setConfig(e);voltmx.print=overrideprintFP}function btnFPViewSrcCallback(){try{voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter);var e=voltmx.application.getCurrentForm();if(null===e.flxViewSourceFP){e.remove(flxViewSourceFP);e.add(flxViewSourceFP)}if("FALSE"===voltmx.store.getItem("FlagForAC")){voltmx.store.setItem("resultFP","empty");e.flxViewSourceFP.isVisible=!0;e.imgBackVSFP.isVisible=!1;e.imgDownloadFP.isVisible=!1;e.lblEditAndSaveFP.isVisible=!1;e.lblCancelFP.isVisible=!1;e.btnApplyChangesFP.isVisible=!1;e.lblFileNameFP.text="VIEW SOURCE";var t=voltmx.store.getItem("childAppPath");t=t+"/src";for(var s=new voltmx.io.File(t),l=[],n=0,o;n<s.getFilesList().length;n++){o=s.getFilesList().item(n).name;if(20<o.length)o=o.substring(0,20)+"...";l[n]={imgIconSegFP:{src:!0===new voltmx.io.File(s.getFilesList().item(n).fullPath).isFile()?"filefp.png":"dirfp.png"},lblFileNameSegFP:o,lblFilePathSegFP:s.getFilesList().item(n).fullPath,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!0===new voltmx.io.File(s.getFilesList().item(n).fullPath).isFile()?!1:!0}}}e.segFP.setData(l);voltmx.store.setItem("segdata",l)}else{e.flxViewSourceFP.isVisible=!0}}catch(e){voltmx.print("Error in btnFPViewSrcCallback:"+e)}}function lblFPResetCallback(){try{var e=voltmx.application.getCurrentForm();fileChangesPathFP=voltmx.store.getItem("fileChangesPathFP");if(!fileChangesPathFP||0==fileChangesPathFP.length){return}else{voltmx.store.setItem("fileChangesPathFP",fileChangesPathFP);if(null===e.flxResetFP){e.remove(flxResetFP);e.add(flxResetFP)}e.flxResetFP.isVisible=!0}}catch(e){voltmx.print("Error in lblFPResetCallback:"+e)}}function lblFPExitPreviewCallback(){try{voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter);voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForMenuInChildApp);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForTwoFingerSwipe);unsubscribeLogListenerFP();voltmx.application.launchApplication(null)}catch(e){voltmx.print("Error in lblFPExitPreviewCallback:"+e)}}function btnResetcancelFPCallback(e){var i=voltmx.application.getCurrentForm();i.flxResetFP.isVisible=!1}function btnResetProceedFPCallback(){try{fileChangesPathFP=voltmx.store.getItem("fileChangesPathFP");voltmx.store.setItem("FlagForAC","FALSE");childAppPath=voltmx.store.getItem("childAppPath");childAppName=voltmx.store.getItem("childAppName");voltmx.application.showLoadingScreen("loadskin","Reverting Changes....",constants.LOADING_SCREEN_POSITION_ONLY_CENTER,!0,!0,null);for(var e=0,t;e<fileChangesPathFP.length;e++){t=fileChangesPathFP[e].state;if(null===t){voltmx.print("null is coming from reading i.e can't be done")}else{var s=new voltmx.io.File(fileChangesPathFP[e].destinationPath).write(t);if(null!==s){voltmx.print("writing can be done on Non Existing Files")}}}fileChangesPathFP.length=0;voltmx.store.setItem("fileChangesPathFP",[]);voltmx.application.dismissLoadingScreen();var l=voltmx.application.getCurrentForm();l.flxResetFP.isVisible=!1;btnApplyChangesFPCallback()}catch(e){voltmx.print("error in btnResetProceedFPCallback"+e)}}function imgcloseFPCallback(e,i,t){var s=voltmx.application.getCurrentForm();voltmx.application.addWidgetToWindowForAppViewer(flxFPHeader);voltmx.application.addWidgetToWindowForAppViewer(flxFPFooter);s.flxViewSourceFP.isVisible=!1}function imgBackVSFPCallback(e,i,t){var s=voltmx.application.getCurrentForm();s.imgBackVSFP.isVisible=!1;s.imgDownloadFP.isVisible=!1;s.lblEditAndSaveFP.isVisible=!1;s.flxScrlFP.isVisible=!1;s.imgcloseFP.isVisible=!0;s.flxScrlSegFP.isVisible=!0;s.txtSearchFP.isVisible=!0;s.lblFileNameFP.text="VIEW SOURCE";if("TRUE"===voltmx.store.getItem("FlagForAC")){s.flxScrlSegFP.height="70%";s.btnApplyChangesFP.isVisible=!0}}function imgDownloadFPCallback(e,i,t){try{var s=voltmx.application.getCurrentForm(),l=s.txtAreaFP.text;voltmx.runOnMainThread(mainthread,[]);function mainthread(){var e=objc.import("UIActivityViewController"),i=e.alloc().initWithActivityItemsApplicationActivities([l],null),t=objc.import("UIApplication"),s=t.sharedApplication().keyWindow.rootViewController;i.excludedActivityTypes=[UIActivityTypeAddToReadingList,UIActivityTypeAirDrop,UIActivityTypeAssignToContact,UIActivityTypeCopyToPasteboard,UIActivityTypeMail,UIActivityTypeMessage,UIActivityTypeOpenInIBooks,UIActivityTypePostToFacebook,UIActivityTypePostToFlickr,UIActivityTypePostToTencentWeibo,UIActivityTypePostToTwitter,UIActivityTypePostToVimeo,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll,UIActivityTypeMarkupAsPDF];if("ipad"===voltmx.store.getItem("PLATFORMNAME_FP")){var n=i.popoverPresentationController;n.sourceView=s.topViewController.view.subviews[0].subviews[0].subviews[0];n.permittedArrowDirections=[]}s.presentViewControllerAnimatedCompletion(i,!0,null)}}catch(e){voltmx.print("Error in imgDownloadFPCallback: "+e)}}function lblEditAndSaveFPCallback(e,i,t){var s=voltmx.application.getCurrentForm();if(!fileChangesPathFP)fileChangesPathFP=[];if("EDIT"===s.lblEditAndSaveFP.text){s.txtAreaFP.enable=!0;s.lblEditAndSaveFP.text="SAVE";s.imgBackVSFP.isVisible=!1;s.imgDownloadFP.isVisible=!1;s.lblCancelFP.isVisible=!0}else if("SAVE"===s.lblEditAndSaveFP.text){try{var l=voltmx.store.getItem("LAST_ROW_CLICKED");s.segFP.setDataAt({imgIconSegFP:l[0].imgIconSegFP,lblFileNameSegFP:l[0].lblFileNameSegFP,lblFilePathSegFP:l[0].lblFilePathSegFP,lblSepSegFP:l[0].lblSepSegFP,imgArrowFP:{src:"dotfp.png",isVisible:!0}},l[1]);var n=new voltmx.io.File(voltmx.store.getItem("FilePathSeg")).read();if(null!==n){voltmx.store.setItem("fileChangesPathFPContents",n.readAsText())}var o={filePath:voltmx.store.getItem("FilePathSeg").replace("src","srcForChildApp"),destinationPath:voltmx.store.getItem("FilePathSeg"),state:voltmx.store.getItem("fileChangesPathFPContents")};fileChangesPathFP[fileChangesPathFP.length]=o;voltmx.store.setItem("fileChangesPathFP",fileChangesPathFP);var r=new voltmx.io.File(voltmx.store.getItem("FilePathSeg")).write(s.txtAreaFP.text);if(null!==r){voltmx.print("writing can be done on Non Existing Files")}else{alert("writing on nonExisting file returns null")}voltmx.store.setItem("FlagForAC","TRUE");s.flxScrlSegFP.isVisible=!0;s.flxScrlSegFP.height="70%";s.btnApplyChangesFP.isVisible=!0;s.txtAreaFP.enable=!1;s.lblEditAndSaveFP.text="EDIT";s.lblEditAndSaveFP.isVisible=!1;s.imgBackVSFP.isVisible=!1;s.imgDownloadFP.isVisible=!1;s.lblCancelFP.isVisible=!1;s.flxScrlFP.isVisible=!1;s.imgcloseFP.isVisible=!0;s.lblFileNameFP.text="VIEW SOURCE";s.txtSearchFP.isVisible=!0}catch(e){voltmx.print("can't try write on NonExistingFile, causes Error"+error)}}}function lblCancelFPCallback(e,i,t){try{var s=voltmx.application.getCurrentForm();s.txtAreaFP.enable=!1;s.lblEditAndSaveFP.text="EDIT";s.imgBackVSFP.isVisible=!0;s.imgDownloadFP.isVisible=!0;s.lblCancelFP.isVisible=!1;var l=new voltmx.io.File(voltmx.store.getItem("FilePathSeg")).read();if(null===l){s.txtAreaFP.text="rawBytes object is null"}else{s.txtAreaFP.text=l.readAsText()}}catch(e){voltmx.print("Error in lblCancelFPCallback"+erorr)}}function txtSearchFPCallback(e,i){try{var t=voltmx.application.getCurrentForm(),s=t.segFP.searchText([{textToSearch:t.txtSearchFP.text,caseSensitive:!1,searchType:constants.SEGUI_SEARCH_CRITERIA_STARTSWITH,searchableWidgets:["lblFileNameSegFP"]}],{updateSegment:!0,showHeaderFooter:!0});voltmx.store.setItem("resultFP",s);if(""===t.txtSearchFP.text){t.segFP.clearSearch();voltmx.store.setItem("resultFP","empty")}}catch(e){voltmx.print("Error in txtSearchFPCallback:"+e)}}function segFPCallback(e,t,s){try{var l=voltmx.application.getCurrentForm(),n,o,r=voltmx.store.getItem("resultFP");if("empty"!=r){o=r[l.segFP.selectedRowIndex[1]][1];n=l.segFP.data[o]}else{n=l.segFP.selectedRowItems[0];o=l.segFP.selectedRowIndex[1]}voltmx.store.setItem("LAST_ROW_CLICKED",[n,o]);if(new voltmx.io.File(n.lblFilePathSegFP).exists()){if(new voltmx.io.File(n.lblFilePathSegFP).isFile()){l.btnApplyChangesFP.isVisible=!1;l.flxScrlSegFP.isVisible=!1;l.txtSearchFP.isVisible=!1;l.txtAreaFP.enable=!1;l.flxScrlFP.isVisible=!0;l.imgcloseFP.isVisible=!1;l.imgBackVSFP.isVisible=!0;l.imgDownloadFP.isVisible=!0;l.lblEditAndSaveFP.isVisible=!0;l.lblEditAndSaveFP.text="EDIT";l.lblCancelFP.isVisible=!1;l.lblFileNameFP.text=n.lblFileNameSegFP;voltmx.store.setItem("FilePathSeg",n.lblFilePathSegFP);var a=new voltmx.io.File(n.lblFilePathSegFP).read();if(null===a){l.txtAreaFP.text="rawBytes object is null"}else{l.txtAreaFP.text=a.readAsText()}}else{var g=new voltmx.io.File(n.lblFilePathSegFP),d=[];if(0===g.getFilesList().length){if("right_arrow.png"===n.imgArrowFP.src){l.segFP.setDataAt({imgIconSegFP:n.imgIconSegFP,lblFileNameSegFP:n.lblFileNameSegFP,lblFilePathSegFP:n.lblFilePathSegFP,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"downarrowfp.png",isVisible:!0}},o);l.segFP.addDataAt({imgIconSegFP:{src:"filefp.png",isVisible:!1},lblFileNameSegFP:"EMPTY FOLDER",lblFilePathSegFP:"EMPTY FOLDER",lblSepSegFP:{width:"80%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!1}},o+1)}else{l.segFP.setDataAt({imgIconSegFP:n.imgIconSegFP,lblFileNameSegFP:n.lblFileNameSegFP,lblFilePathSegFP:n.lblFilePathSegFP,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!0}},o);l.segFP.removeAt(o+1)}}else{if("right_arrow.png"===n.imgArrowFP.src){l.segFP.setDataAt({imgIconSegFP:n.imgIconSegFP,lblFileNameSegFP:n.lblFileNameSegFP,lblFilePathSegFP:n.lblFilePathSegFP,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"downarrowfp.png",isVisible:!0}},o);for(var p=0;p<g.getFilesList().length;p++){d[p]={imgIconSegFP:{src:"filefp.png"},lblFileNameSegFP:g.getFilesList().item(p).name,lblFilePathSegFP:g.getFilesList().item(p).fullPath,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!0===new voltmx.io.File(g.getFilesList().item(p).fullPath).isFile()?!1:!0}};l.segFP.addDataAt(d[p],o+p+1)}}else{l.segFP.setDataAt({imgIconSegFP:n.imgIconSegFP,lblFileNameSegFP:n.lblFileNameSegFP,lblFilePathSegFP:n.lblFilePathSegFP,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!0}},o);for(var p=0;p<g.getFilesList().length;p++){l.segFP.removeAt(o+1)}}}}}}catch(e){voltmx.print("Error in segFPCallback"+e)}}function btnApplyChangesFPCallback(e){try{voltmx.store.setItem("FlagForAC","FALSE");childAppPath=voltmx.store.getItem("childAppPath");childAppName=voltmx.store.getItem("childAppName");voltmx.application.launchApplication(null);voltmx.runOnMainThread(mainthread,[]);function mainthread(){voltmx.application.launchApplication(voltmx.store.getItem("childAppPath"),voltmx.store.getItem("childAppName"),function(){voltmx.print("args : ")},null)}}catch(e){voltmx.print("error in relaunch"+e)}}function SegVSRowTemplate(){FBox0d2dd8aa1652440=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!1,height:"60dp",id:"FBox0d2dd8aa1652440",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,isModalContainer:!1,skin:"slFbox",width:"100%"},{},{});FBox0d2dd8aa1652440.setDefaultUnit(voltmx.flex.DP);var e=new voltmx.ui.Image2({centerY:"50%",height:"30dp",id:"imgIconSegFP",isVisible:!0,left:"10%",skin:"slImage",src:"imagedrag.png",width:"30dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),i=new voltmx.ui.Label({centerY:"50%",id:"lblFileNameSegFP",isVisible:!0,left:"21%",skin:"Copy",text:"Label",textStyle:{},width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),t=new voltmx.ui.Label({centerY:"50%",id:"lblFilePathSegFP",isVisible:!1,left:"21%",skin:"Copy",text:"Label",textStyle:{},width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),s=new voltmx.ui.Label({centerX:"50%",height:"1%",id:"lblSepSegFP",isVisible:!0,left:"31%",skin:"sknlblSepSegFP",text:"Label",textStyle:{},top:"97%",width:"90%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),l=new voltmx.ui.Image2({centerY:"50%",height:"30dp",id:"imgArrowFP",isVisible:!0,right:"5%",skin:"slImage",src:"imagedrag.png",width:"30dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{});FBox0d2dd8aa1652440.add(e,i,t,s,l)}
+var project_params=null,annotationDataPREVIEW=null,doEdit=!1,editSelectedItem=null,currIndices={},coords=[],rowreset=!1,swipedIndices={},animationObj,enableLoggerSwitch=!1,fileLoc,mainLoc,flushLimitcounter=0,flushLimit=3,konyapiprintsarr=[],konyapiprintsindex=0,filecreated=!1,rawBytesObj,fileChangesPathFP=[],segdataCloudTablet=[{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!0,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Review screens and write your comments.",lblHeading:"Notes",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{skin:""}}],segdataLocalSwitchon=[{btnSwithLogs:{isVisible:!0,skin:"sknBtnOn",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!0,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:{text:"View ",skin:"sknFocusLogsLabelDesp"},lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{isVisible:!1,skin:""}}],segdataLocalSwitchoff=[{btnSwithLogs:{isVisible:!0,src:"offimg.png",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Turn ON to fetch and view logs.",lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{isVisible:!1,skin:""}}],segdataCloudSwitchon=[{btnSwithLogs:{isVisible:!0,skin:"sknBtnOn",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!0,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:{text:"View ",skin:"sknFocusLogsLabelDesp"},lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!0,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Review screens and write your comments.",lblHeading:"Notes",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{skin:""}}],segdataCloudSwitchoff=[{btnSwithLogs:{isVisible:!0,src:"offimg.png",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Turn ON to fetch and view logs.",lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!0,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Review screens and write your comments.",lblHeading:"Notes",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{skin:""}}],flxFPHeader=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"10%",id:"flxFPHeader",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",isModalContainer:!1,skin:"sknlblHeaderTemenosBlue",top:"5%",width:"100%",zIndex:1},{},{});flxFPHeader.setDefaultUnit(voltmx.flex.DP);var imgFPExitPreview=new voltmx.ui.Image2({centerY:"50%",height:"40dp",id:"imgFPExitPreview",isVisible:!0,left:"3%",skin:"slImage",onTouchStart:lblFPExitPreviewCallback,src:"Exit_icon.png",width:"40dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),imgHeaderDrag=new voltmx.ui.Image2({centerX:"50%",centerY:"80%",height:"40dp",id:"imgHeaderDrag",isVisible:!0,skin:"slImage",src:"Drag_dots_icon.png",width:"40dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),imgFPReset=new voltmx.ui.Image2({centerY:"50%",height:"40dp",id:"imgFPReset",isVisible:!0,onTouchStart:lblFPResetCallback,right:"3%",skin:"slImage",src:"Reload_icon.png",width:"40dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{});flxFPHeader.add(imgFPExitPreview,imgHeaderDrag,imgFPReset);var flxFPFooter=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,bottom:0,clipBounds:!0,height:"10%",id:"flxFPFooter",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",isModalContainer:!1,skin:"sknlblHeaderTemenosBlue",top:"85%",width:"100%",zIndex:1},{},{});flxFPFooter.setDefaultUnit(voltmx.flex.DP);var imgFooterDrag=new voltmx.ui.Image2({centerX:"50%",centerY:"20%",height:"40dp",id:"imgFooterDrag",isVisible:!0,skin:"slImage",src:"Drag_dots_icon.png",width:"40dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),flxalignFPFooterRight=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"100%",id:"flxalignFPFooterRight",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,isModalContainer:!1,onClick:btnFPViewSrcCallback,right:"3%",skin:"sknlblHeaderTemenosBlue",width:"170dp",zIndex:1,bottom:0},{},{});flxalignFPFooterRight.setDefaultUnit(voltmx.flex.DP);var imgFPCode=new voltmx.ui.Image2({centerY:"50%",height:"40%",id:"imgFPCode",isVisible:!0,left:"0%",skin:"slImage",src:"Code_icon.png",width:"60dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),lblViewSource=new voltmx.ui.Label({centerY:"50%",id:"lblViewSource",isVisible:!0,left:"30%",skin:"sknlblHeaderFP",text:"Source Code",textStyle:{},width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP});flxalignFPFooterRight.add(imgFPCode,lblViewSource);flxFPFooter.add(imgFooterDrag,flxalignFPFooterRight);var __projectDetailsParams=function(e){var i=voltmx.ds.read("kv_project"),t={};if(null!=i&&0<i.length){t.proj_guid=i[0].project_guid;t.acc_guid=i[0].account_guid;t.annotation_id=e;t.widget_id=e;t.channel=i[0].channel}return t},segmentData=function(e){var i=[],t=project_params.widget_id;if(null==e||null==e.comments[t])return i;for(var s in e.comments[t]){var l=e.comments[t];if(1==l[s].active){var n=l[s].lastModifiedTime;n=new Date(n);var o=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],r="AM",a=n.getHours(),g=n.getMinutes();if(12<a){a=a-12;r="PM"}if(0==a){a=12}if(9>=g){g="0"+g}var d=o[n.getMonth()]+" "+n.getDate()+", "+a+":"+g+" "+r;l[s].formattedlmt=d;i.push(l[s])}}i.sort(function(e,i){return new Date(i.lastModifiedTime)-new Date(e.lastModifiedTime)});return i},setSegmentData_popupBottomPreview=function(e){annotationDataPREVIEW=e;e.length;currentfrmFP=voltmx.application.getCurrentForm();var i=voltmx.ds.read("kvsession")[0],t=i.userDetails;if(null==e||0==e.length){if(currentfrmFP.segPopupPreview){currentfrmFP.segPopupPreview.isVisible=!1}if(currentfrmFP.lblNoNotes){currentfrmFP.lblNoNotes.setVisibility(!0)}}else{if(currentfrmFP.lblNoNotes){currentfrmFP.lblNoNotes.setVisibility(!1)}if(currentfrmFP.segPopupPreview){currentfrmFP.segPopupPreview.setData(e);currentfrmFP.segPopupPreview.setVisibility(!0)}}},__annotationData=function(){var e=fpas.readAnnotationFromDataStore(project_params);return segmentData(e)},__showPopupWidBottomContext=function(){var e=__annotationData();setSegmentData_popupBottomPreview(e)},__refreshSegmentData=function(){var e=__annotationData();setSegmentData_popupBottomPreview(e)};function txtAreaCallback(){}var __addAppendCommentFP=function(){var e=voltmx.application.getCurrentForm(),i=voltmx.os.deviceInfo().name.toLowerCase();if("Android"==i){e.windowSoftInputMode=constants.FORM_ADJUST_PAN}doEdit=!1;var t={},s=e.txtAreaNotesAV.text&&e.txtAreaNotesAV.text.trim();if(null==s||""==s)return;t.comment=s;fpas.addOrAppendAnnotationTODS(project_params,t,function(i){if(400==i.status){var t=segmentData(i.data);setSegmentData_popupBottomPreview(t);e.txtAreaNotesAV.text="";syncWithCloudDBUtil(function(e){if(200==e.status){__refreshSegmentData()}})}})};function getTransAnimDefinition(e){try{var i=voltmx.ui.createAnimation({100:{left:e}});return{definition:i,config:{duration:1,iterationCount:1,delay:0,fillMode:voltmx.anim.FILL_MODE_FORWARDS}}}catch(e){}}function panGestureHandler(e,i,t){try{var s=t.sectionIndex,l=t.rowIndex,n=t.widgetInfo,o=t.widgetInfo.id;currIndices.secIndex=t.sectionIndex;currIndices.rowIndex=t.rowIndex;var r=0,a=0,g,d,p=voltmx.os.deviceInfo().name.toLowerCase();a=parseInt(i.translationX);coords.push(a);if(3==i.gestureState){r=1==coords.length?coords[0]:coords[coords.length-1]-coords[0];if("segPopupPreview"==o){g=-256;if(/^(androidtab||windows)$/.test(p)){d="-21%"}else d="-10%"}else{g=-140;d="-18.5%"}if(r>g){animationObj=getTransAnimDefinition("0%");coords=[];n.animateRows({rows:[{sectionIndex:t.sectionIndex,rowIndex:t.rowIndex}],widgets:["flxMainTemplate"],animation:animationObj})}else{if(swipedIndices.rowIndex==t.rowIndex&&swipedIndices.secIndex==t.sectionIndex){swipedIndices={}}else{swipedIndices.rowIndex=t.rowIndex;swipedIndices.secIndex=t.sectionIndex}animationObj=getTransAnimDefinition(d);n.animateRows({rows:[{sectionIndex:t.sectionIndex,rowIndex:t.rowIndex}],widgets:["flxMainTemplate"],animation:animationObj})}}else if(2==i.gestureState){animationObj=getTransAnimDefinition(a+"px");n.animateRows({rows:[{sectionIndex:t.sectionIndex,rowIndex:t.rowIndex}],widgets:["flxMainTemplate"],animation:animationObj})}}catch(e){}}function delete_callback(e,i,t){try{var s=currentfrmFP.segPopupPreview.data,l=[];l.push(s[t]);__deleteCommentFP(l)}catch(e){}}var __deleteCommentFP=function(e){currentfrmFP=voltmx.application.getCurrentForm();if(null!=e&&0<e.length){var i=e[0],t=voltmx.ds.read("kvsession")[0],s=t.userDetails;if(i.createdById==s.user_guid){delete i.template;fpas.deleteCommentFROMDS(project_params,i,function(e){if(400==e.status){var i=segmentData(e.data);setSegmentData_popupBottomPreview(i);syncWithCloudDBUtil(function(e){if(200==e.status){__refreshSegmentData()}})}})}}},syncWithCloudDBUtil=function(e){var i=[];fpnotes.updateNotesToRemoteDB(project_params,function(t){if(200==t.status){fpnotes.fetchNotesFromRemoteDB(project_params,function(t){if(200==t.status&&null!=t.data){i=segmentData(t.data)}else{var s=fpas.readAnnotationFromDataStore(project_params);i=segmentData(s)}setSegmentData_popupBottomPreview(i);e({status:200})})}else{e({status:200})}})},onShakeFpApp=function(){var e=voltmx.application.getCurrentForm();if(null==e.flxMainAV||null==e.flxLogs){e.remove(flxMainAV);e.add(flxMainAV);e.enableOnScrollWidgetPositionForSubwidgets=!0;e.flxMainAV.setVisibility(!0)}if("LOCAL"==voltmx.store.getItem("FP_Type")){if("android"===voltmx.store.getItem("PLATFORMNAME_FP")||"iphone"===voltmx.store.getItem("PLATFORMNAME_FP")||"ipad"===voltmx.store.getItem("PLATFORMNAME_FP")){if(!0===e.segoptions.isVisible){e.flxMainAV.flxLogs.top="75.30%";e.flxMainAV.flxLogs.height="35.70%"}if(enableLoggerSwitch)e.flxMainAV.flxLogs.segoptions.setData(segdataLocalSwitchon);else e.flxMainAV.flxLogs.segoptions.setData(segdataLocalSwitchoff);voltmx.accelerometer.unregisterAccelerationEvents(["shake"])}else{e.flxMainAV.setVisibility(!1);voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForMenuInChildApp);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForTwoFingerSwipe);if("iphone"===voltmx.store.getItem("PLATFORMNAME_FP")){voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter)}voltmx.application.launchApplication(null);return}}else{if("android"===voltmx.store.getItem("PLATFORMNAME_FP")||"iphone"===voltmx.store.getItem("PLATFORMNAME_FP")||"ipad"===voltmx.store.getItem("PLATFORMNAME_FP")){if(enableLoggerSwitch)e.flxMainAV.flxLogs.segoptions.setData(segdataCloudSwitchon);else e.flxMainAV.flxLogs.segoptions.setData(segdataCloudSwitchoff);if(!0===e.segoptions.isVisible){e.flxMainAV.flxLogs.top="64.30%";e.flxMainAV.flxLogs.height="35.70%"}}else{e.flxMainAV.flxLogs.segoptions.setData(segdataCloudTablet);if("0%"!=e.flxLogs.top){e.flxMainAV.flxLogs.top="75.30%";e.flxMainAV.flxLogs.height="35.70%"}}voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);if(null==e||e==void 0)return;if(null==e.info||e.info==void 0)return;ann_id=e.info.kuid;project_params=__projectDetailsParams(ann_id);__showPopupWidBottomContext();syncWithCloudDBUtil(function(i){if(200==i.status){e.txtAreaNotesAV.text="";__refreshSegmentData()}})}e.flxMainAV.setVisibility(!0);e.flxEmptyFrame.setVisibility(!0);e.flxMainAV.flxLogs.setVisibility(!0)};function apppostappinitFuncPreview(){if(["iphone","ipad"].includes(voltmx.store.getItem("PLATFORMNAME_FP"))){try{voltmx.store.setItem("FlagForAC","FALSE");voltmx.application.addWidgetToWindowForAppViewer(flxFPHeader);voltmx.application.addWidgetToWindowForAppViewer(flxFPFooter)}catch(e){voltmx.print("ios header and footer api error: "+e)}}addWidgets_flexContainer();var e=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"100%",id:"flxMainAV",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",skin:"CopyslFbox0e4fbf5879e9d4a",top:"0dp",width:"100%",zIndex:1},{},{});e.setDefaultUnit(voltmx.flex.DP);var i=voltmx.os.deviceInfo().name.toLowerCase(),t={};if("windows"==i||"windowsphone"==i){t={fingers:1,pressDuration:1}}else{t={fingers:2,pressDuration:1}}try{gestureIDForMenuInChildApp=voltmx.application.setGestureRecognizerForAllForms(3,t,function(e,i){if(3==voltmx.os.toNumber(i.gestureType)&&1==voltmx.os.toNumber(i.gesturesetUpParams.pressDuration)){onShakeFpApp()}})}catch(e){voltmx.print("error in function callbackSingleTapGesture:"+e.message)}var i=voltmx.os.deviceInfo().name.toLowerCase(),s={};if("windows"==i||"windowsphone"==i){s={fingers:2,swipedistance:30}}else{s={fingers:2,swipedistance:30,swipevelocity:60}}try{gestureIDForTwoFingerSwipe=voltmx.application.setGestureRecognizerForAllForms(2,s,function(e,i){if(2==voltmx.os.toNumber(i.gestureType)){if(2==voltmx.os.toNumber(i.swipeDirection)){if("iphone"===voltmx.store.getItem("PLATFORMNAME_FP")){voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter)}voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForMenuInChildApp);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForTwoFingerSwipe);unsubscribeLogListenerFP();voltmx.application.launchApplication(null)}}})}catch(e){voltmx.print("error in function callbackSingleTapGesture:"+e.message)}voltmx.accelerometer.registerAccelerationEvents({shake:onShakeFpApp})}function initializeFlxLogsOptions(){FBox0jb9868bd2b2546=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!1,height:"33.33%",id:"FBox0jb9868bd2b2546",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,isModalContainer:!1,skin:"slFbox0j120281168d143",width:"100%"},{},{});FBox0jb9868bd2b2546.setDefaultUnit(voltmx.flex.DP);var e=new voltmx.ui.Button({centerY:"50%",height:"30dp",id:"btnSwithLogs",isVisible:!0,right:"5.40%",onClick:btnSwitchLogsCallback,skin:"sknBtnOff",text:"",top:"23dp",width:"44dp",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[0,0,0,0],paddingInPixel:!1},{}),i=new voltmx.ui.Label({id:"lblHeading",isVisible:!0,left:"6%",skin:"sknLogsHeading",text:"Label",textStyle:{letterSpacing:0,strikeThrough:!1},top:"25%",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1}),t=new voltmx.ui.Label({id:"lblDesc",isVisible:!0,left:"6%",skin:"sknLogsDesc",text:"Label",textStyle:{letterSpacing:0,strikeThrough:!1},top:"60%",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1}),s=new voltmx.ui.Image2({centerY:"50%",height:"40dp",id:"imgArrow",isVisible:!0,right:"5.40%",skin:"slImage0ec814d65503e48",src:"imagedrag.png",top:"40dp",width:"30px",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),l=new voltmx.ui.Image2({height:"10dp",id:"imgLogsArrow",isVisible:!0,left:"15%",skin:"slImage0ec814d65503e48",src:"imagedrag.png",top:"66%",width:"15dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),n=new voltmx.ui.Image2({height:"25dp",id:"imgExit",isVisible:!0,left:"5.10%",skin:"slImage0ec814d65503e48",src:"imagedrag.png",top:"22%",width:"15dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),o=new voltmx.ui.Label({centerX:"50%",height:"2px",id:"lblLine",isVisible:!0,skin:"sknLabelSeparator",text:"",textStyle:{letterSpacing:0,strikeThrough:!1},top:"95%",width:"90%",zIndex:1,blur:{enabled:!1,value:0}},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1});FBox0jb9868bd2b2546.add(e,i,t,l,s,n,o)}function btnExitAppNotesCallBack(){if("iphone"===voltmx.store.getItem("PLATFORMNAME_FP")){voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter)}var e=voltmx.application.getCurrentForm();e.flxMainAV.setVisibility(!1);voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForMenuInChildApp);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForTwoFingerSwipe);unsubscribeLogListenerFP();voltmx.application.launchApplication(null)}function btnSwitchLogsCallback(){var e=voltmx.application.getCurrentForm();if(enableLoggerSwitch){enableLoggerSwitch=!1;e.lblLogs.text="";e.lblLogsPrint.text="";unsubscribeLogListenerFP();e.flxMainAV.flxLogs.height="35.70%";e.flxLogs.segoptions.setDataAt({btnSwithLogs:{isVisible:!0,skin:"sknBtnOff",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Turn ON to fetch and view logs.",lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},0)}else{redirectKonyPrintFP();subscribeLogListenerFP();e.flxMainAV.flxLogs.height="35.70%";e.flxLogs.segoptions.setDataAt({btnSwithLogs:{isVisible:!0,skin:"sknBtnOn",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!0,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:{text:"View ",skin:"sknFocusLogsLabelDesp"},lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},0)}}function ImageResizeanimationCallback(){var e=voltmx.application.getCurrentForm();e.flxLogs.height="35.7%";e.flxLogsOptions.isVisible=!1;e.flxScrollLogs.isVisible=!1;e.flxMainAV.flxLogs.top="75.30%";e.segoptions.isVisible=!0;e.flxMainAV.isVisible=!1;voltmx.accelerometer.registerAccelerationEvents({shake:onShakeFpApp})}function ImageResizeCallback(e,i,t){var s=voltmx.application.getCurrentForm();s.flxLogs.animate(voltmx.ui.createAnimation({100:{top:"100%",stepConfig:{timingFunction:voltmx.anim.EASE}}}),{delay:0,iterationCount:1,fillMode:voltmx.anim.FILL_MODE_FORWARDS,duration:.75},{animationEnd:ImageResizeanimationCallback})}function ImageBackanimationCallback(){var e=voltmx.application.getCurrentForm();e.flxLogsOptions.isVisible=!1;e.flxScrollLogs.isVisible=!1;e.segoptions.isVisible=!0;e.flxLogs.height="35.7%"}function ImageBackCallback(e,i,t){var s=voltmx.application.getCurrentForm();s.flxEmptyFrame.isVisible=!0;if("LOCAL"==voltmx.store.getItem("FP_Type"))var l="75.3%";else{if("android"===voltmx.store.getItem("PLATFORMNAME_FP")||"iphone"===voltmx.store.getItem("PLATFORMNAME_FP"))var l="64.3%";else var l="75.3%"}s.flxLogs.animate(voltmx.ui.createAnimation({100:{top:l,stepConfig:{timingFunction:voltmx.anim.FILL_MODE_FORWARDS}}}),{delay:0,iterationCount:1,fillMode:voltmx.anim.FILL_MODE_FORWARDS,duration:.5},{animationEnd:ImageBackanimationCallback})}function btnPrintsCallback(){var e=voltmx.application.getCurrentForm();if("android"==voltmx.os.deviceInfo().name.toLowerCase())e.flxLogsOptions.btnPrints.skin="sknFocusLogsLabels";else e.flxLogsOptions.btnPrints.skin="sknFocusLogsLabelsios";e.flxLogsOptions.btnFullLogs.skin="sknLogsOptionLabels";e.lblLogsPrint.isVisible=!0;e.lblLogs.isVisible=!1}function btnFullLogsCallback(){var e=voltmx.application.getCurrentForm();e.flxLogsOptions.btnPrints.skin="sknLogsOptionLabels";if("android"==voltmx.os.deviceInfo().name.toLowerCase())e.flxLogsOptions.btnFullLogs.skin="sknFocusLogsLabels";else e.flxLogsOptions.btnFullLogs.skin="sknFocusLogsLabelsios";e.lblLogsPrint.isVisible=!1;e.lblLogs.isVisible=!0}function permissionStatusCallbackforExternalStorage(e){if(e.status==voltmx.application.PERMISSION_GRANTED){downloadFileInDownloadsFolder()}else if(e.status==voltmx.application.PERMISSION_DENIED){alert("Please enable the Storage permission in Device Settings to download the file")}}function downloadFileInDownloadsFolder(){var e=voltmx.application.getCurrentForm(),i="/storage/emulated/0/Download"+"/logs";try{new voltmx.io.File(i).createFile();if(!0===filecreated){rawBytesObj=new voltmx.io.File(fileLoc).read();var t=new voltmx.io.File(i).write(rawBytesObj.readAsText()+e.lblLogs.text)}else var t=new voltmx.io.File(i).write(e.lblLogs.text);if(t){alert("File Saved in "+i+".txt")}else{alert("file not saved")}}catch(e){voltmx.print("Error downloadFileInDownloadsFolder"+e)}}function imgDownloadCallback(){try{var e=voltmx.application.getCurrentForm();if("android"==voltmx.os.deviceInfo().name.toLowerCase()){if("function"==typeof voltmx.io.FileSystem.getExternalFilesDir){var i=voltmx.io.FileSystem.getExternalFilesDir(),t=i+"/"+voltmx.store.getItem("CHILDAPP_NAME");try{new voltmx.io.File(t).createFile();if(!0===filecreated){rawBytesObj=new voltmx.io.File(fileLoc).read();var s=new voltmx.io.File(t).write(rawBytesObj.readAsText()+e.lblLogs.text)}else var s=new voltmx.io.File(t).write(e.lblLogs.text);if(s){alert("File Saved in "+t+".txt")}else{alert("file not saved")}}catch(e){voltmx.print("Error inside loop imgDownloadCallback"+e)}}else{var l=voltmx.application.checkPermission(voltmx.os.RESOURCE_EXTERNAL_STORAGE,{isAccessModeAlways:!0});if(l.status==voltmx.application.PERMISSION_DENIED){voltmx.application.requestPermission(voltmx.os.RESOURCE_EXTERNAL_STORAGE,permissionStatusCallbackforExternalStorage)}else if(l.status==voltmx.application.PERMISSION_GRANTED){downloadFileInDownloadsFolder()}}}else{if(!0===filecreated){rawBytesObj=new voltmx.io.File(fileLoc).read();var n=rawBytesObj.readAsText()+e.lblLogs.text}else{var n=e.lblLogs.text}voltmx.runOnMainThread(mainthread,[]);function mainthread(){var e=objc.import("UIActivityViewController"),i=e.alloc().initWithActivityItemsApplicationActivities([n],null);i.excludedActivityTypes=[UIActivityTypeAddToReadingList,UIActivityTypeAirDrop,UIActivityTypeAssignToContact,UIActivityTypeCopyToPasteboard,UIActivityTypeMail,UIActivityTypeMessage,UIActivityTypeOpenInIBooks,UIActivityTypePostToFacebook,UIActivityTypePostToFlickr,UIActivityTypePostToTencentWeibo,UIActivityTypePostToTwitter,UIActivityTypePostToVimeo,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll,UIActivityTypeMarkupAsPDF];var t=objc.import("UIApplication"),s=t.sharedApplication().keyWindow.rootViewController;if("ipad"===voltmx.store.getItem("PLATFORMNAME_FP")){var l=i.popoverPresentationController;l.sourceView=s.topViewController.view.subviews[0].subviews[0].subviews[0];l.permittedArrowDirections=[]}s.presentViewControllerAnimatedCompletion(i,!0,null)}}}catch(e){voltmx.print("Error imgDownloadCallback: "+e)}}function btnClearCallback(){var e=voltmx.application.getCurrentForm();konyapiprintsarr.length=0;e.lblLogs.text="";e.lblLogsPrint.text="";if(!0===filecreated)var i=new voltmx.io.File(fileLoc).write("")}function SegmentRowClickCallback(e,i,t){var s=voltmx.application.getCurrentForm();s.flxEmptyFrame.isVisible=!1;var l=s.segoptions.selectedRowItems;if("Logs"===l[0].lblHeading){if(enableLoggerSwitch){s.segoptions.isVisible=!1;s.flxLogsOptions.isVisible=!0;s.flxScrollLogs.isVisible=!0;s.btnPrints.isVisible=!0;s.btnFullLogs.isVisible=!0;s.imgDownload.isVisible=!0;s.btnClear.isVisible=!0;s.btnNotes.isVisible=!1;s.flxLogs.animate(voltmx.ui.createAnimation({100:{top:"0%",stepConfig:{timingFunction:voltmx.anim.EASE}}}),{delay:0,iterationCount:1,fillMode:voltmx.anim.FILL_MODE_FORWARDS,duration:.5});s.flxLogs.height="100%";btnFullLogsCallback()}}else if("Notes"===l[0].lblHeading){if("android"==voltmx.os.deviceInfo().name.toLowerCase())s.flxLogsOptions.btnNotes.skin="sknFocusNotes";else s.flxLogsOptions.btnNotes.skin="sknFocusNotesios";s.segoptions.isVisible=!1;s.flxLogsOptions.isVisible=!0;s.btnPrints.isVisible=!1;s.btnFullLogs.isVisible=!1;s.imgDownload.isVisible=!1;s.btnClear.isVisible=!1;s.btnNotes.isVisible=!0;s.flxScrollLogs.isVisible=!1;s.flxLogs.animate(voltmx.ui.createAnimation({100:{top:"0%",stepConfig:{timingFunction:voltmx.anim.EASE}}}),{delay:0,iterationCount:1,fillMode:voltmx.anim.FILL_MODE_FORWARDS,duration:.5});s.flxLogs.height="100%";s.flxLogs.flxNoteAV.isVisible=!0}else if("Exit Preview"===l[0].lblHeading.text){btnExitAppNotesCallBack()}}function subscribeLogListenerFP(){voltmx.logger.subscribeLogListener(logListenerFP)}function unsubscribeLogListenerFP(){voltmx.logger.unsubscribeLogListener()}function logListenerFP(e){try{if(voltmx&&voltmx.application&&voltmx.application.getCurrentForm){var t=voltmx.application.getCurrentForm();if(null!==e&&{}!==e&&"null"!==e){var s=JSON.stringify(e);s=s.substring(1);for(var l=s.split("\""),n="",o=1;o<l.length;o++){if("Kony_API_Prints"===l[o].substr(1,15))n=n.trim()+" \n\n "+l[o]+" \n\n "}if(0<konyapiprintsarr.length)t.lblLogsPrint.text=konyapiprintsarr.join("\n ");if(""!=n)konyapiprintsarr[konyapiprintsindex++]=n;s=l.join("\n ");if(flushLimitcounter<flushLimit){flushLimitcounter=flushLimitcounter+1;t.lblLogs.text+=s}else{flushLimitcounter=0;if(!1===filecreated){filecreated=!0;mainLoc=voltmx.io.FileSystem.getDataDirectoryPath();fileLoc=mainLoc+"/logs.txt";if(new voltmx.io.File(fileLoc).exists())new voltmx.io.File(fileLoc).remove(!0);logFile=new voltmx.io.File(fileLoc).createFile()}var r=new voltmx.io.File(fileLoc).write(t.lblLogs.text,!0);t.lblLogs.text=s}}}}catch(e){try{if(""!=n)konyapiprintsarr[konyapiprintsindex++]=n}catch(e){}}}function overrideprintFP(e){loggerObj.info(e)}function redirectKonyPrintFP(){konyapiprintsarr.length=0;enableLoggerSwitch=!0;var e=new voltmx.logger.createLoggerConfig;loggerObj=new voltmx.logger.createNewLogger("Kony_API_Prints",e);e.logLevel=voltmx.logger.logLevel.ALL.value;e.statementsLimit=30;voltmx.logger.setConfig(e);voltmx.print=overrideprintFP}function btnFPViewSrcCallback(){try{voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter);var e=voltmx.application.getCurrentForm();if(null===e.flxViewSourceFP){e.remove(flxViewSourceFP);e.add(flxViewSourceFP)}if("FALSE"===voltmx.store.getItem("FlagForAC")){voltmx.store.setItem("resultFP","empty");e.flxViewSourceFP.isVisible=!0;e.imgBackVSFP.isVisible=!1;e.imgDownloadFP.isVisible=!1;e.lblEditAndSaveFP.isVisible=!1;e.lblCancelFP.isVisible=!1;e.btnApplyChangesFP.isVisible=!1;e.lblFileNameFP.text="VIEW SOURCE";var t=voltmx.store.getItem("childAppPath");t=t+"/src";for(var s=new voltmx.io.File(t),l=[],n=0,o;n<s.getFilesList().length;n++){o=s.getFilesList().item(n).name;if(20<o.length)o=o.substring(0,20)+"...";l[n]={imgIconSegFP:{src:!0===new voltmx.io.File(s.getFilesList().item(n).fullPath).isFile()?"filefp.png":"dirfp.png"},lblFileNameSegFP:o,lblFilePathSegFP:s.getFilesList().item(n).fullPath,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!0===new voltmx.io.File(s.getFilesList().item(n).fullPath).isFile()?!1:!0}}}e.segFP.setData(l);voltmx.store.setItem("segdata",l)}else{e.flxViewSourceFP.isVisible=!0}}catch(e){voltmx.print("Error in btnFPViewSrcCallback:"+e)}}function lblFPResetCallback(){try{var e=voltmx.application.getCurrentForm();fileChangesPathFP=voltmx.store.getItem("fileChangesPathFP");if(!fileChangesPathFP||0==fileChangesPathFP.length){return}else{voltmx.store.setItem("fileChangesPathFP",fileChangesPathFP);if(null===e.flxResetFP){e.remove(flxResetFP);e.add(flxResetFP)}e.flxResetFP.isVisible=!0}}catch(e){voltmx.print("Error in lblFPResetCallback:"+e)}}function lblFPExitPreviewCallback(){try{voltmx.application.removeWidgetFromWindowForAppViewer(flxFPHeader);voltmx.application.removeWidgetFromWindowForAppViewer(flxFPFooter);voltmx.accelerometer.unregisterAccelerationEvents(["shake"]);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForMenuInChildApp);voltmx.application.removeGestureRecognizerForAllForms(gestureIDForTwoFingerSwipe);unsubscribeLogListenerFP();voltmx.application.launchApplication(null)}catch(e){voltmx.print("Error in lblFPExitPreviewCallback:"+e)}}function btnResetcancelFPCallback(e){var i=voltmx.application.getCurrentForm();i.flxResetFP.isVisible=!1}function btnResetProceedFPCallback(){try{fileChangesPathFP=voltmx.store.getItem("fileChangesPathFP");voltmx.store.setItem("FlagForAC","FALSE");childAppPath=voltmx.store.getItem("childAppPath");childAppName=voltmx.store.getItem("childAppName");voltmx.application.showLoadingScreen("loadskin","Reverting Changes....",constants.LOADING_SCREEN_POSITION_ONLY_CENTER,!0,!0,null);for(var e=0,t;e<fileChangesPathFP.length;e++){t=fileChangesPathFP[e].state;if(null===t){voltmx.print("null is coming from reading i.e can't be done")}else{var s=new voltmx.io.File(fileChangesPathFP[e].destinationPath).write(t);if(null!==s){voltmx.print("writing can be done on Non Existing Files")}}}fileChangesPathFP.length=0;voltmx.store.setItem("fileChangesPathFP",[]);voltmx.application.dismissLoadingScreen();var l=voltmx.application.getCurrentForm();l.flxResetFP.isVisible=!1;btnApplyChangesFPCallback()}catch(e){voltmx.print("error in btnResetProceedFPCallback"+e)}}function imgcloseFPCallback(e,i,t){var s=voltmx.application.getCurrentForm();voltmx.application.addWidgetToWindowForAppViewer(flxFPHeader);voltmx.application.addWidgetToWindowForAppViewer(flxFPFooter);s.flxViewSourceFP.isVisible=!1}function imgBackVSFPCallback(e,i,t){var s=voltmx.application.getCurrentForm();s.imgBackVSFP.isVisible=!1;s.imgDownloadFP.isVisible=!1;s.lblEditAndSaveFP.isVisible=!1;s.flxScrlFP.isVisible=!1;s.imgcloseFP.isVisible=!0;s.flxScrlSegFP.isVisible=!0;s.txtSearchFP.isVisible=!0;s.lblFileNameFP.text="VIEW SOURCE";if("TRUE"===voltmx.store.getItem("FlagForAC")){s.flxScrlSegFP.height="70%";s.btnApplyChangesFP.isVisible=!0}}function imgDownloadFPCallback(e,i,t){try{var s=voltmx.application.getCurrentForm(),l=s.txtAreaFP.text;voltmx.runOnMainThread(mainthread,[]);function mainthread(){var e=objc.import("UIActivityViewController"),i=e.alloc().initWithActivityItemsApplicationActivities([l],null),t=objc.import("UIApplication"),s=t.sharedApplication().keyWindow.rootViewController;i.excludedActivityTypes=[UIActivityTypeAddToReadingList,UIActivityTypeAirDrop,UIActivityTypeAssignToContact,UIActivityTypeCopyToPasteboard,UIActivityTypeMail,UIActivityTypeMessage,UIActivityTypeOpenInIBooks,UIActivityTypePostToFacebook,UIActivityTypePostToFlickr,UIActivityTypePostToTencentWeibo,UIActivityTypePostToTwitter,UIActivityTypePostToVimeo,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll,UIActivityTypeMarkupAsPDF];if("ipad"===voltmx.store.getItem("PLATFORMNAME_FP")){var n=i.popoverPresentationController;n.sourceView=s.topViewController.view.subviews[0].subviews[0].subviews[0];n.permittedArrowDirections=[]}s.presentViewControllerAnimatedCompletion(i,!0,null)}}catch(e){voltmx.print("Error in imgDownloadFPCallback: "+e)}}function lblEditAndSaveFPCallback(e,i,t){var s=voltmx.application.getCurrentForm();if(!fileChangesPathFP)fileChangesPathFP=[];if("EDIT"===s.lblEditAndSaveFP.text){s.txtAreaFP.enable=!0;s.lblEditAndSaveFP.text="SAVE";s.imgBackVSFP.isVisible=!1;s.imgDownloadFP.isVisible=!1;s.lblCancelFP.isVisible=!0}else if("SAVE"===s.lblEditAndSaveFP.text){try{var l=voltmx.store.getItem("LAST_ROW_CLICKED");s.segFP.setDataAt({imgIconSegFP:l[0].imgIconSegFP,lblFileNameSegFP:l[0].lblFileNameSegFP,lblFilePathSegFP:l[0].lblFilePathSegFP,lblSepSegFP:l[0].lblSepSegFP,imgArrowFP:{src:"dotfp.png",isVisible:!0}},l[1]);var n=new voltmx.io.File(voltmx.store.getItem("FilePathSeg")).read();if(null!==n){voltmx.store.setItem("fileChangesPathFPContents",n.readAsText())}var o={filePath:voltmx.store.getItem("FilePathSeg").replace("src","srcForChildApp"),destinationPath:voltmx.store.getItem("FilePathSeg"),state:voltmx.store.getItem("fileChangesPathFPContents")};fileChangesPathFP[fileChangesPathFP.length]=o;voltmx.store.setItem("fileChangesPathFP",fileChangesPathFP);var r=new voltmx.io.File(voltmx.store.getItem("FilePathSeg")).write(s.txtAreaFP.text);if(null!==r){voltmx.print("writing can be done on Non Existing Files")}else{alert("writing on nonExisting file returns null")}voltmx.store.setItem("FlagForAC","TRUE");s.flxScrlSegFP.isVisible=!0;s.flxScrlSegFP.height="70%";s.btnApplyChangesFP.isVisible=!0;s.txtAreaFP.enable=!1;s.lblEditAndSaveFP.text="EDIT";s.lblEditAndSaveFP.isVisible=!1;s.imgBackVSFP.isVisible=!1;s.imgDownloadFP.isVisible=!1;s.lblCancelFP.isVisible=!1;s.flxScrlFP.isVisible=!1;s.imgcloseFP.isVisible=!0;s.lblFileNameFP.text="VIEW SOURCE";s.txtSearchFP.isVisible=!0}catch(e){voltmx.print("can't try write on NonExistingFile, causes Error"+error)}}}function lblCancelFPCallback(e,i,t){try{var s=voltmx.application.getCurrentForm();s.txtAreaFP.enable=!1;s.lblEditAndSaveFP.text="EDIT";s.imgBackVSFP.isVisible=!0;s.imgDownloadFP.isVisible=!0;s.lblCancelFP.isVisible=!1;var l=new voltmx.io.File(voltmx.store.getItem("FilePathSeg")).read();if(null===l){s.txtAreaFP.text="rawBytes object is null"}else{s.txtAreaFP.text=l.readAsText()}}catch(e){voltmx.print("Error in lblCancelFPCallback"+erorr)}}function txtSearchFPCallback(e,i){try{var t=voltmx.application.getCurrentForm(),s=t.segFP.searchText([{textToSearch:t.txtSearchFP.text,caseSensitive:!1,searchType:constants.SEGUI_SEARCH_CRITERIA_STARTSWITH,searchableWidgets:["lblFileNameSegFP"]}],{updateSegment:!0,showHeaderFooter:!0});voltmx.store.setItem("resultFP",s);if(""===t.txtSearchFP.text){t.segFP.clearSearch();voltmx.store.setItem("resultFP","empty")}}catch(e){voltmx.print("Error in txtSearchFPCallback:"+e)}}function segFPCallback(e,t,s){try{var l=voltmx.application.getCurrentForm(),n,o,r=voltmx.store.getItem("resultFP");if("empty"!=r){o=r[l.segFP.selectedRowIndex[1]][1];n=l.segFP.data[o]}else{n=l.segFP.selectedRowItems[0];o=l.segFP.selectedRowIndex[1]}voltmx.store.setItem("LAST_ROW_CLICKED",[n,o]);if(new voltmx.io.File(n.lblFilePathSegFP).exists()){if(new voltmx.io.File(n.lblFilePathSegFP).isFile()){l.btnApplyChangesFP.isVisible=!1;l.flxScrlSegFP.isVisible=!1;l.txtSearchFP.isVisible=!1;l.txtAreaFP.enable=!1;l.flxScrlFP.isVisible=!0;l.imgcloseFP.isVisible=!1;l.imgBackVSFP.isVisible=!0;l.imgDownloadFP.isVisible=!0;l.lblEditAndSaveFP.isVisible=!0;l.lblEditAndSaveFP.text="EDIT";l.lblCancelFP.isVisible=!1;l.lblFileNameFP.text=n.lblFileNameSegFP;voltmx.store.setItem("FilePathSeg",n.lblFilePathSegFP);var a=new voltmx.io.File(n.lblFilePathSegFP).read();if(null===a){l.txtAreaFP.text="rawBytes object is null"}else{l.txtAreaFP.text=a.readAsText()}}else{var g=new voltmx.io.File(n.lblFilePathSegFP),d=[];if(0===g.getFilesList().length){if("right_arrow.png"===n.imgArrowFP.src){l.segFP.setDataAt({imgIconSegFP:n.imgIconSegFP,lblFileNameSegFP:n.lblFileNameSegFP,lblFilePathSegFP:n.lblFilePathSegFP,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"downarrowfp.png",isVisible:!0}},o);l.segFP.addDataAt({imgIconSegFP:{src:"filefp.png",isVisible:!1},lblFileNameSegFP:"EMPTY FOLDER",lblFilePathSegFP:"EMPTY FOLDER",lblSepSegFP:{width:"80%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!1}},o+1)}else{l.segFP.setDataAt({imgIconSegFP:n.imgIconSegFP,lblFileNameSegFP:n.lblFileNameSegFP,lblFilePathSegFP:n.lblFilePathSegFP,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!0}},o);l.segFP.removeAt(o+1)}}else{if("right_arrow.png"===n.imgArrowFP.src){l.segFP.setDataAt({imgIconSegFP:n.imgIconSegFP,lblFileNameSegFP:n.lblFileNameSegFP,lblFilePathSegFP:n.lblFilePathSegFP,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"downarrowfp.png",isVisible:!0}},o);for(var p=0;p<g.getFilesList().length;p++){d[p]={imgIconSegFP:{src:"filefp.png"},lblFileNameSegFP:g.getFilesList().item(p).name,lblFilePathSegFP:g.getFilesList().item(p).fullPath,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!0===new voltmx.io.File(g.getFilesList().item(p).fullPath).isFile()?!1:!0}};l.segFP.addDataAt(d[p],o+p+1)}}else{l.segFP.setDataAt({imgIconSegFP:n.imgIconSegFP,lblFileNameSegFP:n.lblFileNameSegFP,lblFilePathSegFP:n.lblFilePathSegFP,lblSepSegFP:{width:"90%",text:""},imgArrowFP:{src:"right_arrow.png",isVisible:!0}},o);for(var p=0;p<g.getFilesList().length;p++){l.segFP.removeAt(o+1)}}}}}}catch(e){voltmx.print("Error in segFPCallback"+e)}}function btnApplyChangesFPCallback(e){try{voltmx.store.setItem("FlagForAC","FALSE");childAppPath=voltmx.store.getItem("childAppPath");childAppName=voltmx.store.getItem("childAppName");voltmx.application.launchApplication(null);voltmx.runOnMainThread(mainthread,[]);function mainthread(){voltmx.application.launchApplication(voltmx.store.getItem("childAppPath"),voltmx.store.getItem("childAppName"),function(){voltmx.print("args : ")},null)}}catch(e){voltmx.print("error in relaunch"+e)}}function SegVSRowTemplate(){FBox0d2dd8aa1652440=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!1,height:"60dp",id:"FBox0d2dd8aa1652440",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,isModalContainer:!1,skin:"slFbox",width:"100%"},{},{});FBox0d2dd8aa1652440.setDefaultUnit(voltmx.flex.DP);var e=new voltmx.ui.Image2({centerY:"50%",height:"30dp",id:"imgIconSegFP",isVisible:!0,left:"10%",skin:"slImage",src:"imagedrag.png",width:"30dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),i=new voltmx.ui.Label({centerY:"50%",id:"lblFileNameSegFP",isVisible:!0,left:"21%",skin:"Copy",text:"Label",textStyle:{},width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),t=new voltmx.ui.Label({centerY:"50%",id:"lblFilePathSegFP",isVisible:!1,left:"21%",skin:"Copy",text:"Label",textStyle:{},width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),s=new voltmx.ui.Label({centerX:"50%",height:"1%",id:"lblSepSegFP",isVisible:!0,left:"31%",skin:"sknlblSepSegFP",text:"Label",textStyle:{},top:"97%",width:"90%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),l=new voltmx.ui.Image2({centerY:"50%",height:"30dp",id:"imgArrowFP",isVisible:!0,right:"5%",skin:"slImage",src:"imagedrag.png",width:"30dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{});FBox0d2dd8aa1652440.add(e,i,t,s,l)}
 //FP Appended KPopupTemplates.js-----------------------------------------------------------
 var flxMainAV,flxExitAppAV,flxLogs,flxNoteAV,flxViewSourceFP,flxResetFP,platformName=voltmx.os.deviceInfo().name.toLowerCase();function addWidgets_flexContainer(){flxMainAV=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"100%",id:"flxMainAV",isVisible:!0,bounces:!1,isModalContainer:!0,blur:{enabled:!0,value:0},layoutType:voltmx.flex.FREE_FORM,left:"0dp",skin:"sknFlxMainAv",top:"0dp",width:"100%",zIndex:99999},{},{});flxMainAV.setDefaultUnit(voltmx.flex.DP);flxNoteAV=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"88%",id:"flxNoteAV",isVisible:!1,layoutType:voltmx.flex.FLOW_VERTICAL,left:"0dp",skin:"sknFlxNoteAV",width:"100%",top:"0%",zIndex:100},{},{});flxNoteAV.setDefaultUnit(voltmx.flex.DP);var a=new voltmx.ui.FlexContainer({bounces:!1,clipBounds:!0,height:"98%",id:"flxSCNoteAV",isVisible:!0,IsModalContainer:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",skin:"sknFlxSCNoteAV",bottom:"1%",width:"100%",zIndex:100},{},{});a.setDefaultUnit(voltmx.flex.DP);var b=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"0.5%",id:"flxNoteHeader",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",skin:"sknFlxHeaderBG3D6E92OP11",top:"0dp",width:"100%",zIndex:10},{},{});b.setDefaultUnit(voltmx.flex.DP);var c=new voltmx.ui.RichText({id:"richtxtNoteAV",isVisible:!0,left:"0%",linkSkin:"defRichTextLink",skin:"SknRchTxt37414BSFPROReg",text:"RichText",top:"10px",width:"100%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[5,0,0,0],paddingInPixel:!1,widgetAlignment:constants.WIDGET_ALIGN_CENTER},{wrapping:constants.WIDGET_TEXT_WORD_WRAP}),d=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_HEIGHT,clipBounds:!0,id:"flxSegNoteAV",isVisible:!0,layoutType:voltmx.flex.FLOW_HORIZONTAL,left:"0%",isModalContainer:!1,skin:"slFbox",top:"0dp",bottom:"11px",width:"100%",zIndex:1},{padding:[0,0,0,0]},{}),e=new voltmx.ui.Label({id:"lblSegNoteAV",isVisible:!0,left:"0%",skin:"sknLblNameBold",text:"Label",textStyle:{},top:"0dp",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[5,3,1,1],paddingInPixel:!1,widgetAlignment:constants.WIDGET_ALIGN_CENTER},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP});d.add(e);var f=new voltmx.ui.Label({id:"lblSegNoteTSAV",isVisible:!0,left:"0%",skin:"sknLblName",text:"Label",textStyle:{},top:"0dp",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[3,3,1,1],paddingInPixel:!1,widgetAlignment:constants.WIDGET_ALIGN_CENTER},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP});d.add(f);if("android"===voltmx.store.getItem("PLATFORMNAME_FP")||"androidtab"===voltmx.store.getItem("PLATFORMNAME_FP"))var g="sknFlxWhiteFP";else var g="sknFlxLightRedFP";var h=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_HEIGHT,clipBounds:!0,id:"flxDeleteFP",isVisible:!0,layoutType:voltmx.flex.FLOW_VERTICAL,left:"0dp",isModalContainer:!1,onTouchEnd:function(){var a=voltmx.application.getCurrentForm();__deleteCommentFP(a.segPopupPreview.selectedRowItems)},skin:g,width:"27dp",top:"15dp",zIndex:5},{},{});h.setDefaultUnit(voltmx.flex.DP);var i=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_HEIGHT,clipBounds:!0,id:"flxContent",isVisible:!0,layoutType:voltmx.flex.FLOW_VERTICAL,left:"0%",isModalContainer:!1,skin:"slFbox",top:"0dp",width:"73%",zIndex:1},{padding:[0,0,0,0]},{});i.add(c,d);var j=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_HEIGHT,clipBounds:!0,id:"flxMainTemplate",isVisible:!0,layoutType:voltmx.flex.FLOW_HORIZONTAL,left:"0%",isModalContainer:!1,skin:"slFbox",top:"0dp",width:"138%",zIndex:1},{padding:[0,0,0,0]},{});j.add(i,h);var k=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_HEIGHT,clipBounds:!0,id:"segTemplateAV",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",isModalContainer:!1,skin:"slFbox",top:"0dp",width:"100%"},{padding:[0,0,0,0]},{});k.add(j);var l=new voltmx.ui.Button({centerX:"50%",focusSkin:"sknBtnWhiteMLFP",height:voltmx.flex.USE_PREFFERED_SIZE,id:"btnDeleteFP",isVisible:!0,skin:"sknBtnWhiteMLFP",text:"Delete",width:"100%",zIndex:5},{contentAlignment:constants.CONTENT_ALIGN_BOTTOM_CENTER,displayText:!1,padding:[0,0,0,0],paddingInPixel:!1},{showProgressIndicator:!0});h.add(l);var m=new voltmx.ui.SegmentedUI2({autogrowMode:voltmx.flex.AUTOGROW_NONE,id:"segPopupPreview",height:"80%",width:"90%",centerX:"50%",isVisible:!0,retainSelection:!1,widgetDataMap:{lblSegNoteAV:"createdBy",lblSegNoteTSAV:"formattedlmt",richtxtNoteAV:"comment"},data:[],rowTemplate:k,widgetSkin:"segTrans",rowSkin:"segRowTrans",rowFocusSkin:"segRowTrans",sectionHeaderSkin:"seg2Header",separatorRequired:!0,metaInfo:{editMode:constants.SEGUI_EDIT_MODE_DELETE,editModeCustomConfig:[{title:"Delete",backgroundColor:"f35a56",callback:delete_callback}]},separatorThickness:1,separatorColor:"3d6e9259",showScrollbars:!1,groupCells:!1,screenLevelWidget:!1,editStyle:constants.SEGUI_EDIT_MODE_DELETE,selectionBehavior:constants.SEGUI_DEFAULT_BEHAVIOR,viewType:constants.SEGUI_VIEW_TYPE_TABLEVIEW,top:"2%",zIndex:1},{padding:[0,0,0,0],paddingInPixel:!1},{bounces:!1,editStyle:constants.SEGUI_EDITING_STYLE_NONE,enableDictionary:!1,indicator:constants.SEGUI_NONE,progressIndicatorColor:constants.PROGRESS_INDICATOR_COLOR_WHITE,showProgressIndicator:!0}),n,o,p=voltmx.application.getCurrentForm();if("android"==platformName){n="85%";textArea_centerX="40%";flxTextAreaWidth="90%";o="0%"}else{n="75%";textArea_centerX="42%";flxTextAreaWidth="100%";o="3%"}var q=new voltmx.ui.Button({focusSkin:"dynSkinSubmitAV",height:"44dp",id:"btnTextAreaDoneAV",isVisible:!0,onClick:__addAppendCommentFP,right:o,skin:"dynSkinSubmitAV",text:"",top:"72.20%",width:"44dp",centerY:"50%",zIndex:100},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[0,0,0,0],paddingInPixel:!1},{showProgressIndicator:!0}),r=new voltmx.ui.TextArea2({autoCapitalize:constants.TEXTAREA_AUTO_CAPITALIZE_NONE,centerX:textArea_centerX,focusSkin:"sknTxtAreaBG788EA9Focus",top:"0.2%",height:constants.PREFERRED,id:"txtAreaNotesAV",isVisible:!0,keyBoardStyle:constants.TEXTAREA_KEY_BOARD_STYLE_DEFAULT,onTextChange:txtAreaCallback,placeholder:" Add a note",skin:"sknTxtAreaBG788EA9Normal",textInputMode:constants.TEXTAREA_INPUT_MODE_ANY,bottom:"4%",width:n,zIndex:10,onDone:__addAppendCommentFP},{contentAlignment:constants.CONTENT_ALIGN_TOP_LEFT,padding:[3,2,2,2],paddingInPixel:!1},{inputAccessoryViewType:constants.TEXTAREA_INPUTACCESSORYVIEW_NEXTPREV}),s=new voltmx.ui.Label({centerX:"50%",height:"50%",id:"lblNoNotes",isVisible:!0,left:"0dp",skin:"sknLblNoNotes",text:"Collaborate on prototypes  by adding notes to screens",textStyle:{letterSpacing:0,strikeThrough:!1},top:"15%",width:"90%",zIndex:100},{contentAlignment:constants.CONTENT_ALIGN_CENTER,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1}),t=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_HEIGHT,clipBounds:!0,id:"flxTextAreaNotesAV",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",right:"4%",centerX:"50%",skin:"flxTextAreaSkin",top:"90%",width:flxTextAreaWidth,height:"45dp",zIndex:100},{padding:[0,0,0,0]},{});t.setDefaultUnit(voltmx.flex.DP);t.add(r,q);a.add(b,m,t,s);flxNoteAV.add(a);flxLogs=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"35.70%",id:"flxLogs",isVisible:!0,layoutType:voltmx.flex.FLOW_VERTICAL,left:"0dp",masterType:constants.MASTER_TYPE_USERWIDGET,isModalContainer:!1,skin:"sknflxLogs",top:"75.30%",width:"100%",zIndex:1},{},{});flxLogs.setDefaultUnit(voltmx.flex.DP);flxEmptyFrame=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"63%",id:"flxEmptyFrame",isVisible:!0,layoutType:voltmx.flex.FLOW_VERTICAL,left:"0dp",masterType:constants.MASTER_TYPE_USERWIDGET,onTouchStart:ImageResizeCallback,isModalContainer:!1,skin:"flxTextAreaSkin",top:"0%",width:"100%",zIndex:1},{},{});flxEmptyFrame.setDefaultUnit(voltmx.flex.DP);var u=new voltmx.ui.Image2({centerX:"50%",height:"15dp",id:"imgResize",isVisible:!0,left:"0",onTouchStart:ImageResizeCallback,skin:"slImage",src:"indicator.png",top:"1%",width:"25%",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{});if("function"==typeof initializeFlxLogsOptions)initializeFlxLogsOptions();var v=new voltmx.ui.SegmentedUI2({autogrowMode:voltmx.flex.AUTOGROW_NONE,data:[{btnSwithLogs:{isVisible:!0,src:"offimg.png",onClick:btnSwitchLogsCallback},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!1,src:"exit.png"},lblDesc:"Turn ON to fetch and view logs.",lblHeading:"Logs",lblLine:{skin:"sknLabelSeparator"}},{btnSwithLogs:{isVisible:!1,src:"offimg.png"},imgLogsArrow:{isVisible:!1,src:"right_arrow.png"},imgArrow:{isVisible:!1,src:"right_arrow.png"},imgExit:{isVisible:!0,src:"exit.png"},lblDesc:"",lblHeading:{text:"Exit Preview",left:"12%"},lblLine:{skin:""}}],groupCells:!1,height:"96%",id:"segoptions",isVisible:!0,left:"0dp",needPageIndicator:!0,onRowClick:SegmentRowClickCallback,pageOffDotImage:"pageoffdot.png",pageOnDotImage:"pageondot.png",retainSelection:!1,rowFocusSkin:"seg0a2ed1d24dbac41",rowSkin:"sknLogsSeg",rowTemplate:FBox0jb9868bd2b2546,scrollingEvents:{},sectionHeaderSkin:"sliPhoneSegmentHeader0h0f14cdbbb5445",selectionBehavior:constants.SEGUI_DEFAULT_BEHAVIOR,separatorRequired:!1,showScrollbars:!1,top:"0dp",viewType:constants.SEGUI_VIEW_TYPE_TABLEVIEW,widgetDataMap:{btnSwithLogs:"btnSwithLogs",imgArrow:"imgArrow",imgLogsArrow:"imgLogsArrow",imgExit:"imgExit",lblDesc:"lblDesc",lblHeading:"lblHeading",lblLine:"lblLine"},width:"100%",zIndex:1},{padding:[0,0,0,0],paddingInPixel:!1},{indicator:constants.SEGUI_NONE}),w=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"65dp",id:"flxLogsOptions",isVisible:!1,layoutType:voltmx.flex.FREE_FORM,left:"0dp",masterType:constants.MASTER_TYPE_USERWIDGET,isModalContainer:!1,skin:"sknFlxLogsOption",top:"0dp",width:"100%",zIndex:1},{},{});w.setDefaultUnit(voltmx.flex.DP);var x=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"65dp",id:"flxLogsOptionsBack",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"5.3%",masterType:constants.MASTER_TYPE_USERWIDGET,isModalContainer:!1,onTouchStart:ImageBackCallback,skin:"sknFlxLogsOption",centerY:"50%",top:"0dp",width:"10%",zIndex:1},{},{});x.setDefaultUnit(voltmx.flex.DP);var y=new voltmx.ui.Image2({centerY:"50%",height:"15dp",id:"imgBack",isVisible:!0,left:"0%",skin:"slImage0ec814d65503e48",src:"left_arrow.png",top:"26dp",width:"22dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),z=new voltmx.ui.Button({centerY:"50%",focusSkin:"sknFocusLogsLabels",id:"btnPrints",isVisible:!0,left:"20%",skin:"sknLogsOptionLabels",text:"PRINTS",onClick:btnPrintsCallback,width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[0,0,0,0],paddingInPixel:!1},{}),A=new voltmx.ui.Button({centerY:"50%",focusSkin:"sknFocusLogsLabels",id:"btnFullLogs",isVisible:!0,onClick:btnFullLogsCallback,left:"40%",skin:"sknLogsOptionLabels",text:"FULL LOGS",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[0,0,0,0],paddingInPixel:!1},{}),B=new voltmx.ui.Image2({centerY:"50%",height:"15dp",id:"imgDownload",isVisible:!0,onTouchStart:imgDownloadCallback,left:"75%",skin:"slImage",src:"download.png",top:"22dp",width:"25dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),C=new voltmx.ui.Button({centerY:"50%",focusSkin:"sknFocusLogsLabels",id:"btnClear",isVisible:!0,onClick:btnClearCallback,right:"6.5%",skin:"sknLogsOptionLabels",text:"Clear",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[0,0,0,0],paddingInPixel:!1},{}),D=new voltmx.ui.Button({centerY:"50%",id:"btnNotes",isVisible:!1,left:"15%",skin:"sknFocusNotes",text:"NOTES",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[0,0,0,0],paddingInPixel:!1},{});x.add(y);w.add(x,z,A,B,C,D);var E=new voltmx.ui.FlexScrollContainer({allowHorizontalBounce:!1,allowVerticalBounce:!0,bounces:!0,clipBounds:!0,enableScrolling:!0,height:"91%",horizontalScrollIndicator:!0,id:"flxScrollLogs",isVisible:!1,layoutType:voltmx.flex.FREE_FORM,left:"0dp",pagingEnabled:!1,scrollDirection:voltmx.flex.SCROLL_VERTICAL,skin:"sknLblLogs",top:"0dp",verticalScrollIndicator:!0,width:"100%",zIndex:1},{},{});E.setDefaultUnit(voltmx.flex.DP);var F=new voltmx.ui.Label({height:voltmx.flex.USE_PREFFERED_SIZE,id:"lblLogs",isVisible:!0,left:"0dp",text:"",right:106,skin:"sknLblLogs",textStyle:{letterSpacing:1,strikeThrough:!1},top:"0dp",width:"100%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_TOP_LEFT,padding:[6,3,12,3],paddingInPixel:!1},{textCopyable:!0});E.add(F);var G=new voltmx.ui.Label({height:voltmx.flex.USE_PREFFERED_SIZE,id:"lblLogsPrint",isVisible:!1,left:"0dp",text:"",right:106,skin:"sknLblLogs",textStyle:{letterSpacing:1,strikeThrough:!1},top:"0dp",width:"100%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_TOP_LEFT,padding:[6,3,12,3],paddingInPixel:!1},{textCopyable:!0});E.add(G);flxLogs.add(u,v,w,E,flxNoteAV);flxMainAV.add(flxEmptyFrame,flxLogs);k.addGestureRecognizer(constants.GESTURE_TYPE_PAN,{fingers:1,continuousEvents:!1},panGestureHandler);flxViewSourceFP=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,centerX:"50%",centerY:"50%",clipBounds:!0,height:"100%",id:"flxViewSourceFP",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",isModalContainer:!1,skin:"slFbox1",top:"0dp",width:"100%",zIndex:999},{},{});flxViewSourceFP.setDefaultUnit(voltmx.flex.DP);var H=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,clipBounds:!0,height:"10%",id:"flxChildAppHeaderFP",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0%",isModalContainer:!1,skin:"slFbox",top:"0%",width:"100%",zIndex:1},{},{});H.setDefaultUnit(voltmx.flex.DP);var I=new voltmx.ui.Image2({centerY:"50%",height:"20dp",id:"imgcloseFP",isVisible:!0,left:"5%",onTouchStart:imgcloseFPCallback,skin:"slImage",src:"closefp.png",width:"20dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),J=new voltmx.ui.Image2({centerY:"50%",height:"20dp",id:"imgBackVSFP",isVisible:!1,left:"5%",onTouchStart:imgBackVSFPCallback,skin:"slImage",src:"backfp.png",width:"20dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),K=new voltmx.ui.Label({centerX:"47%",centerY:"50%",id:"lblFileNameFP",isVisible:!0,skin:"sknFileNameFP",text:"FORM1",textStyle:{},top:10,width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),L=new voltmx.ui.Image2({centerY:"50%",height:"20dp",id:"imgDownloadFP",isVisible:!0,left:"77%",onTouchStart:imgDownloadFPCallback,skin:"slImage",src:"download.png",top:"10dp",width:"20dp",zIndex:1},{imageScaleMode:constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,padding:[0,0,0,0],paddingInPixel:!1},{}),M=new voltmx.ui.Label({centerY:"50%",id:"lblEditAndSaveFP",isVisible:!0,onTouchStart:lblEditAndSaveFPCallback,right:"5%",skin:"sknlblTemenosBlue",text:"EDIT",textStyle:{},top:"12dp",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),N=new voltmx.ui.Label({centerY:"50%",id:"lblCancelFP",isVisible:!1,left:"5%",onTouchStart:lblCancelFPCallback,skin:"sknCancelFP",text:"CANCEL",textStyle:{},width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP});H.add(I,J,K,L,M,N);var O=new voltmx.ui.TextBox2({autoCapitalize:constants.TEXTBOX_AUTO_CAPITALIZE_NONE,centerX:"50%",focusSkin:"skntxtBoxFP",height:"6%",id:"txtSearchFP",isVisible:!0,keyBoardStyle:constants.TEXTBOX_KEY_BOARD_STYLE_DEFAULT,onTextChange:txtSearchFPCallback,placeholder:"Search For JS Files",secureTextEntry:!1,skin:"skntxtBoxFP",textInputMode:constants.TEXTBOX_INPUT_MODE_ANY,top:"10%",width:"90%",zIndex:1},{containerHeightMode:constants.TEXTBOX_FONT_METRICS_DRIVEN_HEIGHT,contentAlignment:constants.CONTENT_ALIGN_MIDDLE_LEFT,padding:[3,0,0,0],paddingInPixel:!1},{autoCorrect:!1,keyboardActionLabel:constants.TEXTBOX_KEYBOARD_LABEL_DONE,placeholderSkin:"defTextBoxPlaceholder",showClearButton:!0,showCloseButton:!0,showProgressIndicator:!0,viewType:constants.TEXTBOX_VIEW_TYPE_DEFAULT}),P=new voltmx.ui.FlexScrollContainer({allowHorizontalBounce:!1,allowVerticalBounce:!0,bounces:!0,clipBounds:!0,enableScrolling:!0,height:"83%",horizontalScrollIndicator:!0,id:"flxScrlSegFP",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"0dp",pagingEnabled:!1,scrollDirection:voltmx.flex.SCROLL_VERTICAL,skin:"slFSbox",top:"17%",verticalScrollIndicator:!0,width:"100%",zIndex:1},{},{});P.setDefaultUnit(voltmx.flex.DP);if("function"==typeof SegVSRowTemplate)SegVSRowTemplate();var Q=new voltmx.ui.SegmentedUI2({autogrowMode:voltmx.flex.AUTOGROW_HEIGHT,centerX:"50%",data:[{imgArrowFP:"listboxarw.png",imgIconSegFP:"calendar.png",lblFileNameSegFP:"Label",lblFilePathSegFP:"Label",lblSepSegFP:""},{imgArrowFP:"listboxarw.png",imgIconSegFP:"calendar.png",lblFileNameSegFP:"Label",lblFilePathSegFP:"Label",lblSepSegFP:""},{imgArrowFP:"listboxarw.png",imgIconSegFP:"calendar.png",lblFileNameSegFP:"Label",lblFilePathSegFP:"Label",lblSepSegFP:""},{imgArrowFP:"listboxarw.png",imgIconSegFP:"calendar.png",lblFileNameSegFP:"Label",lblFilePathSegFP:"Label",lblSepSegFP:""},{imgArrowFP:"listboxarw.png",imgIconSegFP:"calendar.png",lblFileNameSegFP:"Label",lblFilePathSegFP:"Label",lblSepSegFP:""}],groupCells:!1,id:"segFP",isVisible:!0,left:"0dp",needPageIndicator:!0,onRowClick:segFPCallback,pageOffDotImage:"pageoffdot.png",pageOnDotImage:"pageondot.png",retainSelection:!1,rowFocusSkin:"seg2Focus",rowSkin:"seg2Normal",rowTemplate:FBox0d2dd8aa1652440,scrollingEvents:{},sectionHeaderSkin:"sliPhoneSegmentHeader",selectionBehavior:constants.SEGUI_DEFAULT_BEHAVIOR,separatorRequired:!1,showScrollbars:!1,top:"0%",viewType:constants.SEGUI_VIEW_TYPE_TABLEVIEW,widgetDataMap:{imgArrowFP:"imgArrowFP",imgIconSegFP:"imgIconSegFP",lblFileNameSegFP:"lblFileNameSegFP",lblFilePathSegFP:"lblFilePathSegFP",lblSepSegFP:"lblSepSegFP"},width:"100%",zIndex:1},{padding:[0,0,0,0],paddingInPixel:!1},{bounces:!0,editStyle:constants.SEGUI_EDITING_STYLE_NONE,enableDictionary:!1,indicator:constants.SEGUI_ROW_SELECT,progressIndicatorColor:constants.PROGRESS_INDICATOR_COLOR_WHITE,showProgressIndicator:!1});P.add(Q);var R=new voltmx.ui.FlexScrollContainer({allowHorizontalBounce:!1,allowVerticalBounce:!1,bounces:!0,centerX:"50%",clipBounds:!0,enableScrolling:!0,height:"90%",horizontalScrollIndicator:!0,id:"flxScrlFP",isVisible:!1,layoutType:voltmx.flex.FREE_FORM,left:"0dp",pagingEnabled:!1,scrollDirection:voltmx.flex.SCROLL_VERTICAL,skin:"slFSbox",top:"10%",verticalScrollIndicator:!0,width:"100%",zIndex:1},{},{});R.setDefaultUnit(voltmx.flex.DP);var S=new voltmx.ui.TextArea2({autoCapitalize:constants.TEXTAREA_AUTO_CAPITALIZE_NONE,centerX:"50%",focusSkin:"skntxtAreaFP",height:"100%",id:"txtAreaFP",isVisible:!0,keyBoardStyle:constants.TEXTAREA_KEY_BOARD_STYLE_DEFAULT,left:"0dp",numberOfVisibleLines:3,skin:"skntxtAreaFP",textInputMode:constants.TEXTAREA_INPUT_MODE_ANY,top:"0%",width:"100%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_TOP_LEFT,padding:[5,2,5,2],paddingInPixel:!1},{autoCorrect:!1,keyboardActionLabel:constants.TEXTAREA_KEYBOARD_LABEL_DONE,showCloseButton:!0,showProgressIndicator:!1,placeholderSkin:"defTextAreaPlaceholder"});R.add(S);var T=new voltmx.ui.Button({bottom:"3%",centerX:"50%",focusSkin:"sknbtnAC",height:"50dp",id:"btnApplyChangesFP",isVisible:!1,left:"38dp",onClick:btnApplyChangesFPCallback,skin:"sknbtnAC",text:"APPLY CHANGES",width:"200dp",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[0,0,0,0],paddingInPixel:!1},{showProgressIndicator:!0});flxResetFP=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,centerX:"50%",centerY:"50%",clipBounds:!0,height:"100%",id:"flxResetFP",isVisible:!1,layoutType:voltmx.flex.FREE_FORM,left:"0dp",isModalContainer:!1,skin:"sknflxResetFP",width:"100%",zIndex:1},{},{});flxResetFP.setDefaultUnit(voltmx.flex.DP);var U=new voltmx.ui.FlexContainer({autogrowMode:voltmx.flex.AUTOGROW_NONE,centerX:"50%",centerY:"50.00%",clipBounds:!0,height:"209dp",id:"flxResetAlertFP",isVisible:!0,layoutType:voltmx.flex.FREE_FORM,left:"35dp",isModalContainer:!1,skin:"sknflxResetAlertFP",top:"137dp",width:"85%",zIndex:1},{},{});U.setDefaultUnit(voltmx.flex.DP);var V=new voltmx.ui.Label({centerX:"50%",id:"lblResetAlert1FP",isVisible:!0,left:"112dp",skin:"sknlblResetAlert1FP",text:"ALERT",textStyle:{},top:"5%",width:voltmx.flex.USE_PREFFERED_SIZE,zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),W=new voltmx.ui.Label({centerX:"50.00%",id:"lblResetAlert2FP",isVisible:!0,left:"10dp",skin:"sknlblResetAlert2FP",text:"Reset of application will override the local changes.",textStyle:{},top:"23%",width:"70%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),X=new voltmx.ui.Label({centerX:"50.00%",id:"lblResetAlert3FP",isVisible:!0,left:"10dp",skin:"sknlblResetAlert3FP",text:"Would you like to Proceed?",textStyle:{},top:"45%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,padding:[0,0,0,0],paddingInPixel:!1},{textCopyable:!1,wrapping:constants.WIDGET_TEXT_WORD_WRAP}),Y=new voltmx.ui.Button({focusSkin:"sknbtnCancelFP",height:"50dp",id:"btnResetcancelFP",isVisible:!0,left:"10%",onClick:btnResetcancelFPCallback,skin:"sknbtnCancelFP",text:"CANCEL",top:"70%",width:"35%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[2,0,2,0],paddingInPixel:!1},{showProgressIndicator:!0}),Z=new voltmx.ui.Button({focusSkin:"sknbtnProceedFP",height:"50dp",id:"btnResetProceedFP",isVisible:!0,right:"10%",skin:"sknbtnProceedFP",text:"PROCEED",onClick:btnResetProceedFPCallback,top:"70%",width:"35%",zIndex:1},{contentAlignment:constants.CONTENT_ALIGN_CENTER,displayText:!0,padding:[4,0,4,0],paddingInPixel:!1},{showProgressIndicator:!0});U.add(V,W,X,Y,Z);flxResetFP.add(U);flxViewSourceFP.add(H,O,P,R,T)}
 //FP Appended ManageScheme/voltmx_sdk.js-----------------------------------------------------------
@@ -29517,7 +29774,7 @@ const GlobalData = {
 };
 //FP Appended SBCommon/voltmx_sdk.js-----------------------------------------------------------
  /*
-  * voltmx-sdk-ide Version 10.0.3.0
+  * voltmx-sdk-ide Version 10.0.7.0
   */
  /**
   * Volt MX namespace
@@ -29728,7 +29985,7 @@ const GlobalData = {
  voltmx.sdk.isLicenseUrlAvailable = true;
  voltmx.sdk.isOAuthLogoutInProgress = false;
  voltmx.sdk.constants = voltmx.sdk.constants || {};
- voltmx.sdk.version = "10.0.3.0";
+ voltmx.sdk.version = "10.0.7.0";
  voltmx.sdk.logsdk = new voltmxSdkLogger();
  voltmx.sdk.syncService = null;
  voltmx.sdk.dataStore = voltmx.sdk.dataStore || new voltmxDataStore();
@@ -30873,7 +31130,26 @@ const GlobalData = {
      /**custom params for oauth**/
      CUSTOM_QUERY_PARAMS_FOR_OAUTH: "customQueryParamsForOAuth",
      CUSTOM_OAUTH_PARAMS: "customOAuthParams",
-     LOGOUT_OPTIONS: "logoutOptions"
+     LOGOUT_OPTIONS: "logoutOptions",
+     /** SSE Constants **/
+     STREAM_CLOSED_CODE: 1028,
+     STREAM_CLOSED_MESSAGE: "Stream connection closed successfully by user",
+     STREAM_ERROR_CODE: 1029,
+     STREAM_ALREADY_CLOSED_MESSAGE: "Stream connection is already closed",
+     STREAM_NOT_STARTED_MESSAGE: "Stream connection has not been initiated yet",
+     STREAM_FAILED_MESSAGE: "An internal error occurred while trying to close the connection",
+     HANDLE_STATE: {
+         IDLE: "idle",
+         IN_PROGRESS: "in_progress",
+         CLOSED: "closed"
+     },
+     CONNECTION_STATES: {
+         IDLE: 'idle',
+         IN_PROGRESS: 'in_progress',
+         OPEN: 'open',
+         ERROR: 'error',
+         CLOSED: 'closed'
+     }
  };
  if (typeof(voltmx.sdk) === "undefined") {
      voltmx.sdk = {};
@@ -36796,6 +37072,176 @@ const GlobalData = {
          return null;
      }
  };
+
+ function EventSourceConnector(url, headers, data, successCallback, failureCallback, options, httpMethod) {
+     this.url = this.validateURL(url);
+     this.options = this.validateOptions(options);
+     var retryOptions = (this.options.retry && typeof this.options.retry === 'object') ? this.options.retry : {};
+     this.config = {
+         method: (httpMethod || voltmx.sdk.constants.HTTP_METHOD_POST),
+         headers: headers || {},
+         retry: {}
+     };
+     if (typeof data !== 'undefined') {
+         this.config.body = data;
+     }
+     // Android & iOS only
+     if ("requestTimeout" in this.options) {
+         this.config.requestTimeout = this.options.requestTimeout;
+     }
+     if ("enable" in retryOptions) {
+         this.config.retry.enable = retryOptions.enable;
+     }
+     if ("verifyNoContent" in retryOptions) {
+         this.config.retry.verifyNoContent = retryOptions.verifyNoContent;
+     }
+     // Android & iOS only
+     if ("interval" in retryOptions) {
+         this.config.retry.interval = retryOptions.interval;
+     }
+     if ("maxInterval" in retryOptions) {
+         this.config.retry.maxInterval = retryOptions.maxInterval;
+     }
+     this.config.headers[voltmx.sdk.constants.HTTP_CONTENT_HEADER] = voltmx.sdk.constants.CONTENT_TYPE_JSON;
+     this.successCallback = successCallback;
+     this.failureCallback = failureCallback;
+     this.state = voltmx.sdk.constants.CONNECTION_STATES.IDLE;
+     this._isTerminated = false;
+ }
+ EventSourceConnector.prototype.validateURL = function(url) {
+     if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+         throw new Error("Invalid URL");
+     }
+     return url;
+ };
+ EventSourceConnector.prototype.validateOptions = function(options) {
+     var _options = {};
+     if (options && typeof options !== 'object') {
+         throw new Error('Invalid options payload');
+     }
+     for (var option in options) {
+         _options[option] = options[option];
+     }
+     return _options;
+ };
+ EventSourceConnector._sseCloseHandleBindingMap = new WeakMap();
+ EventSourceConnector.prototype.open = function() {
+     var self = this;
+     this.eventSource = new voltmx.net.EventSource(this.url, this.config);
+     this.state = voltmx.sdk.constants.CONNECTION_STATES.IN_PROGRESS;
+     this.eventSource.onOpen = function(evt) {
+         self.state = voltmx.sdk.constants.CONNECTION_STATES.OPEN;
+         voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+     };
+     this.eventSource.onMessage = function(evt) {
+         voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+     };
+     this.eventSource.onError = function(evt) {
+         self.state = voltmx.sdk.constants.CONNECTION_STATES.ERROR;
+         voltmx.sdk.verifyAndCallClosure(self.failureCallback, evt);
+         var retryEnabled = !!(self.config && self.config.retry && self.config.retry.enable);
+         if (!retryEnabled) {
+             self._isTerminated = true;
+             self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+             if (self.options && self.options._sseCloseHandleRef) {
+                 voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                     handler: null,
+                     state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                 });
+             }
+         }
+     };
+     this.eventSource.onClose = function(evt) {
+         if (!self._isTerminated) {
+             self._isTerminated = true;
+             self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+             if (self.options && self.options._sseCloseHandleRef) {
+                 voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                     handler: null,
+                     state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                 });
+             }
+             voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+         }
+     };
+     this.eventSource.open();
+ };
+ EventSourceConnector.prototype.close = function(successCallback, failureCallback) {
+     var _success = (typeof successCallback === 'function') ? successCallback : function() {};
+     var _failure = (typeof failureCallback === 'function') ? failureCallback : function() {};
+     try {
+         if (this.state === voltmx.sdk.constants.CONNECTION_STATES.CLOSED || this._isTerminated) {
+             _failure({
+                 code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                 message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+             });
+             return;
+         }
+         if (!this.eventSource || typeof this.eventSource.close !== 'function') {
+             _failure({
+                 code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                 message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+             });
+             return;
+         }
+         this._isTerminated = true;
+         this.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+         this.eventSource.close();
+         this.eventSource = null;
+         if (this.options && this.options._sseCloseHandleRef) {
+             voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(this.options._sseCloseHandleRef, {
+                 handler: null,
+                 state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+             });
+         }
+         _success({
+             code: voltmx.sdk.constants.STREAM_CLOSED_CODE,
+             message: voltmx.sdk.constants.STREAM_CLOSED_MESSAGE
+         });
+     } catch (err) {
+         _failure({
+             code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+             message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+         });
+     }
+ };
+ EventSourceConnector.createSSECloseHandle = function() {
+     var handle = {
+         close: function(success, failure) {
+             var connectorClose = voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.get(handle);
+             if (connectorClose && typeof connectorClose.handler === "function" && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS) {
+                 connectorClose.handler(success, failure);
+             } else if (connectorClose && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.CLOSED) {
+                 // Correctly identify that it was already closed
+                 failure && failure({
+                     code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                     message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+                 });
+             } else {
+                 failure && failure({
+                     code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                     message: voltmx.sdk.constants.STREAM_NOT_STARTED_MESSAGE
+                 });
+             }
+         }
+     };
+     voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+         handler: handle,
+         state: voltmx.sdk.constants.HANDLE_STATE.IDLE
+     });
+     return handle;
+ };
+ EventSourceConnector.registerSSECloseHandle = function(connectorInstance, existingHandle) {
+     var handle = existingHandle || voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+     voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+         handler: function(success, failure) {
+             connectorInstance.close(success, failure);
+         },
+         state: voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS
+     });
+     return handle;
+ };
+ voltmx.sdk.EventSourceConnector = EventSourceConnector;
  voltmx.logger = voltmx.logger || {};
  voltmx.logger.createNewLogger = function(loggerName, loggerConfig) {
      parseConfig = function(loggerConfig) {
@@ -37068,13 +37514,33 @@ const GlobalData = {
       * @param {object} options - XMLHttpRequest options like withCredentials value.
       */
      this.invokeOperation = function(operationName, headers, data, successCallback, failureCallback, options) {
+         var sseCloseHandle = null;
+         var internalOptions = options;
+         if (options && options.sse) {
+             internalOptions = {};
+             for (var optionKey in options) {
+                 if (options.hasOwnProperty(optionKey)) {
+                     internalOptions[optionKey] = options[optionKey];
+                 }
+             }
+             sseCloseHandle = voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+             internalOptions._sseCloseHandleRef = sseCloseHandle;
+         }
+
          function invokeOperationHandler() {
-             _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+             if (options && options.sse) {
+                 _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, internalOptions);
+             } else {
+                 _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+             }
          }
          if (voltmx.sdk.skipAnonymousCall) {
              invokeOperationHandler();
          } else {
              voltmx.sdk.claimsRefresh(invokeOperationHandler, failureCallback);
+         }
+         if (options && options.sse) {
+             return sseCloseHandle;
          }
      };
      /**
@@ -37285,17 +37751,26 @@ const GlobalData = {
              if (xhr && !(status && err)) {
                  err = xhr;
              }
-             if (isRetryNeeded === true && retryServiceCall(err) === true) {
-                 voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
-                 invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
-                 return;
+             if (options && options.sse) {
+                 voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
+             } else {
+                 if (isRetryNeeded === true && retryServiceCall(err) === true) {
+                     voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
+                     invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
+                     return;
+                 }
+                 voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
+                 voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
+                 voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
              }
-             voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
-             voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
-             voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
          }
          voltmx.sdk.logsdk.perf("Executing network call for _invokeOperation : " + operationName);
-         networkProvider.post(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, null, options);
+         if (options && options.sse) {
+             networkProvider.eventSource(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, options);
+             return;
+         } else {
+             networkProvider.post(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, null, options);
+         }
      }
      voltmx.sdk.processIntegrationErrorResponse = function(err, isAsync, callBack) {
          if (err[voltmx.sdk.constants.MF_CODE]) {
@@ -37374,6 +37849,9 @@ const GlobalData = {
          } else {
              return voltmx.sdk.processIntegrationErrorResponse(res, false);
          }
+     }
+     this.getFileStorage = function() {
+         return voltmx.sdk.FileStorageClasses.import(this.getUrl());
      }
  }
  voltmx.sdk.claimsRefreshSync = function() {
@@ -42553,7 +43031,43 @@ const GlobalData = {
              url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
          }
          voltmxNetHttpRequest(url, null, headers, "GET", voltmxContentType, successCallback, failureCallback, options);
+     };
+     this.eventSource = function(url, params, headers, successCallback, failureCallback, options) {
+         if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+             voltmx.sdk.verifyAndCallClosure(failureCallback, "url cannot be null or empty");
+             return;
+         }
+         //Appending global params
+         if (voltmx.sdk.isNullOrUndefined(params)) {
+             params = {};
+         }
+         if (!voltmx.sdk.isNullOrUndefined(voltmx.sdk.currentInstance)) {
+             url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
+         }
+         return voltmxNetEventSourceRequest(url, params, headers, voltmx.sdk.constants.HTTP_METHOD_POST, successCallback, failureCallback, options);
+     };
+ }
+
+ function voltmxNetEventSourceRequest(url, params, headers, httpMethod, successCallback, failureCallback, options) {
+     // give failure call back if network is not available
+     if (!voltmx.net.isNetworkAvailable(constants.NETWORK_TYPE_ANY)) {
+         var errorObj = {};
+         errorObj.httpresponse = {};
+         errorObj[voltmx.sdk.constants.MF_OPSTATUS] = voltmx.sdk.errorcodes.connectivity_error_code;
+         errorObj[voltmx.sdk.constants.MF_ERROR_CODE] = voltmx.sdk.errorcodes.connectivity_error_code;
+         errorObj[voltmx.sdk.constants.MF_ERROR_MSG] = voltmx.sdk.errormessages.connectivity_error_message;
+         errorObj.httpresponse.headers = {};
+         errorObj.httpresponse.url = url;
+         failureCallback(errorObj);
+         return;
      }
+     options = options || {};
+     headers = headers || {};
+     var eventSourceConnector = new voltmx.sdk.EventSourceConnector(url, headers, params, successCallback, failureCallback, options, httpMethod);
+     eventSourceConnector.open();
+     // 3. Register and return the handle
+     var sseCloseHandleRef = options && options._sseCloseHandleRef;
+     return voltmx.sdk.EventSourceConnector.registerSSECloseHandle(eventSourceConnector, sseCloseHandleRef);
  }
 
  function voltmxNetHttpRequest(url, params, headers, httpMethod, voltmxContentType, successCallback, failureCallback, options) {
@@ -44195,7 +44709,7 @@ const GlobalData = {
  })();
 //FP Appended StandardBank/voltmx_sdk.js-----------------------------------------------------------
  /*
-  * voltmx-sdk-ide Version 10.0.3.0
+  * voltmx-sdk-ide Version 10.0.7.0
   */
  /**
   * Volt MX namespace
@@ -44406,7 +44920,7 @@ const GlobalData = {
  voltmx.sdk.isLicenseUrlAvailable = true;
  voltmx.sdk.isOAuthLogoutInProgress = false;
  voltmx.sdk.constants = voltmx.sdk.constants || {};
- voltmx.sdk.version = "10.0.3.0";
+ voltmx.sdk.version = "10.0.7.0";
  voltmx.sdk.logsdk = new voltmxSdkLogger();
  voltmx.sdk.syncService = null;
  voltmx.sdk.dataStore = voltmx.sdk.dataStore || new voltmxDataStore();
@@ -45551,7 +46065,26 @@ const GlobalData = {
      /**custom params for oauth**/
      CUSTOM_QUERY_PARAMS_FOR_OAUTH: "customQueryParamsForOAuth",
      CUSTOM_OAUTH_PARAMS: "customOAuthParams",
-     LOGOUT_OPTIONS: "logoutOptions"
+     LOGOUT_OPTIONS: "logoutOptions",
+     /** SSE Constants **/
+     STREAM_CLOSED_CODE: 1028,
+     STREAM_CLOSED_MESSAGE: "Stream connection closed successfully by user",
+     STREAM_ERROR_CODE: 1029,
+     STREAM_ALREADY_CLOSED_MESSAGE: "Stream connection is already closed",
+     STREAM_NOT_STARTED_MESSAGE: "Stream connection has not been initiated yet",
+     STREAM_FAILED_MESSAGE: "An internal error occurred while trying to close the connection",
+     HANDLE_STATE: {
+         IDLE: "idle",
+         IN_PROGRESS: "in_progress",
+         CLOSED: "closed"
+     },
+     CONNECTION_STATES: {
+         IDLE: 'idle',
+         IN_PROGRESS: 'in_progress',
+         OPEN: 'open',
+         ERROR: 'error',
+         CLOSED: 'closed'
+     }
  };
  if (typeof(voltmx.sdk) === "undefined") {
      voltmx.sdk = {};
@@ -51474,6 +52007,176 @@ const GlobalData = {
          return null;
      }
  };
+
+ function EventSourceConnector(url, headers, data, successCallback, failureCallback, options, httpMethod) {
+     this.url = this.validateURL(url);
+     this.options = this.validateOptions(options);
+     var retryOptions = (this.options.retry && typeof this.options.retry === 'object') ? this.options.retry : {};
+     this.config = {
+         method: (httpMethod || voltmx.sdk.constants.HTTP_METHOD_POST),
+         headers: headers || {},
+         retry: {}
+     };
+     if (typeof data !== 'undefined') {
+         this.config.body = data;
+     }
+     // Android & iOS only
+     if ("requestTimeout" in this.options) {
+         this.config.requestTimeout = this.options.requestTimeout;
+     }
+     if ("enable" in retryOptions) {
+         this.config.retry.enable = retryOptions.enable;
+     }
+     if ("verifyNoContent" in retryOptions) {
+         this.config.retry.verifyNoContent = retryOptions.verifyNoContent;
+     }
+     // Android & iOS only
+     if ("interval" in retryOptions) {
+         this.config.retry.interval = retryOptions.interval;
+     }
+     if ("maxInterval" in retryOptions) {
+         this.config.retry.maxInterval = retryOptions.maxInterval;
+     }
+     this.config.headers[voltmx.sdk.constants.HTTP_CONTENT_HEADER] = voltmx.sdk.constants.CONTENT_TYPE_JSON;
+     this.successCallback = successCallback;
+     this.failureCallback = failureCallback;
+     this.state = voltmx.sdk.constants.CONNECTION_STATES.IDLE;
+     this._isTerminated = false;
+ }
+ EventSourceConnector.prototype.validateURL = function(url) {
+     if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+         throw new Error("Invalid URL");
+     }
+     return url;
+ };
+ EventSourceConnector.prototype.validateOptions = function(options) {
+     var _options = {};
+     if (options && typeof options !== 'object') {
+         throw new Error('Invalid options payload');
+     }
+     for (var option in options) {
+         _options[option] = options[option];
+     }
+     return _options;
+ };
+ EventSourceConnector._sseCloseHandleBindingMap = new WeakMap();
+ EventSourceConnector.prototype.open = function() {
+     var self = this;
+     this.eventSource = new voltmx.net.EventSource(this.url, this.config);
+     this.state = voltmx.sdk.constants.CONNECTION_STATES.IN_PROGRESS;
+     this.eventSource.onOpen = function(evt) {
+         self.state = voltmx.sdk.constants.CONNECTION_STATES.OPEN;
+         voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+     };
+     this.eventSource.onMessage = function(evt) {
+         voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+     };
+     this.eventSource.onError = function(evt) {
+         self.state = voltmx.sdk.constants.CONNECTION_STATES.ERROR;
+         voltmx.sdk.verifyAndCallClosure(self.failureCallback, evt);
+         var retryEnabled = !!(self.config && self.config.retry && self.config.retry.enable);
+         if (!retryEnabled) {
+             self._isTerminated = true;
+             self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+             if (self.options && self.options._sseCloseHandleRef) {
+                 voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                     handler: null,
+                     state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                 });
+             }
+         }
+     };
+     this.eventSource.onClose = function(evt) {
+         if (!self._isTerminated) {
+             self._isTerminated = true;
+             self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+             if (self.options && self.options._sseCloseHandleRef) {
+                 voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                     handler: null,
+                     state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                 });
+             }
+             voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+         }
+     };
+     this.eventSource.open();
+ };
+ EventSourceConnector.prototype.close = function(successCallback, failureCallback) {
+     var _success = (typeof successCallback === 'function') ? successCallback : function() {};
+     var _failure = (typeof failureCallback === 'function') ? failureCallback : function() {};
+     try {
+         if (this.state === voltmx.sdk.constants.CONNECTION_STATES.CLOSED || this._isTerminated) {
+             _failure({
+                 code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                 message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+             });
+             return;
+         }
+         if (!this.eventSource || typeof this.eventSource.close !== 'function') {
+             _failure({
+                 code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                 message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+             });
+             return;
+         }
+         this._isTerminated = true;
+         this.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+         this.eventSource.close();
+         this.eventSource = null;
+         if (this.options && this.options._sseCloseHandleRef) {
+             voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(this.options._sseCloseHandleRef, {
+                 handler: null,
+                 state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+             });
+         }
+         _success({
+             code: voltmx.sdk.constants.STREAM_CLOSED_CODE,
+             message: voltmx.sdk.constants.STREAM_CLOSED_MESSAGE
+         });
+     } catch (err) {
+         _failure({
+             code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+             message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+         });
+     }
+ };
+ EventSourceConnector.createSSECloseHandle = function() {
+     var handle = {
+         close: function(success, failure) {
+             var connectorClose = voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.get(handle);
+             if (connectorClose && typeof connectorClose.handler === "function" && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS) {
+                 connectorClose.handler(success, failure);
+             } else if (connectorClose && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.CLOSED) {
+                 // Correctly identify that it was already closed
+                 failure && failure({
+                     code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                     message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+                 });
+             } else {
+                 failure && failure({
+                     code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                     message: voltmx.sdk.constants.STREAM_NOT_STARTED_MESSAGE
+                 });
+             }
+         }
+     };
+     voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+         handler: handle,
+         state: voltmx.sdk.constants.HANDLE_STATE.IDLE
+     });
+     return handle;
+ };
+ EventSourceConnector.registerSSECloseHandle = function(connectorInstance, existingHandle) {
+     var handle = existingHandle || voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+     voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+         handler: function(success, failure) {
+             connectorInstance.close(success, failure);
+         },
+         state: voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS
+     });
+     return handle;
+ };
+ voltmx.sdk.EventSourceConnector = EventSourceConnector;
  voltmx.logger = voltmx.logger || {};
  voltmx.logger.createNewLogger = function(loggerName, loggerConfig) {
      parseConfig = function(loggerConfig) {
@@ -51746,13 +52449,33 @@ const GlobalData = {
       * @param {object} options - XMLHttpRequest options like withCredentials value.
       */
      this.invokeOperation = function(operationName, headers, data, successCallback, failureCallback, options) {
+         var sseCloseHandle = null;
+         var internalOptions = options;
+         if (options && options.sse) {
+             internalOptions = {};
+             for (var optionKey in options) {
+                 if (options.hasOwnProperty(optionKey)) {
+                     internalOptions[optionKey] = options[optionKey];
+                 }
+             }
+             sseCloseHandle = voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+             internalOptions._sseCloseHandleRef = sseCloseHandle;
+         }
+
          function invokeOperationHandler() {
-             _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+             if (options && options.sse) {
+                 _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, internalOptions);
+             } else {
+                 _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+             }
          }
          if (voltmx.sdk.skipAnonymousCall) {
              invokeOperationHandler();
          } else {
              voltmx.sdk.claimsRefresh(invokeOperationHandler, failureCallback);
+         }
+         if (options && options.sse) {
+             return sseCloseHandle;
          }
      };
      /**
@@ -51963,17 +52686,26 @@ const GlobalData = {
              if (xhr && !(status && err)) {
                  err = xhr;
              }
-             if (isRetryNeeded === true && retryServiceCall(err) === true) {
-                 voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
-                 invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
-                 return;
+             if (options && options.sse) {
+                 voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
+             } else {
+                 if (isRetryNeeded === true && retryServiceCall(err) === true) {
+                     voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
+                     invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
+                     return;
+                 }
+                 voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
+                 voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
+                 voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
              }
-             voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
-             voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
-             voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
          }
          voltmx.sdk.logsdk.perf("Executing network call for _invokeOperation : " + operationName);
-         networkProvider.post(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, null, options);
+         if (options && options.sse) {
+             networkProvider.eventSource(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, options);
+             return;
+         } else {
+             networkProvider.post(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, null, options);
+         }
      }
      voltmx.sdk.processIntegrationErrorResponse = function(err, isAsync, callBack) {
          if (err[voltmx.sdk.constants.MF_CODE]) {
@@ -52052,6 +52784,9 @@ const GlobalData = {
          } else {
              return voltmx.sdk.processIntegrationErrorResponse(res, false);
          }
+     }
+     this.getFileStorage = function() {
+         return voltmx.sdk.FileStorageClasses.import(this.getUrl());
      }
  }
  voltmx.sdk.claimsRefreshSync = function() {
@@ -57231,7 +57966,43 @@ const GlobalData = {
              url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
          }
          voltmxNetHttpRequest(url, null, headers, "GET", voltmxContentType, successCallback, failureCallback, options);
+     };
+     this.eventSource = function(url, params, headers, successCallback, failureCallback, options) {
+         if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+             voltmx.sdk.verifyAndCallClosure(failureCallback, "url cannot be null or empty");
+             return;
+         }
+         //Appending global params
+         if (voltmx.sdk.isNullOrUndefined(params)) {
+             params = {};
+         }
+         if (!voltmx.sdk.isNullOrUndefined(voltmx.sdk.currentInstance)) {
+             url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
+         }
+         return voltmxNetEventSourceRequest(url, params, headers, voltmx.sdk.constants.HTTP_METHOD_POST, successCallback, failureCallback, options);
+     };
+ }
+
+ function voltmxNetEventSourceRequest(url, params, headers, httpMethod, successCallback, failureCallback, options) {
+     // give failure call back if network is not available
+     if (!voltmx.net.isNetworkAvailable(constants.NETWORK_TYPE_ANY)) {
+         var errorObj = {};
+         errorObj.httpresponse = {};
+         errorObj[voltmx.sdk.constants.MF_OPSTATUS] = voltmx.sdk.errorcodes.connectivity_error_code;
+         errorObj[voltmx.sdk.constants.MF_ERROR_CODE] = voltmx.sdk.errorcodes.connectivity_error_code;
+         errorObj[voltmx.sdk.constants.MF_ERROR_MSG] = voltmx.sdk.errormessages.connectivity_error_message;
+         errorObj.httpresponse.headers = {};
+         errorObj.httpresponse.url = url;
+         failureCallback(errorObj);
+         return;
      }
+     options = options || {};
+     headers = headers || {};
+     var eventSourceConnector = new voltmx.sdk.EventSourceConnector(url, headers, params, successCallback, failureCallback, options, httpMethod);
+     eventSourceConnector.open();
+     // 3. Register and return the handle
+     var sseCloseHandleRef = options && options._sseCloseHandleRef;
+     return voltmx.sdk.EventSourceConnector.registerSSECloseHandle(eventSourceConnector, sseCloseHandleRef);
  }
 
  function voltmxNetHttpRequest(url, params, headers, httpMethod, voltmxContentType, successCallback, failureCallback, options) {
@@ -73551,6 +74322,7 @@ const GlobalData = {
  })();
 //FP Appended actions_for_StandardBank.js-----------------------------------------------------------
 //actions.js file of the project: SBCommon 
+//actions.js file of the project: SimpleLightTouch 
 //actions.js file of the project: ManageScheme 
 //actions.js file of the project: Customer360 
 //actions.js file of the project: SuspendList 
@@ -74666,9 +75438,9 @@ var iterationStartTime,platformName=voltmx.os.deviceInfo().name.toLowerCase(),is
 var notesDBURLs = {"accountsBase":"https://api.hclvoltmx.com","accountsBaseUI":"https://manage.hclvoltmx.com","accountsApi":"/api/v1_0","prototypeBase":"https://visualization.hclvoltmx.com","prototypeApi":"/api/v1_0","documentation":"https://hcl-tech-software.github.io/volt-mx-docs","consumerKey":"3eae78bc2e5537c49a8aac73425a8d8b0bd5a7da","consumerSecret":"ba6772b0022491e128835dc75111f4e82b0097fb"};
 
 //FP Appended konyOauth.js-----------------------------------------------------------
-KOAuth._constants={VERSION_1_0:"1.0A",ENCODING:"UTF-8",FORM_ENCODED:"application/x-www-form-urlencoded",HTTP_AUTHORIZATION_HEADER:"Authorization",OAUTH_CONSUMER_KEY:"oauth_consumer_key",OAUTH_TOKEN:"oauth_token",OAUTH_TOKEN_SECRET:"oauth_token_secret",OAUTH_SIGNATURE_METHOD:"oauth_signature_method",OAUTH_SIGNATURE:"oauth_signature",OAUTH_TIMESTAMP:"oauth_timestamp",OAUTH_NONCE:"oauth_nonce",OAUTH_VERSION:"oauth_version",OAUTH_CALLBACK:"oauth_callback",OAUTH_VERIFIER:"oauth_verifier",HTTP_CONTENT_TYPE:"Content-Type",SIGNATURE_PLAINTEXT:"PLAINTEXT",SIGNATURE_SHA1:"HMAC-SHA1"};function KOAuth(a,b,c,d,e,f,g,h){this._requestUrl=a;this._accessUrl=b;this._consumerKey=c;this._consumerSecret=this._encodeData(d);this._version=e;if(f===void 0){this._authorize_callback="oob"}else{this._authorize_callback=f}if(g!=KOAuth._constants.SIGNATURE_PLAINTEXT&&g!=KOAuth._constants.SIGNATURE_SHA1)throw new Error("Un-supported signature method: "+g);this._signatureMethod=g;this._headers=h||{Accept:"*/*",Connection:"close","User-Agent":"Kony authentication",preview_type:"native"};this._clientOptions=this._defaultClientOptions={requestTokenHttpMethod:"POST",accessTokenHttpMethod:"POST"};this._oauthParameterSeperator=","}KOAuth.prototype.getOAuthRequestToken=function(a){this._performSecureRequest(null,null,this._clientOptions.requestTokenHttpMethod,this._requestUrl,null,null,null,function(b,c){if(b)a(b);else{var d=_parseQuerystring(c),e=d[KOAuth._constants.OAUTH_TOKEN],f=d[KOAuth._constants.OAUTH_TOKEN_SECRET];delete d[KOAuth._constants.OAUTH_TOKEN];delete d[KOAuth._constants.OAUTH_TOKEN_SECRET];a(null,e,f,d)}})};KOAuth.prototype.getOAuthTokenAuthorized=function(a,b,c,d,e){this._performSecureRequest(a,b,this._clientOptions.requestTokenHttpMethod,c,d,null,null,function(a){if(a)e(a);else{e(null,"SUCCESS")}})};KOAuth.prototype.getOAuthAccessToken=function(a,b,c,d){var e={};if("function"==typeof c){d=c}else{e.oauth_verifier=c}this._performSecureRequest(a,b,this._clientOptions.accessTokenHttpMethod,this._accessUrl,e,null,null,function(a,b){if(a)d(a);else{var c=_parseQuerystring(b),e=c[KOAuth._constants.OAUTH_TOKEN];delete c[KOAuth._constants.OAUTH_TOKEN];var f=c[KOAuth._constants.OAUTH_TOKEN_SECRET];delete c[KOAuth._constants.OAUTH_TOKEN_SECRET];d(null,e,f,c)}})};KOAuth.prototype.getSecureData=function(a,b,c,d,e){this._performSecureRequest(c,d,b,a,null,null,null,function(a,b,c){if(a)e(a);else{e(null,b,c)}})};KOAuth.prototype._performSecureRequest=function(a,b,c,d,e,f,g,h){var i=this._prepareParameters(a,b,c,d,e);if(!g){g=KOAuth._constants.FORM_ENCODED}var j={},k=this._buildAuthorizationHeaders(i);voltmx.print("Final build "+k);j[KOAuth._constants.HTTP_AUTHORIZATION_HEADER]=k;for(var l in this._headers){if(this._headers.hasOwnProperty(l)){j[l]=this._headers[l]}}for(var l in e){if("oauth_"==l.substring(0,6)){delete e[l]}}var m=!1;if("GET"==c){req_method=constants.HTTP_METHOD_GET;m=!0}else req_method=constants.HTTP_METHOD_POST;if(("POST"==c||"PUT"==c)&&null==f&&null!=e){f=this._paramStringify(e).replace(/\!/g,"%21").replace(/\'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29").replace(/\*/g,"%2A")}j[KOAuth._constants.HTTP_CONTENT_TYPE]=g;voltmx.print("Headers Used "+JSON.stringify(j));if("android"==voltmx.os.deviceInfo().name.toLowerCase())nativelogin.nativecreaterequest(d);else{var n=new voltmx.net.HttpRequest;n.timeout=5e3;n.open(req_method,d,m)}var o="";if("android"!=voltmx.os.deviceInfo().name.toLowerCase()){n.onReadyStateChange=function(){voltmx.print("statusText = "+this.statusText+" Number  "+this.status);if("server error"==this.statusText){errorMsgFP("Unable to reach host.");return}if(this.readyState==constants.HTTP_READY_STATE_DONE){voltmx.print("Status = "+this.statusText+" Number  "+this.status);voltmx.print("RESPONSE HEADERS "+JSON.stringify(n.getAllResponseHeaders()));o=this.response;voltmx.print("JS Received response1 "+JSON.stringify(o));if(null!=o){var a=_parseQuerystring(""+o);voltmx.print("JS Received Data  "+JSON.stringify(a));if(200<=this.status&&299>=this.status){voltmx.print("SUCCESS CODE ");h(null,o,o)}else{voltmx.print("FAILURE CODE");h(o,o,o)}}}}}for(var l in j){if("android"==voltmx.os.deviceInfo().name.toLowerCase())nativelogin.nativesetrequesthdr(l,j[l]);else n.setRequestHeader(l,j[l])}if(("POST"==c||"PUT"==c)&&null!=f&&""!=f){voltmx.print("Sending Form Data "+f);if("android"==voltmx.os.deviceInfo().name.toLowerCase())o=nativelogin.nativesenddata(f);else{var f=new voltmx.net.FormData;f.append("primary_email",encodeURIComponent(e.primary_email));f.append("password",encodeURIComponent(e.password));n.send(f)}}else{if("android"==voltmx.os.deviceInfo().name.toLowerCase())o=nativelogin.nativesenddata(null);else{n.send()}}if("android"==voltmx.os.deviceInfo().name.toLowerCase()){voltmx.print("JS Received response1 "+o);var p=_parseQuerystring(""+o),q=o.indexOf("&");o=o.substring(q+1,o.length);voltmx.print("JS Received Data  "+JSON.stringify(p));if(200<=p.status&&299>=p.status){voltmx.print("SUCCESS CODE ");h(null,o,o)}else{voltmx.print("FAILURE CODE");h(o,o,o)}}};var _addUrlPath=function(a,b){var c=a;if("/"==a.substring(a.length-1,a.length)){if("/"==b.substring(0,1)){c=a+b.substring(1,b.length)}else{c=a+b}}else{if("/"==b.substring(0,1)){c=a+b}else{c=a+"/"+b}}return c},_addToURL=function(a,b){newURL=a;if(null!=b){var c=OAuth.formEncode(b);if(0<c.length){var d=a.indexOf("?");if(0>d)newURL+="?";else newURL+="&";newURL+=c}}return newURL},_parseURL=function(a){var b=a.indexOf("?");if(0<b){var c=a.substring(b+1),d=_parseQuerystring(c)}return d},_parseQuerystring=function(a){var b={},c,d,e,f;c=a.split("&");for(e=0,f=c.length;e<f;e++){d=c[e].split("=");b[d[0]]=d[1]}return b};KOAuth.prototype._paramStringify=function(a){var b="";for(var c in a){if(""!=b)b+="&";b+=this._encodeData(c)+"="+this._encodeData(a[c])}return b};var _formEncode=function(a){for(var b="",c=a,d=0,e;d<c.length;++d){e=c[d][1];if(null==e)e="";if(""!=b)b+="&";b+=_encodeData(c[d][0])+"="+_encodeData(e)}return b};KOAuth.prototype._encodeData=function(a){if(null==a||""==a)return"";else{var b=encodeURIComponent(a);return b.replace(/\!/g,"%21").replace(/\'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29").replace(/\*/g,"%2A")}};KOAuth.prototype._prepareParameters=function(a,b,c,d,e){var f={consumerSecret:this._consumerSecret,consumerKey:this._consumerKey,token:a,tokenSecret:b},g={action:d,method:c,parameters:[]};g.parameters.push([KOAuth._constants.OAUTH_TIMESTAMP,""]);g.parameters.push([KOAuth._constants.OAUTH_NONCE,""]);g.parameters.push([KOAuth._constants.OAUTH_VERSION,this._version]);g.parameters.push([KOAuth._constants.OAUTH_SIGNATURE_METHOD,this._signatureMethod]);g.parameters.push([KOAuth._constants.OAUTH_CONSUMER_KEY,this._consumerKey]);if(a){g.parameters.push([KOAuth._constants.OAUTH_TOKEN,a])}if(e){for(var h in e){g.parameters[h]=e[h]}}var i=_parseURL(d);if(i){for(var h in i){var j=i[h];if("object"==typeof j){for(var k in j){g.parameters[h+"["+k+"]"]=j[k]}}else{g.parameters[h]=j}}}OAuth.setTimestampAndNonce(g);OAuth.completeRequest(g,f);var l=OAuth.getParameterMap(g.parameters);return l};KOAuth.prototype._parseURL=function(a){if(null==a||""==a)return"";else{var b=encodeURIComponent(a);return b.replace(/\!/g,"%21").replace(/\'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29").replace(/\*/g,"%2A")}};KOAuth.prototype._decodeData=function(a){if(null!=a){a=a.replace(/\+/g," ")}return decodeURIComponent(a)};KOAuth.prototype._buildAuthorizationHeaders=function(a){var b="OAuth ";for(var c in a){if("oauth_"==c.substring(0,6)){b+=""+this._encodeData(c)+"=\""+this._encodeData(a[c])+"\","}}b=b.substring(0,b.length-this._oauthParameterSeperator.length);return b};
+KOAuth._constants={VERSION_1_0:"1.0A",ENCODING:"UTF-8",FORM_ENCODED:"application/x-www-form-urlencoded",HTTP_AUTHORIZATION_HEADER:"Authorization",OAUTH_CONSUMER_KEY:"oauth_consumer_key",OAUTH_TOKEN:"oauth_token",OAUTH_TOKEN_SECRET:"oauth_token_secret",OAUTH_SIGNATURE_METHOD:"oauth_signature_method",OAUTH_SIGNATURE:"oauth_signature",OAUTH_TIMESTAMP:"oauth_timestamp",OAUTH_NONCE:"oauth_nonce",OAUTH_VERSION:"oauth_version",OAUTH_CALLBACK:"oauth_callback",OAUTH_VERIFIER:"oauth_verifier",HTTP_CONTENT_TYPE:"Content-Type",SIGNATURE_PLAINTEXT:"PLAINTEXT",SIGNATURE_SHA1:"HMAC-SHA1"};function KOAuth(a,b,c,d,e,f,g,h){this._requestUrl=a;this._accessUrl=b;this._consumerKey=c;this._consumerSecret=this._encodeData(d);this._version=e;if(f===void 0){this._authorize_callback="oob"}else{this._authorize_callback=f}if(g!=KOAuth._constants.SIGNATURE_PLAINTEXT&&g!=KOAuth._constants.SIGNATURE_SHA1)throw new Error("Un-supported signature method: "+g);this._signatureMethod=g;this._headers=h||{Accept:"*/*",Connection:"close","User-Agent":"Kony authentication",preview_type:"native"};this._clientOptions=this._defaultClientOptions={requestTokenHttpMethod:"POST",accessTokenHttpMethod:"POST"};this._oauthParameterSeperator=","}KOAuth.prototype.getOAuthRequestToken=function(a){this._performSecureRequest(null,null,this._clientOptions.requestTokenHttpMethod,this._requestUrl,null,null,null,function(b,c,d){if(b)a(b);else{var e=_parseQuerystring(c),f=e[KOAuth._constants.OAUTH_TOKEN],g=e[KOAuth._constants.OAUTH_TOKEN_SECRET];delete e[KOAuth._constants.OAUTH_TOKEN];delete e[KOAuth._constants.OAUTH_TOKEN_SECRET];a(null,f,g,e)}})};KOAuth.prototype.getOAuthTokenAuthorized=function(a,b,c,d,e){this._performSecureRequest(a,b,this._clientOptions.requestTokenHttpMethod,c,d,null,null,function(a,b,c){if(a)e(a);else{e(null,"SUCCESS")}})};KOAuth.prototype.getOAuthAccessToken=function(a,b,c,d){var e={};if("function"==typeof c){d=c}else{e.oauth_verifier=c}this._performSecureRequest(a,b,this._clientOptions.accessTokenHttpMethod,this._accessUrl,e,null,null,function(a,b,c){if(a)d(a);else{var e=_parseQuerystring(b),f=e[KOAuth._constants.OAUTH_TOKEN];delete e[KOAuth._constants.OAUTH_TOKEN];var g=e[KOAuth._constants.OAUTH_TOKEN_SECRET];delete e[KOAuth._constants.OAUTH_TOKEN_SECRET];d(null,f,g,e)}})};KOAuth.prototype.getSecureData=function(a,b,c,d,e){this._performSecureRequest(c,d,b,a,null,null,null,function(a,b,c){if(a)e(a);else{e(null,b,c)}})};KOAuth.prototype._performSecureRequest=function(a,b,c,d,e,f,g,h){var i=this._prepareParameters(a,b,c,d,e);if(!g){g=KOAuth._constants.FORM_ENCODED}var j={},k=this._buildAuthorizationHeaders(i);voltmx.print("Final build "+k);j[KOAuth._constants.HTTP_AUTHORIZATION_HEADER]=k;for(var l in this._headers){if(this._headers.hasOwnProperty(l)){j[l]=this._headers[l]}}for(var l in e){if("oauth_"==l.substring(0,6)){delete e[l]}}var m=!1;if("GET"==c){req_method=constants.HTTP_METHOD_GET;m=!0}else req_method=constants.HTTP_METHOD_POST;if(("POST"==c||"PUT"==c)&&null==f&&null!=e){f=this._paramStringify(e).replace(/\!/g,"%21").replace(/\'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29").replace(/\*/g,"%2A")}j[KOAuth._constants.HTTP_CONTENT_TYPE]=g;voltmx.print("Headers Used "+JSON.stringify(j));if("android"==voltmx.os.deviceInfo().name.toLowerCase())nativelogin.nativecreaterequest(d);else{var n=new voltmx.net.HttpRequest;n.timeout=5e3;n.open(req_method,d,m)}var o="";if("android"!=voltmx.os.deviceInfo().name.toLowerCase()){n.onReadyStateChange=function(){voltmx.print("statusText = "+this.statusText+" Number  "+this.status);if("server error"==this.statusText){errorMsgFP("Unable to reach host.");return}if(this.readyState==constants.HTTP_READY_STATE_DONE){voltmx.print("Status = "+this.statusText+" Number  "+this.status);voltmx.print("RESPONSE HEADERS "+JSON.stringify(n.getAllResponseHeaders()));o=this.response;voltmx.print("JS Received response1 "+JSON.stringify(o));if(null!=o){var a=_parseQuerystring(""+o);voltmx.print("JS Received Data  "+JSON.stringify(a));if(200<=this.status&&299>=this.status){voltmx.print("SUCCESS CODE ");h(null,o,o)}else{voltmx.print("FAILURE CODE");h(o,o,o)}}}}}for(var l in j){if("android"==voltmx.os.deviceInfo().name.toLowerCase())nativelogin.nativesetrequesthdr(l,j[l]);else n.setRequestHeader(l,j[l])}if(("POST"==c||"PUT"==c)&&null!=f&&""!=f){voltmx.print("Sending Form Data "+f);if("android"==voltmx.os.deviceInfo().name.toLowerCase())o=nativelogin.nativesenddata(f);else{var f=new voltmx.net.FormData;f.append("primary_email",encodeURIComponent(e.primary_email));f.append("password",encodeURIComponent(e.password));n.send(f)}}else{if("android"==voltmx.os.deviceInfo().name.toLowerCase())o=nativelogin.nativesenddata(null);else{n.send()}}if("android"==voltmx.os.deviceInfo().name.toLowerCase()){voltmx.print("JS Received response1 "+o);var p=_parseQuerystring(""+o),q=o.indexOf("&");o=o.substring(q+1,o.length);voltmx.print("JS Received Data  "+JSON.stringify(p));if(200<=p.status&&299>=p.status){voltmx.print("SUCCESS CODE ");h(null,o,o)}else{voltmx.print("FAILURE CODE");h(o,o,o)}}};var _addUrlPath=function(a,b){var c=a;if("/"==a.substring(a.length-1,a.length)){if("/"==b.substring(0,1)){c=a+b.substring(1,b.length)}else{c=a+b}}else{if("/"==b.substring(0,1)){c=a+b}else{c=a+"/"+b}}return c},_addToURL=function(a,b){newURL=a;if(null!=b){var c=OAuth.formEncode(b);if(0<c.length){var d=a.indexOf("?");if(0>d)newURL+="?";else newURL+="&";newURL+=c}}return newURL},_parseURL=function(a){var b=a.indexOf("?");if(0<b){var c=a.substring(b+1),d=_parseQuerystring(c)}return d},_parseQuerystring=function(a){var b={},c,d,e,f;c=a.split("&");for(e=0,f=c.length;e<f;e++){d=c[e].split("=");b[d[0]]=d[1]}return b};KOAuth.prototype._paramStringify=function(a){var b="";for(var c in a){if(""!=b)b+="&";b+=this._encodeData(c)+"="+this._encodeData(a[c])}return b};var _formEncode=function(a){for(var b="",c=a,d=0,e;d<c.length;++d){e=c[d][1];if(null==e)e="";if(""!=b)b+="&";b+=_encodeData(c[d][0])+"="+_encodeData(e)}return b};KOAuth.prototype._encodeData=function(a){if(null==a||""==a)return"";else{var b=encodeURIComponent(a);return b.replace(/\!/g,"%21").replace(/\'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29").replace(/\*/g,"%2A")}};KOAuth.prototype._prepareParameters=function(a,b,c,d,e){var f={consumerSecret:this._consumerSecret,consumerKey:this._consumerKey,token:a,tokenSecret:b},g={action:d,method:c,parameters:[]};g.parameters.push([KOAuth._constants.OAUTH_TIMESTAMP,""]);g.parameters.push([KOAuth._constants.OAUTH_NONCE,""]);g.parameters.push([KOAuth._constants.OAUTH_VERSION,this._version]);g.parameters.push([KOAuth._constants.OAUTH_SIGNATURE_METHOD,this._signatureMethod]);g.parameters.push([KOAuth._constants.OAUTH_CONSUMER_KEY,this._consumerKey]);if(a){g.parameters.push([KOAuth._constants.OAUTH_TOKEN,a])}if(e){for(var h in e){g.parameters[h]=e[h]}}var i=_parseURL(d);if(i){for(var h in i){var j=i[h];if("object"==typeof j){for(var k in j){g.parameters[h+"["+k+"]"]=j[k]}}else{g.parameters[h]=j}}}OAuth.setTimestampAndNonce(g);OAuth.completeRequest(g,f);var l=OAuth.getParameterMap(g.parameters);return l};KOAuth.prototype._parseURL=function(a){if(null==a||""==a)return"";else{var b=encodeURIComponent(a);return b.replace(/\!/g,"%21").replace(/\'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29").replace(/\*/g,"%2A")}};KOAuth.prototype._decodeData=function(a){if(null!=a){a=a.replace(/\+/g," ")}return decodeURIComponent(a)};KOAuth.prototype._buildAuthorizationHeaders=function(a){var b="OAuth ";for(var c in a){if("oauth_"==c.substring(0,6)){b+=""+this._encodeData(c)+"=\""+this._encodeData(a[c])+"\","}}b=b.substring(0,b.length-this._oauthParameterSeperator.length);return b};
 //FP Appended oauth.js-----------------------------------------------------------
-var OAuth;if(null==OAuth)OAuth={};OAuth.setProperties=function setProperties(a,b){if(null!=a&&null!=b){for(var c in b){a[c]=b[c]}}return a};OAuth.setProperties(OAuth,{percentEncode:function percentEncode(a){if(null==a){return""}if(a instanceof Array){for(var b="",c=0;c<a.length;++a){if(""!=b)b+="&";b+=OAuth.percentEncode(a[c])}return b}a=encodeURIComponent(a);a=a.replace(/\!/g,"%21");a=a.replace(/\*/g,"%2A");a=a.replace(/\'/g,"%27");a=a.replace(/\(/g,"%28");a=a.replace(/\)/g,"%29");return a},decodePercent:function decodePercent(a){if(null!=a){a=a.replace(/\+/g," ")}return decodeURIComponent(a)},getParameterList:function getParameterList(a){if(null==a){return[]}if("object"!=typeof a){return OAuth.decodeForm(a+"")}if(a instanceof Array){return a}var b=[];for(var c in a){b.push([c,a[c]])}return b},getParameterMap:function getParameterMap(a){if(null==a){return{}}if("object"!=typeof a){return OAuth.getParameterMap(OAuth.decodeForm(a+""))}if(a instanceof Array){for(var b={},c=0,d;c<a.length;++c){d=a[c][0];if(b[d]===void 0){b[d]=a[c][1]}}return b}return a},getParameter:function getParameter(a,b){if(a instanceof Array){for(var c=0;c<a.length;++c){if(a[c][0]==b){return a[c][1]}}}else{return OAuth.getParameterMap(a)[b]}return null},formEncode:function formEncode(a){for(var b="",c=OAuth.getParameterList(a),d=0,e;d<c.length;++d){e=c[d][1];if(null==e)e="";if(""!=b)b+="&";b+=OAuth.percentEncode(c[d][0])+"="+OAuth.percentEncode(e)}return b},decodeForm:function decodeForm(a){for(var b=[],c=a.split("&"),d=0,e;d<c.length;++d){e=c[d];if(""==e){continue}var f=e.indexOf("="),g,h;if(0>f){g=OAuth.decodePercent(e);h=null}else{g=OAuth.decodePercent(e.substring(0,f));h=OAuth.decodePercent(e.substring(f+1))}b.push([g,h])}return b},setParameter:function setParameter(a,b,c){var d=a.parameters;if(d instanceof Array){for(var e=0;e<d.length;++e){if(d[e][0]==b){if(c===void 0){d.splice(e,1)}else{d[e][1]=c;c=void 0}}}if(c!==void 0){d.push([b,c])}}else{d=OAuth.getParameterMap(d);d[b]=c;a.parameters=d}},setParameters:function setParameters(a,b){for(var c=OAuth.getParameterList(b),d=0;d<c.length;++d){OAuth.setParameter(a,c[d][0],c[d][1])}},completeRequest:function completeRequest(a,b){if(null==a.method){a.method="GET"}var c=OAuth.getParameterMap(a.parameters);if(null==c.oauth_consumer_key){OAuth.setParameter(a,"oauth_consumer_key",b.consumerKey||"")}if(null==c.oauth_token&&null!=b.token){OAuth.setParameter(a,"oauth_token",b.token)}if(null==c.oauth_version){OAuth.setParameter(a,"oauth_version","1.0")}if(null==c.oauth_timestamp){OAuth.setParameter(a,"oauth_timestamp",OAuth.timestamp())}if(null==c.oauth_nonce){OAuth.setParameter(a,"oauth_nonce",OAuth.nonce(6))}OAuth.SignatureMethod.sign(a,b)},setTimestampAndNonce:function setTimestampAndNonce(a){OAuth.setParameter(a,"oauth_timestamp",OAuth.timestamp());OAuth.setParameter(a,"oauth_nonce",OAuth.nonce(6))},addToURL:function addToURL(a,b){newURL=a;if(null!=b){var c=OAuth.formEncode(b);if(0<c.length){var d=a.indexOf("?");if(0>d)newURL+="?";else newURL+="&";newURL+=c}}return newURL},getAuthorizationHeader:function getAuthorizationHeader(a,b){for(var c="OAuth realm=\""+OAuth.percentEncode(a)+"\"",d=OAuth.getParameterList(b),e=0;e<d.length;++e){var f=d[e],g=f[0];if(0==g.indexOf("oauth_")){c+=","+OAuth.percentEncode(g)+"=\""+OAuth.percentEncode(f[1])+"\""}}return c},correctTimestampFromSrc:function correctTimestampFromSrc(a){a=a||"oauth_timestamp";var b=document.getElementsByTagName("script");if(null==b||!b.length)return;var c=b[b.length-1].src;if(!c)return;var d=c.indexOf("?");if(0>d)return;parameters=OAuth.getParameterMap(OAuth.decodeForm(c.substring(d+1)));var e=parameters[a];if(null==e)return;OAuth.correctTimestamp(e)},correctTimestamp:function correctTimestamp(a){OAuth.timeCorrectionMsec=1e3*a-new Date().getTime()},timeCorrectionMsec:0,timestamp:function timestamp(){var a=new Date().getTime()+OAuth.timeCorrectionMsec;return Math.floor(a/1e3)},nonce:function nonce(a){for(var b=OAuth.nonce.CHARS,c="",d=0,e;d<a;++d){e=Math.floor(Math.random()*b.length);c+=b.substring(e,e+1)}return c}});OAuth.nonce.CHARS="0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";OAuth.declareClass=function declareClass(a,b,c){var d=a[b];a[b]=c;if(null!=c&&null!=d){for(var e in d){if("prototype"!=e){c[e]=d[e]}}}return c};OAuth.declareClass(OAuth,"SignatureMethod",function OAuthSignatureMethod(){});OAuth.setProperties(OAuth.SignatureMethod.prototype,{sign:function sign(a){var b=OAuth.SignatureMethod.getBaseString(a),c=this.getSignature(b);OAuth.setParameter(a,"oauth_signature",c);return c},initialize:function initialize(a,b){var c;if(null!=b.accessorSecret&&9<a.length&&"-Accessor"==a.substring(a.length-9)){c=b.accessorSecret}else{c=b.consumerSecret}this.key=OAuth.percentEncode(c)+"&"+OAuth.percentEncode(b.tokenSecret)}});OAuth.setProperties(OAuth.SignatureMethod,{sign:function sign(a,b){var c=OAuth.getParameterMap(a.parameters).oauth_signature_method;if(null==c||""==c){c="HMAC-SHA1";OAuth.setParameter(a,"oauth_signature_method",c)}OAuth.SignatureMethod.newMethod(c,b).sign(a)},newMethod:function newMethod(a,b){var c=OAuth.SignatureMethod.REGISTERED[a];if(null!=c){var d=new c;d.initialize(a,b);return d}var e=new Error("signature_method_rejected"),f="";for(var g in OAuth.SignatureMethod.REGISTERED){if(""!=f)f+="&";f+=OAuth.percentEncode(g)}e.oauth_acceptable_signature_methods=f;throw e},REGISTERED:{},registerMethodClass:function registerMethodClass(a,b){for(var c=0;c<a.length;++c){OAuth.SignatureMethod.REGISTERED[a[c]]=b}},makeSubclass:function makeSubclass(a){var b=OAuth.SignatureMethod,c=function(){b.call(this)};c.prototype=new b;c.prototype.getSignature=a;c.prototype.constructor=c;return c},getBaseString:function getBaseString(b){var c=b.action,d=c.indexOf("?"),e;if(0>d){e=b.parameters}else{e=OAuth.decodeForm(c.substring(d+1));for(var f=OAuth.getParameterList(b.parameters),g=0;g<f.length;++g){e.push(f[g])}}return OAuth.percentEncode(b.method.toUpperCase())+"&"+OAuth.percentEncode(OAuth.SignatureMethod.normalizeUrl(c))+"&"+OAuth.percentEncode(OAuth.SignatureMethod.normalizeParameters(e))},normalizeUrl:function normalizeUrl(a){var b=OAuth.SignatureMethod.parseUri(a),c=b.protocol.toLowerCase(),d=b.authority.toLowerCase(),e="http"==c&&80==b.port||"https"==c&&443==b.port;if(e){var f=d.lastIndexOf(":");if(0<=f){d=d.substring(0,f)}}var g=b.path;if(!g){g="/"}return c+"://"+d+g},parseUri:function parseUri(a){var b={key:["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],parser:{strict:/^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@\/]*):?([^:@\/]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/}},c=b.parser.strict.exec(a),d={},e=14;while(e--){d[b.key[e]]=c[e]||""}return d},normalizeParameters:function normalizeParameters(a){if(null==a){return""}for(var b=OAuth.getParameterList(a),c=[],d=0,e;d<b.length;++d){e=b[d];if("oauth_signature"!=e[0]){c.push([OAuth.percentEncode(e[0])+" "+OAuth.percentEncode(e[1]),e])}}c.sort(function(c,a){if(c[0]<a[0])return-1;if(c[0]>a[0])return 1;return 0});for(var f=[],g=0;g<c.length;++g){f.push(c[g][1])}return OAuth.formEncode(f)}});OAuth.SignatureMethod.registerMethodClass(["PLAINTEXT","PLAINTEXT-Accessor"],OAuth.SignatureMethod.makeSubclass(function getSignature(){return this.key}));OAuth.SignatureMethod.registerMethodClass(["HMAC-SHA1","HMAC-SHA1-Accessor"],OAuth.SignatureMethod.makeSubclass(function getSignature(a){b64pad="=";var b=b64_hmac_sha1(this.key,a);return b}));try{OAuth.correctTimestampFromSrc()}catch(a){}
+var OAuth;if(null==OAuth)OAuth={};OAuth.setProperties=function setProperties(a,b){if(null!=a&&null!=b){for(var c in b){a[c]=b[c]}}return a};OAuth.setProperties(OAuth,{percentEncode:function percentEncode(a){if(null==a){return""}if(a instanceof Array){for(var b="",c=0;c<a.length;++a){if(""!=b)b+="&";b+=OAuth.percentEncode(a[c])}return b}a=encodeURIComponent(a);a=a.replace(/\!/g,"%21");a=a.replace(/\*/g,"%2A");a=a.replace(/\'/g,"%27");a=a.replace(/\(/g,"%28");a=a.replace(/\)/g,"%29");return a},decodePercent:function decodePercent(a){if(null!=a){a=a.replace(/\+/g," ")}return decodeURIComponent(a)},getParameterList:function getParameterList(a){if(null==a){return[]}if("object"!=typeof a){return OAuth.decodeForm(a+"")}if(a instanceof Array){return a}var b=[];for(var c in a){b.push([c,a[c]])}return b},getParameterMap:function getParameterMap(a){if(null==a){return{}}if("object"!=typeof a){return OAuth.getParameterMap(OAuth.decodeForm(a+""))}if(a instanceof Array){for(var b={},c=0,d;c<a.length;++c){d=a[c][0];if(b[d]===void 0){b[d]=a[c][1]}}return b}return a},getParameter:function getParameter(a,b){if(a instanceof Array){for(var c=0;c<a.length;++c){if(a[c][0]==b){return a[c][1]}}}else{return OAuth.getParameterMap(a)[b]}return null},formEncode:function formEncode(a){for(var b="",c=OAuth.getParameterList(a),d=0,e;d<c.length;++d){e=c[d][1];if(null==e)e="";if(""!=b)b+="&";b+=OAuth.percentEncode(c[d][0])+"="+OAuth.percentEncode(e)}return b},decodeForm:function decodeForm(a){for(var b=[],c=a.split("&"),d=0,e;d<c.length;++d){e=c[d];if(""==e){continue}var f=e.indexOf("="),g,h;if(0>f){g=OAuth.decodePercent(e);h=null}else{g=OAuth.decodePercent(e.substring(0,f));h=OAuth.decodePercent(e.substring(f+1))}b.push([g,h])}return b},setParameter:function setParameter(a,b,c){var d=a.parameters;if(d instanceof Array){for(var e=0;e<d.length;++e){if(d[e][0]==b){if(c===void 0){d.splice(e,1)}else{d[e][1]=c;c=void 0}}}if(c!==void 0){d.push([b,c])}}else{d=OAuth.getParameterMap(d);d[b]=c;a.parameters=d}},setParameters:function setParameters(a,b){for(var c=OAuth.getParameterList(b),d=0;d<c.length;++d){OAuth.setParameter(a,c[d][0],c[d][1])}},completeRequest:function completeRequest(a,b){if(null==a.method){a.method="GET"}var c=OAuth.getParameterMap(a.parameters);if(null==c.oauth_consumer_key){OAuth.setParameter(a,"oauth_consumer_key",b.consumerKey||"")}if(null==c.oauth_token&&null!=b.token){OAuth.setParameter(a,"oauth_token",b.token)}if(null==c.oauth_version){OAuth.setParameter(a,"oauth_version","1.0")}if(null==c.oauth_timestamp){OAuth.setParameter(a,"oauth_timestamp",OAuth.timestamp())}if(null==c.oauth_nonce){OAuth.setParameter(a,"oauth_nonce",OAuth.nonce(6))}OAuth.SignatureMethod.sign(a,b)},setTimestampAndNonce:function setTimestampAndNonce(a){OAuth.setParameter(a,"oauth_timestamp",OAuth.timestamp());OAuth.setParameter(a,"oauth_nonce",OAuth.nonce(6))},addToURL:function addToURL(a,b){newURL=a;if(null!=b){var c=OAuth.formEncode(b);if(0<c.length){var d=a.indexOf("?");if(0>d)newURL+="?";else newURL+="&";newURL+=c}}return newURL},getAuthorizationHeader:function getAuthorizationHeader(a,b){for(var c="OAuth realm=\""+OAuth.percentEncode(a)+"\"",d=OAuth.getParameterList(b),e=0;e<d.length;++e){var f=d[e],g=f[0];if(0==g.indexOf("oauth_")){c+=","+OAuth.percentEncode(g)+"=\""+OAuth.percentEncode(f[1])+"\""}}return c},correctTimestampFromSrc:function correctTimestampFromSrc(a){a=a||"oauth_timestamp";var b=document.getElementsByTagName("script");if(null==b||!b.length)return;var c=b[b.length-1].src;if(!c)return;var d=c.indexOf("?");if(0>d)return;parameters=OAuth.getParameterMap(OAuth.decodeForm(c.substring(d+1)));var e=parameters[a];if(null==e)return;OAuth.correctTimestamp(e)},correctTimestamp:function correctTimestamp(a){OAuth.timeCorrectionMsec=1e3*a-new Date().getTime()},timeCorrectionMsec:0,timestamp:function timestamp(){var a=new Date().getTime()+OAuth.timeCorrectionMsec;return Math.floor(a/1e3)},nonce:function nonce(a){for(var b=OAuth.nonce.CHARS,c="",d=0,e;d<a;++d){e=Math.floor(Math.random()*b.length);c+=b.substring(e,e+1)}return c}});OAuth.nonce.CHARS="0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";OAuth.declareClass=function declareClass(a,b,c){var d=a[b];a[b]=c;if(null!=c&&null!=d){for(var e in d){if("prototype"!=e){c[e]=d[e]}}}return c};OAuth.declareClass(OAuth,"SignatureMethod",function OAuthSignatureMethod(){});OAuth.setProperties(OAuth.SignatureMethod.prototype,{sign:function sign(a){var b=OAuth.SignatureMethod.getBaseString(a),c=this.getSignature(b);OAuth.setParameter(a,"oauth_signature",c);return c},initialize:function initialize(a,b){var c;if(null!=b.accessorSecret&&9<a.length&&"-Accessor"==a.substring(a.length-9)){c=b.accessorSecret}else{c=b.consumerSecret}this.key=OAuth.percentEncode(c)+"&"+OAuth.percentEncode(b.tokenSecret)}});OAuth.setProperties(OAuth.SignatureMethod,{sign:function sign(a,b){var c=OAuth.getParameterMap(a.parameters).oauth_signature_method;if(null==c||""==c){c="HMAC-SHA1";OAuth.setParameter(a,"oauth_signature_method",c)}OAuth.SignatureMethod.newMethod(c,b).sign(a)},newMethod:function newMethod(a,b){var c=OAuth.SignatureMethod.REGISTERED[a];if(null!=c){var d=new c;d.initialize(a,b);return d}var e=new Error("signature_method_rejected"),f="";for(var g in OAuth.SignatureMethod.REGISTERED){if(""!=f)f+="&";f+=OAuth.percentEncode(g)}e.oauth_acceptable_signature_methods=f;throw e},REGISTERED:{},registerMethodClass:function registerMethodClass(a,b){for(var c=0;c<a.length;++c){OAuth.SignatureMethod.REGISTERED[a[c]]=b}},makeSubclass:function makeSubclass(a){var b=OAuth.SignatureMethod,c=function(){b.call(this)};c.prototype=new b;c.prototype.getSignature=a;c.prototype.constructor=c;return c},getBaseString:function getBaseString(b){var c=b.action,d=c.indexOf("?"),e;if(0>d){e=b.parameters}else{e=OAuth.decodeForm(c.substring(d+1));for(var f=OAuth.getParameterList(b.parameters),g=0;g<f.length;++g){e.push(f[g])}}return OAuth.percentEncode(b.method.toUpperCase())+"&"+OAuth.percentEncode(OAuth.SignatureMethod.normalizeUrl(c))+"&"+OAuth.percentEncode(OAuth.SignatureMethod.normalizeParameters(e))},normalizeUrl:function normalizeUrl(a){var b=OAuth.SignatureMethod.parseUri(a),c=b.protocol.toLowerCase(),d=b.authority.toLowerCase(),e="http"==c&&80==b.port||"https"==c&&443==b.port;if(e){var f=d.lastIndexOf(":");if(0<=f){d=d.substring(0,f)}}var g=b.path;if(!g){g="/"}return c+"://"+d+g},parseUri:function parseUri(a){var b={key:["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],parser:{strict:/^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@\/]*):?([^:@\/]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/}},c=b.parser.strict.exec(a),d={},e=14;while(e--){d[b.key[e]]=c[e]||""}return d},normalizeParameters:function normalizeParameters(a){if(null==a){return""}for(var b=OAuth.getParameterList(a),c=[],d=0,e;d<b.length;++d){e=b[d];if("oauth_signature"!=e[0]){c.push([OAuth.percentEncode(e[0])+" "+OAuth.percentEncode(e[1]),e])}}c.sort(function(c,a){if(c[0]<a[0])return-1;if(c[0]>a[0])return 1;return 0});for(var f=[],g=0;g<c.length;++g){f.push(c[g][1])}return OAuth.formEncode(f)}});OAuth.SignatureMethod.registerMethodClass(["PLAINTEXT","PLAINTEXT-Accessor"],OAuth.SignatureMethod.makeSubclass(function getSignature(a){return this.key}));OAuth.SignatureMethod.registerMethodClass(["HMAC-SHA1","HMAC-SHA1-Accessor"],OAuth.SignatureMethod.makeSubclass(function getSignature(a){b64pad="=";var b=b64_hmac_sha1(this.key,a);return b}));try{OAuth.correctTimestampFromSrc()}catch(a){}
 //FP Appended sha1.js-----------------------------------------------------------
 var hexcase=0,b64pad="",chrsz=8;function hex_sha1(a){return binb2hex(core_sha1(str2binb(a),a.length*chrsz))}function b64_sha1(a){return binb2b64(core_sha1(str2binb(a),a.length*chrsz))}function str_sha1(a){return binb2str(core_sha1(str2binb(a),a.length*chrsz))}function hex_hmac_sha1(a,b){return binb2hex(core_hmac_sha1(a,b))}function b64_hmac_sha1(a,b){return binb2b64(core_hmac_sha1(a,b))}function str_hmac_sha1(a,b){return binb2str(core_hmac_sha1(a,b))}function sha1_vm_test(){return"a9993e364706816aba3e25717850c26c9cd0d89d"==hex_sha1("abc")}function core_sha1(f,g){f[g>>5]|=128<<24-g%32;f[(g+64>>9<<4)+15]=g;for(var h=Array(80),k=1732584193,l=-271733879,m=-1732584194,n=271733878,o=-1009589776,p=0;p<f.length;p+=16){for(var q=k,r=l,s=m,u=n,v=o,w=0;80>w;w++){if(16>w)h[w]=f[p+w];else h[w]=rol(h[w-3]^h[w-8]^h[w-14]^h[w-16],1);var x=safe_add(safe_add(rol(k,5),sha1_ft(w,l,m,n)),safe_add(safe_add(o,h[w]),sha1_kt(w)));o=n;n=m;m=rol(l,30);l=k;k=x}k=safe_add(k,q);l=safe_add(l,r);m=safe_add(m,s);n=safe_add(n,u);o=safe_add(o,v)}return[k,l,m,n,o]}function sha1_ft(a,e,b,c){if(20>a)return e&b|~e&c;if(40>a)return e^b^c;if(60>a)return e&b|e&c|b&c;return e^b^c}function sha1_kt(a){return 20>a?1518500249:40>a?1859775393:60>a?-1894007588:-899497514}function core_hmac_sha1(a,b){var c=str2binb(a);if(16<c.length)c=core_sha1(c,a.length*chrsz);for(var d=Array(16),e=Array(16),f=0;16>f;f++){d[f]=909522486^c[f];e[f]=1549556828^c[f]}var g=core_sha1(d.concat(str2binb(b)),512+b.length*chrsz);return core_sha1(e.concat(g),672)}function safe_add(a,b){var c=(65535&a)+(65535&b);return(a>>16)+(b>>16)+(c>>16)<<16|65535&c}function rol(a,b){return a<<b|a>>>32-b}function str2binb(a){for(var b=[],c=0;c<a.length*chrsz;c+=chrsz){b[c>>5]|=(a.charCodeAt(c/chrsz)&(1<<chrsz)-1)<<32-chrsz-c%32}return b}function binb2str(a){for(var b="",c=0;c<32*a.length;c+=chrsz){b+=String.fromCharCode(a[c>>5]>>>32-chrsz-c%32&(1<<chrsz)-1)}return b}function binb2hex(a){for(var b=hexcase?"0123456789ABCDEF":"0123456789abcdef",c="",d=0;d<4*a.length;d++){c+=b.charAt(15&a[d>>2]>>8*(3-d%4)+4)+b.charAt(15&a[d>>2]>>8*(3-d%4))}return c}function binb2b64(a){for(var b="",c=0,d;c<4*a.length;c+=3){d=(255&a[c>>2]>>8*(3-c%4))<<16|(255&a[c+1>>2]>>8*(3-(c+1)%4))<<8|255&a[c+2>>2]>>8*(3-(c+2)%4);for(var e=0;4>e;e++){if(8*c+6*e>32*a.length)b+=b64pad;else b+="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charAt(63&d>>6*(3-e))}}return b}
 //FP Appended voltmx_lotusscript.js-----------------------------------------------------------
@@ -190752,7 +191524,7 @@ if(voltmx) {
 ;
 //FP Appended voltmx_sdk.js-----------------------------------------------------------
  /*
-  * voltmx-sdk-ide Version 10.0.3.0
+  * voltmx-sdk-ide Version 10.0.7.0
   */
  /**
   * Volt MX namespace
@@ -190963,7 +191735,7 @@ if(voltmx) {
  voltmx.sdk.isLicenseUrlAvailable = true;
  voltmx.sdk.isOAuthLogoutInProgress = false;
  voltmx.sdk.constants = voltmx.sdk.constants || {};
- voltmx.sdk.version = "10.0.3.0";
+ voltmx.sdk.version = "10.0.7.0";
  voltmx.sdk.logsdk = new voltmxSdkLogger();
  voltmx.sdk.syncService = null;
  voltmx.sdk.dataStore = voltmx.sdk.dataStore || new voltmxDataStore();
@@ -192108,7 +192880,26 @@ if(voltmx) {
      /**custom params for oauth**/
      CUSTOM_QUERY_PARAMS_FOR_OAUTH: "customQueryParamsForOAuth",
      CUSTOM_OAUTH_PARAMS: "customOAuthParams",
-     LOGOUT_OPTIONS: "logoutOptions"
+     LOGOUT_OPTIONS: "logoutOptions",
+     /** SSE Constants **/
+     STREAM_CLOSED_CODE: 1028,
+     STREAM_CLOSED_MESSAGE: "Stream connection closed successfully by user",
+     STREAM_ERROR_CODE: 1029,
+     STREAM_ALREADY_CLOSED_MESSAGE: "Stream connection is already closed",
+     STREAM_NOT_STARTED_MESSAGE: "Stream connection has not been initiated yet",
+     STREAM_FAILED_MESSAGE: "An internal error occurred while trying to close the connection",
+     HANDLE_STATE: {
+         IDLE: "idle",
+         IN_PROGRESS: "in_progress",
+         CLOSED: "closed"
+     },
+     CONNECTION_STATES: {
+         IDLE: 'idle',
+         IN_PROGRESS: 'in_progress',
+         OPEN: 'open',
+         ERROR: 'error',
+         CLOSED: 'closed'
+     }
  };
  if (typeof(voltmx.sdk) === "undefined") {
      voltmx.sdk = {};
@@ -198031,6 +198822,176 @@ if(voltmx) {
          return null;
      }
  };
+
+ function EventSourceConnector(url, headers, data, successCallback, failureCallback, options, httpMethod) {
+     this.url = this.validateURL(url);
+     this.options = this.validateOptions(options);
+     var retryOptions = (this.options.retry && typeof this.options.retry === 'object') ? this.options.retry : {};
+     this.config = {
+         method: (httpMethod || voltmx.sdk.constants.HTTP_METHOD_POST),
+         headers: headers || {},
+         retry: {}
+     };
+     if (typeof data !== 'undefined') {
+         this.config.body = data;
+     }
+     // Android & iOS only
+     if ("requestTimeout" in this.options) {
+         this.config.requestTimeout = this.options.requestTimeout;
+     }
+     if ("enable" in retryOptions) {
+         this.config.retry.enable = retryOptions.enable;
+     }
+     if ("verifyNoContent" in retryOptions) {
+         this.config.retry.verifyNoContent = retryOptions.verifyNoContent;
+     }
+     // Android & iOS only
+     if ("interval" in retryOptions) {
+         this.config.retry.interval = retryOptions.interval;
+     }
+     if ("maxInterval" in retryOptions) {
+         this.config.retry.maxInterval = retryOptions.maxInterval;
+     }
+     this.config.headers[voltmx.sdk.constants.HTTP_CONTENT_HEADER] = voltmx.sdk.constants.CONTENT_TYPE_JSON;
+     this.successCallback = successCallback;
+     this.failureCallback = failureCallback;
+     this.state = voltmx.sdk.constants.CONNECTION_STATES.IDLE;
+     this._isTerminated = false;
+ }
+ EventSourceConnector.prototype.validateURL = function(url) {
+     if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+         throw new Error("Invalid URL");
+     }
+     return url;
+ };
+ EventSourceConnector.prototype.validateOptions = function(options) {
+     var _options = {};
+     if (options && typeof options !== 'object') {
+         throw new Error('Invalid options payload');
+     }
+     for (var option in options) {
+         _options[option] = options[option];
+     }
+     return _options;
+ };
+ EventSourceConnector._sseCloseHandleBindingMap = new WeakMap();
+ EventSourceConnector.prototype.open = function() {
+     var self = this;
+     this.eventSource = new voltmx.net.EventSource(this.url, this.config);
+     this.state = voltmx.sdk.constants.CONNECTION_STATES.IN_PROGRESS;
+     this.eventSource.onOpen = function(evt) {
+         self.state = voltmx.sdk.constants.CONNECTION_STATES.OPEN;
+         voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+     };
+     this.eventSource.onMessage = function(evt) {
+         voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+     };
+     this.eventSource.onError = function(evt) {
+         self.state = voltmx.sdk.constants.CONNECTION_STATES.ERROR;
+         voltmx.sdk.verifyAndCallClosure(self.failureCallback, evt);
+         var retryEnabled = !!(self.config && self.config.retry && self.config.retry.enable);
+         if (!retryEnabled) {
+             self._isTerminated = true;
+             self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+             if (self.options && self.options._sseCloseHandleRef) {
+                 voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                     handler: null,
+                     state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                 });
+             }
+         }
+     };
+     this.eventSource.onClose = function(evt) {
+         if (!self._isTerminated) {
+             self._isTerminated = true;
+             self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+             if (self.options && self.options._sseCloseHandleRef) {
+                 voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                     handler: null,
+                     state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                 });
+             }
+             voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+         }
+     };
+     this.eventSource.open();
+ };
+ EventSourceConnector.prototype.close = function(successCallback, failureCallback) {
+     var _success = (typeof successCallback === 'function') ? successCallback : function() {};
+     var _failure = (typeof failureCallback === 'function') ? failureCallback : function() {};
+     try {
+         if (this.state === voltmx.sdk.constants.CONNECTION_STATES.CLOSED || this._isTerminated) {
+             _failure({
+                 code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                 message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+             });
+             return;
+         }
+         if (!this.eventSource || typeof this.eventSource.close !== 'function') {
+             _failure({
+                 code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                 message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+             });
+             return;
+         }
+         this._isTerminated = true;
+         this.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+         this.eventSource.close();
+         this.eventSource = null;
+         if (this.options && this.options._sseCloseHandleRef) {
+             voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(this.options._sseCloseHandleRef, {
+                 handler: null,
+                 state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+             });
+         }
+         _success({
+             code: voltmx.sdk.constants.STREAM_CLOSED_CODE,
+             message: voltmx.sdk.constants.STREAM_CLOSED_MESSAGE
+         });
+     } catch (err) {
+         _failure({
+             code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+             message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+         });
+     }
+ };
+ EventSourceConnector.createSSECloseHandle = function() {
+     var handle = {
+         close: function(success, failure) {
+             var connectorClose = voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.get(handle);
+             if (connectorClose && typeof connectorClose.handler === "function" && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS) {
+                 connectorClose.handler(success, failure);
+             } else if (connectorClose && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.CLOSED) {
+                 // Correctly identify that it was already closed
+                 failure && failure({
+                     code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                     message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+                 });
+             } else {
+                 failure && failure({
+                     code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                     message: voltmx.sdk.constants.STREAM_NOT_STARTED_MESSAGE
+                 });
+             }
+         }
+     };
+     voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+         handler: handle,
+         state: voltmx.sdk.constants.HANDLE_STATE.IDLE
+     });
+     return handle;
+ };
+ EventSourceConnector.registerSSECloseHandle = function(connectorInstance, existingHandle) {
+     var handle = existingHandle || voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+     voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+         handler: function(success, failure) {
+             connectorInstance.close(success, failure);
+         },
+         state: voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS
+     });
+     return handle;
+ };
+ voltmx.sdk.EventSourceConnector = EventSourceConnector;
  voltmx.logger = voltmx.logger || {};
  voltmx.logger.createNewLogger = function(loggerName, loggerConfig) {
      parseConfig = function(loggerConfig) {
@@ -198303,13 +199264,33 @@ if(voltmx) {
       * @param {object} options - XMLHttpRequest options like withCredentials value.
       */
      this.invokeOperation = function(operationName, headers, data, successCallback, failureCallback, options) {
+         var sseCloseHandle = null;
+         var internalOptions = options;
+         if (options && options.sse) {
+             internalOptions = {};
+             for (var optionKey in options) {
+                 if (options.hasOwnProperty(optionKey)) {
+                     internalOptions[optionKey] = options[optionKey];
+                 }
+             }
+             sseCloseHandle = voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+             internalOptions._sseCloseHandleRef = sseCloseHandle;
+         }
+
          function invokeOperationHandler() {
-             _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+             if (options && options.sse) {
+                 _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, internalOptions);
+             } else {
+                 _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+             }
          }
          if (voltmx.sdk.skipAnonymousCall) {
              invokeOperationHandler();
          } else {
              voltmx.sdk.claimsRefresh(invokeOperationHandler, failureCallback);
+         }
+         if (options && options.sse) {
+             return sseCloseHandle;
          }
      };
      /**
@@ -198520,17 +199501,26 @@ if(voltmx) {
              if (xhr && !(status && err)) {
                  err = xhr;
              }
-             if (isRetryNeeded === true && retryServiceCall(err) === true) {
-                 voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
-                 invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
-                 return;
+             if (options && options.sse) {
+                 voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
+             } else {
+                 if (isRetryNeeded === true && retryServiceCall(err) === true) {
+                     voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
+                     invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
+                     return;
+                 }
+                 voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
+                 voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
+                 voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
              }
-             voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
-             voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
-             voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
          }
          voltmx.sdk.logsdk.perf("Executing network call for _invokeOperation : " + operationName);
-         networkProvider.post(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, null, options);
+         if (options && options.sse) {
+             networkProvider.eventSource(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, options);
+             return;
+         } else {
+             networkProvider.post(serviceUrl + "/" + operationName, dataToSend, defaultHeaders, networkSuccessCallback, networkFailureCallback, null, options);
+         }
      }
      voltmx.sdk.processIntegrationErrorResponse = function(err, isAsync, callBack) {
          if (err[voltmx.sdk.constants.MF_CODE]) {
@@ -198609,6 +199599,9 @@ if(voltmx) {
          } else {
              return voltmx.sdk.processIntegrationErrorResponse(res, false);
          }
+     }
+     this.getFileStorage = function() {
+         return voltmx.sdk.FileStorageClasses.import(this.getUrl());
      }
  }
  voltmx.sdk.claimsRefreshSync = function() {
@@ -203788,7 +204781,43 @@ if(voltmx) {
              url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
          }
          voltmxNetHttpRequest(url, null, headers, "GET", voltmxContentType, successCallback, failureCallback, options);
+     };
+     this.eventSource = function(url, params, headers, successCallback, failureCallback, options) {
+         if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+             voltmx.sdk.verifyAndCallClosure(failureCallback, "url cannot be null or empty");
+             return;
+         }
+         //Appending global params
+         if (voltmx.sdk.isNullOrUndefined(params)) {
+             params = {};
+         }
+         if (!voltmx.sdk.isNullOrUndefined(voltmx.sdk.currentInstance)) {
+             url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
+         }
+         return voltmxNetEventSourceRequest(url, params, headers, voltmx.sdk.constants.HTTP_METHOD_POST, successCallback, failureCallback, options);
+     };
+ }
+
+ function voltmxNetEventSourceRequest(url, params, headers, httpMethod, successCallback, failureCallback, options) {
+     // give failure call back if network is not available
+     if (!voltmx.net.isNetworkAvailable(constants.NETWORK_TYPE_ANY)) {
+         var errorObj = {};
+         errorObj.httpresponse = {};
+         errorObj[voltmx.sdk.constants.MF_OPSTATUS] = voltmx.sdk.errorcodes.connectivity_error_code;
+         errorObj[voltmx.sdk.constants.MF_ERROR_CODE] = voltmx.sdk.errorcodes.connectivity_error_code;
+         errorObj[voltmx.sdk.constants.MF_ERROR_MSG] = voltmx.sdk.errormessages.connectivity_error_message;
+         errorObj.httpresponse.headers = {};
+         errorObj.httpresponse.url = url;
+         failureCallback(errorObj);
+         return;
      }
+     options = options || {};
+     headers = headers || {};
+     var eventSourceConnector = new voltmx.sdk.EventSourceConnector(url, headers, params, successCallback, failureCallback, options, httpMethod);
+     eventSourceConnector.open();
+     // 3. Register and return the handle
+     var sseCloseHandleRef = options && options._sseCloseHandleRef;
+     return voltmx.sdk.EventSourceConnector.registerSSECloseHandle(eventSourceConnector, sseCloseHandleRef);
  }
 
  function voltmxNetHttpRequest(url, params, headers, httpMethod, voltmxContentType, successCallback, failureCallback, options) {
@@ -205429,7 +206458,7 @@ if(voltmx) {
      }
  })();
 //FP Appended voltmxlibrary.js-----------------------------------------------------------
-kony=voltmx;voltmx.decrement=function(a){if("number"==typeof a){return a-1}else{return a}};voltmx.increment=function(a){if("number"==typeof a){return a+1}else{return a}};voltmx.decrementIndices=function(a){for(var b=[],c=0;c<a.length;c++){b[c]=a[c]-1}return b};voltmx.incrementIndices=function(a){for(var b=[],c=0;c<a.length;c++){b[c]=a[c]+1}return b};voltmx.math={pi:Math.PI,random:function(){return Math.random()},randomSeed:function(a){pseudoRandomArray=[];if(isNaN(a))throw new Error("Invalid argument to math.randomseed");if(!pseudoRandomArray[a]){pseudoRandomArray[a]=Math.random()}return pseudoRandomArray[a]},toInteger:function(a){a-=0;if(isNaN(a)){throw new Error("Invalid argument to math.tointeger")}return Math.floor(a)},pow:function(a,b){a-=0;b-=0;if(isNaN(a)||isNaN(b)){throw new Error("Invalid argument(s) to math.pow")}return Math.pow(a,b)},findExtreme:function(a,b){if(2>b.length){throw new Error((a?"math.max":"math.min")+" needs atleast two arguments")}var c=b[0]-0;if(isNaN(c)){throw new Error("Invalid argument to "+(a?"math.max":"math.min"))}for(var d=1;d<b.length;d++){b[d]-=0;if(isNaN(b[d])){throw new Error("Invalid argument to "+(a?"math.max":"math.min"))}if(a){if(c<b[d]){c=b[d]}}else{if(c>b[d]){c=b[d]}}}return c},min:function(){return voltmx.math.findExtreme(!1,arguments)},max:function(){return voltmx.math.findExtreme(!0,arguments)},sqrt:function(a){a-=0;if(isNaN(a)){throw new Error("Invalid argument to math.sqrt")}var b=Math.sqrt(a);return isNaN(b)?"nan":b}};voltmx.string={find:function(){if(2>arguments.length){throw new Error("string.find needs atleast two arguments")}for(var a=0;2>a;a++){if("number"==typeof arguments[a]){arguments[a]=arguments[a].toString()}else if("string"!=typeof arguments[a]){throw new Error("Invalid argument(s) to string.find")}}var b=0;if(2<arguments.length){b=arguments[2]-0;if(!isNaN(b)){if(0>b){b+=arguments[0].length;if(0>b)b=0}}else{b=0}}var c=arguments[0].indexOf(arguments[1],b-1);if(-1===c){return null}else{return c}},len:function(a){if(0===arguments.length){throw new Error("string.len needs atleast one argument")}if("number"==typeof a){a=a.toString()}else if("string"!=typeof a){throw new Error("Invalid argument to string.len")}return arguments[0].length},compare:function(a,b){if(2>arguments.length){throw new Error("string.compare needs atleast two arguemnts")}if("string"==typeof a&&"string"==typeof b){if(a<b){return-1}else if(a==b){return 0}else{return 1}}else{throw new Error("Invalid argument(s) to string.compare")}},charat:function(a,b){if(2>arguments.length){throw new Error("string.charat needs atleast two arguments")}if("number"==typeof a){a=a.toString()}else if("string"!=typeof a){throw new Error("Invalid argument to string.charat")}b-=0;if(isNaN(b)){throw new Error("Invalid argument to string.charat")}if(0>b||b>=a.length){return null}return a.charAt(b)},flipCase:function(a,b){if(0===a.length){throw new Error(b?"string.upper":"string.lower needs atleast one argument")}if("string"!=typeof a[0]){throw new Error("Invalid argment to "+b?"string.upper":"string.lower")}if(b){return a[0].toUpperCase()}else{return a[0].toLowerCase()}},lower:function(){return voltmx.string.flipCase(arguments,!1)},upper:function(){return voltmx.string.flipCase(arguments,!0)},rep:function(a,b){if(2>arguments.length){throw new Error("Insufficient arguments to string.rep")}if("number"==typeof a){a=a.toString()}else if("string"!=typeof a){throw new Error("Invalid argument to string.rep")}b-=0;if(isNaN(b)){throw new Error("Invalid argument to string.rep")}for(var c="",d=0;d<b;d++){c+=a}return c},reverse:function(a){if(0===arguments.length){throw new Error("string.reverse needs atleast one argument")}if("number"==typeof a){a=a.toString()}else if("string"!=typeof a){throw new Error("Invalid argument to string.reverse")}for(var b="",c=a.length-1;0<=c;c--){b+=a.charAt(c)}return b},trim:function(a){if(0===arguments.length){throw new Error("string.trim needs atleast one argument")}if(a===void 0){return a}else if("string"!=typeof a){return a.toString()}return a.replace(/^\s*/,"").replace(/\s*$/,"")},equalsIgnoreCase:function(a,b){if(2>arguments.length){throw new Error("string.equalsIgnoreCase needs atleast two arguments")}if("string"!=typeof a||"string"!=typeof b){throw new Error("Invalid argument(s) to string.equalsIgnoreCase")}return a.toLowerCase()===b.toLowerCase()},equals:function(a,b){if(2>arguments.length){throw new Error("string.equals needs atleast two arguments")}if("string"!=typeof a||"string"!=typeof b){throw new Error("Invalid argument(s) to string.equals")}return a===b},matchEnds:function(a,b){if(2>a.length){throw new Error(b?"string.endsWith":"string.startsWith needs atleast two arguments")}if("string"!=typeof a[0]||"string"!=typeof a[1]){throw new Error("Invalid argument(s) to "+b?"string.endsWith":"string.startsWith")}if(!(2<a.length&&(!1===a[2]||null===a[2]))){a[0]=a[0].toLowerCase();a[1]=a[1].toLowerCase()}if(b){var c=a[0].lastIndexOf(a[1]);if(0>c){return!1}else{return a[0].lastIndexOf(a[1])===a[0].length-a[1].length}}else{return 0===a[0].indexOf(a[1])}},startsWith:function(){return voltmx.string.matchEnds(arguments,!1)},endsWith:function(){return voltmx.string.matchEnds(arguments,!0)},split:function(a,b){if(0===arguments.length){throw new Error("string.split needs atleast one argument")}if("string"!=typeof a){throw new Error("Invalid argument to string.split")}var c;if(1<arguments.length){if("string"!=typeof b){throw new Error("The optional delimitor for string.split must be a string")}c=b}else{c=","}var d=[];if(""==c){d[1]=a}else{d=a.split(c);d.unshift(null)}return d},sub:function(){function getIndex(a,b){if("string"==typeof a){a-=0}else if("number"!=typeof a){throw new Error("Invalid argument to string.sub")}if(0>a){return a+b-1}else if(a>b){return b}return a}if(2>arguments.length){throw new Error("string.sub needs atleast two arguments")}for(var a=[],b=0;b<arguments.length;b++){a[b]=arguments[b]}if("number"==typeof a[0]){a[0]=a[0].toString()}else if("string"!=typeof a[0]){throw new Error("Invalid argument to string.sub")}var c=getIndex(a[1],a[0].length),d=a[0].length;if(2<a.length){d=getIndex(a[2],a[0].length)}if(d<c||0===c&&d===c){return""}else{return a[0].slice(c,d+1)}},replace:function(a,b,c){if(3>arguments.length){throw new Error("string.replace needs atleast three arguments")}if("string"!=typeof a||"string"!=typeof b||"string"!=typeof c){throw new Error("Invalid argument(s) to string.replace")}var d=new RegExp(voltmx.string.escapeRegExp(b),"g");return""!=a&&""==b?a:a.replace(d,c)},isAsciiAlpha:function(a){if(0===arguments.length){throw new Error("string.isAsciiAlpha needs atleast 1 argument")}if("string"!=typeof a){throw new Error("Invalid argument(s) to string.isAsciiAlpha")}return""==a?!1:!/[^a-zA-Z]/g.test(a)},isAsciiAlphaNumeric:function(a){if(0===arguments.length){throw new Error("string.isAsciiAlphaNumeric needs atleast 1 argument")}var b=a.match(/[^a-zA-Z0-9]/i),c=a.match(/^[a-zA-Z0-9]*$/i);return!b&&c&&a?!0:!1},isNumeric:function(a){if(0===arguments.length){throw new Error("string.isNumeric needs atleast 1 argument")}return""==a||"string"==typeof a&&0==a.replace(/\s/g,"").length?!1:!isNaN(a)},containsChars:function(b,c){if(0===arguments.length){throw new Error("string.containsChars needs 2 arguments")}if("string"!=typeof b){throw new Error("Invalid argument(s) to string.containsChars")}if(!1==c instanceof Array){throw new Error("Invalid argument to table.containsChars")}for(var a=[],d="",e=c,f=e.length,g=!1,h=0;h<f;h++){a[h]=e[h];if(""==b||""==a[h])return!0}d=a.join("");d="["+voltmx.string.escapeRegExp(d)+"]";var j=new RegExp(d,"g");g=j.test(b);return g},containsOnlyGivenChars:function(b,c){if(0===arguments.length){throw new Error("string.containsOnlyGivenChars needs atleast 1 argument")}if("string"!=typeof b){throw new Error("Invalid argument(s) to string.containsOnlyGivenChars")}for(var a=[],d="",e=c,f=e.length,g=!1,h=0;h<f;h++){a[h]=e[h]}d=a.join("");d="[^"+voltmx.string.escapeRegExp(d)+"]";var j=new RegExp(d,"g");g=j.test(b);if(!1===g){return!0}else{return!1}},containsNoGivenChars:function(b,c){if(0===arguments.length){throw new Error("string.containsNoGivenChars needs 2 arguments")}if("string"!=typeof b){throw new Error("Invalid argument(s) to string.containsNoGivenChars")}if(!1==c instanceof Array){throw new Error("Invalid argument to table.containsNoGivenChars")}for(var a=[],d="",e=c,f=e.length,g=!1,h=0;h<f;h++){a[h]=e[h];if(""==a[h])return!1}d=a.join("");d="["+voltmx.string.escapeRegExp(d)+"]";var j=new RegExp(d,"g");g=j.test(b);if(!1===g){return!0}else{return!1}},isValidEmail:function(a){if(0===arguments.length)throw new Error("string.isValidEmail needs atleast 1 argument");var b=a;if("string"!=typeof b)return!1;if(3>b.length-b.lastIndexOf(".")){return!1}return /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i.test(b)},escapeRegExp:function(a){return a.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&")}};voltmx.table={concat:function(){var a=!1,b=!1,c=null;if(!arguments[0]instanceof Object)a=!0;if(!a){var d=arguments[0].length,e=0,f=d,g="",h=4<arguments.length?4:arguments.length-1;switch(arguments.length){case 4:arguments[3]-=0;if(isNaN(arguments[3])){a=!0}f=arguments[3];case 3:arguments[2]-=0;if(isNaN(arguments[2])||0>arguments[2]){a=!0}e=arguments[2];case 2:g=arguments[1];default:break;}if(0==d)return voltmx.table.returnResult("",a,b);if(a)return voltmx.table.returnResult(c,a,b);if(e>f){return voltmx.table.returnResult("",a,b)}else if(f>d){a=!0}else if(!a){c="";try{for(var j=e;j<f;j++){if(null==arguments[0][j]||arguments[0][j]instanceof Object)return voltmx.table.returnResult(null,!0,b);c+=arguments[0][j].toString()+g}c+=arguments[0][j].toString()}catch(a){b=!0}}}return voltmx.table.returnResult(c,a,b)},insert:function(){var a=!1,b=!1;if(2>arguments.length||!(arguments[0]instanceof Object)){a=!0}if(!a){var c,d;if(2<arguments.length){c=arguments[1];if("string"==typeof c||isNaN(c)){return voltmx.table.returnResult(!0,b)}d=arguments[2]}else{c=arguments[0].length;d=arguments[1]}try{if("string"==typeof c||c>=arguments[0].length||0>=c){if(0==c){arguments[0].splice(c,0,d)}else{arguments[0][c]=d}}else{arguments[0].splice(c,0,d)}}catch(a){b=!0}}return voltmx.table.returnResult(a,b)},remove:function(){var a=!1,b=null;if(0===arguments.length||!(arguments[0]instanceof Array)){a=!0}if(!a){var c=arguments[0].length-1;if(0<=c){if(1<arguments.length&&null!=arguments[1]){arguments[1]-=0;if(isNaN(arguments[1])||arguments[1]>c||0>arguments[1]){a=!0;return voltmx.table.returnResult(b,a,!1)}if(arguments[1]<c&&0<=arguments[1]){c=arguments[1]}}b=arguments[0].splice(c,1);b=b[0]}else return voltmx.table.returnResult(null,a,!1)}return voltmx.table.returnResult(b,a,!1)},sort:function(a){var b=!1,c=!1,d=null;if(0===arguments.length||!(arguments[0]instanceof Array)){b=!0}if("function"==typeof arguments[1]){d=arguments[1]}else if("function"==typeof arguments[2]){d=arguments[2]}if(!b){var e=arguments[0].length,f=arguments[0];if(2>arguments[0].length){return voltmx.table.returnResult(a,!1,!1)}try{for(var g=0,h;g<e;g++){h=typeof arguments[0][1];if(null==arguments[0][g]||typeof arguments[0][g]!=h){return voltmx.table.returnResult(!0,c)}}if(null!==arguments[1]&&!isNaN(arguments[1]))f.splice(arguments[1],f.slice(arguments[1],f.length).length);if(d){f.sort(function(c,a){var b=d(c,a);return b?-1:1})}else if("string"==typeof arguments[1]){d=arguments[1];f.sort(function(c,a){if(null!=c[d]&&typeof c[d]==typeof a[d]&&"string"==typeof c[d]){var b=c[d].toLowerCase(),e=a[d].toLowerCase();if(b<e)return-1;if(b>e)return 1;return 0}else{return c[d]-a[d]}})}else{f.sort(function(c,a){if("string"==typeof c){var b=c.toLowerCase(),d=a.toLowerCase();if(b<d){return-1}else if(b>d){return 1}else{return 0}}else return c-a})}}catch(a){c=!0;f=null}}if(!b&&!c)return voltmx.table.returnResult(f,b,c);else return voltmx.table.returnResult(!0,c)},filter:function(a,b){var c=!1,d=!1,e;if(2>arguments.length||!(a instanceof Object)||!("function"==typeof b)){c=!0}if(!c){var f,g,h;if(a instanceof Array&&b){try{e=[];for(var k=0;k<a.length;k++){g=a[k];if(g instanceof Object){return voltmx.table.returnResult(null,!0,d)}else{if(null!=g)h=b(k,g);if(!0===h)e.push(g);h=!1}}}catch(a){c=!0}}else if(a&&b){e={};try{for(var l in a){f=l;g=a[l];if(null!=g)h=b(l,g);if(!0===h){e[f]=g}h=!1}}catch(a){c=!0}}}if(c||d)e=null;return voltmx.table.returnResult(e,c,d)},map:function(a,b){var c=!1,d=!1;if(2>arguments.length||!1==a instanceof Object||!("function"==typeof b)){c=!0}if(!c){try{var e,f,g;if(a instanceof Array&&b){for(var h=a.length,k=0;k<h;k++){if(a[k]instanceof Array||null==a[k]){return voltmx.table.returnResult(!0,d)}}try{for(var k=0;k<h;k++){f=a[k];g=b(k,f);if(!1!==g){e=g[0];f=g[1];a[e]=f;g=!1}else return voltmx.table.returnResult(!0,d)}}catch(a){c=!0}}else if(a&&b){try{for(var l in a){e=l;f=a[e];g=b(e,f);if(!1!==g){e=g[0];f=g[1];a[e]=f;g=!1}else return voltmx.table.returnResult(!0,d)}}catch(a){c=!0}}}catch(a){d=!0}}return voltmx.table.returnResult(a,c,d)},mapNew:function(a,b){var c=!1,d=!1;if(2>arguments.length||!1==a instanceof Object||!("function"==typeof b)){c=!0}if(null==a)return voltmx.table.returnResult(null,c,d);try{var e=null,f,g,h;if(!c){if(a instanceof Array&&b){for(var k=a.length,l=0;l<k;l++){if(a[l]instanceof Object||null==a[l]){return voltmx.table.returnResult(null,!0,d)}}try{e=[];for(var l=0;l<k;l++){g=a[l];h=b(l,g);f=h[0];g=h[1];e[f]=g}}catch(a){c=!0}}else if(a&&b){try{e={};for(var m in a){f=m;g=a[f];h=b(f,g);if(!1!==h){f=h[0];g=h[1];e[f]=g;h=!1}else return voltmx.table.returnResult(!0,d)}}catch(a){c=!0}}}}catch(a){d=!0}if(c||d)e=null;return voltmx.table.returnResult(e,c,d)},get:function(a,b){var c=!1,d=!1,e=!1,f=null;if(2>arguments.length||!1==a instanceof Object||null==b){c=!0;return voltmx.table.returnResult(f,c,d)}try{if(b in a){f=a[b]}else e=!0}catch(a){d=!0}return voltmx.table.returnResult(f,c,d,e)},contains:function(a,b){var c=!1,d=!1;if(2>arguments.length||!1==a instanceof Object||null==b){return voltmx.table.returnResult(d,!0,c)}try{if(b in a)d=!0}catch(a){c=!0}return voltmx.table.returnResult(d,!1,c)},append:function(a,b){var c=!1,d=!1;if(2!=arguments.length||!(a instanceof Object)||!(b instanceof Object)){c=!0;return voltmx.table.returnResult(null,c,d)}try{if(a.length&&b.length){for(var e=0;e<b.length;e++){a.push(b[e])}}else{for(var f in b){a[f]=b[f]}}}catch(a){d=!0}return voltmx.table.returnResult(a,c,d)},removeAll:function(a){if(1>arguments.length){throw new Error("table.removeAll needs atleast 1 argument")}if("object"!=typeof a){throw new Error("Invalid  arguments to table.removeAll")}if(a.length)a.length=0;else{for(var b in a){delete a[b]}}},unpack:function(a){if(0===arguments.length){throw new Error("unpack needs atleast one argument")}if(!1==a instanceof Object){throw new Error("Invalid first argument to unpack")}var b=3<arguments.length?3:arguments.length,c=arguments[0].length,d=0,e=c;switch(b){case 3:arguments[2]-=0;if(isNaN(arguments[2])){throw new Error("Invalid argument to unpack")}e=arguments[2];case 2:arguments[1]-=0;if(isNaN(arguments[1])){throw new Error("Invalid argument to unpack")}d=arguments[1];default:break;}if(d>e){return[""]}else{for(var f="",g=d;g<e;g++){if(0==g){f=arguments[0][g]}else{f=f+" "+arguments[0][g]}}return f}},returnResult:function(){var a=null,b=null,c=!1,d=!1;if(3<=arguments.length){var e=arguments[0];c=arguments[1];d=arguments[2];var f=arguments[3]}else{c=arguments[0];d=arguments[1]}if(c){a=100;b="INVALID ARGUMENTS"}else if(d){a=101;b="INTERNAL ERROR"}else if(f){a=0;b="INVALID KEY"}if(3<=arguments.length)return e;else if(2==arguments.length&&(c||d))return[a,b];else return}};voltmx.os.time=function(){var a=new Date().toTimeString();return a.slice(0,a.indexOf(" "))};voltmx.os.diffDateTime=function(a,b){if("string"!=typeof a||"string"!=typeof b){throw new Error("Invalid argument(s) to os.diffDateTime")}var c=a.split(":");c[2]=c[2]-0;var d=b.split(":");d[2]=d[2]-0;var e=3600*c[0]+60*c[1]+c[2],f=3600*d[0]+60*d[1]+d[2];return e>86400||f>86400?null:e-f};voltmx.os.date=function(){var a,b=new Date;if(0===arguments.length){var c=b.toTimeString();a=voltmx.os.padZero(b.getMonth()+1)+"/"+voltmx.os.padZero(b.getDate())+"/"+voltmx.os.padZero(b.getFullYear()%100)+" "+c.slice(0,c.indexOf(" "));return a}else if("string"==typeof arguments[0]){if(-1!=arguments[0].toLowerCase().indexOf("dd")){return voltmx.os.formatdate(arguments[0],b)}else{var d="!"===arguments[0].charAt(0),e=d?1:0;if("*"===arguments[0].charAt(e)&&"t"===arguments[0].charAt(e+1)){var f=d?b.getUTCDate():b.getDate(),g=(d?b.getUTCMonth():b.getMonth())+1,h=d?b.getUTCFullYear():b.getFullYear();a={};a.year=h;a.month=g;a.day=f;a.hour=d?b.getUTCHours():b.getHours();a.min=d?b.getUTCMinutes():b.getMinutes();a.sec=d?b.getUTCSeconds():b.getSeconds();a.wday=d?b.getUTCDay():b.getDay()+1;a.yday=voltmx.os.getDayOfYear(f,g,h);a.isdst=d?!1:voltmx.os.checkForDst();return a}else return null}}else return null};voltmx.os.toCurrency=function(a){a-=0;if(isNaN(a)){throw new Error("Invalid argument to os.toCurrency")}if(0>a)a*=-1;var b=a.toFixed(3);b=b.substr(0,b.length-1);for(var c="",d=0;d<b.length-4;d++){c+=b.charAt(d);if(0==(b.length-d-1)%3)c+=","}for(;d<b.length;d++){c+=b.charAt(d)}return"$"+c};voltmx.os.toNumber=function(a){if(1!=arguments.length){throw new Error("Invalid argument to os.toNumber")}if("number"==typeof a){return a}else if("string"==typeof a){var b=a.replace(/^\s*/,"").replace(/\s*$/,"");if(""===b){return null}else{var c=b-0;return isNaN(c)?null:c}}else{return null}};voltmx.os.compareDates=function(a,b,c){if(null==a||null==b||null==c||!voltmx.os.isvaliddate(a,c)||!voltmx.os.isvaliddate(b,c))return null;var d=voltmx.os.getDate(a,c),e=voltmx.os.getDate(b,c);return parseInt((d.getTime()-e.getTime())/86400000)};voltmx.os.addToDate=function(a,b,c,d){if(null==a||null==b||null==c||null==d){return null}var e=a,f=b,g=c,h=d,i=e.split("/");if(!voltmx.os.isvaliddate(e,f))return null;var j=voltmx.os.getDate(e,f);if(j){switch(g){case"years":j.setFullYear(j.getFullYear()+h);break;case"months":j.setMonth(j.getMonth()+h);break;case"days":j.setDate(j.getDate()+h);break;case"hours":j.setHours(j.getHours()+h);break;case"minutes":j.setMinutes(j.getMinutes()+h);break;default:break;}if(voltmx.os.isLeapYear([a,f])&&1<=j.getMonth()&&("years"==g||"months"==g&&(-12==h||12==h)))j.setDate(j.getDategetDate()-1);return voltmx.os.formatdate(f,j)}return null};voltmx.os.isLeapYear=function(a,b){var c,d=new Date;c=d.getFullYear();if("string"==typeof a&&"string"==typeof b){if(!voltmx.os.isvaliddate(a,b))return!1;var e=a.split("/")[2];c=2==e.length?parseInt(d.getFullYear().toString().substr(0,2)+e):parseInt(e)}if(0==c%400||0==c%4&&0!=c%100){return!0}else{return!1}};voltmx.os.formatDate=function(a,b,c){if(null==a||null==b||null==c){return null}else if("string"==typeof a&&"string"==typeof b&&"string"==typeof c){var d=a,e=b,f=c,g=e.indexOf("dd"),h=e.indexOf("mm"),i=-1!=e.indexOf("yyyy")?e.indexOf("yyyy"):e.indexOf("yy");if("dd/mm/yyyy"==e&&!voltmx.os.isvaliddate(d,e)||-1==g||-1==h||-1==i||-1!=e.indexOf("ddd")||-1!=e.indexOf("mmm")){return null}var j=e.charAt(g-1),k=e.charAt(g+2);k="("==k?"":k;var l=e.charAt(h-1),m=e.charAt(h+2),n=e.charAt(i-1),o=e.charAt(i+4),p=""==j?d.indexOf(j,g-1):d.indexOf(j,g-2)+1,q=""==l?d.indexOf(l,h-1):d.indexOf(l,h-2)+1,r=""==n?d.indexOf(n,i-1):-1!=d.indexOf(n,i-2)?d.indexOf(n,i-2)+1:d.indexOf(n,i-4)+1,s=""!=k?d.indexOf(k,g):d.indexOf(k,g+2),t=""!=m?d.indexOf(m,h):d.indexOf(m,h+2),u=""!=o?d.indexOf(o,i):d.indexOf(o,i+4),v=d.substring(p,s),w=d.substring(q,t),x=d.substring(r,u);if(2==x.length&&-1!=f.indexOf("yyyy"))var y=new Date().getFullYear().toString().substr(0,2)+x;f=f.replace(/dd/,voltmx.os.padZero(parseInt(v,10)));f=f.replace(/mm/,voltmx.os.padZero(parseInt(w,10)));f=f.replace(/(yyyy|yy)/,y?y:-1==f.indexOf("yyyy")&&4==x.length?x.substr(2,2):x);return f}return null};voltmx.os.isValidDate=function(a,b){return 2!=arguments.length||null==a||null==b?!1:voltmx.os.isvaliddate(a,b)};voltmx.os.dateComponents=function(a,b){var c,d;if(0==arguments.length){d=new Date}else if(null!=a&&null!=b){if(!voltmx.os.isvaliddate(a,b))return null;d=voltmx.os.getDate(a,b);var e=b.split("/")[2]}if(d){var f=d.getDate(),g=d.getMonth()+1,h=e&&2==e.length?parseInt(d.getFullYear().toString().substr(2,2)):d.getFullYear();c={};c.year=h;c.month=g;c.day=f;c.hour=d.getHours();c.min=d.getMinutes();c.sec=d.getSeconds();c.wday=d.getDay()+1;c.yday=voltmx.os.getDayOfYear(f,g,h);c.isdst=voltmx.os.checkForDst();return c}else return null};voltmx.os.padZero=function(a){return 10>a?"0"+a:a};voltmx.os.formatdate=function(a,b){a=a.toLowerCase();a=a.replace(/dd/,voltmx.os.padZero(b.getDate()));a=a.replace(/mm/,voltmx.os.padZero(b.getMonth()+1));return a.replace(/(yyyy|yy)/,-1==a.indexOf("yyyy")?b.getFullYear().toString().substr(2,2):b.getFullYear())};voltmx.os.isvaliddate=function(a,b){var c="/",d=voltmx.os.daysArray(12),e=a.indexOf(c),f=a.indexOf(c,e+1),g=b||"dd/mm/yyyy";if("dd/mm/yyyy"==g||"dd/mm/yy"==g){var h=a.substring(0,e),j=a.substring(e+1,f)}else if("mm/dd/yy"==g||"mm/dd/yyyy"==g){var h=a.substring(e+1,f),j=a.substring(0,e)}else return!1;var k=a.substring(f+1),l=new Date;strYr=k;if("0"==h.charAt(0)&&1<h.length)h=h.substring(1);if("0"==j.charAt(0)&&1<j.length)j=j.substring(1);if(2==strYr.length){strYr=(l.getFullYear()+"").substr(0,2)+strYr}for(var m=1;3>=m;m++){if("0"==strYr.charAt(0)&&1<strYr.length)strYr=strYr.substring(1)}month=parseInt(j);day=parseInt(h);year=parseInt(strYr);if(!voltmx.os.isInteger(j)||!voltmx.os.isInteger(h)||!voltmx.os.isInteger(k)||1>j.length||1>month||12<month||1>h.length||1>day||31<day||2==month&&day>voltmx.os.daysInFebruary(year)||day>d[month]||4!=strYr.length||0==year||year<1900||year>2100){return!1}return!0};voltmx.os.daysArray=function(a){for(var b=1;b<=a;b++){this[b]=31;if(4==b||6==b||9==b||11==b){this[b]=30}if(2==b){this[b]=29}}return this};voltmx.os.daysInFebruary=function(a){return 0==a%4&&(!(0==a%100)||0==a%400)?29:28};voltmx.os.isInteger=function(a){var b;for(b=0;b<a.length;b++){var d=a.charAt(b);if("0">d||"9"<d)return!1}return!0};voltmx.os.getDate=function(a,b){var c;if("string"==typeof a&&"string"==typeof b){var d=a.split("/"),e=new Date().getFullYear().toString().substr(0,2);if(-1==b.indexOf("yyyy")||2==d[2].length)d[2]=e+d[2];if("mm/dd/yyyy"==b||"mm/dd/yy"==b)c=new Date(d[0]+"/"+d[1]+"/"+d[2]);else c=new Date(d[1]+"/"+d[0]+"/"+d[2]);return c}};voltmx.os.getDayOfYear=function(a,b,c){var d,e,f=[31,28,31,30,31,30,31,31,30,31,30,31];if(0==c%4){f[1]++}for(d=1,e=0;d<b;e+=f[d-1],d++){}return e+a};voltmx.os.checkForDst=function(){var a=new Date,b=new Date(a.getFullYear(),0,1,0,0,0,0),c=b.toGMTString(),d=new Date(c.substring(0,c.lastIndexOf(" ")-1)),e=new Date(a.getFullYear(),6,1,0,0,0,0);c=e.toGMTString();var f=new Date(c.substring(0,c.lastIndexOf(" ")-1));if((b-d)/3600000==(e-f)/3600000){return!1}else{return!0}};
+kony=voltmx;voltmx.decrement=function(a){if("number"==typeof a){return a-1}else{return a}};voltmx.increment=function(a){if("number"==typeof a){return a+1}else{return a}};voltmx.decrementIndices=function(a){for(var b=[],c=0;c<a.length;c++){b[c]=a[c]-1}return b};voltmx.incrementIndices=function(a){for(var b=[],c=0;c<a.length;c++){b[c]=a[c]+1}return b};voltmx.math={pi:Math.PI,random:function(){return Math.random()},randomSeed:function(a){pseudoRandomArray=[];if(isNaN(a))throw new Error("Invalid argument to math.randomseed");if(!pseudoRandomArray[a]){pseudoRandomArray[a]=Math.random()}return pseudoRandomArray[a]},toInteger:function(a){a-=0;if(isNaN(a)){throw new Error("Invalid argument to math.tointeger")}return Math.floor(a)},pow:function(a,b){a-=0;b-=0;if(isNaN(a)||isNaN(b)){throw new Error("Invalid argument(s) to math.pow")}return Math.pow(a,b)},findExtreme:function(a,b){if(2>b.length){throw new Error((a?"math.max":"math.min")+" needs atleast two arguments")}var c=b[0]-0;if(isNaN(c)){throw new Error("Invalid argument to "+(a?"math.max":"math.min"))}for(var d=1;d<b.length;d++){b[d]-=0;if(isNaN(b[d])){throw new Error("Invalid argument to "+(a?"math.max":"math.min"))}if(a){if(c<b[d]){c=b[d]}}else{if(c>b[d]){c=b[d]}}}return c},min:function(){return voltmx.math.findExtreme(!1,arguments)},max:function(){return voltmx.math.findExtreme(!0,arguments)},sqrt:function(a){a-=0;if(isNaN(a)){throw new Error("Invalid argument to math.sqrt")}var b=Math.sqrt(a);return isNaN(b)?"nan":b}};voltmx.string={find:function(){if(2>arguments.length){throw new Error("string.find needs atleast two arguments")}for(var a=0;2>a;a++){if("number"==typeof arguments[a]){arguments[a]=arguments[a].toString()}else if("string"!=typeof arguments[a]){throw new Error("Invalid argument(s) to string.find")}}var b=0;if(2<arguments.length){b=arguments[2]-0;if(!isNaN(b)){if(0>b){b+=arguments[0].length;if(0>b)b=0}}else{b=0}}var c=arguments[0].indexOf(arguments[1],b-1);if(-1===c){return null}else{return c}},len:function(a){if(0===arguments.length){throw new Error("string.len needs atleast one argument")}if("number"==typeof a){a=a.toString()}else if("string"!=typeof a){throw new Error("Invalid argument to string.len")}return arguments[0].length},compare:function(a,b){if(2>arguments.length){throw new Error("string.compare needs atleast two arguemnts")}if("string"==typeof a&&"string"==typeof b){if(a<b){return-1}else if(a==b){return 0}else{return 1}}else{throw new Error("Invalid argument(s) to string.compare")}},charat:function(a,b){if(2>arguments.length){throw new Error("string.charat needs atleast two arguments")}if("number"==typeof a){a=a.toString()}else if("string"!=typeof a){throw new Error("Invalid argument to string.charat")}b-=0;if(isNaN(b)){throw new Error("Invalid argument to string.charat")}if(0>b||b>=a.length){return null}return a.charAt(b)},flipCase:function(a,b){if(0===a.length){throw new Error(b?"string.upper":"string.lower needs atleast one argument")}if("string"!=typeof a[0]){throw new Error("Invalid argment to "+b?"string.upper":"string.lower")}if(b){return a[0].toUpperCase()}else{return a[0].toLowerCase()}},lower:function(){return voltmx.string.flipCase(arguments,!1)},upper:function(){return voltmx.string.flipCase(arguments,!0)},rep:function(a,b){if(2>arguments.length){throw new Error("Insufficient arguments to string.rep")}if("number"==typeof a){a=a.toString()}else if("string"!=typeof a){throw new Error("Invalid argument to string.rep")}b-=0;if(isNaN(b)){throw new Error("Invalid argument to string.rep")}for(var c="",d=0;d<b;d++){c+=a}return c},reverse:function(a){if(0===arguments.length){throw new Error("string.reverse needs atleast one argument")}if("number"==typeof a){a=a.toString()}else if("string"!=typeof a){throw new Error("Invalid argument to string.reverse")}for(var b="",c=a.length-1;0<=c;c--){b+=a.charAt(c)}return b},trim:function(a){if(0===arguments.length){throw new Error("string.trim needs atleast one argument")}if(a===void 0){return a}else if("string"!=typeof a){return a.toString()}return a.replace(/^\s*/,"").replace(/\s*$/,"")},equalsIgnoreCase:function(a,b){if(2>arguments.length){throw new Error("string.equalsIgnoreCase needs atleast two arguments")}if("string"!=typeof a||"string"!=typeof b){throw new Error("Invalid argument(s) to string.equalsIgnoreCase")}return a.toLowerCase()===b.toLowerCase()},equals:function(a,b){if(2>arguments.length){throw new Error("string.equals needs atleast two arguments")}if("string"!=typeof a||"string"!=typeof b){throw new Error("Invalid argument(s) to string.equals")}return a===b},matchEnds:function(a,b){if(2>a.length){throw new Error(b?"string.endsWith":"string.startsWith needs atleast two arguments")}if("string"!=typeof a[0]||"string"!=typeof a[1]){throw new Error("Invalid argument(s) to "+b?"string.endsWith":"string.startsWith")}if(!(2<a.length&&(!1===a[2]||null===a[2]))){a[0]=a[0].toLowerCase();a[1]=a[1].toLowerCase()}if(b){var c=a[0].lastIndexOf(a[1]);if(0>c){return!1}else{return a[0].lastIndexOf(a[1])===a[0].length-a[1].length}}else{return 0===a[0].indexOf(a[1])}},startsWith:function(a,b,c){return voltmx.string.matchEnds(arguments,!1)},endsWith:function(a,b,c){return voltmx.string.matchEnds(arguments,!0)},split:function(a,b){if(0===arguments.length){throw new Error("string.split needs atleast one argument")}if("string"!=typeof a){throw new Error("Invalid argument to string.split")}var c;if(1<arguments.length){if("string"!=typeof b){throw new Error("The optional delimitor for string.split must be a string")}c=b}else{c=","}var d=[];if(""==c){d[1]=a}else{d=a.split(c);d.unshift(null)}return d},sub:function(){function getIndex(a,b){if("string"==typeof a){a-=0}else if("number"!=typeof a){throw new Error("Invalid argument to string.sub")}if(0>a){return a+b-1}else if(a>b){return b}return a}if(2>arguments.length){throw new Error("string.sub needs atleast two arguments")}for(var a=[],b=0;b<arguments.length;b++){a[b]=arguments[b]}if("number"==typeof a[0]){a[0]=a[0].toString()}else if("string"!=typeof a[0]){throw new Error("Invalid argument to string.sub")}var c=getIndex(a[1],a[0].length),d=a[0].length;if(2<a.length){d=getIndex(a[2],a[0].length)}if(d<c||0===c&&d===c){return""}else{return a[0].slice(c,d+1)}},replace:function(a,b,c){if(3>arguments.length){throw new Error("string.replace needs atleast three arguments")}if("string"!=typeof a||"string"!=typeof b||"string"!=typeof c){throw new Error("Invalid argument(s) to string.replace")}var d=new RegExp(voltmx.string.escapeRegExp(b),"g");return""!=a&&""==b?a:a.replace(d,c)},isAsciiAlpha:function(a){if(0===arguments.length){throw new Error("string.isAsciiAlpha needs atleast 1 argument")}if("string"!=typeof a){throw new Error("Invalid argument(s) to string.isAsciiAlpha")}return""==a?!1:!/[^a-zA-Z]/g.test(a)},isAsciiAlphaNumeric:function(a){if(0===arguments.length){throw new Error("string.isAsciiAlphaNumeric needs atleast 1 argument")}var b=a.match(/[^a-zA-Z0-9]/i),c=a.match(/^[a-zA-Z0-9]*$/i);return!b&&c&&a?!0:!1},isNumeric:function(a){if(0===arguments.length){throw new Error("string.isNumeric needs atleast 1 argument")}return""==a||"string"==typeof a&&0==a.replace(/\s/g,"").length?!1:!isNaN(a)},containsChars:function(b,c){if(0===arguments.length){throw new Error("string.containsChars needs 2 arguments")}if("string"!=typeof b){throw new Error("Invalid argument(s) to string.containsChars")}if(!1==c instanceof Array){throw new Error("Invalid argument to table.containsChars")}for(var a=[],d="",e=c,f=e.length,g=!1,h=0;h<f;h++){a[h]=e[h];if(""==b||""==a[h])return!0}d=a.join("");d="["+voltmx.string.escapeRegExp(d)+"]";var j=new RegExp(d,"g");g=j.test(b);return g},containsOnlyGivenChars:function(b,c){if(0===arguments.length){throw new Error("string.containsOnlyGivenChars needs atleast 1 argument")}if("string"!=typeof b){throw new Error("Invalid argument(s) to string.containsOnlyGivenChars")}for(var a=[],d="",e=c,f=e.length,g=!1,h=0;h<f;h++){a[h]=e[h]}d=a.join("");d="[^"+voltmx.string.escapeRegExp(d)+"]";var j=new RegExp(d,"g");g=j.test(b);if(!1===g){return!0}else{return!1}},containsNoGivenChars:function(b,c){if(0===arguments.length){throw new Error("string.containsNoGivenChars needs 2 arguments")}if("string"!=typeof b){throw new Error("Invalid argument(s) to string.containsNoGivenChars")}if(!1==c instanceof Array){throw new Error("Invalid argument to table.containsNoGivenChars")}for(var a=[],d="",e=c,f=e.length,g=!1,h=0;h<f;h++){a[h]=e[h];if(""==a[h])return!1}d=a.join("");d="["+voltmx.string.escapeRegExp(d)+"]";var j=new RegExp(d,"g");g=j.test(b);if(!1===g){return!0}else{return!1}},isValidEmail:function(a){if(0===arguments.length)throw new Error("string.isValidEmail needs atleast 1 argument");var b=a;if("string"!=typeof b)return!1;if(3>b.length-b.lastIndexOf(".")){return!1}return /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i.test(b)},escapeRegExp:function(a){return a.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&")}};voltmx.table={concat:function(a,b,c,d){var e=!1,f=!1,g=null;if(!arguments[0]instanceof Object)e=!0;if(!e){var h=arguments[0].length,j=0,k=h,l="",m=4<arguments.length?4:arguments.length-1;switch(arguments.length){case 4:arguments[3]-=0;if(isNaN(arguments[3])){e=!0}k=arguments[3];case 3:arguments[2]-=0;if(isNaN(arguments[2])||0>arguments[2]){e=!0}j=arguments[2];case 2:l=arguments[1];default:break;}if(0==h)return voltmx.table.returnResult("",e,f);if(e)return voltmx.table.returnResult(g,e,f);if(j>k){return voltmx.table.returnResult("",e,f)}else if(k>h){e=!0}else if(!e){g="";try{for(var n=j;n<k;n++){if(null==arguments[0][n]||arguments[0][n]instanceof Object)return voltmx.table.returnResult(null,!0,f);g+=arguments[0][n].toString()+l}g+=arguments[0][n].toString()}catch(a){f=!0}}}return voltmx.table.returnResult(g,e,f)},insert:function(a,b,c){var d=!1,f=!1;if(2>arguments.length||!(arguments[0]instanceof Object)){d=!0}if(!d){var g,h;if(2<arguments.length){g=arguments[1];if("string"==typeof g||isNaN(g)){return voltmx.table.returnResult(!0,f)}h=arguments[2]}else{g=arguments[0].length;h=arguments[1]}try{if("string"==typeof g||g>=arguments[0].length||0>=g){if(0==g){arguments[0].splice(g,0,h)}else{arguments[0][g]=h}}else{arguments[0].splice(g,0,h)}}catch(a){f=!0}}return voltmx.table.returnResult(d,f)},remove:function(a,b){var c=!1,d=null;if(0===arguments.length||!(arguments[0]instanceof Array)){c=!0}if(!c){var e=arguments[0].length-1;if(0<=e){if(1<arguments.length&&null!=arguments[1]){arguments[1]-=0;if(isNaN(arguments[1])||arguments[1]>e||0>arguments[1]){c=!0;return voltmx.table.returnResult(d,c,!1)}if(arguments[1]<e&&0<=arguments[1]){e=arguments[1]}}d=arguments[0].splice(e,1);d=d[0]}else return voltmx.table.returnResult(null,c,!1)}return voltmx.table.returnResult(d,c,!1)},sort:function(a,b,c){var d=!1,f=!1,g=null;if(0===arguments.length||!(arguments[0]instanceof Array)){d=!0}if("function"==typeof arguments[1]){g=arguments[1]}else if("function"==typeof arguments[2]){g=arguments[2]}if(!d){var h=arguments[0].length,j=arguments[0];if(2>arguments[0].length){return voltmx.table.returnResult(a,!1,!1)}try{for(var k=0,e;k<h;k++){e=typeof arguments[0][1];if(null==arguments[0][k]||typeof arguments[0][k]!=e){return voltmx.table.returnResult(!0,f)}}if(null!==arguments[1]&&!isNaN(arguments[1]))j.splice(arguments[1],j.slice(arguments[1],j.length).length);if(g){j.sort(function(c,a){var b=g(c,a);return b?-1:1})}else if("string"==typeof arguments[1]){g=arguments[1];j.sort(function(c,a){if(null!=c[g]&&typeof c[g]==typeof a[g]&&"string"==typeof c[g]){var b=c[g].toLowerCase(),d=a[g].toLowerCase();if(b<d)return-1;if(b>d)return 1;return 0}else{return c[g]-a[g]}})}else{j.sort(function(c,a){if("string"==typeof c){var b=c.toLowerCase(),d=a.toLowerCase();if(b<d){return-1}else if(b>d){return 1}else{return 0}}else return c-a})}}catch(a){f=!0;j=null}}if(!d&&!f)return voltmx.table.returnResult(j,d,f);else return voltmx.table.returnResult(!0,f)},filter:function(a,b){var c=!1,d=!1,e;if(2>arguments.length||!(a instanceof Object)||!("function"==typeof b)){c=!0}if(!c){var f,g,h;if(a instanceof Array&&b){try{e=[];for(var k=0;k<a.length;k++){g=a[k];if(g instanceof Object){return voltmx.table.returnResult(null,!0,d)}else{if(null!=g)h=b(k,g);if(!0===h)e.push(g);h=!1}}}catch(a){c=!0}}else if(a&&b){e={};try{for(var l in a){f=l;g=a[l];if(null!=g)h=b(l,g);if(!0===h){e[f]=g}h=!1}}catch(a){c=!0}}}if(c||d)e=null;return voltmx.table.returnResult(e,c,d)},map:function(a,b){var c=!1,d=!1;if(2>arguments.length||!1==a instanceof Object||!("function"==typeof b)){c=!0}if(!c){try{var e,f,g;if(a instanceof Array&&b){for(var h=a.length,k=0;k<h;k++){if(a[k]instanceof Array||null==a[k]){return voltmx.table.returnResult(!0,d)}}try{for(var k=0;k<h;k++){f=a[k];g=b(k,f);if(!1!==g){e=g[0];f=g[1];a[e]=f;g=!1}else return voltmx.table.returnResult(!0,d)}}catch(a){c=!0}}else if(a&&b){try{for(var l in a){e=l;f=a[e];g=b(e,f);if(!1!==g){e=g[0];f=g[1];a[e]=f;g=!1}else return voltmx.table.returnResult(!0,d)}}catch(a){c=!0}}}catch(a){d=!0}}return voltmx.table.returnResult(a,c,d)},mapNew:function(a,b){var c=!1,d=!1;if(2>arguments.length||!1==a instanceof Object||!("function"==typeof b)){c=!0}if(null==a)return voltmx.table.returnResult(null,c,d);try{var e=null,f,g,h;if(!c){if(a instanceof Array&&b){for(var k=a.length,l=0;l<k;l++){if(a[l]instanceof Object||null==a[l]){return voltmx.table.returnResult(null,!0,d)}}try{e=[];for(var l=0;l<k;l++){g=a[l];h=b(l,g);f=h[0];g=h[1];e[f]=g}}catch(a){c=!0}}else if(a&&b){try{e={};for(var m in a){f=m;g=a[f];h=b(f,g);if(!1!==h){f=h[0];g=h[1];e[f]=g;h=!1}else return voltmx.table.returnResult(!0,d)}}catch(a){c=!0}}}}catch(a){d=!0}if(c||d)e=null;return voltmx.table.returnResult(e,c,d)},get:function(a,b){var c=!1,d=!1,e=!1,f=null;if(2>arguments.length||!1==a instanceof Object||null==b){c=!0;return voltmx.table.returnResult(f,c,d)}try{if(b in a){f=a[b]}else e=!0}catch(a){d=!0}return voltmx.table.returnResult(f,c,d,e)},contains:function(a,b){var c=!1,d=!1;if(2>arguments.length||!1==a instanceof Object||null==b){return voltmx.table.returnResult(d,!0,c)}try{if(b in a)d=!0}catch(a){c=!0}return voltmx.table.returnResult(d,!1,c)},append:function(a,b){var c=!1,d=!1;if(2!=arguments.length||!(a instanceof Object)||!(b instanceof Object)){c=!0;return voltmx.table.returnResult(null,c,d)}try{if(a.length&&b.length){for(var e=0;e<b.length;e++){a.push(b[e])}}else{for(var f in b){a[f]=b[f]}}}catch(a){d=!0}return voltmx.table.returnResult(a,c,d)},removeAll:function(a){if(1>arguments.length){throw new Error("table.removeAll needs atleast 1 argument")}if("object"!=typeof a){throw new Error("Invalid  arguments to table.removeAll")}if(a.length)a.length=0;else{for(var b in a){delete a[b]}}},unpack:function(a){if(0===arguments.length){throw new Error("unpack needs atleast one argument")}if(!1==a instanceof Object){throw new Error("Invalid first argument to unpack")}var b=3<arguments.length?3:arguments.length,c=arguments[0].length,d=0,e=c;switch(b){case 3:arguments[2]-=0;if(isNaN(arguments[2])){throw new Error("Invalid argument to unpack")}e=arguments[2];case 2:arguments[1]-=0;if(isNaN(arguments[1])){throw new Error("Invalid argument to unpack")}d=arguments[1];default:break;}if(d>e){return[""]}else{for(var f="",g=d;g<e;g++){if(0==g){f=arguments[0][g]}else{f=f+" "+arguments[0][g]}}return f}},returnResult:function(){var a=null,b=null,c=!1,d=!1;if(3<=arguments.length){var e=arguments[0];c=arguments[1];d=arguments[2];var f=arguments[3]}else{c=arguments[0];d=arguments[1]}if(c){a=100;b="INVALID ARGUMENTS"}else if(d){a=101;b="INTERNAL ERROR"}else if(f){a=0;b="INVALID KEY"}if(3<=arguments.length)return e;else if(2==arguments.length&&(c||d))return[a,b];else return}};voltmx.os.time=function(){var a=new Date().toTimeString();return a.slice(0,a.indexOf(" "))};voltmx.os.diffDateTime=function(a,b){if("string"!=typeof a||"string"!=typeof b){throw new Error("Invalid argument(s) to os.diffDateTime")}var c=a.split(":");c[2]=c[2]-0;var d=b.split(":");d[2]=d[2]-0;var e=3600*c[0]+60*c[1]+c[2],f=3600*d[0]+60*d[1]+d[2];return e>86400||f>86400?null:e-f};voltmx.os.date=function(){var a,b=new Date;if(0===arguments.length){var c=b.toTimeString();a=voltmx.os.padZero(b.getMonth()+1)+"/"+voltmx.os.padZero(b.getDate())+"/"+voltmx.os.padZero(b.getFullYear()%100)+" "+c.slice(0,c.indexOf(" "));return a}else if("string"==typeof arguments[0]){if(-1!=arguments[0].toLowerCase().indexOf("dd")){return voltmx.os.formatdate(arguments[0],b)}else{var d="!"===arguments[0].charAt(0),e=d?1:0;if("*"===arguments[0].charAt(e)&&"t"===arguments[0].charAt(e+1)){var f=d?b.getUTCDate():b.getDate(),g=(d?b.getUTCMonth():b.getMonth())+1,h=d?b.getUTCFullYear():b.getFullYear();a={};a.year=h;a.month=g;a.day=f;a.hour=d?b.getUTCHours():b.getHours();a.min=d?b.getUTCMinutes():b.getMinutes();a.sec=d?b.getUTCSeconds():b.getSeconds();a.wday=d?b.getUTCDay():b.getDay()+1;a.yday=voltmx.os.getDayOfYear(f,g,h);a.isdst=d?!1:voltmx.os.checkForDst();return a}else return null}}else return null};voltmx.os.toCurrency=function(a){a-=0;if(isNaN(a)){throw new Error("Invalid argument to os.toCurrency")}if(0>a)a*=-1;var b=a.toFixed(3);b=b.substr(0,b.length-1);for(var c="",d=0;d<b.length-4;d++){c+=b.charAt(d);if(0==(b.length-d-1)%3)c+=","}for(;d<b.length;d++){c+=b.charAt(d)}return"$"+c};voltmx.os.toNumber=function(a){if(1!=arguments.length){throw new Error("Invalid argument to os.toNumber")}if("number"==typeof a){return a}else if("string"==typeof a){var b=a.replace(/^\s*/,"").replace(/\s*$/,"");if(""===b){return null}else{var c=b-0;return isNaN(c)?null:c}}else{return null}};voltmx.os.compareDates=function(a,b,c){if(null==a||null==b||null==c||!voltmx.os.isvaliddate(a,c)||!voltmx.os.isvaliddate(b,c))return null;var d=voltmx.os.getDate(a,c),e=voltmx.os.getDate(b,c);return parseInt((d.getTime()-e.getTime())/86400000)};voltmx.os.addToDate=function(a,b,c,d){if(null==a||null==b||null==c||null==d){return null}var e=a,f=b,g=c,h=d,i=e.split("/");if(!voltmx.os.isvaliddate(e,f))return null;var j=voltmx.os.getDate(e,f);if(j){switch(g){case"years":j.setFullYear(j.getFullYear()+h);break;case"months":j.setMonth(j.getMonth()+h);break;case"days":j.setDate(j.getDate()+h);break;case"hours":j.setHours(j.getHours()+h);break;case"minutes":j.setMinutes(j.getMinutes()+h);break;default:break;}if(voltmx.os.isLeapYear([a,f])&&1<=j.getMonth()&&("years"==g||"months"==g&&(-12==h||12==h)))j.setDate(j.getDategetDate()-1);return voltmx.os.formatdate(f,j)}return null};voltmx.os.isLeapYear=function(a,b){var c,d=new Date;c=d.getFullYear();if("string"==typeof a&&"string"==typeof b){if(!voltmx.os.isvaliddate(a,b))return!1;var e=a.split("/")[2];c=2==e.length?parseInt(d.getFullYear().toString().substr(0,2)+e):parseInt(e)}if(0==c%400||0==c%4&&0!=c%100){return!0}else{return!1}};voltmx.os.formatDate=function(a,b,c){if(null==a||null==b||null==c){return null}else if("string"==typeof a&&"string"==typeof b&&"string"==typeof c){var d=a,e=b,f=c,g=e.indexOf("dd"),h=e.indexOf("mm"),i=-1!=e.indexOf("yyyy")?e.indexOf("yyyy"):e.indexOf("yy");if("dd/mm/yyyy"==e&&!voltmx.os.isvaliddate(d,e)||-1==g||-1==h||-1==i||-1!=e.indexOf("ddd")||-1!=e.indexOf("mmm")){return null}var j=e.charAt(g-1),k=e.charAt(g+2);k="("==k?"":k;var l=e.charAt(h-1),m=e.charAt(h+2),n=e.charAt(i-1),o=e.charAt(i+4),p=""==j?d.indexOf(j,g-1):d.indexOf(j,g-2)+1,q=""==l?d.indexOf(l,h-1):d.indexOf(l,h-2)+1,r=""==n?d.indexOf(n,i-1):-1!=d.indexOf(n,i-2)?d.indexOf(n,i-2)+1:d.indexOf(n,i-4)+1,s=""!=k?d.indexOf(k,g):d.indexOf(k,g+2),t=""!=m?d.indexOf(m,h):d.indexOf(m,h+2),u=""!=o?d.indexOf(o,i):d.indexOf(o,i+4),v=d.substring(p,s),w=d.substring(q,t),x=d.substring(r,u);if(2==x.length&&-1!=f.indexOf("yyyy"))var y=new Date().getFullYear().toString().substr(0,2)+x;f=f.replace(/dd/,voltmx.os.padZero(parseInt(v,10)));f=f.replace(/mm/,voltmx.os.padZero(parseInt(w,10)));f=f.replace(/(yyyy|yy)/,y?y:-1==f.indexOf("yyyy")&&4==x.length?x.substr(2,2):x);return f}return null};voltmx.os.isValidDate=function(a,b){return 2!=arguments.length||null==a||null==b?!1:voltmx.os.isvaliddate(a,b)};voltmx.os.dateComponents=function(a,b){var c,d;if(0==arguments.length){d=new Date}else if(null!=a&&null!=b){if(!voltmx.os.isvaliddate(a,b))return null;d=voltmx.os.getDate(a,b);var e=b.split("/")[2]}if(d){var f=d.getDate(),g=d.getMonth()+1,h=e&&2==e.length?parseInt(d.getFullYear().toString().substr(2,2)):d.getFullYear();c={};c.year=h;c.month=g;c.day=f;c.hour=d.getHours();c.min=d.getMinutes();c.sec=d.getSeconds();c.wday=d.getDay()+1;c.yday=voltmx.os.getDayOfYear(f,g,h);c.isdst=voltmx.os.checkForDst();return c}else return null};voltmx.os.padZero=function(a){return 10>a?"0"+a:a};voltmx.os.formatdate=function(a,b){a=a.toLowerCase();a=a.replace(/dd/,voltmx.os.padZero(b.getDate()));a=a.replace(/mm/,voltmx.os.padZero(b.getMonth()+1));return a.replace(/(yyyy|yy)/,-1==a.indexOf("yyyy")?b.getFullYear().toString().substr(2,2):b.getFullYear())};voltmx.os.isvaliddate=function(a,b){var c="/",d=voltmx.os.daysArray(12),e=a.indexOf(c),f=a.indexOf(c,e+1),g=b||"dd/mm/yyyy";if("dd/mm/yyyy"==g||"dd/mm/yy"==g){var h=a.substring(0,e),j=a.substring(e+1,f)}else if("mm/dd/yy"==g||"mm/dd/yyyy"==g){var h=a.substring(e+1,f),j=a.substring(0,e)}else return!1;var k=a.substring(f+1),l=new Date;strYr=k;if("0"==h.charAt(0)&&1<h.length)h=h.substring(1);if("0"==j.charAt(0)&&1<j.length)j=j.substring(1);if(2==strYr.length){strYr=(l.getFullYear()+"").substr(0,2)+strYr}for(var m=1;3>=m;m++){if("0"==strYr.charAt(0)&&1<strYr.length)strYr=strYr.substring(1)}month=parseInt(j);day=parseInt(h);year=parseInt(strYr);if(!voltmx.os.isInteger(j)||!voltmx.os.isInteger(h)||!voltmx.os.isInteger(k)||1>j.length||1>month||12<month||1>h.length||1>day||31<day||2==month&&day>voltmx.os.daysInFebruary(year)||day>d[month]||4!=strYr.length||0==year||year<1900||year>2100){return!1}return!0};voltmx.os.daysArray=function(a){for(var b=1;b<=a;b++){this[b]=31;if(4==b||6==b||9==b||11==b){this[b]=30}if(2==b){this[b]=29}}return this};voltmx.os.daysInFebruary=function(a){return 0==a%4&&(!(0==a%100)||0==a%400)?29:28};voltmx.os.isInteger=function(a){var b;for(b=0;b<a.length;b++){var d=a.charAt(b);if("0">d||"9"<d)return!1}return!0};voltmx.os.getDate=function(a,b){var c;if("string"==typeof a&&"string"==typeof b){var d=a.split("/"),e=new Date().getFullYear().toString().substr(0,2);if(-1==b.indexOf("yyyy")||2==d[2].length)d[2]=e+d[2];if("mm/dd/yyyy"==b||"mm/dd/yy"==b)c=new Date(d[0]+"/"+d[1]+"/"+d[2]);else c=new Date(d[1]+"/"+d[0]+"/"+d[2]);return c}};voltmx.os.getDayOfYear=function(a,b,c){var d,e,f=[31,28,31,30,31,30,31,31,30,31,30,31];if(0==c%4){f[1]++}for(d=1,e=0;d<b;e+=f[d-1],d++){}return e+a};voltmx.os.checkForDst=function(){var a=new Date,b=new Date(a.getFullYear(),0,1,0,0,0,0),c=b.toGMTString(),d=new Date(c.substring(0,c.lastIndexOf(" ")-1)),e=new Date(a.getFullYear(),6,1,0,0,0,0);c=e.toGMTString();var f=new Date(c.substring(0,c.lastIndexOf(" ")-1));if((b-d)/3600000==(e-f)/3600000){return!1}else{return!0}};
 //FP Appended voltmxmvcextns.js-----------------------------------------------------------
 ;
 (function() {
@@ -210349,7 +211378,7 @@ var appConfig = {
     appVersion: "1.0.0",
     isturlbase: "https://voltmxtechnohub.hclvoltmx.net/services",
     isDebug: true,
-    hotReloadURL: "ws://192.168.1.11:9099",
+    hotReloadURL: "ws://192.168.1.79:9099",
     isMFApp: true,
     appKey: "207078c22fad797b00f67edfd3023c76",
     appSecret: "26e4e0d0423634adbb3149524c989125",
@@ -210361,7 +211390,7 @@ var appConfig = {
             "_internal_logout": "https://voltmxtechnohub.hclvoltmx.net/services/IST",
             "LoginSer": "https://voltmxtechnohub.hclvoltmx.net/services/LoginSer"
         },
-        "service_doc_etag": "0000019DF8079DF0",
+        "service_doc_etag": "0000019EB5DD7CA0",
         "appId": "ec3a3fe3-fc60-4ef1-9856-60c371c055ee",
         "identity_features": {
             "reporting_params_header_allowed": true
@@ -210391,6 +211420,11 @@ var appConfig = {
             "appVersion": "1.0.0",
             "appId": "SBCommon",
             "appName": "SBCommon"
+        },
+        "SimpleLightTouch": {
+            "appVersion": "1.0.0",
+            "appId": "SimpleLightTouch",
+            "appName": "SimpleLightTouch"
         },
         "ManageScheme": {
             "appVersion": "1.0.0",

@@ -36,7 +36,10 @@
     "canUpdateUI": true,
     "children": [
         "btnRisk1",
-        "btnRisk2"
+        "btnRisk2",
+        "btnRisk3",
+        "btnRisk4",
+        "btnRisk5"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -48,7 +51,7 @@
     "id": "flxRiskTypes",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": true,
+    "isvisible": false,
     "kuid": "a410b51cacee45998a5513ec79ba0f07",
     "layouttype": 3,
     "name": "kony.ui.FlexContainer",

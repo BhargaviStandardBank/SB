@@ -24,7 +24,7 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_skin_": "sb9abbe20c604650b6e8f1350a08a33b",
     "_top_": {
         "type": "string",
         "value": "0dp"
@@ -39,47 +39,66 @@
     "clipbounds": false,
     "containerweight": 0,
     "dataDiffs": {
+        "FlexContainer0c5eafe3e5fdf45": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "a8a9035893ed4cdb8212c1a6e2d6e362",
+                "srcKUID": "b0c2e11d0fcb43188eaca020aca70ab0",
+                "wType": "FlexContainer"
+            }
+        },
+        "FlexContainer0cfbd412f8d984f": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "ga59cfdb15b842eabf7961f00a8cba92",
+                "srcKUID": "a76d07791cf54efaba1f1e8298ba60ef",
+                "wType": "FlexContainer"
+            }
+        },
         "FormHeader": {
             "__events__": {},
             "__info__": {
                 "isRoot": true,
-                "kuid": "hb126935e30244f28533382f9d45c9df",
+                "kuid": "e43e573591b64278819f13e40bf24442",
                 "srcKUID": "ja2cbe8fda184c1caaab89eeae9fb281",
                 "wType": "FlexContainer"
-            },
-            "centerY": {
-                "Default": {
-                    "type": "string",
-                    "value": ""
-                }
-            },
-            "responsiveData": {},
-            "top": {
-                "Default": {
-                    "type": "string",
-                    "value": "0dp"
-                }
+            }
+        },
+        "Label0b2fdf6dd443b44": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "eb2eed460f324ae18e89125f3f85dcf7",
+                "srcKUID": "g18338682f7440699865c7b3b0649058",
+                "wType": "Label"
+            }
+        },
+        "imgLogout": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "f84abfa726374b419a918d6ad5adfc38",
+                "srcKUID": "j4a298acc2ce463686107bdf619e3c57",
+                "wType": "Image"
             }
         },
         "lblHdr": {
             "__events__": {},
             "__info__": {
-                "kuid": "j4c79c47b2a64c3f8519ee35b6a6818f",
+                "kuid": "jee3e71d9058478da2df88301c87be12",
                 "srcKUID": "ecaffe136a7647ee89b97eff000d8e8c",
                 "wType": "Label"
             },
             "responsiveData": {},
-            "text": "Credit Risk Portal Uganda [DEV]"
+            "text": "Credit Risk Portal"
         }
     },
     "enablescrolling": true,
-    "focusskin": "sf51dc37fd0a40178320b8330b005a98",
+    "focusskin": null,
     "id": "FormHeader",
     "info": null,
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kuid": "hb126935e30244f28533382f9d45c9df",
+    "kuid": "e43e573591b64278819f13e40bf24442",
     "layouttype": 2,
     "masterType": 0,
     "name": "kony.ui.UserWidgetInstance",

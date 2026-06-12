@@ -21,8 +21,8 @@
         0,
         0
     ],
-    "_skin_": "s0b832878dcd444db484ebed85364f19",
-    "_text_": "BBRS",
+    "_skin_": "se80c79bfad1461d8cbb84a5c694e3f3",
+    "_text_": "CRI",
     "_top_": {
         "type": "string",
         "value": "0"
@@ -45,7 +45,7 @@
     "info": null,
     "iscustomlayout": false,
     "isvisible": true,
-    "kuid": "e0d29c7d54f346d1bda071f3e6056305",
+    "kuid": "be412f470f9e4b3ca33fbeacc5cf0e08",
     "name": "kony.ui.Button",
     "parent": "flxRiskTypes",
     "pf": "frmCustomer",

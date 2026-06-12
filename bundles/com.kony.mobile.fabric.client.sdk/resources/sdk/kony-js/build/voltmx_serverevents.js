@@ -1,5 +1,5 @@
 /**
- * voltmx_serverevents version 10.0.3.0
+ * voltmx_serverevents version 10.0.7.0
  */
        
 //#ifdef iphone

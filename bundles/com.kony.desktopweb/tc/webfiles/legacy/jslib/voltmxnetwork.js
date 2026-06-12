@@ -1,6 +1,26 @@
+var __previousNet = $KI.net || {};
+
 $KI.net = {
 
     integrityProperties: null,
+
+    EventSourceImpl: __previousNet.EventSourceImpl || null,
+
+    EventSource: function(url, config) {
+        var EventSourceImpl = $KI.net.EventSourceImpl || __previousNet.EventSourceImpl;
+
+        if(typeof EventSourceImpl === 'function') {
+            return new EventSourceImpl(url, config);
+        }
+
+        if(typeof __previousNet.EventSource === 'function'
+        && __previousNet.EventSource !== $KI.net.EventSource) {
+            return __previousNet.EventSource(url, config);
+        }
+
+        $KU.logErrorMessage('EventSource implementation not loaded. Ensure jslib/voltmxeventsource.js is available.');
+        throw new Error('EventSource implementation not loaded. Ensure jslib/voltmxeventsource.js is available.');
+    },
 
     postdataparams: function(postobj) {
         var postdata = "",

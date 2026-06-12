@@ -1,5 +1,5 @@
 /**
- * voltmx-spa-offlineobjects version 10.0.3.0
+ * voltmx-spa-offlineobjects version 10.0.7.0
  * This file is intended for desktopWeb/SPA only.
  */
  

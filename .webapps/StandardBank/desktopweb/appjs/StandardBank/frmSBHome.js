@@ -20,47 +20,6 @@ define("StandardBank/frmSBHome", function() {
                 "paddingInPixel": false
             }, {});
             flxmain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": false,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBdr",
-                "top": "0dp",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "StandardBank"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
-            var SideMenu = new com.hcl.menu.SideMenu({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "100%",
-                "id": "SideMenu",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {}
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -81,7 +40,6 @@ define("StandardBank/frmSBHome", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
                 "height": "8%",
                 "id": "FormHeader",
                 "isVisible": true,
@@ -89,18 +47,14 @@ define("StandardBank/frmSBHome", function() {
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
                 "overrides": {
-                    "FormHeader": {
-                        "centerY": "viz.val_cleared",
-                        "top": "0dp"
-                    },
                     "lblHdr": {
-                        "text": "Credit Risk Portal Uganda [DEV]"
+                        "text": "Credit Risk Portal"
                     }
                 }
             }, {
@@ -116,7 +70,7 @@ define("StandardBank/frmSBHome", function() {
                 "right": "0dp",
                 "skin": "slImage",
                 "src": "map_uganda.jpg",
-                "top": "-8%",
+                "top": "0%",
                 "width": "600px",
                 "zIndex": 1
             }, {
@@ -147,18 +101,14 @@ define("StandardBank/frmSBHome", function() {
             }, {
                 "overrides": {}
             });
-            flxmain.add(flxLeft, flxRight, SideMenu1);
+            flxmain.add(flxRight, SideMenu1);
             this.breakpointResetData = {};
             this.breakpointData = {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader": {
-                    "centerY": "",
-                    "top": "0dp"
-                },
                 "FormHeader.lblHdr": {
-                    "text": "Credit Risk Portal Uganda [DEV]"
+                    "text": "Credit Risk Portal"
                 }
             }
             this.add(flxmain);

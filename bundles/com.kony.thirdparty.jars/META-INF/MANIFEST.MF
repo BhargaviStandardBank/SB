@@ -4,7 +4,7 @@ Created-By: 1.8.0_261-b12 (Oracle Corporation)
 Bundle-ManifestVersion: 2
 Bundle-Name: Third Party Jars Plug-in
 Bundle-SymbolicName: com.kony.thirdparty.jars
-Bundle-Version: 10.0.3.0.v202510291352
+Bundle-Version: 10.0.6.0.v202603111214
 Eclipse-BuddyPolicy: registered
 Bundle-ClassPath: ant-contrib-0.6.jar,AntelopeTasks_3.4.0.jar,antlr-3.3-
  complete.jar,commons-beanutils-1.9.2.jar,commons-collections-3.2.2.jar,

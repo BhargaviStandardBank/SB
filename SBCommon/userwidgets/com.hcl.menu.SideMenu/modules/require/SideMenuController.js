@@ -55,18 +55,20 @@ define(function() {
         rows: [
           { lblMenuItem: "View Customer Info", formID: {
             "appName": "Customer360",
+            "appInfo":"Customer 360",
             "friendlyName": "frmCustomer"
           }
           },
           { lblMenuItem: "View Application", formID: {
             "appName": "Customer360",
+            "appInfo":"Customer 360",
             "friendlyName": "frmCustomer"
           }
           }
         ]
       },
       {
-        header: { imgIcon: "icon_suspend.png",lblSectionTitle: "Financial Spreading & Risk Rating", isExpanded: false },
+        header: { imgIcon: "icon_financialrisk.png",lblSectionTitle:"Financial Spreading & Risk Rating", isExpanded: false },
         rows: [
           { lblMenuItem: "Spread Financials", formID: {
             "appName": "Customer360",
@@ -91,7 +93,7 @@ define(function() {
         ]
       },
       {
-        header: { imgIcon: "icon_suspend.png",lblSectionTitle: "Queue Manager", isExpanded: false },
+        header: { imgIcon: "icon_queue.png",lblSectionTitle: "Queue Manager", isExpanded: false },
         rows: [
           { lblMenuItem: "POR Queues", formID: {
             "appName": "Customer360",
@@ -204,12 +206,12 @@ define(function() {
           }
           }
         ]
-      }
-//       {
-//         header: { imgIcon: "icon_suspend.png",lblSectionTitle: "Home", isExpanded: false,
-//                  formID: { "appName": "StandardBank", "friendlyName": "frmSBHome" }
-//                 },
-//       },
+      },
+      {
+        header: { imgIcon: "icon_home.png",lblSectionTitle: "Home", isExpanded: false,
+                 formID: { "appName": "StandardBank", "friendlyName": "frmSBHome" }
+                },
+      },
     ],
 
     constructor: function() {
@@ -248,7 +250,7 @@ define(function() {
       //     );
 
       this.isCollapsed = false;
-      this.view.flxUserDetails.isVisible = true;
+      //this.view.flxUserDetails.isVisible = true;
       //this._updateMenuToIconAndText();
     },
     collapseSidebar: function() {
@@ -390,7 +392,7 @@ define(function() {
         return new Promise((resolve, reject) => {
           try {
             const nav = new voltmx.mvc.Navigation(selectedItem.formID);
-            nav.navigate();
+            nav.navigate(selectedItem);
             resolve();
           } catch (e) {
             // Throwing exception instead of print for better debugging

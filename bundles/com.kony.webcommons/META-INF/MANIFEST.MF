@@ -4,7 +4,7 @@ Created-By: 1.8.0_265-b01 (Oracle Corporation)
 Bundle-ManifestVersion: 1
 Bundle-Name: Volt MX Web Commons
 Bundle-SymbolicName: com.kony.webcommons
-Bundle-Version: 10.0.5.0.v202602021017
+Bundle-Version: 10.0.6.0.v202604101248
 Bundle-Activator: com.kony.web.Activator
 Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime
 Eclipse-LazyStart: true
@@ -82,6 +82,9 @@ Name: common/wap/TXTemplate/hcl_mx_archetype/src/main/resources/archetyp
  letResource_en.properties
 SHA-256-Digest: YoqjpF62Ln8JkqSOHnE0TGBDmMZ2cpctw+JYP0dnWII=
 
+Name: common/wap/10.0.6.0.v202604101248.txt
+SHA-256-Digest: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+
 Name: common/wap/inputdata/webfiles/iphone/tupF.png
 SHA-256-Digest: D5M9vAR5Y/ihuGzZG/sHPKZHKue5ONpcb8jVB6AMCs8=
 
@@ -127,9 +130,6 @@ SHA-256-Digest: etBOgXTT6mJ+Ro+/vtqqMiAu8TAr5FyO17Ub2H6zGPQ=
 
 Name: common/wap/inputdata/webfiles/iphone/rotate-right-slotfooter.png
 SHA-256-Digest: PDsIJbRUkqaEmzIS7IBKCenyDf4aUuqaQtTGPpRflRE=
-
-Name: common/wap/10.0.5.0.v202602021017.txt
-SHA-256-Digest: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
 
 Name: common/wap/inputdata/webfiles/iphone/pinstripes.png
 SHA-256-Digest: 97HZt4dMLWHN4gQ6Uay3rBoXlHH9hBUur+fapCXS6U8=
@@ -281,7 +281,7 @@ Name: common/wap/inputdata/webfiles/iphone/checkboxselected.png
 SHA-256-Digest: OwCtssa/sX5PMkQBEB0ZcFlDQOCoRHtA1lFaI7Xgta4=
 
 Name: platform.properties
-SHA-256-Digest: hdqOelctcQOf+RCiDQDEG6D20OFJNrSXRyjREVO8O9g=
+SHA-256-Digest: Wp/wyGeh84wHj0T2fVQ4loblOblwGvjRLX8Z8gSdMlE=
 
 Name: common/wap/inputdata/webfiles/iphone/tupF.bmp
 SHA-256-Digest: NeIfTkF+1i0hq+K7ZVHQbDK2qSsIOzjBFM74rxorUuA=
@@ -322,7 +322,7 @@ Name: common/wap/TXTemplate/hcl_mx_archetype/README.md
 SHA-256-Digest: NJjuprNiz5CQv35bFMOrQStrdqoFFjxOUoizDZM2RJw=
 
 Name: konywebcommonslib/KonyWebCommons.jar
-SHA-256-Digest: 9LE8HRzt5/bqC9fYKkkwAgqOuaTNAXx/5VCq3fY6IPA=
+SHA-256-Digest: uFkngkQpUFcyb/14VUB8aIVOa3qxK27so8FTzqn9B+8=
 
 Name: common/wap/inputdata/webfiles/iphone/konycalendar.png
 SHA-256-Digest: qKzpKj832MGHM2oRf8CGSiWfx2jx7ysqfwBIrzFHv48=
@@ -392,10 +392,10 @@ Name: common/wap/inputdata/webfiles/iphone/kwebfw-prev-month.png
 SHA-256-Digest: gK47OmG96mweVzJOvqC2iv6EuKQxprncK9ButwHglZY=
 
 Name: common/wap/KonyUtils.jar
-SHA-256-Digest: K3k63Xxn3VBpw16kPGNS7faqfKeNgJFfry6gRhgguy8=
+SHA-256-Digest: j/966/RDboePheLdkx6sdlmjAyxrcSI+nuJ8Mx8WxTw=
 
 Name: common/KonyFMParser.jar
-SHA-256-Digest: +QEeu3zacGvBDRyg38luhgApJ0W9YX8EzOp3WTFJOuw=
+SHA-256-Digest: JZ4e+XWlN65F7W0cKAYi2845JC1HVo4kunrTCJOv8Hc=
 
 Name: common/wap/inputdata/webfiles/iphone/fsc_down.png
 SHA-256-Digest: 1j7RTpNc+eJkJQ60IGt6RafqJkVHGW09eClDKHcCRmo=
@@ -423,7 +423,7 @@ Name: common/wap/inputdata/webfiles/iphone/loading.gif
 SHA-256-Digest: cmSTHbvK0eKZ0KxuyzgVx0B5aBfIsb806KVvzNxCFdg=
 
 Name: common/wap/build.xml
-SHA-256-Digest: rMcVcMK6GRpeBPotJ+IQ6ARkduaHHc/485AX/oD0VgQ=
+SHA-256-Digest: vYtLfAxs2+mN8bUi6fgq5gnBpC+ZsZM+PiuQJboXajc=
 
 Name: common/wap/inputdata/webfiles/iphone/cameraicon.png
 SHA-256-Digest: jkHNr+XdOwlgO/+qo7HdsD+5c1jkKJr7BxyKubrm0CY=
@@ -434,13 +434,13 @@ Name: common/wap/TXTemplate/hcl_mx_archetype/target/classes/archetype-re
 SHA-256-Digest: zwdyd0neJxVad3kuUK5iAL4TibP5tMo0Oea7QOedPTc=
 
 Name: common/wap/lib/konyweblib.jar
-SHA-256-Digest: 7XpycXfq71v/ZlgoNHE92csPGufpKMDpyN86jvem7qw=
+SHA-256-Digest: 0zltVvQ4l5x91QIO0OMzZ7RbH8UyBQXxmatYhXQtT1U=
 
 Name: common/wap/inputdata/webfiles/spabot/index.jsp
 SHA-256-Digest: 7SEJt+3I69cIZHL5wqmtZ3jkL8ItcatUWr9Q4TkTMvw=
 
 Name: common/konysecurejs.jar
-SHA-256-Digest: XqDErY7UqXqBiFNE3x6+980wje3e1Z1nBm6K+PzxDfc=
+SHA-256-Digest: Nkq/stcFBUNQEFC1zd9B4FBU57Ha8OA9rJkzfDV+szo=
 
 Name: common/wap/inputdata/webfiles/iphone/prvarw.png
 SHA-256-Digest: MPsM5L/nwzHUGdPj2Uzy11kp475Xd1SMPZlE+KvgW/Q=
@@ -461,7 +461,7 @@ Name: common/wap/TXTemplate/hcl_mx_archetype/src/main/resources/archetyp
 SHA-256-Digest: zwdyd0neJxVad3kuUK5iAL4TibP5tMo0Oea7QOedPTc=
 
 Name: common/wap/common-build.xml
-SHA-256-Digest: tn956Kixq1KdYn3xFLNeFp28TJh14BmIzaUhzZSehvY=
+SHA-256-Digest: fGdJglECQEcRQ0Zyj8PcvjWKbLd2lcUAJs93ZPxcB7k=
 
 Name: common/wap/TXTemplate/hcl_mx_archetype/src/main/resources/archetyp
  e-resources/.vscode/tasks.json

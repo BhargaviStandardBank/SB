@@ -4482,7 +4482,7 @@
             id: function BasicWidget$_valid_id(value) {
                 var $K = voltmx.$kwebfw$, $KU = $K.utils, regexp = null, flag = false;
 
-                regexp = /^[a-zA-Z][a-zA-Z0-9]*$/;
+                regexp = /^[\p{L}\p{N}_-]+$/u;
 
                 if($KU.is(value, 'string') && value && regexp.test(value)) {
                     flag = true;
@@ -5466,7 +5466,7 @@
             id: function UserWidget$_valid_id(value) {
                 var $K = voltmx.$kwebfw$, $KU = $K.utils, regexp = null, flag = false;
 
-                regexp = new RegExp('^[a-zA-Z][a-zA-Z0-9]*$');
+                regexp = /^[\p{L}\p{N}_-]+$/u;
 
                 if($KU.is(value, 'string') && value && regexp.test(value)) {
                     flag = true;

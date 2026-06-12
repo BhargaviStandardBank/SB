@@ -1,5 +1,5 @@
  /*
-  * voltmx-sdk-ide Version 10.0.3.0
+  * voltmx-sdk-ide Version 10.0.7.0
   */
         
 //#ifdef iphone
@@ -540,7 +540,7 @@ voltmx.sdk.currentInstance = null;
 voltmx.sdk.isLicenseUrlAvailable = true;
 voltmx.sdk.isOAuthLogoutInProgress = false;
 voltmx.sdk.constants = voltmx.sdk.constants || {};
-voltmx.sdk.version = "10.0.3.0";
+voltmx.sdk.version = "10.0.7.0";
 voltmx.sdk.logsdk = new voltmxSdkLogger();
 voltmx.sdk.syncService = null;
 voltmx.sdk.dataStore = voltmx.sdk.dataStore || new voltmxDataStore();
@@ -1873,7 +1873,29 @@ voltmx.sdk.constants =
         /**custom params for oauth**/
         CUSTOM_QUERY_PARAMS_FOR_OAUTH : "customQueryParamsForOAuth",
         CUSTOM_OAUTH_PARAMS : "customOAuthParams",
-        LOGOUT_OPTIONS : "logoutOptions"
+        LOGOUT_OPTIONS : "logoutOptions",
+
+        /** SSE Constants **/
+        STREAM_CLOSED_CODE: 1028,
+        STREAM_CLOSED_MESSAGE: "Stream connection closed successfully by user",
+        STREAM_ERROR_CODE: 1029,
+        STREAM_ALREADY_CLOSED_MESSAGE: "Stream connection is already closed",
+        STREAM_NOT_STARTED_MESSAGE: "Stream connection has not been initiated yet",
+        STREAM_FAILED_MESSAGE: "An internal error occurred while trying to close the connection",
+
+        HANDLE_STATE: {
+            IDLE: "idle",
+            IN_PROGRESS: "in_progress",
+            CLOSED: "closed"
+        },
+
+        CONNECTION_STATES: {
+            IDLE: 'idle',
+            IN_PROGRESS: 'in_progress',
+            OPEN: 'open',
+            ERROR: 'error',
+            CLOSED: 'closed'
+        }
     };
 
 if (typeof(voltmx.sdk) === "undefined") {
@@ -10191,6 +10213,212 @@ voltmx.sdk.metric.getEventsInBuffer = function() {
 		return null;
 	}
 };
+function EventSourceConnector(
+    url,
+    headers,
+    data,
+    successCallback,
+    failureCallback,
+    options,
+    httpMethod
+) {
+    this.url = this.validateURL(url);
+    this.options = this.validateOptions(options);
+    var retryOptions = (this.options.retry && typeof this.options.retry === 'object') ? this.options.retry : {};
+    this.config = {
+        method: (httpMethod || voltmx.sdk.constants.HTTP_METHOD_POST),
+        headers: headers || {},
+        retry: {}
+    };
+    if (typeof data !== 'undefined') {
+        this.config.body = data;
+    }
+    // Android & iOS only
+    if ("requestTimeout" in this.options) {
+        this.config.requestTimeout = this.options.requestTimeout;
+    }
+    if ("enable" in retryOptions) {
+        this.config.retry.enable = retryOptions.enable;
+    }
+    if ("verifyNoContent" in retryOptions) {
+        this.config.retry.verifyNoContent = retryOptions.verifyNoContent;
+    }
+    // Android & iOS only
+    if ("interval" in retryOptions) {
+        this.config.retry.interval = retryOptions.interval;
+    }
+    if ("maxInterval" in retryOptions) {
+        this.config.retry.maxInterval = retryOptions.maxInterval;
+    }
+    this.config.headers[voltmx.sdk.constants.HTTP_CONTENT_HEADER] = voltmx.sdk.constants.CONTENT_TYPE_JSON;
+    this.successCallback = successCallback;
+    this.failureCallback = failureCallback;
+    this.state = voltmx.sdk.constants.CONNECTION_STATES.IDLE;
+    this._isTerminated = false;
+}
+
+EventSourceConnector.prototype.validateURL = function (url) {
+    if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+        throw new Error("Invalid URL");
+    }
+    return url;
+};
+
+EventSourceConnector.prototype.validateOptions = function (options) {
+    var _options = {};
+
+    if (options && typeof options !== 'object') {
+        throw new Error('Invalid options payload');
+    }
+
+    for (var option in options) {
+        _options[option] = options[option];
+    }
+
+    return _options;
+};
+
+EventSourceConnector._sseCloseHandleBindingMap = new WeakMap();
+
+EventSourceConnector.prototype.open = function () {
+    var self = this;
+    this.eventSource = new voltmx.net.EventSource(this.url, this.config);
+    this.state = voltmx.sdk.constants.CONNECTION_STATES.IN_PROGRESS;
+
+    this.eventSource.onOpen = function (evt) {
+        self.state = voltmx.sdk.constants.CONNECTION_STATES.OPEN;
+        voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+    };
+
+    this.eventSource.onMessage = function (evt) {
+        voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+    };
+
+    this.eventSource.onError = function (evt) {
+        self.state = voltmx.sdk.constants.CONNECTION_STATES.ERROR;
+        voltmx.sdk.verifyAndCallClosure(self.failureCallback, evt);
+
+        var retryEnabled = !!(self.config && self.config.retry && self.config.retry.enable);
+        if (!retryEnabled) {
+            self._isTerminated = true;
+            self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+            if (self.options && self.options._sseCloseHandleRef) {
+                voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                    handler: null,
+                    state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                });
+            }
+        }
+    };
+
+    this.eventSource.onClose = function (evt) {
+        if (!self._isTerminated) {
+            self._isTerminated = true;
+            self.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+
+            if (self.options && self.options._sseCloseHandleRef) {
+                voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(self.options._sseCloseHandleRef, {
+                    handler: null,
+                    state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+                });
+            }
+
+            voltmx.sdk.verifyAndCallClosure(self.successCallback, evt);
+        }
+    };
+
+    this.eventSource.open();
+};
+
+EventSourceConnector.prototype.close = function (successCallback, failureCallback) {
+    var _success = (typeof successCallback === 'function') ? successCallback : function () {};
+    var _failure = (typeof failureCallback === 'function') ? failureCallback : function () {};
+
+    try {
+        if (this.state === voltmx.sdk.constants.CONNECTION_STATES.CLOSED || this._isTerminated) {
+            _failure({
+                code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+            });
+            return;
+        }
+
+        if (!this.eventSource || typeof this.eventSource.close !== 'function') {
+            _failure({
+                code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+            });
+            return;
+        }
+
+        this._isTerminated = true;
+        this.state = voltmx.sdk.constants.CONNECTION_STATES.CLOSED;
+
+        this.eventSource.close();
+        this.eventSource = null;
+
+        if (this.options && this.options._sseCloseHandleRef) {
+            voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(this.options._sseCloseHandleRef, {
+                handler: null,
+                state: voltmx.sdk.constants.HANDLE_STATE.CLOSED
+            });
+        }
+
+        _success({
+            code: voltmx.sdk.constants.STREAM_CLOSED_CODE,
+            message: voltmx.sdk.constants.STREAM_CLOSED_MESSAGE
+        });
+
+    } catch (err) {
+        _failure({
+            code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+            message: voltmx.sdk.constants.STREAM_FAILED_MESSAGE
+        });
+    }
+};
+
+EventSourceConnector.createSSECloseHandle = function () {
+    var handle = {
+        close: function (success, failure) {
+            var connectorClose = voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.get(handle);
+            if (connectorClose && typeof connectorClose.handler === "function" && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS) {
+                connectorClose.handler(success, failure);
+            } else if (connectorClose && connectorClose.state === voltmx.sdk.constants.HANDLE_STATE.CLOSED) {
+                // Correctly identify that it was already closed
+                failure && failure({
+                    code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                    message: voltmx.sdk.constants.STREAM_ALREADY_CLOSED_MESSAGE
+                });
+            } else {
+                failure && failure({
+                    code: voltmx.sdk.constants.STREAM_ERROR_CODE,
+                    message: voltmx.sdk.constants.STREAM_NOT_STARTED_MESSAGE
+                });
+            }
+        }
+    };
+
+    voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+        handler: handle,
+        state: voltmx.sdk.constants.HANDLE_STATE.IDLE
+    });
+    return handle;
+};
+
+EventSourceConnector.registerSSECloseHandle = function (connectorInstance, existingHandle) {
+    var handle = existingHandle || voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+    voltmx.sdk.EventSourceConnector._sseCloseHandleBindingMap.set(handle, {
+        handler: function (success, failure) {
+            connectorInstance.close(success, failure);
+        },
+        state: voltmx.sdk.constants.HANDLE_STATE.IN_PROGRESS
+    });
+
+    return handle;
+};
+
+voltmx.sdk.EventSourceConnector = EventSourceConnector;
+
 //#ifdef PLATFORM_NATIVE_IOS
 
 /*
@@ -11207,14 +11435,36 @@ function IntegrationService(voltmxRef, serviceName) {
      */
 
     this.invokeOperation = function (operationName, headers, data, successCallback, failureCallback, options) {
+        var sseCloseHandle = null;
+        var internalOptions = options;
+
+        if (options && options.sse) {
+            internalOptions = {};
+            for (var optionKey in options) {
+                if (options.hasOwnProperty(optionKey)) {
+                    internalOptions[optionKey] = options[optionKey];
+                }
+            }
+            sseCloseHandle = voltmx.sdk.EventSourceConnector.createSSECloseHandle();
+            internalOptions._sseCloseHandleRef = sseCloseHandle;
+        }
+        
         function invokeOperationHandler() {
-            _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+            if (options && options.sse) {
+                _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, internalOptions);
+            } else {
+                _invokeOperation(operationName, headers, data, true, successCallback, failureCallback, options);
+            } 
         }
 
         if (voltmx.sdk.skipAnonymousCall) {
             invokeOperationHandler();
         } else {
             voltmx.sdk.claimsRefresh(invokeOperationHandler, failureCallback);
+        }
+
+        if (options && options.sse) {
+            return sseCloseHandle;
         }
     };
 
@@ -11465,21 +11715,33 @@ function IntegrationService(voltmxRef, serviceName) {
             if (xhr && !(status && err)) {
                 err = xhr;
             }
-            if (isRetryNeeded === true && retryServiceCall(err) === true) {
-                voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
-                invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
-                return;
-            }
 
-            voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
-            voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
-            voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
+            if (options && options.sse) {
+                voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
+            } else {
+                if (isRetryNeeded === true && retryServiceCall(err) === true) {
+                    voltmx.sdk.logsdk.debug("errorCallback, retrying the operation: " + operationName);
+                    invokeOperationRetry(operationName, headers, data, successCallback, failureCallback);
+                    return;
+                }
+                voltmx.sdk.logsdk.perf("Executing Finished network call for _invokeOperation : " + operationName);
+                voltmx.sdk.logsdk.perf("Executing Finished _invokeOperation : " + operationName);
+                voltmx.sdk.processIntegrationErrorResponse(err, true, failureCallback);
+
+            }
         }
 
         voltmx.sdk.logsdk.perf("Executing network call for _invokeOperation : " + operationName);
-        networkProvider.post(serviceUrl + "/" + operationName,
-            dataToSend, defaultHeaders, networkSuccessCallback,
-            networkFailureCallback, null,options);
+        if (options && options.sse) {
+            networkProvider.eventSource(serviceUrl + "/" + operationName,
+                dataToSend, defaultHeaders, networkSuccessCallback,
+                networkFailureCallback, options);
+            return;
+        } else {
+            networkProvider.post(serviceUrl + "/" + operationName,
+                dataToSend, defaultHeaders, networkSuccessCallback,
+                networkFailureCallback, null, options);
+        }
     }
 
     voltmx.sdk.processIntegrationErrorResponse = function (err, isAsync, callBack) {
@@ -11568,7 +11830,9 @@ function IntegrationService(voltmxRef, serviceName) {
             return voltmx.sdk.processIntegrationErrorResponse(res, false);
         }
     }
-
+	 this.getFileStorage = function() {
+         return voltmx.sdk.FileStorageClasses.import(this.getUrl());
+     }
 }
 
 voltmx.sdk.claimsRefreshSync = function () {
@@ -18144,7 +18408,57 @@ function voltmxNetworkProvider() {
             url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
         }
         voltmxNetHttpRequest(url, null, headers, "GET", voltmxContentType, successCallback, failureCallback, options);
+    };
+
+    this.eventSource = function (url, params, headers, successCallback, failureCallback, options) {
+        if (voltmx.sdk.util.isNullOrEmptyString(url)) {
+            voltmx.sdk.verifyAndCallClosure(failureCallback, "url cannot be null or empty");
+            return;
+        }
+        //Appending global params
+        if (voltmx.sdk.isNullOrUndefined(params)) {
+            params = {};
+        }
+        if (!voltmx.sdk.isNullOrUndefined(voltmx.sdk.currentInstance)) {
+            url = voltmx.sdk.currentInstance.appendGlobalParams(url, headers, params);
+        }
+        return voltmxNetEventSourceRequest(url, params, headers, voltmx.sdk.constants.HTTP_METHOD_POST, successCallback, failureCallback, options);
+    };
+}
+
+function voltmxNetEventSourceRequest(url, params, headers, httpMethod, successCallback, failureCallback, options) {
+    
+    // give failure call back if network is not available
+    if (!voltmx.net.isNetworkAvailable(constants.NETWORK_TYPE_ANY)) {
+        var errorObj = {};
+        errorObj.httpresponse = {};
+        errorObj[voltmx.sdk.constants.MF_OPSTATUS] = voltmx.sdk.errorcodes.connectivity_error_code;
+        errorObj[voltmx.sdk.constants.MF_ERROR_CODE] = voltmx.sdk.errorcodes.connectivity_error_code;
+        errorObj[voltmx.sdk.constants.MF_ERROR_MSG] = voltmx.sdk.errormessages.connectivity_error_message;
+        errorObj.httpresponse.headers = {};
+        errorObj.httpresponse.url = url;
+        failureCallback(errorObj);
+        return;
     }
+
+    options = options || {};
+    headers = headers || {};
+
+    var eventSourceConnector = new voltmx.sdk.EventSourceConnector(
+        url,
+        headers,
+        params,
+        successCallback,
+        failureCallback,
+        options,
+        httpMethod
+    );
+
+    eventSourceConnector.open();
+
+    // 3. Register and return the handle
+    var sseCloseHandleRef = options && options._sseCloseHandleRef;
+    return voltmx.sdk.EventSourceConnector.registerSSECloseHandle(eventSourceConnector, sseCloseHandleRef);
 }
 
 function voltmxNetHttpRequest(url, params, headers, httpMethod, voltmxContentType, successCallback, failureCallback, options) {

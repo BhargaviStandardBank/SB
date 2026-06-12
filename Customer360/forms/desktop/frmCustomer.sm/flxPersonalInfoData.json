@@ -40,12 +40,7 @@
     "canUpdateUI": true,
     "children": [
         "flxIncomeTax",
-        "flxDateOfBirth",
-        "flxMaritalStat",
-        "flxConsentSpouse",
-        "flxHowMarried",
-        "flxSpouseName",
-        "flxSpouseIdentityNo"
+        "flxDateOfBirth"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -68,7 +63,7 @@
     "id": "flxPersonalInfoData",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": false,
+    "isvisible": true,
     "kiosk": {
         "render": false
     },
@@ -82,7 +77,7 @@
         "render": true
     },
     "paddinginpixel": true,
-    "parent": "flxSrc",
+    "parent": "flxPersonalData",
     "pf": "frmCustomer",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,

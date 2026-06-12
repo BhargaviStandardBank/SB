@@ -23,6 +23,12 @@
             "useResources": true,
             "isHidden": false,
             "excludeFromBuild": false
+        },
+        {
+            "name": "SimpleLightTouch",
+            "useResources": true,
+            "isHidden": false,
+            "excludeFromBuild": false
         }
     ]
 }

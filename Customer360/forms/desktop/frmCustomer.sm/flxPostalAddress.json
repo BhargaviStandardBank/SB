@@ -25,18 +25,18 @@
     "_skin_": "sf51dc37fd0a40178320b8330b005a98",
     "_top_": {
         "type": "string",
-        "value": "0dp"
+        "value": "16dp"
     },
     "_width_": {
         "type": "string",
-        "value": "100%"
+        "value": "99%"
     },
     "allboxes": [],
     "autogrowmode": 1,
     "canUpdateUI": true,
     "children": [
-        "Label0a0f9b9afaed446",
-        "FlexContainer0bea8837f9b1a47"
+        "flxPostalData",
+        "flxPostalMap"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -63,8 +63,8 @@
     "kiosk": {
         "render": false
     },
-    "kuid": "ecdb0bec26ba4f3fb18e513949520d28",
-    "layouttype": 4,
+    "kuid": "bf83a8b4cf3e43b1aff1e6f927d2568d",
+    "layouttype": 3,
     "name": "kony.ui.FlexContainer",
     "nativemac": {
         "render": true
@@ -73,7 +73,7 @@
         "render": true
     },
     "paddinginpixel": true,
-    "parent": "flxAddressPop",
+    "parent": "flxContInfo",
     "pf": "frmCustomer",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,

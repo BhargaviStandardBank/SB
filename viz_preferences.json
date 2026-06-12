@@ -64,7 +64,7 @@
             }
         }
     },
-    "konyVizVersion": "10.0.5.0",
+    "konyVizVersion": "10.0.7.0",
     "previewMode": "debug",
     "dx": {
         "dxClient": {},

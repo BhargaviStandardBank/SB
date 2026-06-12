@@ -3,7 +3,7 @@ define("com/hcl/segHdr/segHeader/usersegHeaderController", function() {
 });
 define("com/hcl/segHdr/segHeader/segHeaderControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/segHdr/segHeader/segHeaderController", ["com/hcl/segHdr/segHeader/usersegHeaderController", "com/hcl/segHdr/segHeader/segHeaderControllerActions"], function() {

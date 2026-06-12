@@ -335,8 +335,68 @@ constants = {
     SEGUI_SEARCH_CRITERIA_NOT_EQUAL: "NOT_EQUAL",
 
     SEGUI_SEARCH_CRITERIA_OPERATOR_AND: "AND",
-    SEGUI_SEARCH_CRITERIA_OPERATOR_OR: "OR"
-
+    SEGUI_SEARCH_CRITERIA_OPERATOR_OR: "OR",
+    HTTP_STATUS: {
+        NO_CONTENT: 204,
+        INTERNAL_SERVER_ERROR: 500,
+        TOO_MANY_REQUESTS: 429,
+        BAD_REQUEST: 400,
+        OK: 200,
+        INFORMATIONAL_RESPONSES: 100,
+        REDIRECTION_MESSAGES: 399
+    },
+    VALIDATION_ERRORS: {
+        ERROR_NAME: 'INVALID_INPUT_EXCEPTION',
+        ERROR_CODE: 101,
+        ERROR_MESSAGE: {
+            URL_MESSAGE: "url is required and must be a non-empty string",
+            CONFIG_MESSAGE: "config must be an object",
+            METHOD_MESSAGE: "method must be a valid HTTP method (GET, POST, etc.)",
+            HEADERS_MESSAGE: "headers must be an object",
+            BODY_MESSAGE: "body must be a string, object, or null",
+            RETRY_MESSAGE: "retry must be an object",
+            RETRY_ENABLE_MESSAGE: "retry.enable must be a boolean",
+            RETRY_VERIFY_NO_CONTENT_MESSAGE: "retry.verifyNoContent must be a boolean"
+        }
+    },
+    IO_EXCEPTION: {
+        ERROR_CODE: 102,
+        ERROR_MESSAGE: {
+            CONNECTION_ERROR_MESSAGE: "Connection Error"
+        },
+        ERROR_NAME: 'IO_EXCEPTION'
+    },
+    HTTP_EXCEPTION: {
+        ERROR_MESSAGE: {
+            UNAUTHORIZED_CONNECTION_MESSAGE: "Unauthorized Connection"
+        },
+        ERROR_NAME: 'HTTP_EXCEPTION'
+    },
+    INVALID_SSE_RESPONSE_EXCEPTION: {
+        ERROR_CODE: 104,
+        ERROR_MESSAGE: {
+            INVALID_SSE_RESPONSE_MESSAGE: "Invalid SSE response: Content-Type is not text/event-stream"
+        },
+        ERROR_NAME: 'INVALID_SSE_RESPONSE_EXCEPTION'
+    },
+    UNKNOWN_EXCEPTION: {
+        ERROR_CODE: 103,
+        ERROR_MESSAGE: {
+            UNKNOWN_ERROR_MESSAGE: "An unexpected error occurred while processing the EventSource"
+        },
+        ERROR_NAME: 'UNKNOWN_EXCEPTION'
+    },
+    HANDLER_ERROR_MESSAGE: "Expected a callback function to register or null to unregister, but received",
+    CONTENT_TYPE: 'content-type',
+    TEXT_EVENT_STREAM: 'text/event-stream',
+    RETRIABLE_HTTP_ERROR: 'Retriable HTTP error encountered.',
+    STATUS: 'Status',
+    FETCH_EVENT_BUNDLE_SOURCE_JS: 'fetch-eventsource-bundle-js library is not loaded',
+    UNKNOWN_ERROR: 'Unknown error',
+    CONNECTION_CLOSED: 'Connection closed',
+    HTTP_ERROR: 'HTTP error',
+    SERVER_CLOSED_CONNECTION: 'Server closed connection',
+    VOLTMX_EVENT_SOURCE: "voltmx.net.EventSource: "
 };
 
 
@@ -989,9 +1049,29 @@ voltmx.system = (function() {
     return module;
 }());
 
+var __previousNet = $KI.net || {};
+
 $KI.net = {
 
     integrityProperties: null,
+
+    EventSourceImpl: __previousNet.EventSourceImpl || null,
+
+    EventSource: function(url, config) {
+        var EventSourceImpl = $KI.net.EventSourceImpl || __previousNet.EventSourceImpl;
+
+        if(typeof EventSourceImpl === 'function') {
+            return new EventSourceImpl(url, config);
+        }
+
+        if(typeof __previousNet.EventSource === 'function'
+        && __previousNet.EventSource !== $KI.net.EventSource) {
+            return __previousNet.EventSource(url, config);
+        }
+
+        $KU.logErrorMessage('EventSource implementation not loaded. Ensure jslib/voltmxeventsource.js is available.');
+        throw new Error('EventSource implementation not loaded. Ensure jslib/voltmxeventsource.js is available.');
+    },
 
     postdataparams: function(postobj) {
         var postdata = "",

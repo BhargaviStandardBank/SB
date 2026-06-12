@@ -368,7 +368,7 @@
 											<equals  arg1="@{category}" arg2="desktopweb"  />
 										</and>
 										<then>
-											<loadfile property="filelist.@{category}" srcfile="${project.loc}/jssrc/@{idecat}/require/spaindividualfilelist.js"/>
+											<loadfile property="filelist.@{category}" srcfile="${project.loc}/jssrc/@{idecat}/require/spaindividualfilelist.js" encoding="UTF-8"/>
 											<copy todir="${buildweb}/@{category}/appjs/">
 												<fileset dir="${project.loc}/jssrc/@{idecat}/require" includes="${filelist.@{category}}" />
 											</copy>
@@ -382,7 +382,7 @@
 											</not>
 										</and>
 										<then>
-											<loadfile property="filelist.@{category}" srcfile="${project.loc}/jssrc/@{idecat}/require/spaindividualfilelist.js"/>
+											<loadfile property="filelist.@{category}" srcfile="${project.loc}/jssrc/@{idecat}/require/spaindividualfilelist.js" encoding="UTF-8"/>
 											<copy todir="${buildweb}/@{category}/appjs/">
 												<fileset dir="${project.loc}/jssrc/@{idecat}/require" includes="${filelist.@{category}}" />
 											</copy>

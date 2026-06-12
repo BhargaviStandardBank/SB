@@ -458,6 +458,16 @@
         "font_name": "Helvetica",
         "wType": "Segment"
     },
+    "Copyseg0d05953f4f05a4e": {
+        "background_color": "ffffff00",
+        "bg_type": "one",
+        "border_color": "00000000",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 0,
+        "font_name": "Helvetica",
+        "wType": "Segment"
+    },
     "Copyseg0db8162a1d22b45": {
         "background_color": "ffffff64",
         "bg_type": "one",
@@ -948,6 +958,36 @@
         "top_right_border_style": "plain",
         "wType": "Button"
     },
+    "sknBtnSelect": {
+        "background_color": "58738700",
+        "bg_type": "one",
+        "border_color": "ffffff00",
+        "border_radius": 100,
+        "border_style": "custom",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "ffffff00",
+        "font_name": "Helvetica",
+        "font_size": 150,
+        "font_style": "normal",
+        "font_weight": "500",
+        "wType": "Button"
+    },
+    "sknBtnUnSelect": {
+        "background_color": "58738700",
+        "bg_type": "one",
+        "border_color": "ffffff00",
+        "border_radius": 100,
+        "border_style": "custom",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "ffffff00",
+        "font_name": "Helvetica",
+        "font_size": 150,
+        "font_style": "normal",
+        "font_weight": "500",
+        "wType": "Button"
+    },
     "sknChkBx": {
         "background_color": "00000064",
         "bg_type": "one",
@@ -961,6 +1001,16 @@
         "font_style": "normal",
         "font_weight": "400",
         "wType": "CheckBoxGroup"
+    },
+    "sknFlexMenu": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "66666600",
+        "border_style": "custom",
+        "border_type": 0,
+        "border_width": 0,
+        "font_name": "Helvetica",
+        "wType": "FlexContainer"
     },
     "sknFlx15Blck": {
         "background_color": "00000046",
@@ -1145,6 +1195,16 @@
         "border_style": "rc",
         "border_type": 0,
         "border_width": 1,
+        "font_name": "Helvetica",
+        "wType": "FlexContainer"
+    },
+    "sknFlxWhite20Opac": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "66666600",
+        "border_style": "custom",
+        "border_type": 0,
+        "border_width": 0,
         "font_name": "Helvetica",
         "wType": "FlexContainer"
     },
@@ -1472,6 +1532,34 @@
         "wType": "Label"
     },
     "sknLblWhite100": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "14A1DE00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "21212100",
+        "font_name": "Helvetica",
+        "font_size": 200,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Label"
+    },
+    "sknLblWhiteFormLevel": {
+        "background_color": "00000064",
+        "bg_type": "one",
+        "border_color": "14A1DE00",
+        "border_style": "plain",
+        "border_type": 0,
+        "border_width": 1,
+        "font_color": "21212100",
+        "font_name": "Helvetica",
+        "font_size": 200,
+        "font_style": "normal",
+        "font_weight": "400",
+        "wType": "Label"
+    },
+    "sknLblWhiteHeading5": {
         "background_color": "00000064",
         "bg_type": "one",
         "border_color": "14A1DE00",

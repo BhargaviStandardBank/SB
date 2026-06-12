@@ -1,4 +1,5 @@
 //actions.js file of the project: SBCommon 
+//actions.js file of the project: SimpleLightTouch 
 //actions.js file of the project: ManageScheme 
 //actions.js file of the project: Customer360 
 //actions.js file of the project: SuspendList 

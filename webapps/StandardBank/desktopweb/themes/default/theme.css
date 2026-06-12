@@ -17,6 +17,8 @@
 .sknBtnLeftUnSelect,
 .sknBtnRightHighLite,
 .sknBtnRightUnSelect,
+.sknBtnSelect,
+.sknBtnUnSelect,
 .CopyCopyCopydefLabel2,
 .CopyCopyCopydefLabel3,
 .CopyCopyCopydefLabel4,
@@ -43,6 +45,8 @@
 .sknLblUnderline,
 .sknLblWhite,
 .sknLblWhite100,
+.sknLblWhiteFormLevel,
+.sknLblWhiteHeading5,
 .sknSectionHeaderLabelSkin,
 .CopyCopydefTextBoxFocus,
 .CopyTXT,
@@ -2635,6 +2639,112 @@ div[kr='item'].Copyseg0a0a7c8d6a42a44-focus,
 
 
     background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Copyseg0d05953f4f05a4e,
+li[kr='item'].Copyseg0d05953f4f05a4e-focus,
+div[kr='item'].Copyseg0d05953f4f05a4e-focus,
+[kw='SegmentedUI2']>ul.Copyseg0d05953f4f05a4e-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal normal 16.0px Helvetica;
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
 
 
 
@@ -7517,6 +7627,178 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknBtnSelect,
+[kw].sknBtnSelect-hover,
+[kw].sknBtnSelect-focus,
+[kw].sknBtnSelect-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 500 12.8px Helvetica;
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #4c5ab7;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnUnSelect,
+[kw].sknBtnUnSelect-hover,
+[kw].sknBtnUnSelect-focus,
+[kw].sknBtnUnSelect-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 500 12.8px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknChkBx,
 [kw=CheckBoxGroup]>div.sknChkBx-hover,
 [kw=CheckBoxGroup]>div.sknChkBx-focus,
@@ -7559,6 +7841,87 @@ div[kr='item'].segTrans-focus,
 
 
     background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknFlexMenu,
+[kw].sknFlexMenu-hover,
+[kw].sknFlexMenu-focus,
+[kw].sknFlexMenu-active {
+
+
+
+
+
+
+
+
+
+
+    border: 0px solid #666666;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: #291f75;
 
 
 
@@ -8100,7 +8463,23 @@ div[kr='item'].segTrans-focus,
 
 
 
-    border: 0px solid #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8134,6 +8513,9 @@ div[kr='item'].segTrans-focus,
 
 
     background-color: #666666;
+
+
+
 
 
 
@@ -8791,7 +9173,7 @@ div[kr='item'].segTrans-focus,
 
 
 
-    background-color: #f6f8fa;
+    background-color: #f9f9f9;
 
 
 
@@ -9041,6 +9423,86 @@ div[kr='item'].segTrans-focus,
 
 
     background-color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknFlxWhite20Opac,
+[kw].sknFlxWhite20Opac-hover,
+[kw].sknFlxWhite20Opac-focus,
+[kw].sknFlxWhite20Opac-active {
+
+
+
+
+
+
+
+
+
+
+    border: 0px solid #666666;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.2);
 
 
 
@@ -10779,6 +11241,178 @@ div[kr='item'].segTrans-focus,
 
 
     font: normal bold 16.0px Helvetica;
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknLblWhiteFormLevel,
+[kw].sknLblWhiteFormLevel-hover,
+[kw].sknLblWhiteFormLevel-focus,
+[kw].sknLblWhiteFormLevel-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid rgba(20, 161, 222, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 11.0px Helvetica;
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknLblWhiteHeading5,
+[kw].sknLblWhiteHeading5-hover,
+[kw].sknLblWhiteHeading5-focus,
+[kw].sknLblWhiteHeading5-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid rgba(20, 161, 222, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal bold 12.0px Helvetica;
 
 
 

@@ -48,7 +48,7 @@
     "id": "filxHome",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": true,
+    "isvisible": false,
     "kuid": "a8edadff36174d098ff77872d87c3519",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",

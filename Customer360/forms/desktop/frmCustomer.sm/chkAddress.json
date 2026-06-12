@@ -24,7 +24,7 @@
     "_skin_": "s6b37c1019bd40678c4af9e1edb8157d",
     "_top_": {
         "type": "string",
-        "value": "32dp"
+        "value": "8dp"
     },
     "_width_": {
         "type": "string",
@@ -56,7 +56,7 @@
     ],
     "name": "kony.ui.CheckBoxGroup",
     "orientation": "vertical",
-    "parent": "flxAddressPop",
+    "parent": "flxContInfo",
     "pf": "frmCustomer",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,

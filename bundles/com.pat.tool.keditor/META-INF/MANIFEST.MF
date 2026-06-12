@@ -31,7 +31,7 @@ Name: jettydeploy/richclient/WEB-INF/web.xml
 SHA-256-Digest: MMksQIpXIJyV7LNjIWZ1zv8dxa386IeSzGm3uud2Qo0=
 
 Name: lib/build.zip
-SHA-256-Digest: d7eXHaaWXzLYX7UMooRNmTAvylFpNER42EgGrPijdAc=
+SHA-256-Digest: tMdc3mwWq5hABPmHnT7lpOZUWsYutXpt1K+dG+MfBbI=
 
 Name: iosfiles/waxsim
 SHA-256-Digest: bqzfXP5SoPG1M2/8rpEXRG9rYVg1kP92fPcGZXCInZg=

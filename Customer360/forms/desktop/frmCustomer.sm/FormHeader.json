@@ -4,7 +4,7 @@
     "_children_": [],
     "_height_": {
         "type": "string",
-        "value": "8%"
+        "value": "60px"
     },
     "_left_": {
         "type": "string",
@@ -24,7 +24,7 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_skin_": "sb9abbe20c604650b6e8f1350a08a33b",
     "_top_": {
         "type": "string",
         "value": "0dp"
@@ -39,47 +39,67 @@
     "clipbounds": false,
     "containerweight": 0,
     "dataDiffs": {
+        "FlexContainer0c5eafe3e5fdf45": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "c128d7d44d1440efbb94c83ba10d6508",
+                "srcKUID": "b0c2e11d0fcb43188eaca020aca70ab0",
+                "wType": "FlexContainer"
+            }
+        },
+        "FlexContainer0cfbd412f8d984f": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "ja96ebde1b7e40b8a31e1130522fe5fd",
+                "srcKUID": "a76d07791cf54efaba1f1e8298ba60ef",
+                "wType": "FlexContainer"
+            }
+        },
         "FormHeader": {
             "__events__": {},
             "__info__": {
                 "isRoot": true,
-                "kuid": "h5b85f252d274df480becac372b9ed77",
+                "kuid": "e33abc3bde2349fd88fbe2dd2a33b027",
                 "srcKUID": "ja2cbe8fda184c1caaab89eeae9fb281",
                 "wType": "FlexContainer"
-            },
-            "centerY": {
-                "Default": {
-                    "type": "string",
-                    "value": ""
-                }
-            },
-            "responsiveData": {},
-            "top": {
-                "Default": {
-                    "type": "string",
-                    "value": "0dp"
-                }
             }
+        },
+        "Label0b2fdf6dd443b44": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "c58a0835492f4d8b803cf0c8763cde5e",
+                "srcKUID": "g18338682f7440699865c7b3b0649058",
+                "wType": "Label"
+            }
+        },
+        "imgLogout": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "de2caa72be6e4a40a9210d7c55e54012",
+                "srcKUID": "j4a298acc2ce463686107bdf619e3c57",
+                "wType": "Image"
+            },
+            "src": "icon_logout.png"
         },
         "lblHdr": {
             "__events__": {},
             "__info__": {
-                "kuid": "f499f77daf504133a9018706d19618e9",
+                "kuid": "a6614bf67ca14126befe7899afcbc5f8",
                 "srcKUID": "ecaffe136a7647ee89b97eff000d8e8c",
                 "wType": "Label"
             },
             "responsiveData": {},
-            "text": "Customer Profile"
+            "text": ""
         }
     },
     "enablescrolling": true,
-    "focusskin": "sf51dc37fd0a40178320b8330b005a98",
+    "focusskin": null,
     "id": "FormHeader",
     "info": null,
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kuid": "h5b85f252d274df480becac372b9ed77",
+    "kuid": "e33abc3bde2349fd88fbe2dd2a33b027",
     "layouttype": 2,
     "masterType": 0,
     "name": "kony.ui.UserWidgetInstance",

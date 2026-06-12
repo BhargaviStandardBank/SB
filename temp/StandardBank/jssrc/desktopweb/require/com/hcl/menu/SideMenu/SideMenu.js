@@ -10,7 +10,7 @@ define(function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "60dp",
             "zIndex": 10,
@@ -30,7 +30,7 @@ define(function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxWhiteBrd",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "60dp",
             "zIndex": 10,
@@ -79,7 +79,7 @@ define(function() {
             "isVisible": true,
             "left": "30dp",
             "right": "0dp",
-            "skin": "sknLblHeading2",
+            "skin": "sknLblHeading2White",
             "text": "Standard Bank",
             "zIndex": 1
         }, controller.args[0], "Label0cff1e13b3a6943"), extendConfig({
@@ -150,7 +150,6 @@ define(function() {
                 "appName": "SBCommon",
                 "friendlyName": "flxRowItems"
             }),
-            "sectionHeaderSkin": "sliPhoneSegmentHeader",
             "sectionHeaderTemplate": kony.mvc.resolveNameFromContext({
                 "appName": "SBCommon",
                 "friendlyName": "flxSegSecHdr"
@@ -186,7 +185,7 @@ define(function() {
             "focusSkin": "sknFlxTrans",
             "height": "64dp",
             "id": "filxHome",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,

@@ -1,5 +1,5 @@
 /**
- * voltmx-spa-filestorage version 10.0.3.0
+ * voltmx-spa-filestorage version 10.0.7.0
  * This file is intended for desktopWeb/SPA only.
  */
  
@@ -64,6 +64,11 @@ voltmx.sdk.binary.KBConstants = Object.freeze({
     DOLLAR_FILTER: "$filter",
     SERVICES: "services",
     METADATA_URL_SUFFIX: "/objects/File",
+    METADATA_URL_OS: "/data/v1",
+    METADATA_URL_CREATE: "/File_create",
+    METADATA_URL_GET: "/File_get",
+    METADATA_URL_UPDATE: "/File_update",
+    METADATA_URL_DELETE: "/File_delete",
     BLOB: "blob",
     DATA:"data",
     RAW_RESPONSE: "rawResponse",
@@ -696,7 +701,12 @@ define("ChunkedFileUploaderTask", ["exports", "KBNetworkUtils", "KBCommonUtils"]
 
         this.metadata = this.inputContext[BinaryConstants.UPLOAD_PARAMS][BinaryConstants.METADATA];
         // TODO : need to confirm whether the fileID should be in inputContext or uploadtemplate.
-        this.fileId = this.inputContext[BinaryConstants.FILE_ID];
+        var url = this.inputContext[BinaryConstants.COMMIT_URL];
+		if (url.includes(BinaryConstants.METADATA_URL_OS)) {
+			this.fileId = this.inputContext[BinaryConstants.FILE_ID];
+		} else {
+			this.fileId = this.inputContext.File[0][BinaryConstants.FILE_ID];
+		}        
         this.metadata[BinaryConstants.FILE_ID] = this.fileId;
         this.options = this.inputContext[BinaryConstants.OPTIONS];
         this.fileObject = this.inputContext[BinaryConstants.UPLOAD_PARAMS][BinaryConstants.FILE_OBJECT];
@@ -803,7 +813,13 @@ define("FileMetadataCreatorTask", ["exports", "KBNetworkUtils", "KBCommonUtils"]
          * unpacks input context..
          */
         function unpackInputContext() {
-            this.url = this.inputContext[BinaryConstants.URL] + BinaryConstants.METADATA_URL_SUFFIX;
+			var url = this.inputContext[BinaryConstants.URL];
+
+			if (url.includes(BinaryConstants.METADATA_URL_OS)) {
+				this.url = url + BinaryConstants.METADATA_URL_SUFFIX;
+			} else {
+				this.url = url + BinaryConstants.METADATA_URL_CREATE;
+			}            
             var uploadParams = this.inputContext[BinaryConstants.UPLOAD_PARAMS];
             this.headers = uploadParams[BinaryConstants.HEADERS];
             this.headers[BinaryConstants.CONTENT_TYPE] =  BinaryConstants.APPLICATION_JSON;
@@ -1067,7 +1083,13 @@ define("UploadCommitterTask", ["exports", "KBCommonUtils", "KBNetworkUtils"], fu
      * unpacks input context..
      */
     function unpackInputContext() {
-        this.url = this.inputContext[BinaryConstants.COMMIT_URL] + BinaryConstants.METADATA_URL_SUFFIX;
+		var url = this.inputContext[BinaryConstants.COMMIT_URL];
+
+		if (url.includes(BinaryConstants.METADATA_URL_OS)) {
+			this.url = url + BinaryConstants.METADATA_URL_SUFFIX;
+		} else {
+			this.url = url;
+		}        
         var uploadParams = this.inputContext[BinaryConstants.UPLOAD_PARAMS];
         this.headers = this.inputContext[BinaryConstants.HEADERS];
         this.headers[BinaryConstants.X_HTTP_METHOD_OVERRIDE] =  BinaryConstants.PATCH;
@@ -1190,7 +1212,13 @@ define("BinaryDeleteTask", ["exports", "KBValidationUtils", "KBCommonUtils", "KB
      * unpacks input context..
      */
     function unpackInputContext() {
-        this.url = this.inputContext[BinaryConstants.URL] + BinaryConstants.METADATA_URL_SUFFIX;
+		var url = this.inputContext[BinaryConstants.URL];
+
+		if (url.includes(BinaryConstants.METADATA_URL_OS)) {
+			this.url = url + BinaryConstants.METADATA_URL_SUFFIX;
+		} else {
+			this.url = url + BinaryConstants.METADATA_URL_DELETE;
+		}        
         this.headers = this.inputContext[BinaryConstants.HEADERS];
         if(this.headers == null){
             this.headers = {};
@@ -1285,7 +1313,12 @@ define("BinaryDownloaderTask", ["exports", "KBValidationUtils", "KBCommonUtils",
             var fileMetaData = await fileMetadataDownloaderTask.execute();
 
             //Fetches raw bytes for file.
-            this.inputContext[BinaryConstants.RECORDS] = fileMetaData[BinaryConstants.RECORDS];
+			var url = this.inputContext[BinaryConstants.URL];
+			if (url.includes(BinaryConstants.METADATA_URL_OS)) {
+				this.inputContext[BinaryConstants.RECORDS] = fileMetaData[BinaryConstants.RECORDS];
+			} else {
+				this.inputContext[BinaryConstants.RECORDS] = fileMetaData.File;				
+			}             
             var chunkFileDownloaderTask = new ChunkFileDownloaderTask();
             chunkFileDownloaderTask.setInputContext(this.inputContext);
             var response = await chunkFileDownloaderTask.execute();
@@ -1339,7 +1372,13 @@ define("BinaryListTask", ["exports", "KBValidationUtils", "KBCommonUtils", "KBNe
      * Unpacks input context to BinaryListTask state.
      */
     function unpackInputContext() {
-      this.url = this.inputContext[BinaryConstants.URL] + BinaryConstants.METADATA_URL_SUFFIX;
+	  var url = this.inputContext[BinaryConstants.URL];
+
+	  if (url.includes(BinaryConstants.METADATA_URL_OS)) {
+			this.url = url + BinaryConstants.METADATA_URL_SUFFIX;
+	  } else {
+			this.url = url + BinaryConstants.METADATA_URL_GET;
+	  }	      
       if(this.inputContext[BinaryConstants.FILTER]) {
           this.filter = this.inputContext[BinaryConstants.FILTER];
       }
@@ -1405,7 +1444,13 @@ define("BinaryUpdaterTask", ["exports", "KBNetworkUtils", "KBCommonUtils"], func
      * @constructor
      */
     function unpackInputContext() {
-        this.url = this.inputContext[BinaryConstants.URL] + BinaryConstants.METADATA_URL_SUFFIX;
+		var url = this.inputContext[BinaryConstants.URL];
+
+		if (url.includes(BinaryConstants.METADATA_URL_OS)) {
+			this.url = url + BinaryConstants.METADATA_URL_SUFFIX;
+		} else {
+			this.url = url + BinaryConstants.METADATA_URL_UPDATE;
+		}        
         this.headers = this.inputContext[BinaryConstants.HEADERS];
         this.headers[BinaryConstants.CONTENT_TYPE] = BinaryConstants.APPLICATION_JSON;
         this.metadata = this.inputContext[BinaryConstants.METADATA];
@@ -1481,7 +1526,14 @@ define("BinaryUploaderTask", ["exports", "FileMetadataCreatorTask", "KBResponseP
         //Commit URL.
         this.inputContext[BinaryConstants.COMMIT_URL] = this.inputContext[BinaryConstants.URL];
         Object.assign(this.inputContext, fileMetaData);
-        var uploadTemplate = fileMetaData[BinaryConstants.UPLOAD_TEMPLATE];
+        var uploadTemplate = "";
+		var url = this.inputContext[BinaryConstants.URL];
+		if (url.includes(BinaryConstants.METADATA_URL_OS)) {
+			uploadTemplate = fileMetaData[BinaryConstants.UPLOAD_TEMPLATE];
+		} else {
+            this.inputContext[BinaryConstants.COMMIT_URL] = this.inputContext[BinaryConstants.URL] + BinaryConstants.METADATA_URL_UPDATE;
+			uploadTemplate = fileMetaData.File[0][BinaryConstants.UPLOAD_TEMPLATE];
+		}        
         this.inputContext[BinaryConstants.URL] = KBResponseParser.extractFileOperationUrl(uploadTemplate,
             this.inputContext[BinaryConstants.URL], fileMetaData[BinaryConstants.FILE_ID]);
         uploadTemplate = JSON.parse(uploadTemplate);

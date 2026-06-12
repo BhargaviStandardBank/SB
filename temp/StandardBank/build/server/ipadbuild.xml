@@ -248,6 +248,7 @@
 		cordovaversion=${cordovaversion}
 		cordovapath=${cordovapath}
 		enableiOSLiveActivity=${enableiOSLiveActivity}
+		isLiveActivityTemplateCreatedInIris=${isLiveActivityTemplateCreatedInIris}
 		live_act_configurations=${live_act_configurations}
 		live_act_attributes=${live_act_attributes}
 		isMVC=${isMVC}
@@ -1252,25 +1253,6 @@
 
 	</target>
 	
-	<target name="copyliveactivities">
-		<echo message="Live Actvities Configurations."/>
-		<if>
-			<equals arg1="${enableiOSLiveActivity}" arg2="true"/>
-			<then>
-				<mkdir dir="ipadkbf/LiveActivities" />
-				<echo message="Copying swift files of Attributes and Configurations subfolder under Live Activities folder."/>
-				<copy todir="ipadkbf/LiveActivities" overwrite="true">
-					<fileset dir="${project.loc}/modules/LiveActivities" includes="*/**"/>
-				</copy>
-				<mkdir dir="ipadkbf/LiveActivities/LiveActivitiesImages" />
-				<echo message="Copying live activities images of LiveActivities folder."/>
-				<copy todir="ipadkbf/LiveActivities/LiveActivitiesImages" overwrite="true">
-					<fileset dir="${project.loc}/resources/LiveActivities" includes="*/**"/>
-				</copy>
-			</then>
-		</if>
-	</target>
-
 	<target name="copyappextensions">
 			
 		<echo message="----- -- ${isEnableAppExtensions}" />
@@ -1335,7 +1317,7 @@
 		</if>
 	</target>
 
-	<target name="iPadbuildKAR" depends="copyjssrc,copyssmodules,copyliveactivities,copyappextensions,copyipadappicons,protectedKAR,precompile">
+	<target name="iPadbuildKAR" depends="copyjssrc,copyssmodules,copyappextensions,copyipadappicons,protectedKAR,precompile">
 
 		<echo message="Creating ipad kbf KAR file" />
 		<if>
@@ -1709,7 +1691,9 @@
 		</sequential>
 	</macrodef>
 
+	<target name="cibuildKAR-pre" depends="init,instrument_codeCoverage,buildResources" />
 
-		
-	<target name="cibuildKAR" depends="init,instrument_codeCoverage,buildResources,copyssmodules,copyliveactivities,copyappextensions,copyipadappicons,protectedKAR,precompile,genkar" />
+	<target name="cibuildKAR-post" depends="init,copyssmodules,copyappextensions,copyipadappicons,protectedKAR,precompile,genkar" />
+
+	<target name="cibuildKAR" depends="cibuildKAR-pre,cibuildKAR-post" />
 </project>

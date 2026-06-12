@@ -110,6 +110,9 @@
             "frmSchemeReqHistoryController_desktop": [
                 "frmSchemeReqHistoryController"
             ],
+            "frmSimpleTouchController_desktop": [
+                "frmSimpleTouchController"
+            ],
             "frmSusHistoryDetailsController_desktop": [
                 "frmSusHistoryDetailsController"
             ],
@@ -194,6 +197,11 @@
                 "controllerActionDir": "frmSchemeReqHistoryController",
                 "controllerChannel": "desktop",
                 "controllerName": "frmSchemeReqHistoryController"
+            },
+            "frmSimpleTouch": {
+                "controllerActionDir": "frmSimpleTouchController",
+                "controllerChannel": "desktop",
+                "controllerName": "frmSimpleTouchController"
             },
             "frmSusHistoryDetails": {
                 "controllerActionDir": "frmSusHistoryDetailsController",
@@ -324,6 +332,19 @@
                 "enableModelDriven": false,
                 "formPath": "frmHome",
                 "friendlyName": "frmHome",
+                "isMDAForm": false
+            },
+            "SimpleLightTouch.frmSimpleTouch": {
+                "ControllerExtensions": [],
+                "appName": "SimpleLightTouch",
+                "controllerInfo": {
+                    "controllerActionName": "frmSimpleTouchController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "frmSimpleTouchController"
+                },
+                "enableModelDriven": false,
+                "formPath": "frmSimpleTouch",
+                "friendlyName": "frmSimpleTouch",
                 "isMDAForm": false
             },
             "StandardBank.frmLogin": {
@@ -687,6 +708,26 @@
                 },
                 "friendlyName": "flxSuspensionEntry",
                 "templateId": "flxSuspensionEntry"
+            },
+            "SimpleLightTouch.flxSampleRowTemplate": {
+                "appName": "SimpleLightTouch",
+                "controllerInfo": {
+                    "controllerActionName": "flxSampleRowTemplateController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSampleRowTemplateController"
+                },
+                "friendlyName": "flxSampleRowTemplate",
+                "templateId": "flxSampleRowTemplate"
+            },
+            "SimpleLightTouch.flxSectionHeaderTemplate": {
+                "appName": "SimpleLightTouch",
+                "controllerInfo": {
+                    "controllerActionName": "flxSectionHeaderTemplateController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxSectionHeaderTemplateController"
+                },
+                "friendlyName": "flxSectionHeaderTemplate",
+                "templateId": "flxSectionHeaderTemplate"
             },
             "StandardBank.flxSampleRowTemplate": {
                 "appName": "StandardBank",

@@ -304,5 +304,8 @@ define({
             "friendlyName": "frmCustomer",
             "appName": "Customer360"
         }).navigate();
+    },
+    makeCall: function(eventobject) {
+        voltmx.phone.dial(eventobject.text);
     }
 });

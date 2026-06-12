@@ -1,18 +1,19 @@
 define({
   /** ---------------- STATE ---------------- **/
   _masterFinancialData: [],
-
+  //let header:"";
   /** ---------------- ENTRY ---------------- **/
-  onNavigate() {
+  onNavigate(header) {
     try {
+      this.header = "Credit Risk / "+ header.formID.appInfo + " / "+header.lblMenuItem;
       this._setupDataMap();
       this._initializeTabActions();
       this.preShowHandler();
       this.view.flxHide.isVisible = false;
       this._initializeView()
         .catch(err => {
-          throw new Error(`Form Initialization Failed: ${err.message}`);
-        });
+        throw new Error(`Form Initialization Failed: ${err.message}`);
+      });
     } catch (error) {
       kony.print(`Error in onNavigate: ${error.message}`);
     }
@@ -20,6 +21,7 @@ define({
 
   preShowHandler() {
     try {
+	  this.view.FormHeader.lblHdr.text = this.header;
       this.view.RiskRateChart.imgPin.anchorPoint = { x: 0.5, y: 1 };
       this.currentAngle = 0;
 
@@ -27,7 +29,6 @@ define({
       transform.rotate(this.currentAngle);
 
       this.view.RiskRateChart.flxPin.transform = transform;
-      this.view.flxAddressPop.isVisible = false;
     } catch (error) {
       kony.print(`Error in preShowHandler: ${error.message}`);
     }
@@ -73,30 +74,15 @@ define({
       this.view.flxScoredLendingInsi.onClick = ()=> this._switchTab("SCOREDLEND");
       this.view.flxEconomicGrowth.onClick = ()=>this._switchTab("ECONOMICGROW");
 
-      this.view.btnAddress.onClick = this.addressClick.bind(this);
-      this.view.btnCancel.onClick = this.addressCancel.bind(this);
       this.view.chkAddress.onSelection = this.adressCheck.bind(this);
-      
-      this.view.btnRisk1.onClick = () => this.riskOptionSelect("CRI");
-      this.view.btnRisk2.onClick = () => this.riskOptionSelect("BBRS");
+
+      this.view.btnRisk1.onClick = () => this.riskOptionSelect("BRI");
+      this.view.btnRisk2.onClick = () => this.riskOptionSelect("CRI");
+      this.view.btnRisk3.onClick = () => this.riskOptionSelect("ERI");
+      this.view.btnRisk4.onClick = () => this.riskOptionSelect("BBRS");
+      this.view.btnRisk5.onClick = () => this.riskOptionSelect("CRS");
     } catch (error) {
       kony.print(`Error in _initializeTabActions: ${error.message}`);
-    }
-  },
-
-  addressClick() {
-    try {
-      this.view.flxAddressPop.isVisible = true;
-    } catch (error) {
-      kony.print(`Error in addressClick: ${error.message}`);
-    }
-  },
-
-  addressCancel() {
-    try {
-      this.view.flxAddressPop.isVisible = false;
-    } catch (error) {
-      kony.print(`Error in addressCancel: ${error.message}`);
     }
   },
   
@@ -131,7 +117,7 @@ define({
       view.flxRiskTypes.isVisible = (tabName === "RISKRATING");
       view.flxRiskInsight.isVisible = (tabName === "RISKRATING");
       view.flxContInfo.isVisible = (tabName === "CONTACTINFO");
-      view.flxPersonalInfoData.isVisible = (tabName === "PERSONALINFO");
+      view.flxPersonalData.isVisible = (tabName === "PERSONALINFO");
 
       if (tabName === "COLLATERAL") {
         this._buildCollateralUI(GlobalData.collateralData)
@@ -335,16 +321,59 @@ define({
   riskOptionSelect(riskType) {
     try {
       const { view } = this;
-      if (riskType === "CRI") {
+      view.lblHdrRiskType.text = "Risk Rating - "+riskType;
+      view.hide.lblDetail.skin = "sknLblWhiteFormLevel";
+      view.hide.lblDetailValue.skin = "sknLblWhiteFormLevel";
+      if (riskType === "BRI") {
         view.btnRisk1.skin = "sknBtnLeftHighLite";
-        view.btnRisk2.skin = "sknBtnRightUnSelect";
+        view.btnRisk2.skin = "sknBtnUnSelect";
+        view.btnRisk3.skin = "sknBtnUnSelect";
+        view.btnRisk4.skin = "sknBtnUnSelect";
+        view.btnRisk5.skin = "sknBtnRightUnSelect";
         view.flxRatingScore.isVisible = true;
+        view.flxHide.isVisible = true;
         view.flxRiskScoreFCY.isVisible = false;
         view.flxRiskScoreLCY.isVisible = false;
         this.updateGauge(15);
-      } else {
+      } else if  (riskType === "CRI"){
         view.btnRisk1.skin = "sknBtnLeftUnSelect";
-        view.btnRisk2.skin = "sknBtnRightHighLite";
+        view.btnRisk2.skin = "sknBtnSelect";
+        view.btnRisk3.skin = "sknBtnUnSelect";
+        view.btnRisk4.skin = "sknBtnUnSelect";
+        view.btnRisk5.skin = "sknBtnRightUnSelect";
+        view.flxRatingScore.isVisible = true;
+        view.flxHide.isVisible = true;
+        view.flxRiskScoreFCY.isVisible = false;
+        view.flxRiskScoreLCY.isVisible = false;
+        this.updateGauge(40);
+      }else if(riskType === "ERI"){
+        view.btnRisk1.skin = "sknBtnLeftUnSelect";
+        view.btnRisk2.skin = "sknBtnUnSelect";
+        view.btnRisk3.skin = "sknBtnSelect";
+        view.btnRisk4.skin = "sknBtnUnSelect";
+        view.btnRisk5.skin = "sknBtnRightUnSelect";
+        view.flxRatingScore.isVisible = true;
+        view.flxHide.isVisible = true;
+        view.flxRiskScoreFCY.isVisible = false;
+        view.flxRiskScoreLCY.isVisible = false;
+        this.updateGauge(23);
+      }else if(riskType === "BBRS"){
+        view.btnRisk1.skin = "sknBtnLeftUnSelect";
+        view.btnRisk2.skin = "sknBtnUnSelect";
+        view.btnRisk3.skin = "sknBtnUnSelect";
+        view.btnRisk4.skin = "sknBtnSelect";
+        view.btnRisk5.skin = "sknBtnRightUnSelect";
+        view.flxRatingScore.isVisible = true;
+        view.flxHide.isVisible = true;
+        view.flxRiskScoreFCY.isVisible = false;
+        view.flxRiskScoreLCY.isVisible = false;
+        this.updateGauge(23);
+      }else{
+        view.btnRisk1.skin = "sknBtnLeftUnSelect";
+        view.btnRisk2.skin = "sknBtnUnSelect";
+        view.btnRisk3.skin = "sknBtnUnSelect";
+        view.btnRisk4.skin = "sknBtnUnSelect";
+        view.btnRisk5.skin = "sknBtnRightHighLite";
         view.flxRatingScore.isVisible = false;
         view.flxHide.isVisible = false;
         view.flxRiskScoreFCY.isVisible = true;

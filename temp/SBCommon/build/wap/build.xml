@@ -349,7 +349,7 @@
                         </sequential>
                     </for>
                     <delete file="${cgconf.base}/build/${w.context}.zip" failonerror="false"/>
-                    <zip destfile="${cgconf.base}/build/${w.context}.zip" duplicate="preserve">
+                    <zip destfile="${cgconf.base}/build/${w.context}.zip" duplicate="preserve" encoding="UTF-8">
                         <mappedresources>
                             <fileset dir="${buildweb}">
                                 <include name="spaiphone/**/images/**/*.*" if="build.for.spaiphone" />

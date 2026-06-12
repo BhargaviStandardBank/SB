@@ -39,10 +39,10 @@
     "autogrowmode": 1,
     "canUpdateUI": true,
     "children": [
-        "flxBusinessTelNum",
-        "flxEmailAddress",
-        "flxFax",
-        "flxAddress"
+        "flxContactData",
+        "flxPostalAddress",
+        "chkAddress",
+        "flxPhysicalAddress"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -70,7 +70,7 @@
         "render": false
     },
     "kuid": "ae2dbe9bf7034260bbe8b09d71ab1603",
-    "layouttype": 5,
+    "layouttype": 4,
     "name": "kony.ui.FlexContainer",
     "nativemac": {
         "render": true

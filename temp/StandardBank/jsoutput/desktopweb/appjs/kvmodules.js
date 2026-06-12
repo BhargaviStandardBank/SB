@@ -424,6 +424,9 @@ define('applicationController',{
             "friendlyName": "frmLogin",
             "appName": "StandardBank"
         }).navigate();
+    },
+    makeCall: function(eventobject) {
+        voltmx.phone.dial(eventobject.text);
     }
 });
 
@@ -1095,14 +1098,13 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
-            "focusSkin": "sknFlxTrans",
-            "height": "8%",
+            "height": "60px",
             "id": "FormHeader",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "100%",
             "zIndex": 1,
@@ -1118,7 +1120,7 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "id": "lblHdr",
             "isVisible": true,
             "left": "24dp",
-            "skin": "sknLblHeading2",
+            "skin": "sknLblHeading2White",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
             "zIndex": 1
@@ -1127,7 +1129,78 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, controller.args[1], "lblHdr"), extendConfig({}, controller.args[2], "lblHdr"));
-        FormHeader.add(lblHdr);
+        var FlexContainer0cfbd412f8d984f = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": false,
+            "height": "100%",
+            "id": "FlexContainer0cfbd412f8d984f",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+            "reverseLayoutDirection": true,
+            "isModalContainer": false,
+            "right": "24dp",
+            "skin": "slFbox",
+            "top": "0dp",
+            "width": "40%",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "FlexContainer0cfbd412f8d984f"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "FlexContainer0cfbd412f8d984f"), extendConfig({}, controller.args[2], "FlexContainer0cfbd412f8d984f"));
+        FlexContainer0cfbd412f8d984f.setDefaultUnit(voltmx.flex.DP);
+        var imgLogout = new voltmx.ui.Image2(extendConfig({
+            "centerY": "50%",
+            "height": "32dp",
+            "id": "imgLogout",
+            "isVisible": true,
+            "right": "0dp",
+            "skin": "slImage",
+            "src": "icon_logout.png",
+            "top": "23dp",
+            "width": "32dp",
+            "zIndex": 1
+        }, controller.args[0], "imgLogout"), extendConfig({
+            "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "imgLogout"), extendConfig({}, controller.args[2], "imgLogout"));
+        var FlexContainer0c5eafe3e5fdf45 = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "centerY": "50%",
+            "clipBounds": false,
+            "height": "80%",
+            "id": "FlexContainer0c5eafe3e5fdf45",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "isModalContainer": false,
+            "right": "25dp",
+            "skin": "sknFlxWhite20Opac",
+            "top": "35dp",
+            "width": "1px",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "FlexContainer0c5eafe3e5fdf45"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "FlexContainer0c5eafe3e5fdf45"), extendConfig({}, controller.args[2], "FlexContainer0c5eafe3e5fdf45"));
+        FlexContainer0c5eafe3e5fdf45.setDefaultUnit(voltmx.flex.DP);
+        FlexContainer0c5eafe3e5fdf45.add();
+        var Label0b2fdf6dd443b44 = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "id": "Label0b2fdf6dd443b44",
+            "isVisible": true,
+            "right": "24dp",
+            "skin": "sknLblHeading2White",
+            "text": "UserName",
+            "top": "13dp",
+            "width": voltmx.flex.USE_PREFERRED_SIZE,
+            "zIndex": 1
+        }, controller.args[0], "Label0b2fdf6dd443b44"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "Label0b2fdf6dd443b44"), extendConfig({}, controller.args[2], "Label0b2fdf6dd443b44"));
+        FlexContainer0cfbd412f8d984f.add(imgLogout, FlexContainer0c5eafe3e5fdf45, Label0b2fdf6dd443b44);
+        FormHeader.add(lblHdr, FlexContainer0cfbd412f8d984f);
         FormHeader.compInstData = {}
         return FormHeader;
     }
@@ -1589,255 +1662,259 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             ANIMATION_DURATION: 0.25
         },
         masterData: [{
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Simple Light Touch(SLT)",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Loan Eligibility",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmSuspendList"
-                    }
-                }, {
-                    lblMenuItem: "Scored Offer View(PPB)",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmRequestHistory"
-                    }
-                }, {
-                    lblMenuItem: "Scored Offer View(BCB)",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmAddSuspend"
-                    }
-                }, {
-                    lblMenuItem: "Offer Manger",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmRemoveSuspend"
-                    }
-                }, {
-                    lblMenuItem: "Scoring API",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmApprovers"
-                    }
-                }]
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Simple Light Touch(SLT)",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Loan Eligibility",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Complex Lending",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Originate Application",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmSuspendList"
-                    }
-                }, ]
+                lblMenuItem: "Scored Offer View(PPB)",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRequestHistory"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_view.png",
-                    lblSectionTitle: "Customer 360",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "View Customer Info",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "View Application",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
+                lblMenuItem: "Scored Offer View(BCB)",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmAddSuspend"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Financial Spreading & Risk Rating",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Spread Financials",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "Rate Counterparty",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "View BBRS Ratings",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "BBRS Insights",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
+                lblMenuItem: "Offer Manger",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRemoveSuspend"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Queue Manager",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "POR Queues",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "Branch (all)",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "RWAE (all)",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "RWAE my queue",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
+                lblMenuItem: "Scoring API",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmApprovers"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Complex Lending",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Originate Application",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
+            }, ]
+        }, {
+            header: {
+                imgIcon: "icon_view.png",
+                lblSectionTitle: "Customer 360",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "View Customer Info",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Suspend List",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Suspend List",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmSuspendList"
-                    }
-                }, {
-                    lblMenuItem: "Request History",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmRequestHistory"
-                    }
-                }, {
-                    lblMenuItem: "Add Suspend",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmAddSuspend"
-                    }
-                }, {
-                    lblMenuItem: "Remove Suspend",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmRemoveSuspend"
-                    }
-                }, {
-                    lblMenuItem: "Approvers",
-                    formID: {
-                        "appName": "SuspendList",
-                        "friendlyName": "frmApprovers"
-                    }
-                }]
+                lblMenuItem: "View Application",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_financialrisk.png",
+                lblSectionTitle: "Financial Spreading & Risk Rating",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Spread Financials",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_manage.png",
-                    lblSectionTitle: "Scheme Maintenance",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Scheme List",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmSchemeList"
-                    }
-                }, {
-                    lblMenuItem: "Request History",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmSchemeReqHistory"
-                    }
-                }, {
-                    lblMenuItem: "Add Scheme",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmAddScheme"
-                    }
-                }, {
-                    lblMenuItem: "Remove Scheme",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmRemoveScheme"
-                    }
-                }, {
-                    lblMenuItem: "Approvers",
-                    formID: {
-                        "appName": "ManageScheme",
-                        "friendlyName": "frmSchemeApprover"
-                    }
-                }]
+                lblMenuItem: "Rate Counterparty",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Reporting / Dashboard",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "SLT Dashboard",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "CAMS Dashboard",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
+                lblMenuItem: "View BBRS Ratings",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
             }, {
-                header: {
-                    imgIcon: "icon_suspend.png",
-                    lblSectionTitle: "Credit Solution Engineering",
-                    isExpanded: false
-                },
-                rows: [{
-                    lblMenuItem: "Demand Planning App",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }, {
-                    lblMenuItem: "Dev Ops Board",
-                    formID: {
-                        "appName": "Customer360",
-                        "friendlyName": "frmCustomer"
-                    }
-                }]
-            }
-            //       {
-            //         header: { imgIcon: "icon_suspend.png",lblSectionTitle: "Home", isExpanded: false,
-            //                  formID: { "appName": "StandardBank", "friendlyName": "frmSBHome" }
-            //                 },
-            //       },
-        ],
+                lblMenuItem: "BBRS Insights",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_queue.png",
+                lblSectionTitle: "Queue Manager",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "POR Queues",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Branch (all)",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "RWAE (all)",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "RWAE my queue",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Suspend List",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Suspend List",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmSuspendList"
+                }
+            }, {
+                lblMenuItem: "Request History",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRequestHistory"
+                }
+            }, {
+                lblMenuItem: "Add Suspend",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmAddSuspend"
+                }
+            }, {
+                lblMenuItem: "Remove Suspend",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmRemoveSuspend"
+                }
+            }, {
+                lblMenuItem: "Approvers",
+                formID: {
+                    "appName": "SuspendList",
+                    "friendlyName": "frmApprovers"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_manage.png",
+                lblSectionTitle: "Scheme Maintenance",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Scheme List",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmSchemeList"
+                }
+            }, {
+                lblMenuItem: "Request History",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmSchemeReqHistory"
+                }
+            }, {
+                lblMenuItem: "Add Scheme",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmAddScheme"
+                }
+            }, {
+                lblMenuItem: "Remove Scheme",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmRemoveScheme"
+                }
+            }, {
+                lblMenuItem: "Approvers",
+                formID: {
+                    "appName": "ManageScheme",
+                    "friendlyName": "frmSchemeApprover"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Reporting / Dashboard",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "SLT Dashboard",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "CAMS Dashboard",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Credit Solution Engineering",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Demand Planning App",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "Dev Ops Board",
+                formID: {
+                    "appName": "Customer360",
+                    "friendlyName": "frmCustomer"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_home.png",
+                lblSectionTitle: "Home",
+                isExpanded: false,
+                formID: {
+                    "appName": "StandardBank",
+                    "friendlyName": "frmSBHome"
+                }
+            },
+        }, ],
         constructor: function() {
             this.view.flxUserDetails.isVisible = false;
             this.view.preShow = this.invokePreShow.bind(this);
@@ -1870,7 +1947,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             //         {}
             //     );
             this.isCollapsed = false;
-            this.view.flxUserDetails.isVisible = true;
+            //this.view.flxUserDetails.isVisible = true;
             //this._updateMenuToIconAndText();
         },
         collapseSidebar: function() {
@@ -2030,7 +2107,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "60dp",
             "zIndex": 10,
@@ -2050,7 +2127,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxWhiteBrd",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "60dp",
             "zIndex": 10,
@@ -2099,7 +2176,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "isVisible": true,
             "left": "30dp",
             "right": "0dp",
-            "skin": "sknLblHeading2",
+            "skin": "sknLblHeading2White",
             "text": "Standard Bank",
             "zIndex": 1
         }, controller.args[0], "Label0cff1e13b3a6943"), extendConfig({
@@ -2170,7 +2247,6 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
                 "appName": "SBCommon",
                 "friendlyName": "flxRowItems"
             }),
-            "sectionHeaderSkin": "sliPhoneSegmentHeader",
             "sectionHeaderTemplate": kony.mvc.resolveNameFromContext({
                 "appName": "SBCommon",
                 "friendlyName": "flxSegSecHdr"
@@ -2206,7 +2282,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "focusSkin": "sknFlxTrans",
             "height": "64dp",
             "id": "filxHome",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
@@ -6692,7 +6768,7 @@ define("SBCommon/flxRowItems", [],function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxRow",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -6706,7 +6782,7 @@ define("SBCommon/flxRowItems", [],function() {
             "id": "lblMenuItem",
             "isVisible": true,
             "left": "60dp",
-            "skin": "sknLblFormLevel",
+            "skin": "sknLblWhiteFormLevel",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
             "zIndex": 1
@@ -6731,7 +6807,7 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "layoutType": voltmx.flex.FLOW_VERTICAL,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxBGEDF5FF",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -6750,7 +6826,7 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "layoutType": voltmx.flex.FLOW_HORIZONTAL,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "slFbox",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "appName": "SBCommon"
@@ -6779,7 +6855,7 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "id": "lblSectionTitle",
             "isVisible": true,
             "left": "1%",
-            "skin": "sknLblHeading5",
+            "skin": "sknLblWhiteHeading5",
             "text": "Label",
             "top": "0",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
@@ -6796,7 +6872,7 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "focusSkin": "sknFlxLine",
             "height": "1%",
             "id": "flxLine",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,

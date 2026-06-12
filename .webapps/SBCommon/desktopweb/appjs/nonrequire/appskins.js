@@ -1,5 +1,6 @@
 function skinsInit() {
     Copyseg0a0a7c8d6a42a44 = "Copyseg0a0a7c8d6a42a44";
+    Copyseg0d05953f4f05a4e = "Copyseg0d05953f4f05a4e";
     Copyseg0db8162a1d22b45 = "Copyseg0db8162a1d22b45";
     defBtnBlockedUI = "defBtnBlockedUI";
     defBtnFocus = "defBtnFocus";
@@ -30,6 +31,10 @@ function skinsInit() {
     sknBtnLeftUnSelect = "sknBtnLeftUnSelect";
     sknBtnRightHighLite = "sknBtnRightHighLite";
     sknBtnRightUnSelect = "sknBtnRightUnSelect";
+    sknBtnSelect = "sknBtnSelect";
+    sknBtnUnSelect = "sknBtnUnSelect";
+    sknChkBx = "sknChkBx";
+    sknFlexMenu = "sknFlexMenu";
     sknFlx15Blck = "sknFlx15Blck";
     sknFlxBGEDF5FF = "sknFlxBGEDF5FF";
     sknFlxBlue = "sknFlxBlue";
@@ -47,6 +52,7 @@ function skinsInit() {
     sknFlxTrans = "sknFlxTrans";
     sknFlxUpload = "sknFlxUpload";
     sknFlxWhite = "sknFlxWhite";
+    sknFlxWhite20Opac = "sknFlxWhite20Opac";
     sknFlxWhiteBGBlckBrdr = "sknFlxWhiteBGBlckBrdr";
     sknFlxWhiteBdr = "sknFlxWhiteBdr";
     sknFlxWhiteBrd = "sknFlxWhiteBrd";
@@ -69,6 +75,8 @@ function skinsInit() {
     sknLblUnderline = "sknLblUnderline";
     sknLblWhite = "sknLblWhite";
     sknLblWhite100 = "sknLblWhite100";
+    sknLblWhiteFormLevel = "sknLblWhiteFormLevel";
+    sknLblWhiteHeading5 = "sknLblWhiteHeading5";
     sknListTrans = "sknListTrans";
     sknLoginDup = "sknLoginDup";
     sknLstGreyBrdr = "sknLstGreyBrdr";

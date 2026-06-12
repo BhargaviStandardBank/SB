@@ -25,7 +25,7 @@
     "_skin_": "s79882fadc714c50a09711c95134967b",
     "_top_": {
         "type": "string",
-        "value": "0dp"
+        "value": "16dp"
     },
     "_width_": {
         "type": "string",
@@ -35,7 +35,7 @@
     "autogrowmode": 1,
     "canUpdateUI": true,
     "children": [
-        "CopyProbabilityDefault0a7a45985d3a143"
+        "hide"
     ],
     "clipbounds": false,
     "containerweight": 100,

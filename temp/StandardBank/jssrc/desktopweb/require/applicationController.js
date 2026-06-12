@@ -424,5 +424,8 @@ define({
             "friendlyName": "frmLogin",
             "appName": "StandardBank"
         }).navigate();
+    },
+    makeCall: function(eventobject) {
+        voltmx.phone.dial(eventobject.text);
     }
 });
