@@ -42,7 +42,8 @@
         "flxSuspensionHdr",
         "flxSep",
         "flxInner",
-        "SuspenEntryHdr"
+        "SuspenEntryHdr",
+        "flxSegData"
     ],
     "clipbounds": false,
     "containerweight": 100,

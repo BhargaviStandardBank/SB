@@ -24,49 +24,49 @@ define(function() {
         var segSuspendEntry = new voltmx.ui.SegmentedUI2(extendConfig({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "data": [{
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
@@ -98,7 +98,7 @@ define(function() {
             "widgetDataMap": {
                 "flxDelete": "flxDelete",
                 "flxSuspensionEntry": "flxSuspensionEntry",
-                "imgDelet": "imgDelet",
+                "imgDelete": "imgDelete",
                 "lblCIFNo": "lblCIFNo",
                 "lblCustomerName": "lblCustomerName",
                 "lblIDNo": "lblIDNo",

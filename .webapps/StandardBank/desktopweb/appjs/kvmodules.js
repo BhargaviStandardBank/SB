@@ -452,7 +452,7 @@ define("com/hc/segApprover/SegApproverScheme/userSegApproverSchemeController", [
 });
 define("com/hc/segApprover/SegApproverScheme/SegApproverSchemeControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hc/segApprover/SegApproverScheme/SegApproverSchemeController", ["com/hc/segApprover/SegApproverScheme/userSegApproverSchemeController", "com/hc/segApprover/SegApproverScheme/SegApproverSchemeControllerActions"], function() {
@@ -609,7 +609,7 @@ define("com/hcl/SuspensionEntries/SuspensionEntries/userSuspensionEntriesControl
 });
 define("com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesController", ["com/hcl/SuspensionEntries/SuspensionEntries/userSuspensionEntriesController", "com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesControllerActions"], function() {
@@ -647,49 +647,49 @@ define('com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntries',[],functi
         var segSuspendEntry = new voltmx.ui.SegmentedUI2(extendConfig({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "data": [{
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "icon_delete.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
@@ -721,7 +721,7 @@ define('com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntries',[],functi
             "widgetDataMap": {
                 "flxDelete": "flxDelete",
                 "flxSuspensionEntry": "flxSuspensionEntry",
-                "imgDelet": "imgDelet",
+                "imgDelete": "imgDelete",
                 "lblCIFNo": "lblCIFNo",
                 "lblCustomerName": "lblCustomerName",
                 "lblIDNo": "lblIDNo",
@@ -1475,7 +1475,6 @@ define('com/hcl/lblText/LabelTextBox/LabelTextBox',[],function() {
         }, controller.args[1], "lblText"), extendConfig({}, controller.args[2], "lblText"));
         var txtBox = new voltmx.ui.TextBox2(extendConfig({
             "autoCapitalize": constants.TEXTBOX_AUTO_CAPITALIZE_NONE,
-            "focusSkin": "defTextBoxFocus",
             "height": "40dp",
             "id": "txtBox",
             "isVisible": true,
@@ -1678,30 +1677,35 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
                 lblMenuItem: "Loan Eligibility",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmSuspendList"
                 }
             }, {
                 lblMenuItem: "Scored Offer View(PPB)",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmRequestHistory"
                 }
             }, {
                 lblMenuItem: "Scored Offer View(BCB)",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmAddSuspend"
                 }
             }, {
                 lblMenuItem: "Offer Manger",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmRemoveSuspend"
                 }
             }, {
                 lblMenuItem: "Scoring API",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmApprovers"
                 }
             }]
@@ -1714,7 +1718,8 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             rows: [{
                 lblMenuItem: "Originate Application",
                 formID: {
-                    "appName": "SuspendList",
+                    "appName": "ComplexLending",
+                    "appInfo": "Complex Lending",
                     "friendlyName": "frmSuspendList"
                 }
             }, ]
@@ -1742,31 +1747,35 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
         }, {
             header: {
                 imgIcon: "icon_financialrisk.png",
-                lblSectionTitle: "Financial Spreading /n & Risk Rating",
+                lblSectionTitle: "Financial Spreading & Risk Rating",
                 isExpanded: false
             },
             rows: [{
                 lblMenuItem: "Spread Financials",
                 formID: {
-                    "appName": "Customer360",
+                    "appName": "FinancialSpreadingRiskRating",
+                    "appInfo": "Financial Spreading & Risk Rating",
                     "friendlyName": "frmCustomer"
                 }
             }, {
                 lblMenuItem: "Rate Counterparty",
                 formID: {
-                    "appName": "Customer360",
+                    "appName": "FinancialSpreadingRiskRating",
+                    "appInfo": "Financial Spreading & Risk Rating",
                     "friendlyName": "frmCustomer"
                 }
             }, {
                 lblMenuItem: "View BBRS Ratings",
                 formID: {
-                    "appName": "Customer360",
+                    "appName": "FinancialSpreadingRiskRating",
+                    "appInfo": "Financial Spreading & Risk Rating",
                     "friendlyName": "frmCustomer"
                 }
             }, {
                 lblMenuItem: "BBRS Insights",
                 formID: {
-                    "appName": "Customer360",
+                    "appName": "FinancialSpreadingRiskRating",
+                    "appInfo": "Financial Spreading & Risk Rating",
                     "friendlyName": "frmCustomer"
                 }
             }]
@@ -1779,25 +1788,29 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             rows: [{
                 lblMenuItem: "POR Queues",
                 formID: {
-                    "appName": "Customer360",
+                    "appName": "QueueManager",
+                    "appInfo": "Queue Manager",
                     "friendlyName": "frmCustomer"
                 }
             }, {
                 lblMenuItem: "Branch (all)",
                 formID: {
-                    "appName": "Customer360",
+                    "appName": "QueueManager",
+                    "appInfo": "Queue Manager",
                     "friendlyName": "frmCustomer"
                 }
             }, {
                 lblMenuItem: "RWAE (all)",
                 formID: {
-                    "appName": "Customer360",
+                    "appName": "QueueManager",
+                    "appInfo": "Queue Manager",
                     "friendlyName": "frmCustomer"
                 }
             }, {
                 lblMenuItem: "RWAE my queue",
                 formID: {
-                    "appName": "Customer360",
+                    "appName": "QueueManager",
+                    "appInfo": "Queue Manager",
                     "friendlyName": "frmCustomer"
                 }
             }]
@@ -1811,30 +1824,35 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
                 lblMenuItem: "Suspend List",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmSuspendList"
                 }
             }, {
                 lblMenuItem: "Request History",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmRequestHistory"
                 }
             }, {
                 lblMenuItem: "Add Suspend",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmAddSuspend"
                 }
             }, {
                 lblMenuItem: "Remove Suspend",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmRemoveSuspend"
                 }
             }, {
                 lblMenuItem: "Approvers",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmApprovers"
                 }
             }]
@@ -1848,30 +1866,35 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
                 lblMenuItem: "Scheme List",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmSchemeList"
                 }
             }, {
                 lblMenuItem: "Request History",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmSchemeReqHistory"
                 }
             }, {
                 lblMenuItem: "Add Scheme",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmAddScheme"
                 }
             }, {
                 lblMenuItem: "Remove Scheme",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmRemoveScheme"
                 }
             }, {
                 lblMenuItem: "Approvers",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmSchemeApprover"
                 }
             }]
@@ -1885,12 +1908,14 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
                 lblMenuItem: "SLT Dashboard",
                 formID: {
                     "appName": "Customer360",
+                    "appInfo": "Customer 360",
                     "friendlyName": "frmCustomer"
                 }
             }, {
                 lblMenuItem: "CAMS Dashboard",
                 formID: {
                     "appName": "Customer360",
+                    "appInfo": "Customer 360",
                     "friendlyName": "frmCustomer"
                 }
             }]
@@ -1904,12 +1929,14 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
                 lblMenuItem: "Demand Planning App",
                 formID: {
                     "appName": "Customer360",
+                    "appInfo": "Customer 360",
                     "friendlyName": "frmCustomer"
                 }
             }, {
                 lblMenuItem: "Dev Ops Board",
                 formID: {
                     "appName": "Customer360",
+                    "appInfo": "Customer 360",
                     "friendlyName": "frmCustomer"
                 }
             }]
@@ -2397,7 +2424,7 @@ define("com/hcl/popup/AlertUp/userAlertUpController", [],function() {
 });
 define("com/hcl/popup/AlertUp/AlertUpControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/popup/AlertUp/AlertUpController", ["com/hcl/popup/AlertUp/userAlertUpController", "com/hcl/popup/AlertUp/AlertUpControllerActions"], function() {
@@ -2593,7 +2620,7 @@ define("com/hcl/schemeList/SchemeList/userSchemeListController", [],function() {
 });
 define("com/hcl/schemeList/SchemeList/SchemeListControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/schemeList/SchemeList/SchemeListController", ["com/hcl/schemeList/SchemeList/userSchemeListController", "com/hcl/schemeList/SchemeList/SchemeListControllerActions"], function() {
@@ -2747,7 +2774,7 @@ define("com/hcl/segDropDown/SegDropDown/userSegDropDownController", [],function(
 });
 define("com/hcl/segDropDown/SegDropDown/SegDropDownControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/segDropDown/SegDropDown/SegDropDownController", ["com/hcl/segDropDown/SegDropDown/userSegDropDownController", "com/hcl/segDropDown/SegDropDown/SegDropDownControllerActions"], function() {
@@ -2836,7 +2863,7 @@ define("com/hcl/segHdr/segHeader/usersegHeaderController", [],function() {
 });
 define("com/hcl/segHdr/segHeader/segHeaderControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/segHdr/segHeader/segHeaderController", ["com/hcl/segHdr/segHeader/usersegHeaderController", "com/hcl/segHdr/segHeader/segHeaderControllerActions"], function() {
@@ -3134,7 +3161,7 @@ define("com/hcl/segSuspend/SegSuspendList/userSegSuspendListController", [],func
 });
 define("com/hcl/segSuspend/SegSuspendList/SegSuspendListControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/segSuspend/SegSuspendList/SegSuspendListController", ["com/hcl/segSuspend/SegSuspendList/userSegSuspendListController", "com/hcl/segSuspend/SegSuspendList/SegSuspendListControllerActions"], function() {
@@ -3441,7 +3468,7 @@ define("com/hcl/suspenEntryHdr/SuspenEntryHdr/userSuspenEntryHdrController", [],
 });
 define("com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdrControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdrController", ["com/hcl/suspenEntryHdr/SuspenEntryHdr/userSuspenEntryHdrController", "com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdrControllerActions"], function() {
@@ -6405,10 +6432,10 @@ define("SBCommon/flxSuspensionEntry", [],function() {
             "paddingInPixel": false
         }, {});
         flxDelete.setDefaultUnit(voltmx.flex.DP);
-        var imgDelet = new voltmx.ui.Image2({
+        var imgDelete = new voltmx.ui.Image2({
             "centerX": "50%",
             "height": "30dp",
-            "id": "imgDelet",
+            "id": "imgDelete",
             "isVisible": true,
             "skin": "slImage",
             "src": "icon_delete.png",
@@ -6420,7 +6447,7 @@ define("SBCommon/flxSuspensionEntry", [],function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, {});
-        flxDelete.add(imgDelet);
+        flxDelete.add(imgDelete);
         flxSuspensionEntry.add(lblCIFNo, lblIDNo, lblCustomerName, lblReason, flxDelete);
         return flxSuspensionEntry;
     }

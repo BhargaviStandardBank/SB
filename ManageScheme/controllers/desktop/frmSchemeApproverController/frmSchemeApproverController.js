@@ -1,11 +1,16 @@
 define({
   _masterData: [],
 
-  onNavigate() {
+  onNavigate(header) {
+    this.header = "Credit Risk / "+ header.formID.appInfo + " / "+header.lblMenuItem;
     this.setupDataMap();
     this._initializeActions();
+    this.preshowHandler();
     this._loadApproverData()
       .catch(err => { throw new Error(`Data Initialization Failed: ${err.message}`); });
+  },
+  preshowHandler: function(){
+    this.view.FormHeader.lblHdr.text = this.header;
   },
 
   _initializeActions() {

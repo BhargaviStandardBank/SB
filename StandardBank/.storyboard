@@ -6,6 +6,14 @@
                 "linkDataArray": [],
                 "nodeDataArray": [
                     {
+                        "formKUID": "ea43b8599b514431a19a70ee3765cd6c",
+                        "formName": "frmSimpleTouch",
+                        "isStartupForm": false,
+                        "key": "ea43b8599b514431a19a70ee3765cd6c",
+                        "loc": "538 585.026806640625",
+                        "thumbnailURL": null
+                    },
+                    {
                         "formKUID": "i1f2b77481ed4bb5b3173775de5a5f56",
                         "formName": "frmAddScheme",
                         "isStartupForm": false,
@@ -123,7 +131,7 @@
                         "isStartupForm": false,
                         "key": "d0ef262a1491426fb96e1524df6c7e70",
                         "loc": "8 7025.026806640625",
-                        "thumbnailURL": null
+                        "thumbnailURL": "/assets/SBCommon/forms/desktop/frmHome.sm/.thumbs/1366.jpeg"
                     },
                     {
                         "formKUID": "fd1b30e466a64beb9bdbf382fbeca372",

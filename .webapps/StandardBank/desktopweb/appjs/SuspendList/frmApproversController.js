@@ -1,13 +1,15 @@
 define("SuspendList/userfrmApproversController", {
     _masterData: [],
-    onNavigate() {
+    onNavigate: function(header) {
+        this.header = "Credit Risk / " + header.formID.appInfo + " / " + header.lblMenuItem;
         this.setupDataMap();
         this._initializeActions();
         this._loadApproverData().catch(err => {
             throw new Error(`Data Initialization Failed: ${err.message}`);
         });
     },
-    _initializeActions() {
+    _initializeActions: function() {
+        this.view.FormHeader.lblHdr.text = this.header;
         this.view.segHeader.flxCIFNo.onTouchEnd = () => {
             this._sortDataByName().catch(err => {
                 throw new Error(`Sorting Operation Failed: ${err.message}`);
@@ -17,29 +19,21 @@ define("SuspendList/userfrmApproversController", {
         //         // Navigation to details or edit mode
         //         this.view.segApprovers.onRowClick = () => this._onRowClick();
     },
-    /** ---------------- SORTING LOGIC ---------------- **/
-    /**
-     * Sorts the master data by name and refreshes the segment
-     * @returns {Promise<boolean>}
-     */
-    _sortDataByName() {
+    _sortDataByName: function() {
         return new Promise((resolve) => {
-            // ES6 Ternary operator to determine sort direction logic
             this._masterData.sort((a, b) => {
                 const nameA = a.name.toLowerCase();
                 const nameB = b.name.toLowerCase();
                 const comparison = nameA < nameB ? -1 : (nameA > nameB ? 1 : 0);
                 return this._isNameAscending ? comparison : (comparison * -1);
             });
-            // Toggle state for next click
             this._isNameAscending = !this._isNameAscending;
-            // Re-render segment with sorted data
             this._renderSegment(this._masterData);
             resolve(true);
         });
     },
     /** ---------------- DATA MAPPING ---------------- **/
-    setupDataMap() {
+    setupDataMap: function() {
         this.view.SegApproverScheme.segApprover.widgetDataMap = {
             lblEmployeeNo: "lblEmployeeNo",
             lblName: "lblName",
@@ -47,12 +41,7 @@ define("SuspendList/userfrmApproversController", {
             lblMobileNo: "lblMobileNo"
         };
     },
-    /** ---------------- LOAD DATA (PROMISE) ---------------- **/
-    /**
-     * Fetches approver data asynchronously
-     * @returns {Promise<Array>}
-     */
-    _loadApproverData() {
+    _loadApproverData: function() {
         return new Promise((resolve) => {
             const rawApprovers = [{
                 no: "555555",
@@ -115,30 +104,23 @@ define("SuspendList/userfrmApproversController", {
                 email: "zane.l@standardbank.co.za",
                 mobile: "(72) 555-5555"
             }];
-            this._masterData = [...rawApprovers]; // Spread operator for cloning
+            this._masterData = [...rawApprovers];
             this._renderSegment(rawApprovers);
             resolve(rawApprovers);
         });
     },
-    /** ---------------- RENDER LOGIC ---------------- **/
-    /**
-     * Maps data to segment with performance batching
-     * @param {Array} data 
-     */
-    _renderSegment(data) {
+    _renderSegment: function(data) {
         //         const defaultIcons = {
         //             imgEdit: "edit_icon.png",
         //             imgDelete: "delete_icon.png"
         //         };
         const segmentData = data.map(item => ({
-            //...defaultIcons, // ES6 Spread for consistent row assets
             lblEmployeeNo: item.no,
             lblName: item.name,
             lblEmail: item.email,
             lblMobileNo: item.mobile
         }));
         this.view.SegApproverScheme.segApprover.setData(segmentData);
-        // Performance Batching: Ensures UI reflow happens once
         this.view.forceLayout();
     }
 });

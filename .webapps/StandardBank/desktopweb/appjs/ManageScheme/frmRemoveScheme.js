@@ -20,27 +20,8 @@ define("ManageScheme/frmRemoveScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBrd",
-                "top": "0dp",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "ManageScheme"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
             var SideMenu = new com.hcl.menu.SideMenu({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
                 "height": "100%",
                 "id": "SideMenu",
                 "isVisible": true,
@@ -48,10 +29,10 @@ define("ManageScheme/frmRemoveScheme", function() {
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
+                "width": "60dp",
+                "zIndex": 10,
                 "appName": "SBCommon",
                 "overrides": {}
             }, {
@@ -60,7 +41,6 @@ define("ManageScheme/frmRemoveScheme", function() {
             }, {
                 "overrides": {}
             });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -68,11 +48,11 @@ define("ManageScheme/frmRemoveScheme", function() {
                 "id": "flxRight",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
-                "left": "15%",
+                "left": "60dp",
                 "isModalContainer": false,
+                "right": 0,
                 "skin": "sknFlxTrans",
                 "top": "0%",
-                "width": "85%",
                 "zIndex": 1,
                 "appName": "ManageScheme"
             }, {
@@ -81,24 +61,19 @@ define("ManageScheme/frmRemoveScheme", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "8%",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
-                "overrides": {
-                    "lblHdr": {
-                        "text": "Remove Scheme"
-                    }
-                }
+                "overrides": {}
             }, {
                 "paddingInPixel": false,
                 "overrides": {}
@@ -2716,7 +2691,6 @@ define("ManageScheme/frmRemoveScheme", function() {
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
                 "skin": "sknFlxBGEDF5FF",
-                "top": "16dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
@@ -2728,23 +2702,26 @@ define("ManageScheme/frmRemoveScheme", function() {
                         "src": "filter_list.png"
                     },
                     "lblCIFNo": {
-                        "left": "10%",
+                        "left": "2%",
                         "text": "Scheme Name"
                     },
                     "lblCustomerName": {
-                        "left": "10%",
+                        "left": "2%",
                         "text": "Company Name"
                     },
                     "lblDate": {
                         "text": "Scheme ID "
                     },
                     "lblIDNo": {
-                        "left": "10%",
+                        "left": "2%",
                         "text": "CIF No"
                     },
                     "lblReason": {
-                        "left": "3%",
+                        "left": "1%",
                         "text": "Reg ID"
+                    },
+                    "segHeader": {
+                        "top": "viz.val_cleared"
                     }
                 }
             }, {
@@ -2794,6 +2771,194 @@ define("ManageScheme/frmRemoveScheme", function() {
             });
             flxEntryData.add(SegSuspendList);
             flxCompanyEntries.add(EntriesSubHdr, flxInner, segHeader, flxEntryData);
+            var flxEmployeEntry = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxEmployeEntry",
+                "isVisible": false,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxWhiteBGBlckBrdr",
+                "top": "24dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxEmployeEntry.setDefaultUnit(voltmx.flex.DP);
+            var EmployeEntrySubHdr = new com.hcl.subHdr.SubHdr({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "45dp",
+                "id": "EmployeEntrySubHdr",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "right": "0dp",
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "SubHdr": {
+                        "centerY": "viz.val_cleared",
+                        "top": "0dp"
+                    },
+                    "lblSubHdr": {
+                        "text": "Employee Entries"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            var flxEmployeInner = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "40dp",
+                "id": "flxEmployeInner",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxEmployeInner.setDefaultUnit(voltmx.flex.DP);
+            var CopylblVerified0d06bb9d1acf847 = new voltmx.ui.Label({
+                "centerY": "50%",
+                "id": "CopylblVerified0d06bb9d1acf847",
+                "isVisible": true,
+                "left": "24dp",
+                "skin": "sknLblFormLevel",
+                "text": "Verified",
+                "top": "9dp",
+                "width": "100dp",
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var CopylblOverride0e2b9a0e587a549 = new voltmx.ui.Label({
+                "centerY": "50%",
+                "id": "CopylblOverride0e2b9a0e587a549",
+                "isVisible": true,
+                "left": "0dp",
+                "skin": "sknLblFormLevel",
+                "text": "Override",
+                "top": "9dp",
+                "width": "100dp",
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var CopylblDuplicate0j6dd628afd6243 = new voltmx.ui.Label({
+                "centerY": "50%",
+                "id": "CopylblDuplicate0j6dd628afd6243",
+                "isVisible": true,
+                "left": "0dp",
+                "skin": "sknLblFormLevel",
+                "text": "Duplicate",
+                "top": "9dp",
+                "width": "100dp",
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            var CopylblInvalid0bb94712c4dc248 = new voltmx.ui.Label({
+                "centerY": "50%",
+                "id": "CopylblInvalid0bb94712c4dc248",
+                "isVisible": true,
+                "left": "0dp",
+                "skin": "sknLblFormLevel",
+                "text": "Invalid",
+                "top": "9dp",
+                "width": "100dp",
+                "zIndex": 1
+            }, {
+                "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+                "padding": [0, 0, 0, 0],
+                "paddingInPixel": false
+            }, {});
+            flxEmployeInner.add(CopylblVerified0d06bb9d1acf847, CopylblOverride0e2b9a0e587a549, CopylblDuplicate0j6dd628afd6243, CopylblInvalid0bb94712c4dc248);
+            var SuspenEntryHdr = new com.hcl.suspenEntryHdr.SuspenEntryHdr({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "focusSkin": "slFFocusbox",
+                "height": "40dp",
+                "id": "SuspenEntryHdr",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxBGEDF5FF",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {}
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            var flxEmployeeEntryData = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "400dp",
+                "id": "flxEmployeeEntryData",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxEmployeeEntryData.setDefaultUnit(voltmx.flex.DP);
+            var SuspensionEntries = new com.hcl.SuspensionEntries.SuspensionEntries({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "100%",
+                "id": "SuspensionEntries",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {}
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxEmployeeEntryData.add(SuspensionEntries);
+            flxEmployeEntry.add(EmployeEntrySubHdr, flxEmployeInner, SuspenEntryHdr, flxEmployeeEntryData);
             var FlexContainer0af80d45963f540 = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "bottom": "12dp",
@@ -2845,9 +3010,9 @@ define("ManageScheme/frmRemoveScheme", function() {
                 "paddingInPixel": true
             }, {});
             FlexContainer0af80d45963f540.add(btnSubmitAddition, btnDiscard);
-            flxScr.add(flxAddScheme, flxCompanyEntries, FlexContainer0af80d45963f540);
+            flxScr.add(flxAddScheme, flxCompanyEntries, flxEmployeEntry, FlexContainer0af80d45963f540);
             flxRight.add(FormHeader, flxScr);
-            flxMain.add(flxLeft, flxRight);
+            flxMain.add(SideMenu, flxRight);
             var flxSchDetailsPopup = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -3815,9 +3980,6 @@ define("ManageScheme/frmRemoveScheme", function() {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader.lblHdr": {
-                    "text": "Remove Scheme"
-                },
                 "SubHdr": {
                     "centerY": "",
                     "top": "0dp"
@@ -4076,23 +4238,33 @@ define("ManageScheme/frmRemoveScheme", function() {
                     "src": "filter_list.png"
                 },
                 "segHeader.lblCIFNo": {
-                    "left": "10%",
+                    "left": "2%",
                     "text": "Scheme Name"
                 },
                 "segHeader.lblCustomerName": {
-                    "left": "10%",
+                    "left": "2%",
                     "text": "Company Name"
                 },
                 "segHeader.lblDate": {
                     "text": "Scheme ID "
                 },
                 "segHeader.lblIDNo": {
-                    "left": "10%",
+                    "left": "2%",
                     "text": "CIF No"
                 },
                 "segHeader.lblReason": {
-                    "left": "3%",
+                    "left": "1%",
                     "text": "Reg ID"
+                },
+                "segHeader": {
+                    "top": ""
+                },
+                "EmployeEntrySubHdr": {
+                    "centerY": "",
+                    "top": "0dp"
+                },
+                "EmployeEntrySubHdr.lblSubHdr": {
+                    "text": "Employee Entries"
                 },
                 "SchemeID.lblDetail": {
                     "text": "SCHEME ID"

@@ -39,6 +39,7 @@
     "children": [
         "flxAddScheme",
         "flxCompanyEntries",
+        "flxEmployeEntry",
         "FlexContainer0af80d45963f540"
     ],
     "clipbounds": false,

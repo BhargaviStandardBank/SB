@@ -211376,44 +211376,9 @@ var appConfig = {
     appId: "StandardBank",
     appName: "StandardBank",
     appVersion: "1.0.0",
-    isturlbase: "https://voltmxtechnohub.hclvoltmx.net/services",
     isDebug: true,
     hotReloadURL: "ws://192.168.1.79:9099",
-    isMFApp: true,
-    appKey: "207078c22fad797b00f67edfd3023c76",
-    appSecret: "26e4e0d0423634adbb3149524c989125",
-    serviceUrl: "https://100000032.auth.hclvoltmx.net/appconfig",
-    svcDoc: {
-        "selflink": "https://100000032.auth.hclvoltmx.net/appconfig",
-        "app_version": "1.0",
-        "integsvc": {
-            "_internal_logout": "https://voltmxtechnohub.hclvoltmx.net/services/IST",
-            "LoginSer": "https://voltmxtechnohub.hclvoltmx.net/services/LoginSer"
-        },
-        "service_doc_etag": "0000019EB5DD7CA0",
-        "appId": "ec3a3fe3-fc60-4ef1-9856-60c371c055ee",
-        "identity_features": {
-            "reporting_params_header_allowed": true
-        },
-        "name": "StandardBank",
-        "reportingsvc": {
-            "session": "https://voltmxtechnohub.hclvoltmx.net/services/IST",
-            "custom": "https://voltmxtechnohub.hclvoltmx.net/services/CMS"
-        },
-        "baseId": "ac303668-f56d-4163-82db-71fc28de5fc1",
-        "app_default_version": "1.0",
-        "services_meta": {
-            "LoginSer": {
-                "type": "integsvc",
-                "version": "1.0",
-                "url": "https://voltmxtechnohub.hclvoltmx.net/services/LoginSer"
-            }
-        },
-        "Webapp": {
-            "url": "https://voltmxtechnohub.hclvoltmx.net/apps/StandardBank"
-        }
-    },
-    runtimeAppVersion: "1.0",
+    isMFApp: false,
     eventTypes: [],
     microApps: {
         "SBCommon": {
@@ -211493,22 +211458,15 @@ function loadResources() {
     sdkInitConfig = {
         "appConfig": appConfig,
         "isMFApp": appConfig.isMFApp,
-        "appKey": appConfig.appKey,
-        "appSecret": appConfig.appSecret,
         "eventTypes": appConfig.eventTypes,
-        "serviceUrl": appConfig.serviceUrl,
     }
-    voltmx.setupsdks(sdkInitConfig, onSuccessSDKCallBack, onSuccessSDKCallBack);
+    voltmx.theme.setCurrentTheme("default", themeCallBack, themeCallBack);
     if (voltmx.rosettajs) {
         voltmx.rosettajs.API.setDefaultFrameworkAsVoltMX();
         voltmx.rosettajs.API.converter.config.setRosettaJSname('voltmx.rosettajs');
         voltmx.rosettajs.API.setDefaultAPIAsNotes();
     }
 };
-
-function onSuccessSDKCallBack() {
-    voltmx.theme.setCurrentTheme("default", themeCallBack, themeCallBack);
-}
 
 function initializeApp() {
     voltmx.application.setApplicationMode(constants.APPLICATION_MODE_NATIVE);

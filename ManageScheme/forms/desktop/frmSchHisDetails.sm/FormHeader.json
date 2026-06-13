@@ -4,7 +4,7 @@
     "_children_": [],
     "_height_": {
         "type": "string",
-        "value": "8%"
+        "value": "60px"
     },
     "_left_": {
         "type": "string",
@@ -24,7 +24,7 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_skin_": "sb9abbe20c604650b6e8f1350a08a33b",
     "_top_": {
         "type": "string",
         "value": "0dp"
@@ -33,6 +33,8 @@
         "type": "string",
         "value": "100%"
     },
+    "android": {},
+    "androidwearos": {},
     "areflexpropsreferenced": false,
     "autogrowmode": 0,
     "canUpdateUI": true,
@@ -42,7 +44,7 @@
         "FlexContainer0c5eafe3e5fdf45": {
             "__events__": {},
             "__info__": {
-                "kuid": "ce6fc111e96144fabf2428e45989e5b5",
+                "kuid": "bc16a509e31b4187b4488b37d50a9fbe",
                 "srcKUID": "b0c2e11d0fcb43188eaca020aca70ab0",
                 "wType": "FlexContainer"
             }
@@ -50,7 +52,7 @@
         "FlexContainer0cfbd412f8d984f": {
             "__events__": {},
             "__info__": {
-                "kuid": "a90588a2b9e543269db1cdf7246a7b75",
+                "kuid": "jbf8a5352c0a48258d68b8076ebfdf88",
                 "srcKUID": "a76d07791cf54efaba1f1e8298ba60ef",
                 "wType": "FlexContainer"
             }
@@ -59,7 +61,7 @@
             "__events__": {},
             "__info__": {
                 "isRoot": true,
-                "kuid": "e9f55083bb024bc28325be25fc08a4c2",
+                "kuid": "i0117acee256477c8e02396dd1222518",
                 "srcKUID": "ja2cbe8fda184c1caaab89eeae9fb281",
                 "wType": "FlexContainer"
             }
@@ -67,7 +69,7 @@
         "Label0b2fdf6dd443b44": {
             "__events__": {},
             "__info__": {
-                "kuid": "i98ce5f6eba74286915af613d92bf2b3",
+                "kuid": "fc0feaeadadb4e1396cf47b84848852a",
                 "srcKUID": "g18338682f7440699865c7b3b0649058",
                 "wType": "Label"
             }
@@ -75,7 +77,7 @@
         "imgLogout": {
             "__events__": {},
             "__info__": {
-                "kuid": "a898cfbd92764b4c9771ea9709afa504",
+                "kuid": "g4c010b0d28143ee963e5d4ad4f86e61",
                 "srcKUID": "j4a298acc2ce463686107bdf619e3c57",
                 "wType": "Image"
             }
@@ -83,22 +85,24 @@
         "lblHdr": {
             "__events__": {},
             "__info__": {
-                "kuid": "c03a48b9bac34d27ad868d6ed97bd3e2",
+                "kuid": "b10e815d770b49dba74317be64773f1d",
                 "srcKUID": "ecaffe136a7647ee89b97eff000d8e8c",
                 "wType": "Label"
-            },
-            "responsiveData": {},
-            "text": "History Details"
+            }
         }
     },
+    "desktopweb": {},
     "enablescrolling": true,
-    "focusskin": "sf51dc37fd0a40178320b8330b005a98",
+    "focusskin": null,
     "id": "FormHeader",
     "info": null,
+    "ipad": {},
+    "iphone": {},
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kuid": "e9f55083bb024bc28325be25fc08a4c2",
+    "kiosk": {},
+    "kuid": "i0117acee256477c8e02396dd1222518",
     "layouttype": 2,
     "masterType": 0,
     "name": "kony.ui.UserWidgetInstance",
@@ -110,6 +114,24 @@
     "snapgridsize": 10,
     "snaptogrid": true,
     "sourceUserWidget": "ja2cbe8fda184c1caaab89eeae9fb281",
+    "spa": {},
+    "spaan": {},
+    "spaandroidtablet": {},
+    "spabb": {},
+    "spaip": {},
+    "spaipad": {},
+    "spamobile": {},
+    "spatablet": {},
+    "spawindowstablet": {},
+    "spawinphone8": {},
+    "tabrcandroid": {},
+    "vizProps": {
+        "hidewidgethierarchy": false
+    },
     "wType": "UserWidgetInstance",
+    "windows10": {},
+    "windows8": {},
+    "winphone10": {},
+    "winphone8": {},
     "zindex": 1
 }

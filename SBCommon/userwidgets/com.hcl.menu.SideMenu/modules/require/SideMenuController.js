@@ -13,26 +13,31 @@ define(function() {
         rows: [
           { lblMenuItem: "Loan Eligibility", formID: {
             "appName": "SuspendList",
+            "appInfo":"Suspend List",
             "friendlyName": "frmSuspendList"
           }
           },
           { lblMenuItem: "Scored Offer View(PPB)", formID: {
             "appName": "SuspendList",
+            "appInfo":"Suspend List",
             "friendlyName": "frmRequestHistory"
           } 
           },
           { lblMenuItem: "Scored Offer View(BCB)", formID: {
             "appName": "SuspendList",
+            "appInfo":"Suspend List",
             "friendlyName": "frmAddSuspend"
           } 
           },
           { lblMenuItem: "Offer Manger", formID: {
             "appName": "SuspendList",
+            "appInfo":"Suspend List",
             "friendlyName": "frmRemoveSuspend"
           } 
           },
           { lblMenuItem: "Scoring API", formID: {
             "appName": "SuspendList",
+            "appInfo":"Suspend List",
             "friendlyName": "frmApprovers"
           }  
           }
@@ -43,7 +48,8 @@ define(function() {
                  lblSectionTitle: "Complex Lending", isExpanded: false},
         rows: [
           { lblMenuItem: "Originate Application", formID: {
-            "appName": "SuspendList",
+            "appName": "ComplexLending",
+            "appInfo":"Complex Lending",
             "friendlyName": "frmSuspendList"
           }
           },
@@ -71,22 +77,26 @@ define(function() {
         header: { imgIcon: "icon_financialrisk.png",lblSectionTitle:"Financial Spreading & Risk Rating", isExpanded: false },
         rows: [
           { lblMenuItem: "Spread Financials", formID: {
-            "appName": "Customer360",
+            "appName": "FinancialSpreadingRiskRating",
+            "appInfo":"Financial Spreading & Risk Rating",
             "friendlyName": "frmCustomer"
           }
           },
           { lblMenuItem: "Rate Counterparty", formID: {
-            "appName": "Customer360",
+            "appName": "FinancialSpreadingRiskRating",
+            "appInfo":"Financial Spreading & Risk Rating",
             "friendlyName": "frmCustomer"
           }
           },
           { lblMenuItem: "View BBRS Ratings", formID: {
-            "appName": "Customer360",
+            "appName": "FinancialSpreadingRiskRating",
+            "appInfo":"Financial Spreading & Risk Rating",
             "friendlyName": "frmCustomer"
           }
           },
           { lblMenuItem: "BBRS Insights", formID: {
-            "appName": "Customer360",
+            "appName": "FinancialSpreadingRiskRating",
+            "appInfo":"Financial Spreading & Risk Rating",
             "friendlyName": "frmCustomer"
           }
           }
@@ -96,22 +106,26 @@ define(function() {
         header: { imgIcon: "icon_queue.png",lblSectionTitle: "Queue Manager", isExpanded: false },
         rows: [
           { lblMenuItem: "POR Queues", formID: {
-            "appName": "Customer360",
+            "appName": "QueueManager",
+            "appInfo":"Queue Manager",
             "friendlyName": "frmCustomer"
           }
           },
           { lblMenuItem: "Branch (all)", formID: {
-            "appName": "Customer360",
+            "appName": "QueueManager",
+            "appInfo":"Queue Manager",
             "friendlyName": "frmCustomer"
           }
           },
           { lblMenuItem: "RWAE (all)", formID: {
-            "appName": "Customer360",
+            "appName": "QueueManager",
+            "appInfo":"Queue Manager",
             "friendlyName": "frmCustomer"
           }
           },
           { lblMenuItem: "RWAE my queue", formID: {
-            "appName": "Customer360",
+            "appName": "QueueManager",
+            "appInfo":"Queue Manager",
             "friendlyName": "frmCustomer"
           }
           }
@@ -122,26 +136,31 @@ define(function() {
                  lblSectionTitle: "Suspend List", isExpanded: false},
         rows: [{ lblMenuItem: "Suspend List", formID: {
           "appName": "SuspendList",
+          "appInfo":"Suspend List",
           "friendlyName": "frmSuspendList"
         }
                },
                { lblMenuItem: "Request History", formID: {
                  "appName": "SuspendList",
+          			"appInfo":"Suspend List",
                  "friendlyName": "frmRequestHistory"
                } 
                },
                { lblMenuItem: "Add Suspend", formID: {
                  "appName": "SuspendList",
+                 "appInfo":"Suspend List",
                  "friendlyName": "frmAddSuspend"
                } 
                },
                { lblMenuItem: "Remove Suspend", formID: {
                  "appName": "SuspendList",
+                 "appInfo":"Suspend List",
                  "friendlyName": "frmRemoveSuspend"
                } 
                },
                { lblMenuItem: "Approvers", formID: {
                  "appName": "SuspendList",
+                 "appInfo":"Suspend List",
                  "friendlyName": "frmApprovers"
                }  }
               ]
@@ -150,26 +169,31 @@ define(function() {
         header: { imgIcon: "icon_manage.png",lblSectionTitle: "Scheme Maintenance", isExpanded: false },
         rows: [{ lblMenuItem: "Scheme List", formID: {
           "appName": "ManageScheme",
+          "appInfo":"Scheme Maintence",
           "friendlyName": "frmSchemeList"
         }
                },
                { lblMenuItem: "Request History", formID: {
                  "appName": "ManageScheme",
+                 "appInfo":"Scheme Maintence",
                  "friendlyName": "frmSchemeReqHistory"
                } 
                },
                { lblMenuItem: "Add Scheme", formID: {
                  "appName": "ManageScheme",
+                 "appInfo":"Scheme Maintence",
                  "friendlyName": "frmAddScheme"
                } 
                },
                { lblMenuItem: "Remove Scheme", formID: {
                  "appName": "ManageScheme",
+                 "appInfo":"Scheme Maintence",
                  "friendlyName": "frmRemoveScheme"
                } 
                },
                { lblMenuItem: "Approvers", formID: {
                  "appName": "ManageScheme",
+                 "appInfo":"Scheme Maintence",
                  "friendlyName": "frmSchemeApprover"
                } }
               ]
@@ -182,11 +206,13 @@ define(function() {
         rows: [
           { lblMenuItem: "SLT Dashboard", formID: {
             "appName": "Customer360",
+            "appInfo":"Customer 360",
             "friendlyName": "frmCustomer"
           }
           },
           { lblMenuItem: "CAMS Dashboard", formID: {
             "appName": "Customer360",
+            "appInfo":"Customer 360",
             "friendlyName": "frmCustomer"
           }
           }
@@ -197,11 +223,13 @@ define(function() {
         rows: [
           { lblMenuItem: "Demand Planning App", formID: {
             "appName": "Customer360",
+            "appInfo":"Customer 360",
             "friendlyName": "frmCustomer"
           }
           },
           { lblMenuItem: "Dev Ops Board", formID: {
             "appName": "Customer360",
+            "appInfo":"Customer 360",
             "friendlyName": "frmCustomer"
           }
           }

@@ -45,9 +45,10 @@
         "placeholderSkin": "s8522b3fb9974f20b21f059d3ed3aa4a"
     },
     "disabledSkins": {
-        "blockedUISkin": "s4265d3422894a7ab34eefc4bd0af188"
+        "blockedUISkin": "s4265d3422894a7ab34eefc4bd0af188",
+        "focusSkin": "sa7ed060dbc74c75a5f7d403180179c0"
     },
-    "focusskin": "sa7ed060dbc74c75a5f7d403180179c0",
+    "focusskin": null,
     "id": "txtBox",
     "info": null,
     "iscustomlayout": false,

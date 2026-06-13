@@ -1,10 +1,12 @@
 define({ 
 
   // 1. Initial UI State on Navigation
-  onNavigate: function() {
+  onNavigate: function(header) {
+    this.header = "Credit Risk / "+ header.formID.appInfo + " / "+header.lblMenuItem;
     this.resetUI();
     this.setupActions();
     this.populateSegmentData();
+    this.preshowHandler();
     this.view.segNewListSource.onRowClick = this.onSourceRowClick.bind(this);
     this.view.segTypeEntry.onRowClick = this.onTypeEntryRowClick.bind(this);
     this.view.segSearchCriteria.onRowClick = this.onCriteriaRowClick.bind(this);
@@ -12,6 +14,7 @@ define({
 
   resetUI: function() {
     // Dropdowns (Segments) are hidden by default
+    this.view.FormHeader.lblHdr.text = this.header;
     this.view.flxSegSourceContainer.setVisibility(false);
     this.view.flxSegTypeContainer.setVisibility(false);
     this.view.flxSegCriteriaContainer.setVisibility(false);
@@ -26,6 +29,10 @@ define({
     this.view.lblSelectedCriteria.text = "Select Criteria";
 
     this.populateSourceData();
+  },
+  
+  preshowHandler: function(){
+    this.view.FormHeader.lblHdr.text = this.header;
   },
 
   setupActions: function() {

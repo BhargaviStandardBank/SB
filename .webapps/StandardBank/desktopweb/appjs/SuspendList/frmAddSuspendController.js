@@ -13,13 +13,14 @@ define("SuspendList/userfrmAddSuspendController", {
         ECOSYSTEM: "Eco"
     },
     /** ---------------- ENTRY ---------------- **/
-    onNavigate() {
+    onNavigate: function(header) {
         // this.setupDataMap();
         // this._loadSuspensionData();
+        this.header = "Credit Risk / " + header.formID.appInfo + " / " + header.lblMenuItem;
         this.populateSegmentData();
         this._initializeActions();
         this._resetToDefaultView();
-        this.view.postShow = this.initSidebar.bind(this);
+        //this.view.postShow = this.initSidebar.bind(this);
     },
     initSidebar: function() {
         this.view.flxLeft.width = "60dp";
@@ -89,6 +90,7 @@ define("SuspendList/userfrmAddSuspendController", {
     },
     _initializeActions() {
         // Main Source Dropdown
+        this.view.FormHeader.lblHdr.text = this.header;
         this.view.ListSource.listData.onSelection = () => {
             this._handleSourceChange().catch(err => {
                 throw new Error(`Source selection failed: ${err.message}`);

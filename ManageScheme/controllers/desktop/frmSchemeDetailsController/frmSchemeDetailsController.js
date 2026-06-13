@@ -1,8 +1,8 @@
 define({ 
 
   onNavigate: function(){
+    this.header = "Credit Risk / Manage Scheme / Scheme Deatils";
     this.view.flxPopup.isVisible = false;
-    
     this.view.btnReturn.onClick = this.btnReturnClick;
     this.view.SuspensionEntries.segSuspendEntry.onRowClick = this.segRowClick;
     this.view.imgCancel.onTouchEnd = this.cancelClick;

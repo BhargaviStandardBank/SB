@@ -3,7 +3,7 @@ define("com/hc/segApprover/SegApproverScheme/userSegApproverSchemeController", f
 });
 define("com/hc/segApprover/SegApproverScheme/SegApproverSchemeControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hc/segApprover/SegApproverScheme/SegApproverSchemeController", ["com/hc/segApprover/SegApproverScheme/userSegApproverSchemeController", "com/hc/segApprover/SegApproverScheme/SegApproverSchemeControllerActions"], function() {

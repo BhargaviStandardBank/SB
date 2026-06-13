@@ -60,7 +60,7 @@
             "left": {
                 "Default": {
                     "type": "string",
-                    "value": "3.80%"
+                    "value": "2%"
                 }
             },
             "responsiveData": {}

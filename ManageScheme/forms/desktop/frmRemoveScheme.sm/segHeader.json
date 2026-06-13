@@ -25,10 +25,6 @@
     ],
     "_percent_": true,
     "_skin_": "s1860cb829f64794999ae80557fd4327",
-    "_top_": {
-        "type": "string",
-        "value": "16dp"
-    },
     "_width_": {
         "type": "string",
         "value": "100%"
@@ -139,7 +135,7 @@
             "left": {
                 "Default": {
                     "type": "string",
-                    "value": "10%"
+                    "value": "2%"
                 }
             },
             "responsiveData": {},
@@ -155,7 +151,7 @@
             "left": {
                 "Default": {
                     "type": "string",
-                    "value": "10%"
+                    "value": "2%"
                 }
             },
             "responsiveData": {},
@@ -181,7 +177,7 @@
             "left": {
                 "Default": {
                     "type": "string",
-                    "value": "10%"
+                    "value": "2%"
                 }
             },
             "responsiveData": {},
@@ -197,7 +193,7 @@
             "left": {
                 "Default": {
                     "type": "string",
-                    "value": "3%"
+                    "value": "1%"
                 }
             },
             "responsiveData": {},
@@ -210,6 +206,13 @@
                 "kuid": "c8803bd8afdf4a6a86756c8be35f5ac5",
                 "srcKUID": "a3419bec427f4af5bd6c50ef70a8daf1",
                 "wType": "FlexContainer"
+            },
+            "responsiveData": {},
+            "top": {
+                "Default": {
+                    "type": "string",
+                    "value": ""
+                }
             }
         }
     },

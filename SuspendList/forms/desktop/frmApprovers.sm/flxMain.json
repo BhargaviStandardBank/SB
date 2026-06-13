@@ -35,8 +35,8 @@
     "autogrowmode": 0,
     "canUpdateUI": true,
     "children": [
-        "flxLeft",
-        "flxRight"
+        "flxRight",
+        "SideMenu"
     ],
     "clipbounds": false,
     "containerweight": 100,

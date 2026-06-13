@@ -35,7 +35,7 @@
     "autogrowmode": 0,
     "canUpdateUI": true,
     "children": [
-        "flxLeft",
+        "SideMenu",
         "flxRight"
     ],
     "clipbounds": false,
@@ -50,7 +50,7 @@
     "iscustomlayout": false,
     "isvisible": true,
     "kuid": "e223a67e7333437d881485d68138fb2d",
-    "layouttype": 3,
+    "layouttype": 2,
     "name": "kony.ui.FlexContainer",
     "parent": "frmSchemeReqHistory",
     "pf": "frmSchemeReqHistory",

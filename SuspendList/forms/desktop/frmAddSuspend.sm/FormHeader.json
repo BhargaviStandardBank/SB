@@ -4,7 +4,7 @@
     "_children_": [],
     "_height_": {
         "type": "string",
-        "value": "8%"
+        "value": "60px"
     },
     "_left_": {
         "type": "string",
@@ -24,7 +24,7 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_skin_": "sb9abbe20c604650b6e8f1350a08a33b",
     "_top_": {
         "type": "string",
         "value": "0dp"
@@ -42,7 +42,7 @@
         "FlexContainer0c5eafe3e5fdf45": {
             "__events__": {},
             "__info__": {
-                "kuid": "b0313f66265a41a09ebbffd7b08c1842",
+                "kuid": "i4ee2a8b50f84e78bd250d5ba200d82d",
                 "srcKUID": "b0c2e11d0fcb43188eaca020aca70ab0",
                 "wType": "FlexContainer"
             }
@@ -50,7 +50,7 @@
         "FlexContainer0cfbd412f8d984f": {
             "__events__": {},
             "__info__": {
-                "kuid": "a4e1853d68b14cff8a67222304389e80",
+                "kuid": "e286186ef0014942b8801cbb781a6cb2",
                 "srcKUID": "a76d07791cf54efaba1f1e8298ba60ef",
                 "wType": "FlexContainer"
             }
@@ -59,7 +59,7 @@
             "__events__": {},
             "__info__": {
                 "isRoot": true,
-                "kuid": "e915f77591a246d0bea21538934da7bf",
+                "kuid": "ie6a9d94555246439b0bcbd76ed5d943",
                 "srcKUID": "ja2cbe8fda184c1caaab89eeae9fb281",
                 "wType": "FlexContainer"
             }
@@ -67,7 +67,7 @@
         "Label0b2fdf6dd443b44": {
             "__events__": {},
             "__info__": {
-                "kuid": "a127030e8ac74131abf6d9479d76c327",
+                "kuid": "i875df73ee2642ee9030f4cd02eec886",
                 "srcKUID": "g18338682f7440699865c7b3b0649058",
                 "wType": "Label"
             }
@@ -75,7 +75,7 @@
         "imgLogout": {
             "__events__": {},
             "__info__": {
-                "kuid": "d76c98aac9ef47b996a68bba8c10e26e",
+                "kuid": "cd905c7315aa4fc5b3b428e254be438d",
                 "srcKUID": "j4a298acc2ce463686107bdf619e3c57",
                 "wType": "Image"
             }
@@ -83,22 +83,22 @@
         "lblHdr": {
             "__events__": {},
             "__info__": {
-                "kuid": "e0de20dc83a74b588678e66d3ba92564",
+                "kuid": "j5bdf34e3f6646d6bcdf1b412bbc1357",
                 "srcKUID": "ecaffe136a7647ee89b97eff000d8e8c",
                 "wType": "Label"
             },
             "responsiveData": {},
-            "text": "Add Suspend List"
+            "text": ""
         }
     },
     "enablescrolling": true,
-    "focusskin": "sf51dc37fd0a40178320b8330b005a98",
+    "focusskin": null,
     "id": "FormHeader",
     "info": null,
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kuid": "e915f77591a246d0bea21538934da7bf",
+    "kuid": "ie6a9d94555246439b0bcbd76ed5d943",
     "layouttype": 2,
     "masterType": 0,
     "name": "kony.ui.UserWidgetInstance",

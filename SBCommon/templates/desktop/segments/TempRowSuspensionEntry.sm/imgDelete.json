@@ -35,7 +35,7 @@
     },
     "containerId": true,
     "containerweight": 100,
-    "id": "imgDelet",
+    "id": "imgDelete",
     "imagescalemode": 0,
     "info": null,
     "invokedProperty": "src",

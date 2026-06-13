@@ -6,14 +6,18 @@ define({
   _currentFilter: "ALL",
 
   /** ---------------- ENTRY ---------------- **/
-  onNavigate: function () {
+  onNavigate: function (header) {
+    this.header = header ? "Credit Risk / "+ header.formID.appInfo + " / "+header.lblMenuItem : "Credit Risk / Scheme Maintence / Request History";
     this.view.SrchTextBox.txtSrch.onTextChange = this._onSearch.bind(this);
     this.view.lstFilter.onSelection = this._onListBoxSelect.bind(this);
     this.view.SegSuspendList.segSuspend.onRowClick = this._onClickSuspendData.bind(this);
-    
-    
     this.setupDataMap();
     this._loadData();
+    this.preshowHandler();
+  },
+
+  preshowHandler: function(){
+    this.view.FormHeader.lblHdr.text = this.header;
   },
 
   setupDataMap: function() {
@@ -36,12 +40,12 @@ define({
   _loadData: function () {
     this._mockService()
       .then(data => {
-        this._masterData = [...data];
-        this._filteredData = [...data];
-        this._setMainSegment(data);
-      
+      this._masterData = [...data];
+      this._filteredData = [...data];
+      this._setMainSegment(data);
+
       this.view.forceLayout();
-      })
+    })
       .catch(err => voltmx.print(err));
   },
 
@@ -99,8 +103,8 @@ define({
   /** ---------------- SEARCH ---------------- **/
   _onSearch: function () {
     const text = (this.view.SrchTextBox.txtSrch.text || "")
-      .toLowerCase()
-      .trim();
+    .toLowerCase()
+    .trim();
 
     this._applyFilters(text);
   },
@@ -117,10 +121,10 @@ define({
     /** 2. Search filter */
     if (search) {
       data = data.filter(x =>
-        x.id.toLowerCase().includes(search) ||
-        x.type.toLowerCase().includes(search) ||
-        x.initiator.toLowerCase().includes(search)
-      );
+                         x.id.toLowerCase().includes(search) ||
+                         x.type.toLowerCase().includes(search) ||
+                         x.initiator.toLowerCase().includes(search)
+                        );
     }
 
     this._filteredData = data;

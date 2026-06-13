@@ -2,10 +2,15 @@ define("ManageScheme/userfrmSchemeListController", {
     /** ---------------- STATE ---------------- **/
     _masterData: [],
     /** ---------------- ENTRY ---------------- **/
-    onNavigate: function() {
+    onNavigate: function(header) {
+        this.header = header ? "Credit Risk / " + header.formID.appInfo + " / " + header.lblMenuItem : "Credit Risk / Manage Scheme / Scheme List";
         this.setupDataMap();
         this.setupActions();
         this._loadSchemeListData();
+        this.preshowHandler();
+    },
+    preshowHandler: function() {
+        this.view.FormHeader.lblHdr.text = this.header;
     },
     /** ---------------- DATA MAP ---------------- **/
     setupDataMap: function() {

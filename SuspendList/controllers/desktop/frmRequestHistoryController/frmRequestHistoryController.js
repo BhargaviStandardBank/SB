@@ -9,14 +9,17 @@ define({
     {date: "06/01/2026", id: "0012350", type: "Suspension", initiator: "Michel", status: "Pending"}
   ],
 
-  onNavigate: function(){
+  onNavigate: function(header){
+    this.header = "Credit Risk / "+ header.formID.appInfo + " / "+header.lblMenuItem;
     this.view.SrchTextBox.txtSrch.onTextChange = this.applyCombinedFilters;
     this.view.lstFilter.onSelection = this.applyCombinedFilters;
     this.view.SegSuspendList.segSuspend.onRowClick = this.onSegRowClick;
-    // Initial Load
     this.applyCombinedFilters();
+    this.preshowHandler();
   },
-
+  preshowHandler: function(header){
+    this.view.FormHeader.lblHdr.text = this.header;
+  },
   applyCombinedFilters: function(){
     const searchText = (this.view.SrchTextBox.txtSrch.text || "").toLowerCase();
     const selectedStatus = this.view.lstFilter.selectedKey; // Assumes keys are 'All', 'Approved', etc.
@@ -60,7 +63,7 @@ define({
     if (status === "Rejected") return "sknLblRejectedRed";
     return "sknLblPendingOrange";
   },
-  
+
   onSegRowClick: function(){
     let navObj = new voltmx.mvc.Navigation("frmSusHistoryDetails");
     navObj.navigate();

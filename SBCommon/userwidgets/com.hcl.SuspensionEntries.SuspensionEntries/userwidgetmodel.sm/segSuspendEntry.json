@@ -50,10 +50,9 @@
     "desktop": {
         "_data_": [
             {
-                "imgDelet": {
+                "imgDelete": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "icon_delete.png",
-                    "type": "Image"
+                    "src": "icon_delete.png"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
@@ -77,10 +76,9 @@
                 }
             },
             {
-                "imgDelet": {
+                "imgDelete": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "icon_delete.png",
-                    "type": "Image"
+                    "src": "icon_delete.png"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
@@ -104,10 +102,9 @@
                 }
             },
             {
-                "imgDelet": {
+                "imgDelete": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "icon_delete.png",
-                    "type": "Image"
+                    "src": "icon_delete.png"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
@@ -131,10 +128,9 @@
                 }
             },
             {
-                "imgDelet": {
+                "imgDelete": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "icon_delete.png",
-                    "type": "Image"
+                    "src": "icon_delete.png"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
@@ -158,10 +154,9 @@
                 }
             },
             {
-                "imgDelet": {
+                "imgDelete": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "icon_delete.png",
-                    "type": "Image"
+                    "src": "icon_delete.png"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
@@ -185,10 +180,9 @@
                 }
             },
             {
-                "imgDelet": {
+                "imgDelete": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "icon_delete.png",
-                    "type": "Image"
+                    "src": "icon_delete.png"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
@@ -212,10 +206,9 @@
                 }
             },
             {
-                "imgDelet": {
+                "imgDelete": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "icon_delete.png",
-                    "type": "Image"
+                    "src": "icon_delete.png"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
@@ -239,10 +232,9 @@
                 }
             },
             {
-                "imgDelet": {
+                "imgDelete": {
                     "@class": "com.viz.ide.model.segment.ImageSegmentData",
-                    "src": "icon_delete.png",
-                    "type": "Image"
+                    "src": "icon_delete.png"
                 },
                 "lblCIFNo": {
                     "@class": "com.viz.ide.model.segment.SimpleTextSegmentData",
@@ -272,7 +264,7 @@
         "widgetdatamap": {
             "flxDelete": "flxDelete",
             "flxSuspensionEntry": "flxSuspensionEntry",
-            "imgDelet": "imgDelet",
+            "imgDelete": "imgDelete",
             "lblCIFNo": "lblCIFNo",
             "lblCustomerName": "lblCustomerName",
             "lblIDNo": "lblIDNo",

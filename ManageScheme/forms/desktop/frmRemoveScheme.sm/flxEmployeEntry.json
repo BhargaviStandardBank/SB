@@ -1,8 +1,8 @@
 {
     "DNDConfig": null,
     "_height_": {
-        "type": "string",
-        "value": "100%"
+        "type": "ref",
+        "value": "preferred"
     },
     "_left_": {
         "type": "string",
@@ -22,37 +22,40 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "s26fe55a3aff44d989464d248bdeae24",
+    "_skin_": "sb5b61f098a64d1ea3df5ecdaa3fc9d4",
     "_top_": {
         "type": "string",
-        "value": "0dp"
+        "value": "24dp"
     },
     "_width_": {
         "type": "string",
-        "value": "15%"
+        "value": "100%"
     },
     "allboxes": [],
-    "autogrowmode": 0,
+    "autogrowmode": 1,
     "canUpdateUI": true,
     "children": [
-        "SideMenu"
+        "EmployeEntrySubHdr",
+        "flxEmployeInner",
+        "SuspenEntryHdr",
+        "flxEmployeeEntryData"
     ],
     "clipbounds": false,
     "containerweight": 100,
     "disabledSkins": {
-        "blockedUISkin": "se10403881e545c88517e38d1704fe6e"
+        "blockedUISkin": "se10403881e545c88517e38d1704fe6e",
+        "focusSkin": "s055b30cc8544a4092521d1a3c930a38"
     },
     "enablescrolling": true,
-    "focusskin": "s26fe55a3aff44d989464d248bdeae24",
-    "id": "flxLeft",
+    "id": "flxEmployeEntry",
     "info": null,
     "iscustomlayout": false,
-    "isvisible": true,
-    "kuid": "j1890a5215a34d9d99528dbe51748da0",
-    "layouttype": 2,
+    "isvisible": false,
+    "kuid": "bb8c1cc9948c4337a448a130e538463a",
+    "layouttype": 4,
     "name": "kony.ui.FlexContainer",
-    "parent": "flxMain",
-    "pf": "frmRemoveSuspend",
+    "parent": "flxScr",
+    "pf": "frmRemoveScheme",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,
     "retainflowhorizontalalignment": false,

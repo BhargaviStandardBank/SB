@@ -25,7 +25,7 @@
     "_skin_": "sb5b61f098a64d1ea3df5ecdaa3fc9d4",
     "_top_": {
         "type": "string",
-        "value": "0dp"
+        "value": "24dp"
     },
     "_width_": {
         "type": "string",
@@ -42,10 +42,10 @@
     "clipbounds": false,
     "containerweight": 100,
     "disabledSkins": {
-        "blockedUISkin": "se10403881e545c88517e38d1704fe6e"
+        "blockedUISkin": "se10403881e545c88517e38d1704fe6e",
+        "focusSkin": "s055b30cc8544a4092521d1a3c930a38"
     },
     "enablescrolling": true,
-    "focusskin": "s055b30cc8544a4092521d1a3c930a38",
     "id": "flxAddEdit",
     "info": null,
     "iscustomlayout": false,

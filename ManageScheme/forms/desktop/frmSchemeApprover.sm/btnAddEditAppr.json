@@ -44,11 +44,11 @@
     "contentalignment": 5,
     "disabledSkins": {
         "blockedUISkin": "sad650e3b554410cb830f137fe29d4c9",
+        "focusSkin": "sbd11c8af5f14d3e8305f8d426cbc68d",
         "hoverSkin": "sacac96815eb4ea785aca546c79e8734",
         "pressedSkin": "se7a1b37f11b4bf5828530c358dac47d"
     },
     "displaytext": true,
-    "focusskin": "sbd11c8af5f14d3e8305f8d426cbc68d",
     "id": "btnAddEditAppr",
     "info": null,
     "iscustomlayout": false,

@@ -8,10 +8,15 @@ define({
     { date: "15/03/2026", cif: "22355678", id: "652445342", name: "HCL South America", reason: "Lorem ipsum dolor sit amet." }
   ],
   
-  onNavigate: function(){
+  onNavigate: function(header){
+    this.header = "Credit Risk / "+ header.formID.appInfo + " / "+header.lblMenuItem;
     this.view.SrchTextBox.txtSrch.onTextChange = this.searchCustomer;
     this.setSegmentData(this.customerData);
+    this.preshowHandler();
     //this.view.postShow = this.initSidebar.bind(this);
+  },
+  preshowHandler: function(){
+    this.view.FormHeader.lblHdr.text = this.header;
   },
   initSidebar: function() {
     this.view.flxLeft.width = "60dp";

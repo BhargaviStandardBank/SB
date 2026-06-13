@@ -2,7 +2,7 @@
     "DNDConfig": null,
     "_height_": {
         "type": "string",
-        "value": "100%"
+        "value": "300dp"
     },
     "_left_": {
         "type": "string",
@@ -22,20 +22,20 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "sf457513fbdd48dab0d251bee11aaa36",
+    "_skin_": "s90295047f1640be87b77f9b30f76f35",
     "_top_": {
         "type": "string",
         "value": "0dp"
     },
     "_width_": {
         "type": "string",
-        "value": "15%"
+        "value": "100%"
     },
     "allboxes": [],
     "autogrowmode": 0,
     "canUpdateUI": true,
     "children": [
-        "SideMenu"
+        "SuspensionEntries"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -44,21 +44,21 @@
         "focusSkin": "s055b30cc8544a4092521d1a3c930a38"
     },
     "enablescrolling": true,
-    "id": "flxLeft",
+    "focusskin": "",
+    "id": "flxSegData",
     "info": null,
     "iscustomlayout": false,
     "isvisible": true,
-    "kuid": "a4737c09aa6c4ebfbb7a750f6612a1b0",
-    "layouttype": 2,
+    "kuid": "j1759a7765bc4e19aab35a446526f949",
+    "layouttype": 4,
     "name": "kony.ui.FlexContainer",
-    "parent": "flxMain",
-    "pf": "frmRemoveScheme",
+    "parent": "flxSuspensionEntry",
+    "pf": "frmRemoveSuspend",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,
     "retainflowhorizontalalignment": false,
     "snapgridsize": 10,
     "snaptogrid": true,
     "wType": "FlexContainer",
-    "widgetalignment": 1,
-    "zindex": 1
+    "widgetalignment": 1
 }

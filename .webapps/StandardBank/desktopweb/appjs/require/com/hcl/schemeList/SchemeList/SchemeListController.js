@@ -3,7 +3,7 @@ define("com/hcl/schemeList/SchemeList/userSchemeListController", function() {
 });
 define("com/hcl/schemeList/SchemeList/SchemeListControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/schemeList/SchemeList/SchemeListController", ["com/hcl/schemeList/SchemeList/userSchemeListController", "com/hcl/schemeList/SchemeList/SchemeListControllerActions"], function() {

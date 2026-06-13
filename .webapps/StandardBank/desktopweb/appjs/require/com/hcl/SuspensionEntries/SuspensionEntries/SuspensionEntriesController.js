@@ -3,7 +3,7 @@ define("com/hcl/SuspensionEntries/SuspensionEntries/userSuspensionEntriesControl
 });
 define("com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesController", ["com/hcl/SuspensionEntries/SuspensionEntries/userSuspensionEntriesController", "com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesControllerActions"], function() {

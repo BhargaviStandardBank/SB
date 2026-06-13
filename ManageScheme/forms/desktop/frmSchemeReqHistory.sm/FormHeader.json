@@ -4,7 +4,7 @@
     "_children_": [],
     "_height_": {
         "type": "string",
-        "value": "8%"
+        "value": "60px"
     },
     "_left_": {
         "type": "string",
@@ -24,7 +24,7 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_skin_": "sb9abbe20c604650b6e8f1350a08a33b",
     "_top_": {
         "type": "string",
         "value": "0dp"
@@ -33,6 +33,8 @@
         "type": "string",
         "value": "100%"
     },
+    "android": {},
+    "androidwearos": {},
     "areflexpropsreferenced": false,
     "autogrowmode": 0,
     "canUpdateUI": true,
@@ -42,7 +44,7 @@
         "FlexContainer0c5eafe3e5fdf45": {
             "__events__": {},
             "__info__": {
-                "kuid": "j1bf48cd80d04459b61f3956407bfd60",
+                "kuid": "abd5c6793da444d58c7f832d2e4f19f1",
                 "srcKUID": "b0c2e11d0fcb43188eaca020aca70ab0",
                 "wType": "FlexContainer"
             }
@@ -50,7 +52,7 @@
         "FlexContainer0cfbd412f8d984f": {
             "__events__": {},
             "__info__": {
-                "kuid": "abe7a2a51a894b7b9fd460e036ddefee",
+                "kuid": "hf9c0c12a5f6479e9b132a31e0fb587d",
                 "srcKUID": "a76d07791cf54efaba1f1e8298ba60ef",
                 "wType": "FlexContainer"
             }
@@ -59,28 +61,15 @@
             "__events__": {},
             "__info__": {
                 "isRoot": true,
-                "kuid": "ja4b2cc381944e2885636379dedf7d48",
+                "kuid": "f1ef9f4aa80c4406ada24b3d8b7066cb",
                 "srcKUID": "ja2cbe8fda184c1caaab89eeae9fb281",
                 "wType": "FlexContainer"
-            },
-            "centerY": {
-                "Default": {
-                    "type": "string",
-                    "value": ""
-                }
-            },
-            "responsiveData": {},
-            "top": {
-                "Default": {
-                    "type": "string",
-                    "value": "0dp"
-                }
             }
         },
         "Label0b2fdf6dd443b44": {
             "__events__": {},
             "__info__": {
-                "kuid": "b226303bd596486e92c92f9405ad7868",
+                "kuid": "c09067716afc4acda5d0ec4b00d10259",
                 "srcKUID": "g18338682f7440699865c7b3b0649058",
                 "wType": "Label"
             }
@@ -88,7 +77,7 @@
         "imgLogout": {
             "__events__": {},
             "__info__": {
-                "kuid": "g6b53c3a0c07400984ed3ab453b9b01f",
+                "kuid": "a62e159678e94afe95b81dc2416516c1",
                 "srcKUID": "j4a298acc2ce463686107bdf619e3c57",
                 "wType": "Image"
             }
@@ -96,22 +85,24 @@
         "lblHdr": {
             "__events__": {},
             "__info__": {
-                "kuid": "bc4240e26b594983829c23c3c24c3482",
+                "kuid": "a8d63ac4a5834bcea8ad9331c89e77e6",
                 "srcKUID": "ecaffe136a7647ee89b97eff000d8e8c",
                 "wType": "Label"
-            },
-            "responsiveData": {},
-            "text": "Request History"
+            }
         }
     },
+    "desktopweb": {},
     "enablescrolling": true,
-    "focusskin": "sf51dc37fd0a40178320b8330b005a98",
+    "focusskin": null,
     "id": "FormHeader",
     "info": null,
+    "ipad": {},
+    "iphone": {},
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kuid": "ja4b2cc381944e2885636379dedf7d48",
+    "kiosk": {},
+    "kuid": "f1ef9f4aa80c4406ada24b3d8b7066cb",
     "layouttype": 2,
     "masterType": 0,
     "name": "kony.ui.UserWidgetInstance",
@@ -123,6 +114,24 @@
     "snapgridsize": 10,
     "snaptogrid": true,
     "sourceUserWidget": "ja2cbe8fda184c1caaab89eeae9fb281",
+    "spa": {},
+    "spaan": {},
+    "spaandroidtablet": {},
+    "spabb": {},
+    "spaip": {},
+    "spaipad": {},
+    "spamobile": {},
+    "spatablet": {},
+    "spawindowstablet": {},
+    "spawinphone8": {},
+    "tabrcandroid": {},
+    "vizProps": {
+        "hidewidgethierarchy": false
+    },
     "wType": "UserWidgetInstance",
+    "windows10": {},
+    "windows8": {},
+    "winphone10": {},
+    "winphone8": {},
     "zindex": 1
 }

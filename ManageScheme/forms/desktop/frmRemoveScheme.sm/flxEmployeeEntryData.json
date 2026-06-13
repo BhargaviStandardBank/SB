@@ -2,7 +2,7 @@
     "DNDConfig": null,
     "_height_": {
         "type": "string",
-        "value": "100%"
+        "value": "400dp"
     },
     "_left_": {
         "type": "string",
@@ -22,20 +22,20 @@
         0
     ],
     "_percent_": true,
-    "_skin_": "s26fe55a3aff44d989464d248bdeae24",
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
     "_top_": {
         "type": "string",
         "value": "0dp"
     },
     "_width_": {
         "type": "string",
-        "value": "15%"
+        "value": "100%"
     },
     "allboxes": [],
     "autogrowmode": 0,
     "canUpdateUI": true,
     "children": [
-        "SideMenu"
+        "SuspensionEntries"
     ],
     "clipbounds": false,
     "containerweight": 100,
@@ -44,15 +44,15 @@
         "focusSkin": "s055b30cc8544a4092521d1a3c930a38"
     },
     "enablescrolling": true,
-    "id": "flxLeft",
+    "id": "flxEmployeeEntryData",
     "info": null,
     "iscustomlayout": false,
     "isvisible": true,
-    "kuid": "be17bc9ab1614bab83eca75f56395f7b",
+    "kuid": "fe00d20660c741f5ba26d78ec8adc743",
     "layouttype": 2,
     "name": "kony.ui.FlexContainer",
-    "parent": "flxMain",
-    "pf": "frmApprovers",
+    "parent": "flxEmployeEntry",
+    "pf": "frmRemoveScheme",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,
     "retainflowhorizontalalignment": false,
