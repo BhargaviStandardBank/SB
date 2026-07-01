@@ -36,6 +36,7 @@
     "canUpdateUI": true,
     "children": [
         "FormHeader",
+        "SrchTextBox",
         "FlexContainer0if0d4d7b7b134a"
     ],
     "clipbounds": false,

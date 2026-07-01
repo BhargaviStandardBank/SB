@@ -8,7 +8,7 @@ define("ManageScheme/frmSchemeApprover", function() {
                 "height": "100%",
                 "id": "flxMain",
                 "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
@@ -20,28 +20,8 @@ define("ManageScheme/frmSchemeApprover", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "focusSkin": "slFFocusbox",
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBdr",
-                "top": "0dp",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "ManageScheme"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
             var SideMenu = new com.hcl.menu.SideMenu({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
                 "height": "100%",
                 "id": "SideMenu",
                 "isVisible": true,
@@ -49,10 +29,10 @@ define("ManageScheme/frmSchemeApprover", function() {
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
+                "width": "60dp",
+                "zIndex": 10,
                 "appName": "SBCommon",
                 "overrides": {}
             }, {
@@ -61,7 +41,6 @@ define("ManageScheme/frmSchemeApprover", function() {
             }, {
                 "overrides": {}
             });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -69,11 +48,11 @@ define("ManageScheme/frmSchemeApprover", function() {
                 "id": "flxRight",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
+                "left": "60dp",
                 "isModalContainer": false,
+                "right": 0,
                 "skin": "sknFlxTrans",
                 "top": "0dp",
-                "width": "85%",
                 "zIndex": 1,
                 "appName": "ManageScheme"
             }, {
@@ -82,15 +61,14 @@ define("ManageScheme/frmSchemeApprover", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "8%",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
@@ -99,9 +77,6 @@ define("ManageScheme/frmSchemeApprover", function() {
                     "FormHeader": {
                         "centerY": "viz.val_cleared",
                         "top": "0dp"
-                    },
-                    "lblHdr": {
-                        "text": "Approver"
                     }
                 }
             }, {
@@ -113,14 +88,13 @@ define("ManageScheme/frmSchemeApprover", function() {
             var flxAddEdit = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
-                "focusSkin": "slFFocusbox",
                 "id": "flxAddEdit",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
                 "left": "24dp",
                 "isModalContainer": false,
                 "skin": "sknFlxWhiteBGBlckBrdr",
-                "top": "0dp",
+                "top": "24dp",
                 "width": "96%",
                 "zIndex": 1,
                 "appName": "ManageScheme"
@@ -409,7 +383,6 @@ define("ManageScheme/frmSchemeApprover", function() {
             var btnAddEditAppr = new voltmx.ui.Button({
                 "bottom": 16,
                 "centerX": "50%",
-                "focusSkin": "defBtnFocus",
                 "height": "40dp",
                 "id": "btnAddEditAppr",
                 "isVisible": true,
@@ -437,7 +410,7 @@ define("ManageScheme/frmSchemeApprover", function() {
                 "left": "24dp",
                 "isModalContainer": false,
                 "skin": "sknFlxWhiteBGBlckBrdr",
-                "top": "32dp",
+                "top": "24dp",
                 "width": "96%",
                 "zIndex": 1,
                 "appName": "ManageScheme"
@@ -564,7 +537,7 @@ define("ManageScheme/frmSchemeApprover", function() {
             });
             flxApproverList.add(SubHdrApprover, segHeader, SegApproverScheme);
             flxRight.add(FormHeader, flxAddEdit, flxApproverList);
-            flxMain.add(flxLeft, flxRight);
+            flxMain.add(SideMenu, flxRight);
             var flxAlert = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -621,9 +594,6 @@ define("ManageScheme/frmSchemeApprover", function() {
                 "FormHeader": {
                     "centerY": "",
                     "top": "0dp"
-                },
-                "FormHeader.lblHdr": {
-                    "text": "Approver"
                 },
                 "SubHdrAddEdit": {
                     "centerY": "",

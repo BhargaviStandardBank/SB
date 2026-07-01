@@ -34,9 +34,7 @@
     "allboxes": [],
     "autogrowmode": 1,
     "canUpdateUI": true,
-    "children": [
-        "Allowance"
-    ],
+    "children": [],
     "clipbounds": false,
     "containerweight": 100,
     "disabledSkins": {

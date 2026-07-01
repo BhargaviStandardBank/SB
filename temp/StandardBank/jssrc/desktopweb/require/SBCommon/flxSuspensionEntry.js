@@ -91,10 +91,10 @@ define("SBCommon/flxSuspensionEntry", function() {
             "paddingInPixel": false
         }, {});
         flxDelete.setDefaultUnit(voltmx.flex.DP);
-        var imgDelet = new voltmx.ui.Image2({
+        var imgDelete = new voltmx.ui.Image2({
             "centerX": "50%",
             "height": "30dp",
-            "id": "imgDelet",
+            "id": "imgDelete",
             "isVisible": true,
             "skin": "slImage",
             "src": "icon_delete.png",
@@ -106,7 +106,7 @@ define("SBCommon/flxSuspensionEntry", function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, {});
-        flxDelete.add(imgDelet);
+        flxDelete.add(imgDelete);
         flxSuspensionEntry.add(lblCIFNo, lblIDNo, lblCustomerName, lblReason, flxDelete);
         return flxSuspensionEntry;
     }

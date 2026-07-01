@@ -34,9 +34,7 @@
     "allboxes": [],
     "autogrowmode": 1,
     "canUpdateUI": true,
-    "children": [
-        "SchemeID"
-    ],
+    "children": [],
     "clipbounds": false,
     "containerweight": 100,
     "disabledSkins": {

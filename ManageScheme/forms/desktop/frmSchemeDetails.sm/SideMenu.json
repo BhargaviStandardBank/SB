@@ -33,8 +33,6 @@
         "type": "string",
         "value": "60dp"
     },
-    "android": {},
-    "androidwearos": {},
     "areflexpropsreferenced": false,
     "autogrowmode": 0,
     "canUpdateUI": true,
@@ -47,14 +45,6 @@
                 "kuid": "aeb9294779f94f12a013938699e74273",
                 "srcKUID": "g4b3fa2624fc4e338b5fd19c203e73ae",
                 "wType": "Image"
-            }
-        },
-        "Label0cff1e13b3a6943": {
-            "__events__": {},
-            "__info__": {
-                "kuid": "e613b84ef829403fa7335d233b5030c2",
-                "srcKUID": "d8a1a550d6ad40d1bb3d3a6a97b08ca8",
-                "wType": "Label"
             }
         },
         "SideMenu": {
@@ -112,7 +102,8 @@
                 "kuid": "c33c7d6783764b6ba0cc146bd2829578",
                 "srcKUID": "if03b8a424604ccb997ab33252c60e49",
                 "wType": "Image"
-            }
+            },
+            "src": "sblogo.png"
         },
         "imgLogout": {
             "__events__": {},
@@ -127,6 +118,14 @@
             "__info__": {
                 "kuid": "b3cca6eb1cf24930a24136536760a581",
                 "srcKUID": "f941f0a42d824dce810efdd7728fbe26",
+                "wType": "Label"
+            }
+        },
+        "lblTitle": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "e613b84ef829403fa7335d233b5030c2",
+                "srcKUID": "d8a1a550d6ad40d1bb3d3a6a97b08ca8",
                 "wType": "Label"
             }
         },
@@ -147,17 +146,13 @@
             }
         }
     },
-    "desktopweb": {},
     "enablescrolling": true,
     "focusskin": null,
     "id": "SideMenu",
     "info": null,
-    "ipad": {},
-    "iphone": {},
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kiosk": {},
     "kuid": "i2609a5e231f48daa36f0439649b45a3",
     "layouttype": 2,
     "masterType": 0,
@@ -170,24 +165,6 @@
     "snapgridsize": 10,
     "snaptogrid": true,
     "sourceUserWidget": "b9820cbf67a34dc9b198ef6c1ef7cc4a",
-    "spa": {},
-    "spaan": {},
-    "spaandroidtablet": {},
-    "spabb": {},
-    "spaip": {},
-    "spaipad": {},
-    "spamobile": {},
-    "spatablet": {},
-    "spawindowstablet": {},
-    "spawinphone8": {},
-    "tabrcandroid": {},
-    "vizProps": {
-        "hidewidgethierarchy": false
-    },
     "wType": "UserWidgetInstance",
-    "windows10": {},
-    "windows8": {},
-    "winphone10": {},
-    "winphone8": {},
     "zindex": 10
 }

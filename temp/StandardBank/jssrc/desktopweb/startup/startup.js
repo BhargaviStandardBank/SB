@@ -1,5 +1,10 @@
 voltmx.appinit.setApplicationMetaConfiguration("appid", "StandardBank");
 voltmx.appinit.setApplicationMetaConfiguration("build", "debug");
+voltmx.appinit.setApplicationMetaConfiguration("defaultLocale", "en");
+voltmx.appinit.setApplicationMetaConfiguration("locales", ["ar", "en", "en_US", "es"]);
+voltmx.appinit.setApplicationMetaConfiguration("i18nArray", []);
+voltmx.appinit.setApplicationMetaConfiguration("localization", "true");
+voltmx.appinit.setApplicationMetaConfiguration("i18nVersion", "384447121");
 //startup.js
 var appConfig = {
     appId: "StandardBank",
@@ -18,7 +23,7 @@ var appConfig = {
             "_internal_logout": "https://voltmxtechnohub.hclvoltmx.net/services/IST",
             "LoginSer": "https://voltmxtechnohub.hclvoltmx.net/services/LoginSer"
         },
-        "service_doc_etag": "0000019EB5D31878",
+        "service_doc_etag": "0000019EDACE6948",
         "appId": "ec3a3fe3-fc60-4ef1-9856-60c371c055ee",
         "identity_features": {
             "reporting_params_header_allowed": true
@@ -48,6 +53,11 @@ var appConfig = {
             "appVersion": "1.0.0",
             "appId": "SBCommon",
             "appName": "SBCommon"
+        },
+        "SimpleLightTouch": {
+            "appVersion": "1.0.0",
+            "appId": "SimpleLightTouch",
+            "appName": "SimpleLightTouch"
         },
         "ManageScheme": {
             "appVersion": "1.0.0",
@@ -107,6 +117,14 @@ function themeCallBack() {
     });
 };
 
+function onSuccess(oldlocalname, newlocalename, info) {
+    loadResources();
+};
+
+function onFailure(errorcode, errormsg, info) {
+    loadResources();
+};
+
 function loadResources() {
     _kony.mvc.initCompositeApp(true);
     voltmx.theme.packagedthemes(["classicTheme", "default"]);
@@ -135,5 +153,5 @@ function onSuccessSDKCallBack() {
 function initializeApp() {
     voltmx.application.setApplicationMode(constants.APPLICATION_MODE_NATIVE);
     //This is the entry point for the application.When Locale comes,Local API call will be the entry point.
-    loadResources();
+    voltmx.i18n.setDefaultLocaleAsync("en", onSuccess, onFailure, null);
 };function getSPARequireModulesList(){ return ['kvmodules']; }

@@ -25,7 +25,7 @@
     "_skin_": "sb5b61f098a64d1ea3df5ecdaa3fc9d4",
     "_top_": {
         "type": "string",
-        "value": "0dp"
+        "value": "24dp"
     },
     "_width_": {
         "type": "string",
@@ -36,7 +36,6 @@
     "canUpdateUI": true,
     "children": [
         "SubHdr",
-        "flxSrch",
         "flxCustomerInfo"
     ],
     "clipbounds": false,

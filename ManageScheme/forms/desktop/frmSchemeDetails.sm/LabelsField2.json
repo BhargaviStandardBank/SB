@@ -74,8 +74,9 @@
                 "srcKUID": "f2ad940a55144e3aa422aa0e7e03c9f5",
                 "wType": "Label"
             },
+            "i18n_text": "i18n.sbms.CIFNumber",
             "responsiveData": {},
-            "text": "CIF NUMBER"
+            "text": ""
         },
         "lblDetailValue": {
             "__events__": {},

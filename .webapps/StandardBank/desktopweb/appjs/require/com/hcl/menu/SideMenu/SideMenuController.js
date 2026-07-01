@@ -14,37 +14,37 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             rows: [{
                 lblMenuItem: "Loan Eligibility",
                 formID: {
-                    "appName": "SuspendList",
-                    "appInfo": "Suspend List",
-                    "friendlyName": "frmSuspendList"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "Scored Offer View(PPB)",
                 formID: {
-                    "appName": "SuspendList",
-                    "appInfo": "Suspend List",
-                    "friendlyName": "frmRequestHistory"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "Scored Offer View(BCB)",
                 formID: {
-                    "appName": "SuspendList",
-                    "appInfo": "Suspend List",
-                    "friendlyName": "frmAddSuspend"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "Offer Manger",
                 formID: {
-                    "appName": "SuspendList",
-                    "appInfo": "Suspend List",
-                    "friendlyName": "frmRemoveSuspend"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "Scoring API",
                 formID: {
-                    "appName": "SuspendList",
-                    "appInfo": "Suspend List",
-                    "friendlyName": "frmApprovers"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }]
         }, {
@@ -56,9 +56,9 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             rows: [{
                 lblMenuItem: "Originate Application",
                 formID: {
-                    "appName": "ComplexLending",
-                    "appInfo": "Complex Lending",
-                    "friendlyName": "frmSuspendList"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, ]
         }, {
@@ -78,8 +78,8 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
                 lblMenuItem: "View Application",
                 formID: {
                     "appName": "Customer360",
-                    "appInfo": "Customer 360",
-                    "friendlyName": "frmCustomer"
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }]
         }, {
@@ -91,30 +91,30 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             rows: [{
                 lblMenuItem: "Spread Financials",
                 formID: {
-                    "appName": "FinancialSpreadingRiskRating",
-                    "appInfo": "Financial Spreading & Risk Rating",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "Rate Counterparty",
                 formID: {
-                    "appName": "FinancialSpreadingRiskRating",
-                    "appInfo": "Financial Spreading & Risk Rating",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "View BBRS Ratings",
                 formID: {
-                    "appName": "FinancialSpreadingRiskRating",
-                    "appInfo": "Financial Spreading & Risk Rating",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "BBRS Insights",
                 formID: {
-                    "appName": "FinancialSpreadingRiskRating",
-                    "appInfo": "Financial Spreading & Risk Rating",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }]
         }, {
@@ -126,30 +126,30 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             rows: [{
                 lblMenuItem: "POR Queues",
                 formID: {
-                    "appName": "QueueManager",
-                    "appInfo": "Queue Manager",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "Branch (all)",
                 formID: {
-                    "appName": "QueueManager",
-                    "appInfo": "Queue Manager",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "RWAE (all)",
                 formID: {
-                    "appName": "QueueManager",
-                    "appInfo": "Queue Manager",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "RWAE my queue",
                 formID: {
-                    "appName": "QueueManager",
-                    "appInfo": "Queue Manager",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }]
         }, {
@@ -245,16 +245,16 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             rows: [{
                 lblMenuItem: "SLT Dashboard",
                 formID: {
-                    "appName": "Customer360",
-                    "appInfo": "Customer 360",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "CAMS Dashboard",
                 formID: {
-                    "appName": "Customer360",
-                    "appInfo": "Customer 360",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }]
         }, {
@@ -266,16 +266,16 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             rows: [{
                 lblMenuItem: "Demand Planning App",
                 formID: {
-                    "appName": "Customer360",
-                    "appInfo": "Customer 360",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
                 lblMenuItem: "Dev Ops Board",
                 formID: {
-                    "appName": "Customer360",
-                    "appInfo": "Customer 360",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }]
         }, {
@@ -290,6 +290,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             },
         }, ],
         constructor: function() {
+            this.view.lblTitle.text = voltmx.i18n.getLocalizedString("i18n.sb.StandardBank");
             this.view.flxUserDetails.isVisible = false;
             this.view.preShow = this.invokePreShow.bind(this);
             this.view.segMenu.onRowClick = this.onRowItemClick.bind(this);
@@ -311,7 +312,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
             // Animate Side Menu
             this.view.flxSideMenu.animate(voltmx.ui.createAnimation({
                 100: {
-                    width: "250dp"
+                    width: "265dp"
                 }
             }), animConfig, {});
             // Animate Main Content
@@ -457,7 +458,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", function() {
 });
 define("com/hcl/menu/SideMenu/SideMenuControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/menu/SideMenu/SideMenuController", ["com/hcl/menu/SideMenu/userSideMenuController", "com/hcl/menu/SideMenu/SideMenuControllerActions"], function() {

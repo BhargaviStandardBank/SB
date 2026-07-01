@@ -8,7 +8,7 @@ define("ManageScheme/frmSchemeList", function() {
                 "height": "100%",
                 "id": "flxMain",
                 "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+                "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
@@ -20,27 +20,8 @@ define("ManageScheme/frmSchemeList", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBdr",
-                "top": "0dp",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "ManageScheme"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
             var SideMenu = new com.hcl.menu.SideMenu({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
                 "height": "100%",
                 "id": "SideMenu",
                 "isVisible": true,
@@ -48,10 +29,10 @@ define("ManageScheme/frmSchemeList", function() {
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
+                "width": "60dp",
+                "zIndex": 10,
                 "appName": "SBCommon",
                 "overrides": {}
             }, {
@@ -60,7 +41,6 @@ define("ManageScheme/frmSchemeList", function() {
             }, {
                 "overrides": {}
             });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -68,11 +48,11 @@ define("ManageScheme/frmSchemeList", function() {
                 "id": "flxRight",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
+                "left": "60dp",
                 "isModalContainer": false,
+                "right": 0,
                 "skin": "sknFlxTrans",
                 "top": "0dp",
-                "width": "85%",
                 "zIndex": 1,
                 "appName": "ManageScheme"
             }, {
@@ -81,28 +61,19 @@ define("ManageScheme/frmSchemeList", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "8%",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
-                "overrides": {
-                    "FormHeader": {
-                        "centerY": "viz.val_cleared",
-                        "top": "0dp"
-                    },
-                    "lblHdr": {
-                        "text": "Scheme List"
-                    }
-                }
+                "overrides": {}
             }, {
                 "paddingInPixel": false,
                 "overrides": {}
@@ -497,19 +468,12 @@ define("ManageScheme/frmSchemeList", function() {
             });
             FlexContainer0if0d4d7b7b134a.add(SrchTextBox, flxSubHdr, SchemeList);
             flxRight.add(FormHeader, FlexContainer0if0d4d7b7b134a);
-            flxMain.add(flxLeft, flxRight);
+            flxMain.add(SideMenu, flxRight);
             this.breakpointResetData = {};
             this.breakpointData = {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader": {
-                    "centerY": "",
-                    "top": "0dp"
-                },
-                "FormHeader.lblHdr": {
-                    "text": "Scheme List"
-                },
                 "SrchTextBox.imgSrch": {
                     "zIndex": 30
                 },

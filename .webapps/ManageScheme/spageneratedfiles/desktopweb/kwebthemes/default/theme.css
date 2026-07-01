@@ -4,14 +4,25 @@
 .defBtnHover,
 .defBtnNormal,
 .defBtnPressed,
+.sknBtnBGTransBlue,
 .sknBtnBlue,
+.sknBtnDisable,
 .sknBtnGrey,
+.sknBtnLeftHighLite,
+.sknBtnLeftUnSelect,
+.sknBtnRightHighLite,
+.sknBtnRightUnSelect,
+.sknBtnSelect,
+.sknBtnUnSelect,
 .defLabel,
 .defLabel0b652f737213145,
 .sknLblBtn,
+.sknLblC8DFFF,
 .sknLblDescription,
 .sknLblFormLevel,
+.sknLblHdr,
 .sknLblHeading2,
+.sknLblHeading2White,
 .sknLblHeading4Bold,
 .sknLblHeading5,
 .sknLblPendingOrange,
@@ -22,6 +33,9 @@
 .sknLblTimeStamp,
 .sknLblUnderline,
 .sknLblWhite,
+.sknLblWhite100,
+.sknLblWhiteFormLevel,
+.sknLblWhiteHeading5,
 .sknSectionHeaderLabelSkin,
 .defListBoxFocus,
 .defListBoxNormal,
@@ -43,6 +57,7 @@
 .sknTxtBrdRed,
 .sknTxtBxTrans,
 .sknTxtBxf6f8fa,
+.sknChkBx,
 .sknFrmBG,
 .slForm,
 .slSplashiOS,
@@ -119,6 +134,112 @@ div[kr='item'].Copyseg0a0a7c8d6a42a44-focus,
 
 
     background-color: rgba(255, 255, 255, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Copyseg0d05953f4f05a4e,
+li[kr='item'].Copyseg0d05953f4f05a4e-focus,
+div[kr='item'].Copyseg0d05953f4f05a4e-focus,
+[kw='SegmentedUI2']>ul.Copyseg0d05953f4f05a4e-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal normal 16.0px Helvetica;
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
 
 
 
@@ -3696,6 +3817,82 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknBtnBGTransBlue,
+[kw].sknBtnBGTransBlue-hover,
+[kw].sknBtnBGTransBlue-focus,
+[kw].sknBtnBGTransBlue-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: 400 12.8px Helvetica;
+
+
+    text-decoration: underline;
+
+
+
+
+    color: #4c5ab7;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknBtnBlue,
 [kw].sknBtnBlue-hover,
 [kw].sknBtnBlue-focus,
@@ -3786,6 +3983,92 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknBtnDisable,
+[kw].sknBtnDisable-hover,
+[kw].sknBtnDisable-focus,
+[kw].sknBtnDisable-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #a9c7fc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 500 12.8px Helvetica;
+
+
+
+
+
+    color: #9e9e9e;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #a9c7fc;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknBtnGrey,
 [kw].sknBtnGrey-hover,
 [kw].sknBtnGrey-focus,
@@ -3843,6 +4126,883 @@ div[kr='item'].segTrans-focus,
 
 
     background: #edf5ff;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnLeftHighLite,
+[kw].sknBtnLeftHighLite-hover,
+[kw].sknBtnLeftHighLite-focus,
+[kw].sknBtnLeftHighLite-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    border-top: 1px solid #dedede;
+
+
+
+
+    border-left: 1px solid #dedede;
+
+
+
+
+
+
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+
+
+
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal normal 12.8px Helvetica;
+
+
+
+
+
+    color: #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #4c5ab7;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnLeftUnSelect,
+[kw].sknBtnLeftUnSelect-hover,
+[kw].sknBtnLeftUnSelect-focus,
+[kw].sknBtnLeftUnSelect-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #dedede;
+
+
+
+
+
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+
+
+
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 12.8px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnRightHighLite,
+[kw].sknBtnRightHighLite-hover,
+[kw].sknBtnRightHighLite-focus,
+[kw].sknBtnRightHighLite-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    border-right: 1px solid #dedede;
+
+
+    border-bottom: 1px solid #dedede;
+
+
+
+
+
+
+
+
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+
+
+
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 12.8px Helvetica;
+
+
+
+
+
+    color: #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #4c5ab7;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnRightUnSelect,
+[kw].sknBtnRightUnSelect-hover,
+[kw].sknBtnRightUnSelect-focus,
+[kw].sknBtnRightUnSelect-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    border-right: 1px solid #dedede;
+
+
+    border-bottom: 1px solid #dedede;
+
+
+
+
+
+
+
+
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+
+
+
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 12.8px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnSelect,
+[kw].sknBtnSelect-hover,
+[kw].sknBtnSelect-focus,
+[kw].sknBtnSelect-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 500 12.8px Helvetica;
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #4c5ab7;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknBtnUnSelect,
+[kw].sknBtnUnSelect-hover,
+[kw].sknBtnUnSelect-focus,
+[kw].sknBtnUnSelect-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 500 12.8px Helvetica;
+
+
+
+
+
+    color: #212121;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknChkBx,
+[kw=CheckBoxGroup]>div.sknChkBx-hover,
+[kw=CheckBoxGroup]>div.sknChkBx-focus,
+[kw=CheckBoxGroup].sknChkBx-active,
+[kw=CheckBoxGroup]>div.sknChkBx-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 14.1px Helvetica;
+
+
+
+
+
+    color: rgba(33, 33, 33, 0.7);
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknFlexMenu,
+[kw].sknFlexMenu-hover,
+[kw].sknFlexMenu-focus,
+[kw].sknFlexMenu-active {
+
+
+
+
+
+
+
+
+
+
+    border: 0px solid #666666;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: #291f75;
 
 
 
@@ -4384,7 +5544,23 @@ div[kr='item'].segTrans-focus,
 
 
 
-    border: 0px solid #dedede;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4418,6 +5594,137 @@ div[kr='item'].segTrans-focus,
 
 
     background-color: #666666;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknFlxLogin,
+[kw].sknFlxLogin-hover,
+[kw].sknFlxLogin-focus,
+[kw].sknFlxLogin-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #666666;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+    background: linear-gradient(to right, rgba(42, 26, 106, 0.75) 1%, #2abdea 101%, rgba(42, 189, 234, 0.75) 101%);
+
+
+
 
 
 
@@ -4947,7 +6254,7 @@ div[kr='item'].segTrans-focus,
 
 
 
-    background-color: #f6f8fa;
+    background-color: #f9f9f9;
 
 
 
@@ -5197,6 +6504,86 @@ div[kr='item'].segTrans-focus,
 
 
     background-color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknFlxWhite20Opac,
+[kw].sknFlxWhite20Opac-hover,
+[kw].sknFlxWhite20Opac-focus,
+[kw].sknFlxWhite20Opac-active {
+
+
+
+
+
+
+
+
+
+
+    border: 0px solid #666666;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.2);
 
 
 
@@ -5666,6 +7053,113 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknLblC8DFFF,
+[kw].sknLblC8DFFF-hover,
+[kw].sknLblC8DFFF-focus,
+[kw].sknLblC8DFFF-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 12.8px Helvetica;
+
+
+
+
+
+    color: #c8dfff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknLblDescription,
 [kw].sknLblDescription-hover,
 [kw].sknLblDescription-focus,
@@ -5814,6 +7308,80 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknLblHdr,
+[kw].sknLblHdr-hover,
+[kw].sknLblHdr-focus,
+[kw].sknLblHdr-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 32.0px Helvetica;
+
+
+
+
+
+    color: #181818;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknLblHeading2,
 [kw].sknLblHeading2-hover,
 [kw].sknLblHeading2-focus,
@@ -5838,6 +7406,80 @@ div[kr='item'].segTrans-focus,
     font: normal bold 19.2px Helvetica;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknLblHeading2White,
+[kw].sknLblHeading2White-hover,
+[kw].sknLblHeading2White-focus,
+[kw].sknLblHeading2White-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal bold 19.2px Helvetica;
+
+
+
+
+
+    color: #ffffff;
 
 
 
@@ -6658,6 +8300,252 @@ div[kr='item'].segTrans-focus,
 
 
 
+.sknLblWhite100,
+[kw].sknLblWhite100-hover,
+[kw].sknLblWhite100-focus,
+[kw].sknLblWhite100-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal bold 16.0px Helvetica;
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknLblWhiteFormLevel,
+[kw].sknLblWhiteFormLevel-hover,
+[kw].sknLblWhiteFormLevel-focus,
+[kw].sknLblWhiteFormLevel-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid rgba(20, 161, 222, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal 400 11.0px Helvetica;
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknLblWhiteHeading5,
+[kw].sknLblWhiteHeading5-hover,
+[kw].sknLblWhiteHeading5-focus,
+[kw].sknLblWhiteHeading5-active {
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid rgba(20, 161, 222, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font: normal bold 12.0px Helvetica;
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.0);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .sknListTrans,
 [kw].sknListTrans-hover,
 [kw].sknListTrans-focus,
@@ -6717,6 +8605,134 @@ div[kw='ListBox'][kv='editableview']~ul>li.sknListTrans-hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sknLoginDup,
+[kw].sknLoginDup-hover,
+[kw].sknLoginDup-focus,
+[kw].sknLoginDup-active {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #666666;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: #000000;
+
+
+
+
+
+
+
+
+
+
+
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
@@ -7656,6 +9672,146 @@ div[kr='item'].sknSegWidget-focus,
 
 
 
+
+
+
+
+
+
+
+
+
+
+div[kw="Switch"][kt="non-ios-gt6"].sknSwt>div[kr="switch"] {
+    /* switch outer skin */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    border: 1px solid #4c5ab7;
+
+
+
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+
+
+
+
+
+
+}
+
+
+
+div[kw="Switch"][kt="non-ios-gt6"].sknSwt div[kr="left"],
+div[kw="Switch"][kt="ios-gt6"].sknSwt div[kr="left"] {
+    font-family: Helvetica;
+    font-size: 12.8px;
+    font-weight: normal;
+
+    font-style: normal;
+
+
+
+    color: #ffffff;
+
+
+
+
+
+    background-color: #4c5ab7;
+
+
+
+
+
+    -webkit-border-top-left-radius: 10px;
+
+
+
+
+    -webkit-border-top-right-radius: 10px;
+
+
+}
+
+div[kw="Switch"][kt="non-ios-gt6"].sknSwt div[kr="right"],
+div[kw="Switch"][kt="ios-gt6"].sknSwt div[kr="right"] {
+
+    font-family: Helvetica;
+    font-size: 12.8px;
+    font-weight: normal;
+
+    font-style: normal;
+
+
+
+    color: #212121;
+
+
+
+
+
+    background-color: #ffffff;
+
+
+
+
+
+    -webkit-border-bottom-left-radius: 10px;
+
+
+
+
+    -webkit-border-bottom-right-radius: 10px;
+
+
+}
 
 
 
@@ -9947,7 +12103,7 @@ input[kplaceholderskin='sknTxtBxf6f8fa']:-ms-input-placeholder {
 
 
 
-    border: 1px solid #666666;
+    border: 0px solid #666666;
 
 
 

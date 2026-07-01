@@ -139,6 +139,7 @@
                     "value": "0dp"
                 }
             },
+            "src": "icon_dropdwn.png",
             "width": {
                 "Default": {
                     "type": "string",

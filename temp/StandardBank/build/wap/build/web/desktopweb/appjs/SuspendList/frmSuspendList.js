@@ -21,6 +21,27 @@ define("SuspendList/frmSuspendList", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
+            var SideMenu = new com.hcl.menu.SideMenu({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "100%",
+                "id": "SideMenu",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "60dp",
+                "zIndex": 10,
+                "appName": "SBCommon",
+                "overrides": {}
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -42,22 +63,49 @@ define("SuspendList/frmSuspendList", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "8%",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
+                "overrides": {}
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            var SrchTextBox = new com.hcl.srchTextBox.SrchTextBox({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "focusSkin": "slFFocusbox",
+                "height": "48dp",
+                "id": "SrchTextBox",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "24dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTextBox",
+                "top": "24dp",
+                "width": "96%",
+                "zIndex": 1,
+                "appName": "SBCommon",
                 "overrides": {
-                    "lblHdr": {
-                        "text": "Suspend List"
+                    "SrchTextBox": {
+                        "height": "48dp",
+                        "left": "24dp",
+                        "top": "24dp",
+                        "width": "96%"
+                    },
+                    "txtSrch": {
+                        "placeholder": "Search customer CIF, ID or name"
                     }
                 }
             }, {
@@ -85,24 +133,23 @@ define("SuspendList/frmSuspendList", function() {
                 "paddingInPixel": false
             }, {});
             flxSuspendListData.setDefaultUnit(voltmx.flex.DP);
-            var SrchTextBox = new com.hcl.srchTextBox.SrchTextBox({
+            var SubHdr = new com.hcl.subHdr.SubHdr({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "slFFocusbox",
-                "height": "7%",
-                "id": "SrchTextBox",
+                "height": "45dp",
+                "id": "SubHdr",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
-                "left": "16dp",
+                "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTextBox",
-                "top": "16dp",
-                "width": "97%",
+                "right": "0dp",
+                "skin": "sknFlxTrans",
+                "top": "8dp",
                 "zIndex": 1,
                 "appName": "SBCommon",
                 "overrides": {
-                    "txtSrch": {
-                        "placeholder": "Search customer CIF, ID or name"
+                    "lblSubHdr": {
+                        "text": "Suspend List"
                     }
                 }
             }, {
@@ -121,7 +168,7 @@ define("SuspendList/frmSuspendList", function() {
                 "left": "0dp",
                 "isModalContainer": false,
                 "skin": "sknFlxBGEDF5FF",
-                "top": "16dp",
+                "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SuspendList"
@@ -261,36 +308,21 @@ define("SuspendList/frmSuspendList", function() {
             }, {
                 "overrides": {}
             });
-            flxSuspendListData.add(SrchTextBox, flxSuspendSegHdr, SegSuspendList);
-            flxRight.add(FormHeader, flxSuspendListData);
-            var SideMenu = new com.hcl.menu.SideMenu({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "height": "100%",
-                "id": "SideMenu",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "60dp",
-                "zIndex": 10,
-                "appName": "SBCommon",
-                "overrides": {}
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxMain.add(flxRight, SideMenu);
+            flxSuspendListData.add(SubHdr, flxSuspendSegHdr, SegSuspendList);
+            flxRight.add(FormHeader, SrchTextBox, flxSuspendListData);
+            flxMain.add(SideMenu, flxRight);
             this.breakpointResetData = {};
             this.breakpointData = {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader.lblHdr": {
+                "SrchTextBox": {
+                    "height": "48dp",
+                    "left": "24dp",
+                    "top": "24dp",
+                    "width": "96%"
+                },
+                "SubHdr.lblSubHdr": {
                     "text": "Suspend List"
                 }
             }

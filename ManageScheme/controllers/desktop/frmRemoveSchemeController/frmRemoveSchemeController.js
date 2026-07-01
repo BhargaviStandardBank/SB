@@ -80,12 +80,7 @@ define({
     this._handleMethodSelection();
   },
 
-  /** ---------------- LOGIC ---------------- **/
-
-  /**
-     * Handles the visibility and text logic based on dropdown selection
-     * @returns {Promise<boolean>}
-     */
+  
   _handleMethodSelection: function() {
     return new Promise((resolve) => {
       const selectedMethod = this.view.AddMethod.listData.selectedKey;
@@ -150,12 +145,7 @@ define({
     this.view.forceLayout();
   },
 
-  /** ---------------- DATA MAPPING ---------------- **/
-
-  /**
-     * Example of using Spread Operator for segment data defaults
-     * @param {Array} rawData - Data from service
-     */
+ 
   _mapSegmentData(rawData = []) {
     const defaultValues = {
       lblRegID: "N/A",

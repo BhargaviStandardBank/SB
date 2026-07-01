@@ -33,8 +33,6 @@
         "type": "string",
         "value": "100%"
     },
-    "android": {},
-    "androidwearos": {},
     "areflexpropsreferenced": false,
     "autogrowmode": 0,
     "canUpdateUI": true,
@@ -44,7 +42,7 @@
         "FlexContainer0c5eafe3e5fdf45": {
             "__events__": {},
             "__info__": {
-                "kuid": "bc16a509e31b4187b4488b37d50a9fbe",
+                "kuid": "h2920c21a5654ecfb8d46b926aba6f6c",
                 "srcKUID": "b0c2e11d0fcb43188eaca020aca70ab0",
                 "wType": "FlexContainer"
             }
@@ -52,7 +50,7 @@
         "FlexContainer0cfbd412f8d984f": {
             "__events__": {},
             "__info__": {
-                "kuid": "jbf8a5352c0a48258d68b8076ebfdf88",
+                "kuid": "e44b93cefcee491eb910ea85e9047d00",
                 "srcKUID": "a76d07791cf54efaba1f1e8298ba60ef",
                 "wType": "FlexContainer"
             }
@@ -61,7 +59,7 @@
             "__events__": {},
             "__info__": {
                 "isRoot": true,
-                "kuid": "i0117acee256477c8e02396dd1222518",
+                "kuid": "i5cc310040c34d0d97af118f6477a828",
                 "srcKUID": "ja2cbe8fda184c1caaab89eeae9fb281",
                 "wType": "FlexContainer"
             }
@@ -69,7 +67,7 @@
         "Label0b2fdf6dd443b44": {
             "__events__": {},
             "__info__": {
-                "kuid": "fc0feaeadadb4e1396cf47b84848852a",
+                "kuid": "hef6f463dcd747beba5c55f56104fbe3",
                 "srcKUID": "g18338682f7440699865c7b3b0649058",
                 "wType": "Label"
             }
@@ -77,7 +75,7 @@
         "imgLogout": {
             "__events__": {},
             "__info__": {
-                "kuid": "g4c010b0d28143ee963e5d4ad4f86e61",
+                "kuid": "i254b642b7bc4dd183e1abe26a226cc6",
                 "srcKUID": "j4a298acc2ce463686107bdf619e3c57",
                 "wType": "Image"
             }
@@ -85,24 +83,20 @@
         "lblHdr": {
             "__events__": {},
             "__info__": {
-                "kuid": "b10e815d770b49dba74317be64773f1d",
+                "kuid": "c2a8b4025255495982b57a887006b781",
                 "srcKUID": "ecaffe136a7647ee89b97eff000d8e8c",
                 "wType": "Label"
             }
         }
     },
-    "desktopweb": {},
     "enablescrolling": true,
     "focusskin": null,
     "id": "FormHeader",
     "info": null,
-    "ipad": {},
-    "iphone": {},
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kiosk": {},
-    "kuid": "i0117acee256477c8e02396dd1222518",
+    "kuid": "i5cc310040c34d0d97af118f6477a828",
     "layouttype": 2,
     "masterType": 0,
     "name": "kony.ui.UserWidgetInstance",
@@ -114,24 +108,6 @@
     "snapgridsize": 10,
     "snaptogrid": true,
     "sourceUserWidget": "ja2cbe8fda184c1caaab89eeae9fb281",
-    "spa": {},
-    "spaan": {},
-    "spaandroidtablet": {},
-    "spabb": {},
-    "spaip": {},
-    "spaipad": {},
-    "spamobile": {},
-    "spatablet": {},
-    "spawindowstablet": {},
-    "spawinphone8": {},
-    "tabrcandroid": {},
-    "vizProps": {
-        "hidewidgethierarchy": false
-    },
     "wType": "UserWidgetInstance",
-    "windows10": {},
-    "windows8": {},
-    "winphone10": {},
-    "winphone8": {},
     "zindex": 1
 }

@@ -39,7 +39,7 @@
     "autogrowmode": 0,
     "canUpdateUI": true,
     "children": [
-        "SrchTextBox",
+        "SubHdr",
         "flxSubHdr",
         "SchemeList"
     ],

@@ -119,10 +119,6 @@ define(function() {
             "retainSelection": false,
             "rowFocusSkin": "seg2Focus",
             "rowSkin": "seg2Normal",
-            "rowTemplate": kony.mvc.resolveNameFromContext({
-                "appName": "SBCommon",
-                "friendlyName": "flxAddSuspendRow"
-            }),
             "sectionHeaderSkin": "sliPhoneSegmentHeader",
             "selectionBehavior": constants.SEGUI_DEFAULT_BEHAVIOR,
             "separatorColor": "aaaaaa00",

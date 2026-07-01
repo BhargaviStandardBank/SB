@@ -54,7 +54,7 @@ define("StandardBank/frmSBHome", function() {
                 "appName": "SBCommon",
                 "overrides": {
                     "lblHdr": {
-                        "text": "Credit Rist Portal"
+                        "text": "Credit Risk Portal"
                     }
                 }
             }, {
@@ -108,7 +108,7 @@ define("StandardBank/frmSBHome", function() {
             }
             this.compInstData = {
                 "FormHeader.lblHdr": {
-                    "text": "Credit Rist Portal"
+                    "text": "Credit Risk Portal"
                 }
             }
             this.add(flxmain);

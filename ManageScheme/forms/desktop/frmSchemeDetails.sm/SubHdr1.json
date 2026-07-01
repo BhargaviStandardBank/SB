@@ -76,8 +76,9 @@
                 "srcKUID": "bb202ccb989f464b9f4c78ea0a05146c",
                 "wType": "Label"
             },
+            "i18n_text": "i18n.sbms.EmployeeDetails",
             "responsiveData": {},
-            "text": "EMPLYOPEE DETAILS"
+            "text": ""
         }
     },
     "enablescrolling": true,

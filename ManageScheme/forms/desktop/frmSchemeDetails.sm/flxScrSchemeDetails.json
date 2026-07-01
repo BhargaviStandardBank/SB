@@ -23,10 +23,6 @@
     ],
     "_percent_": true,
     "_skin_": "s13a2089eddd45cf89a10724aa9345bd",
-    "_top_": {
-        "type": "string",
-        "value": "8dp"
-    },
     "_width_": {
         "type": "string",
         "value": "96%"
@@ -38,6 +34,9 @@
     "canUpdateUI": true,
     "children": [
         "flxDetails",
+        "flxLimitDetails",
+        "flxSchemeDetails",
+        "flxAcctPrefernce",
         "flxEmployeeDetails",
         "flxBtn"
     ],

@@ -10,7 +10,7 @@ define(function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxWhiteBrd",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "zIndex": 1,

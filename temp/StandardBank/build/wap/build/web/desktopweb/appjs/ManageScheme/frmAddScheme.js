@@ -20,27 +20,8 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBrd",
-                "top": "0dp",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "ManageScheme"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
             var SideMenu = new com.hcl.menu.SideMenu({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
                 "height": "100%",
                 "id": "SideMenu",
                 "isVisible": true,
@@ -48,10 +29,10 @@ define("ManageScheme/frmAddScheme", function() {
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
+                "width": "60dp",
+                "zIndex": 10,
                 "appName": "SBCommon",
                 "overrides": {}
             }, {
@@ -60,19 +41,18 @@ define("ManageScheme/frmAddScheme", function() {
             }, {
                 "overrides": {}
             });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
                 "height": "100%",
                 "id": "flxRight",
                 "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "15%",
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "60dp",
                 "isModalContainer": false,
+                "right": 0,
                 "skin": "sknFlxTrans",
                 "top": "0%",
-                "width": "85%",
                 "zIndex": 1,
                 "appName": "ManageScheme"
             }, {
@@ -81,22 +61,22 @@ define("ManageScheme/frmAddScheme", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "8%",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
                 "overrides": {
-                    "lblHdr": {
-                        "text": "Add Scheme"
+                    "FormHeader": {
+                        "centerY": "viz.val_cleared",
+                        "top": "0dp"
                     }
                 }
             }, {
@@ -120,7 +100,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "pagingEnabled": false,
                 "scrollDirection": voltmx.flex.SCROLL_VERTICAL,
                 "skin": "sknFlxSrcTrans",
-                "top": "12%",
+                "top": "24dp",
                 "verticalScrollIndicator": true,
                 "width": "96%",
                 "zIndex": 1
@@ -2379,6 +2359,24 @@ define("ManageScheme/frmAddScheme", function() {
             });
             flxTxtArea.add(txtArea);
             CopyFlexContainer0acb437d183354f.add(lblNotes, flxTxtArea);
+            var FlexGroup0gde43ebbf92a4c = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "bottom": "16dp",
+                "clipBounds": false,
+                "height": "40dp",
+                "id": "FlexGroup0gde43ebbf92a4c",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "isModalContainer": false,
+                "right": "0dp",
+                "skin": "slFbox",
+                "top": "0dp",
+                "width": "100%",
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            FlexGroup0gde43ebbf92a4c.setDefaultUnit(voltmx.flex.DP);
             var btnAddCompanyScheme = new voltmx.ui.Button({
                 "bottom": "12dp",
                 "centerX": "50%",
@@ -2396,7 +2394,8 @@ define("ManageScheme/frmAddScheme", function() {
                 "padding": [24, 0, 24, 0],
                 "paddingInPixel": true
             }, {});
-            flxAddScheme.add(SubHdr, flxListMethod, flxAddMethod, flxSep, flxCompanyEntry, flxEmployeeEntry, flxDocSelect, CopyFlexContainer0acb437d183354f, btnAddCompanyScheme);
+            FlexGroup0gde43ebbf92a4c.add(btnAddCompanyScheme);
+            flxAddScheme.add(SubHdr, flxListMethod, flxAddMethod, flxSep, flxCompanyEntry, flxEmployeeEntry, flxDocSelect, CopyFlexContainer0acb437d183354f, FlexGroup0gde43ebbf92a4c);
             var flxCompanyEntries = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -2664,7 +2663,7 @@ define("ManageScheme/frmAddScheme", function() {
             FlexContainer0af80d45963f540.add(btnSubmitAddition, btnDiscard);
             flxScr.add(flxAddScheme, flxCompanyEntries, FlexContainer0af80d45963f540);
             flxRight.add(FormHeader, flxScr);
-            flxMain.add(flxLeft, flxRight);
+            flxMain.add(SideMenu, flxRight);
             var flxSchDetailsPopup = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -2824,34 +2823,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridSchemeId.setDefaultUnit(voltmx.flex.DP);
-            var SchemeID = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "SchemeID",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "SCHEME ID"
-                    },
-                    "lblDetailValue": {
-                        "text": "2345678324"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridSchemeId.add(SchemeID);
+            flxGridSchemeId.add();
             var flxGridSchemeName = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -2880,34 +2852,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridSchemeName.setDefaultUnit(voltmx.flex.DP);
-            var SchemeNamePopup = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "SchemeNamePopup",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "SCHEME NAME"
-                    },
-                    "lblDetailValue": {
-                        "text": "HCL Software"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridSchemeName.add(SchemeNamePopup);
+            flxGridSchemeName.add();
             flxPopupResGrid.add(flxGridSchemeId, flxGridSchemeName);
             var CopyflxSep0b55cd75a3b1e42 = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
@@ -2976,34 +2921,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridCIFNumber.setDefaultUnit(voltmx.flex.DP);
-            var CIFNumberPopup = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "CIFNumberPopup",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "CIF NUMBER"
-                    },
-                    "lblDetailValue": {
-                        "text": "54679320"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridCIFNumber.add(CIFNumberPopup);
+            flxGridCIFNumber.add();
             var flxGridHidden = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3032,37 +2950,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridHidden.setDefaultUnit(voltmx.flex.DP);
-            var Allowance = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "Allowance",
-                "isVisible": false,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "LabelsField": {
-                        "isVisible": false
-                    },
-                    "lblDetail": {
-                        "text": "ALLOWANCES (KES)"
-                    },
-                    "lblDetailValue": {
-                        "text": "500.00"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridHidden.add(Allowance);
+            flxGridHidden.add();
             var flxGridEmployerName = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3091,34 +2979,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridEmployerName.setDefaultUnit(voltmx.flex.DP);
-            var EmployerNamePopup = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "EmployerNamePopup",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "EMPLOYER NAME"
-                    },
-                    "lblDetailValue": {
-                        "text": "HCL Software America"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridEmployerName.add(EmployerNamePopup);
+            flxGridEmployerName.add();
             var flxGridRegistrationNumber = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3147,34 +3008,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridRegistrationNumber.setDefaultUnit(voltmx.flex.DP);
-            var RegistrationNumberPopup = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "RegistrationNumberPopup",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "REGISTRATION NUMBER"
-                    },
-                    "lblDetailValue": {
-                        "text": "23423434532"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridRegistrationNumber.add(RegistrationNumberPopup);
+            flxGridRegistrationNumber.add();
             var flxGridDesignatedContactName = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3203,34 +3037,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridDesignatedContactName.setDefaultUnit(voltmx.flex.DP);
-            var DesigContactName = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "DesigContactName",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "DESIGNATED CONTACT NAME"
-                    },
-                    "lblDetailValue": {
-                        "text": "Michalle lota"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridDesignatedContactName.add(DesigContactName);
+            flxGridDesignatedContactName.add();
             var flxGridDesignContactTitle = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3259,34 +3066,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridDesignContactTitle.setDefaultUnit(voltmx.flex.DP);
-            var DesigContactTitle = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "DesigContactTitle",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "DESIGNATED CONTACT TITLE"
-                    },
-                    "lblDetailValue": {
-                        "text": "HR Benefits Manger"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridDesignContactTitle.add(DesigContactTitle);
+            flxGridDesignContactTitle.add();
             var flxGridDesgContactPhone = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3315,34 +3095,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridDesgContactPhone.setDefaultUnit(voltmx.flex.DP);
-            var DesigContactPhonePopup = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "DesigContactPhonePopup",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "DESIGNATED CONTACT PHONE"
-                    },
-                    "lblDetailValue": {
-                        "text": "(555) 555-5555"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridDesgContactPhone.add(DesigContactPhonePopup);
+            flxGridDesgContactPhone.add();
             var flxGridDesgContactEmail = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3371,37 +3124,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridDesgContactEmail.setDefaultUnit(voltmx.flex.DP);
-            var DesgContactEmailPopup = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "DesgContactEmailPopup",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "LabelsField": {
-                        "isVisible": true
-                    },
-                    "lblDetail": {
-                        "text": "DESIGNATED CONTACT EMAIL"
-                    },
-                    "lblDetailValue": {
-                        "text": "hrbenfits@hcl.coms"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridDesgContactEmail.add(DesgContactEmailPopup);
+            flxGridDesgContactEmail.add();
             var flxMaxSpndLimit = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3430,37 +3153,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxMaxSpndLimit.setDefaultUnit(voltmx.flex.DP);
-            var MaxSpndLimit = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "MaxSpndLimit",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "LabelsField": {
-                        "isVisible": true
-                    },
-                    "lblDetail": {
-                        "text": "MAXIMUM SPENDING LIMIT (KES)"
-                    },
-                    "lblDetailValue": {
-                        "text": "2,400,000"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxMaxSpndLimit.add(MaxSpndLimit);
+            flxMaxSpndLimit.add();
             var flxGridSuspendStatus = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3489,37 +3182,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridSuspendStatus.setDefaultUnit(voltmx.flex.DP);
-            var SuspendStatusPopup = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "SuspendStatusPopup",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "LabelsField": {
-                        "isVisible": true
-                    },
-                    "lblDetail": {
-                        "text": "SUSPEND STATUS"
-                    },
-                    "lblDetailValue": {
-                        "text": "Approved"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridSuspendStatus.add(SuspendStatusPopup);
+            flxGridSuspendStatus.add();
             var flxGridComments = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -3548,34 +3211,7 @@ define("ManageScheme/frmAddScheme", function() {
                 "paddingInPixel": false
             }, {});
             flxGridComments.setDefaultUnit(voltmx.flex.DP);
-            var Comments = new com.hcl.labelField.LabelsField({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
-                "id": "Comments",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {
-                    "lblDetail": {
-                        "text": "COMMENTS"
-                    },
-                    "lblDetailValue": {
-                        "text": "-"
-                    }
-                }
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxGridComments.add(Comments);
+            flxGridComments.add();
             flxPopupResGrid1.add(flxGridCIFNumber, flxGridHidden, flxGridEmployerName, flxGridRegistrationNumber, flxGridDesignatedContactName, flxGridDesignContactTitle, flxGridDesgContactPhone, flxGridDesgContactEmail, flxMaxSpndLimit, flxGridSuspendStatus, flxGridComments);
             flxPopupSrc.add(flxPopupResGrid, CopyflxSep0b55cd75a3b1e42, flxPopupResGrid1);
             flxSchemeDetailsPopup.add(flxPopupHdr, flxPopupSrc);
@@ -3635,8 +3271,9 @@ define("ManageScheme/frmAddScheme", function() {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader.lblHdr": {
-                    "text": "Add Scheme"
+                "FormHeader": {
+                    "centerY": "",
+                    "top": "0dp"
                 },
                 "SubHdr": {
                     "centerY": "",
@@ -3913,84 +3550,6 @@ define("ManageScheme/frmAddScheme", function() {
                 "segHeader.lblReason": {
                     "left": "0%",
                     "text": "Reg ID"
-                },
-                "SchemeID.lblDetail": {
-                    "text": "SCHEME ID"
-                },
-                "SchemeID.lblDetailValue": {
-                    "text": "2345678324"
-                },
-                "SchemeNamePopup.lblDetail": {
-                    "text": "SCHEME NAME"
-                },
-                "SchemeNamePopup.lblDetailValue": {
-                    "text": "HCL Software"
-                },
-                "CIFNumberPopup.lblDetail": {
-                    "text": "CIF NUMBER"
-                },
-                "CIFNumberPopup.lblDetailValue": {
-                    "text": "54679320"
-                },
-                "Allowance.lblDetail": {
-                    "text": "ALLOWANCES (KES)"
-                },
-                "Allowance.lblDetailValue": {
-                    "text": "500.00"
-                },
-                "EmployerNamePopup.lblDetail": {
-                    "text": "EMPLOYER NAME"
-                },
-                "EmployerNamePopup.lblDetailValue": {
-                    "text": "HCL Software America"
-                },
-                "RegistrationNumberPopup.lblDetail": {
-                    "text": "REGISTRATION NUMBER"
-                },
-                "RegistrationNumberPopup.lblDetailValue": {
-                    "text": "23423434532"
-                },
-                "DesigContactName.lblDetail": {
-                    "text": "DESIGNATED CONTACT NAME"
-                },
-                "DesigContactName.lblDetailValue": {
-                    "text": "Michalle lota"
-                },
-                "DesigContactTitle.lblDetail": {
-                    "text": "DESIGNATED CONTACT TITLE"
-                },
-                "DesigContactTitle.lblDetailValue": {
-                    "text": "HR Benefits Manger"
-                },
-                "DesigContactPhonePopup.lblDetail": {
-                    "text": "DESIGNATED CONTACT PHONE"
-                },
-                "DesigContactPhonePopup.lblDetailValue": {
-                    "text": "(555) 555-5555"
-                },
-                "DesgContactEmailPopup.lblDetail": {
-                    "text": "DESIGNATED CONTACT EMAIL"
-                },
-                "DesgContactEmailPopup.lblDetailValue": {
-                    "text": "hrbenfits@hcl.coms"
-                },
-                "MaxSpndLimit.lblDetail": {
-                    "text": "MAXIMUM SPENDING LIMIT (KES)"
-                },
-                "MaxSpndLimit.lblDetailValue": {
-                    "text": "2,400,000"
-                },
-                "SuspendStatusPopup.lblDetail": {
-                    "text": "SUSPEND STATUS"
-                },
-                "SuspendStatusPopup.lblDetailValue": {
-                    "text": "Approved"
-                },
-                "Comments.lblDetail": {
-                    "text": "COMMENTS"
-                },
-                "Comments.lblDetailValue": {
-                    "text": "-"
                 },
                 "AlertUp": {
                     "left": "",

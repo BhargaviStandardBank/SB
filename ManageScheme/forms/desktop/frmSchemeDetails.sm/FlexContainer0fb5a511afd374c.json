@@ -43,9 +43,11 @@
         "FlexContainer0h256b9c7113c4f",
         "FlexContainer0a4082c17f8f34d",
         "FlexContainer0ef86dfeff3d747",
+        "flxMobileNumber",
         "FlexContainer0ea8c9b435fe84a",
         "FlexContainer0caf646fba49b41",
-        "FlexContainer0h195ac660bae44"
+        "FlexContainer0h195ac660bae44",
+        "flxAddress"
     ],
     "clipbounds": false,
     "containerweight": 100,

@@ -20,6 +20,31 @@ define("SuspendList/frmAddSuspend", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
+            var SideMenu = new com.hcl.menu.SideMenu({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "100%",
+                "id": "SideMenu",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "60dp",
+                "zIndex": 10,
+                "appName": "SBCommon",
+                "overrides": {
+                    "imgLogo": {
+                        "src": "sblogo.png"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -41,22 +66,21 @@ define("SuspendList/frmAddSuspend", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "8%",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
                 "overrides": {
-                    "lblHdr": {
-                        "text": "Add Suspend List"
+                    "imgLogout": {
+                        "src": "icon_logout.png"
                     }
                 }
             }, {
@@ -165,6 +189,7 @@ define("SuspendList/frmAddSuspend", function() {
                         "height": "25dp",
                         "left": "viz.val_cleared",
                         "right": "0dp",
+                        "src": "icon_dropdwn.png",
                         "top": "0dp",
                         "width": "25dp"
                     },
@@ -255,6 +280,7 @@ define("SuspendList/frmAddSuspend", function() {
                         "height": "25dp",
                         "left": "viz.val_cleared",
                         "right": "0dp",
+                        "src": "icon_dropdwn.png",
                         "top": "0dp",
                         "width": "25dp"
                     },
@@ -305,6 +331,7 @@ define("SuspendList/frmAddSuspend", function() {
                         "height": "25dp",
                         "left": "viz.val_cleared",
                         "right": "0dp",
+                        "src": "icon_dropdwn.png",
                         "width": "25dp"
                     },
                     "lblDetail": {
@@ -919,28 +946,7 @@ define("SuspendList/frmAddSuspend", function() {
             FlexContainer0ea5b05548d784e.add(btnSubmit, btnDiscard);
             flxSrc.add(flxAddSusList, flxSuspensionEntry, FlexContainer0ea5b05548d784e);
             flxRight.add(FormHeader, flxSrc);
-            var SideMenu = new com.hcl.menu.SideMenu({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "height": "100%",
-                "id": "SideMenu",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "60dp",
-                "zIndex": 10,
-                "appName": "SBCommon",
-                "overrides": {}
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxMain.add(flxRight, SideMenu);
+            flxMain.add(SideMenu, flxRight);
             var flxAlert = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -977,6 +983,9 @@ define("SuspendList/frmAddSuspend", function() {
                         "left": "viz.val_cleared",
                         "top": "viz.val_cleared",
                         "width": "400dp"
+                    },
+                    "imgAlert": {
+                        "src": "icon_alertcheck.png"
                     }
                 }
             }, {
@@ -991,8 +1000,11 @@ define("SuspendList/frmAddSuspend", function() {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader.lblHdr": {
-                    "text": "Add Suspend List"
+                "SideMenu.imgLogo": {
+                    "src": "sblogo.png"
+                },
+                "FormHeader.imgLogout": {
+                    "src": "icon_logout.png"
                 },
                 "SubHdr": {
                     "centerY": "",
@@ -1018,6 +1030,7 @@ define("SuspendList/frmAddSuspend", function() {
                     "height": "25dp",
                     "left": "",
                     "right": "0dp",
+                    "src": "icon_dropdwn.png",
                     "top": "0dp",
                     "width": "25dp"
                 },
@@ -1043,6 +1056,7 @@ define("SuspendList/frmAddSuspend", function() {
                     "height": "25dp",
                     "left": "",
                     "right": "0dp",
+                    "src": "icon_dropdwn.png",
                     "top": "0dp",
                     "width": "25dp"
                 },
@@ -1067,6 +1081,7 @@ define("SuspendList/frmAddSuspend", function() {
                     "height": "25dp",
                     "left": "",
                     "right": "0dp",
+                    "src": "icon_dropdwn.png",
                     "width": "25dp"
                 },
                 "SrchCriteria.lblDetail": {
@@ -1113,6 +1128,9 @@ define("SuspendList/frmAddSuspend", function() {
                     "left": "",
                     "top": "",
                     "width": "400dp"
+                },
+                "AlertUp.imgAlert": {
+                    "src": "icon_alertcheck.png"
                 }
             }
             this.add(flxMain, flxAlert);

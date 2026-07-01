@@ -1,33 +1,44 @@
 define("Customer360/userfrmCustomerController", {
     /** ---------------- STATE ---------------- **/
     _masterFinancialData: [],
+    //let header:"";
     /** ---------------- ENTRY ---------------- **/
-    onNavigate() {
+    onNavigate(header) {
         try {
+            this.header = "Credit Risk / " + header.formID.appInfo + " / " + header.lblMenuItem;
             this._setupDataMap();
+            this.actionItems();
             this._initializeTabActions();
             this.preShowHandler();
             this.view.flxHide.isVisible = false;
+            this.populateEcoGrowth();
             this._initializeView().catch(err => {
                 throw new Error(`Form Initialization Failed: ${err.message}`);
             });
         } catch (error) {
-            kony.print(`Error in onNavigate: ${error.message}`);
+            voltmx.print(`Error in onNavigate: ${error.message}`);
         }
     },
     preShowHandler() {
         try {
+            this.view.FormHeader.lblHdr.text = this.header;
             this.view.RiskRateChart.imgPin.anchorPoint = {
                 x: 0.5,
                 y: 1
             };
             this.currentAngle = 0;
-            const transform = kony.ui.makeAffineTransform();
+            const transform = voltmx.ui.makeAffineTransform();
             transform.rotate(this.currentAngle);
             this.view.RiskRateChart.flxPin.transform = transform;
         } catch (error) {
-            kony.print(`Error in preShowHandler: ${error.message}`);
+            voltmx.print(`Error in preShowHandler: ${error.message}`);
         }
+    },
+    actionItems: function() {
+        this.view.imgClose.onTouchEnd = this.popUpClose;
+    },
+    popUpClose: function() {
+        this.view.flxPopUp.isVisible = false;
     },
     /** ---------------- DATA MAPPING ---------------- **/
     _setupDataMap() {
@@ -51,7 +62,7 @@ define("Customer360/userfrmCustomerController", {
                 flxRow: "flxRow"
             };
         } catch (error) {
-            kony.print(`Error in _setupDataMap: ${error.message}`);
+            voltmx.print(`Error in _setupDataMap: ${error.message}`);
         }
     },
     /** ---------------- ACTIONS ---------------- **/
@@ -74,7 +85,7 @@ define("Customer360/userfrmCustomerController", {
             this.view.btnRisk4.onClick = () => this.riskOptionSelect("BBRS");
             this.view.btnRisk5.onClick = () => this.riskOptionSelect("CRS");
         } catch (error) {
-            kony.print(`Error in _initializeTabActions: ${error.message}`);
+            voltmx.print(`Error in _initializeTabActions: ${error.message}`);
         }
     },
     adressCheck: function() {
@@ -83,7 +94,7 @@ define("Customer360/userfrmCustomerController", {
             const isSameAddress = (selectedKeys && selectedKeys.length > 0);
             this.view.flxPhysicalAddress.isVisible = !isSameAddress;
         } catch (error) {
-            kony.print(`Error in addressCancel: ${error.message}`);
+            voltmx.print(`Error in addressCancel: ${error.message}`);
         }
     },
     _switchTab(tabName) {
@@ -109,6 +120,7 @@ define("Customer360/userfrmCustomerController", {
             view.flxRiskInsight.isVisible = (tabName === "RISKRATING");
             view.flxContInfo.isVisible = (tabName === "CONTACTINFO");
             view.flxPersonalData.isVisible = (tabName === "PERSONALINFO");
+            view.flxEcoGrowth.isVisible = (tabName === "ECONOMICGROW")
             if (tabName === "COLLATERAL") {
                 this._buildCollateralUI(GlobalData.collateralData).catch(err => {
                     throw new Error(`Dynamic UI Build Failed: ${err.message}`);
@@ -118,7 +130,7 @@ define("Customer360/userfrmCustomerController", {
                 this.updateGauge(15);
             }
         } catch (error) {
-            kony.print(`Error in _switchTab: ${error.message}`);
+            voltmx.print(`Error in _switchTab: ${error.message}`);
         }
     },
     /** ---------------- ASYNC DATA LOADING ---------------- **/
@@ -173,7 +185,7 @@ define("Customer360/userfrmCustomerController", {
             this.view.segInternalExposure.setData(processedData);
             this.view.forceLayout();
         } catch (error) {
-            kony.print(`Error in _renderSegment: ${error.message}`);
+            voltmx.print(`Error in _renderSegment: ${error.message}`);
         }
     },
     _buildCollateralUI(data = []) {
@@ -209,7 +221,7 @@ define("Customer360/userfrmCustomerController", {
                 isVisible: true
             }, {}, {});
         } catch (error) {
-            kony.print(`Error in _createHorizontalRow: ${error.message}`);
+            voltmx.print(`Error in _createHorizontalRow: ${error.message}`);
         }
     },
     _createCollateralCard(record, index) {
@@ -222,7 +234,7 @@ define("Customer360/userfrmCustomerController", {
             } = record;
             const flxCard = new voltmx.ui.FlexContainer({
                 id: `flxCollData${index}`,
-                width: "48%",
+                width: "30%",
                 height: "100%",
                 left: "2%",
                 skin: "sknFlxWhiteBGBlckBrdr",
@@ -253,20 +265,38 @@ define("Customer360/userfrmCustomerController", {
                 id: `lblVal${index}`,
                 text: value,
                 skin: "sknLblFormLevel",
-                right: "15dp"
+                right: "15dp",
+                top: "15dp"
             }, {}, {});
-            flxCard.add(lblType, lblDetail, lblAccount, lblVal);
+            const imgNext = new voltmx.ui.Image2({
+                id: `imgNext${index}`,
+                isVisible: true,
+                src: "icon_next.png",
+                imageWhenFailed: "icon_next.png",
+                imageWhileDownloading: "icon_next.png",
+                right: "15dp",
+                top: "45dp",
+                width: "35dp",
+                height: "35dp",
+                onTouchEnd: () => {
+                    this.onImageClick(record, index);
+                }
+            }, {}, {});
+            flxCard.add(lblType, lblDetail, lblAccount, lblVal, imgNext);
             return flxCard;
         } catch (error) {
-            kony.print(`Error in _createCollateralCard: ${error.message}`);
+            voltmx.print(`Error in _createCollateralCard: ${error.message}`);
         }
+    },
+    onImageClick: function() {
+        this.view.flxPopUp.isVisible = true;
     },
     updateGauge(rating) {
         try {
             const newAngle = this.getAngleFromRating(rating);
             this.rotateNeedle(newAngle);
         } catch (error) {
-            kony.print(`Error in updateGauge: ${error.message}`);
+            voltmx.print(`Error in updateGauge: ${error.message}`);
         }
     },
     getAngleFromRating(rating) {
@@ -277,33 +307,33 @@ define("Customer360/userfrmCustomerController", {
             if (rating >= 23 && rating <= 25) return 35;
             return 75;
         } catch (error) {
-            kony.print(`Error in getAngleFromRating: ${error.message}`);
+            voltmx.print(`Error in getAngleFromRating: ${error.message}`);
             return 0;
         }
     },
     rotateNeedle(newAngle) {
         try {
-            const fromTransform = kony.ui.makeAffineTransform();
+            const fromTransform = voltmx.ui.makeAffineTransform();
             fromTransform.rotate(this.currentAngle);
-            const toTransform = kony.ui.makeAffineTransform();
+            const toTransform = voltmx.ui.makeAffineTransform();
             toTransform.rotate(newAngle);
-            this.view.RiskRateChart.flxPin.animate(kony.ui.createAnimation({
+            this.view.RiskRateChart.flxPin.animate(voltmx.ui.createAnimation({
                 "0": {
                     "transform": fromTransform
                 },
                 "100": {
                     "stepConfig": {
-                        "timingFunction": kony.anim.EASE_IN_OUT
+                        "timingFunction": voltmx.anim.EASE_IN_OUT
                     },
                     "transform": toTransform
                 }
             }), {
                 "duration": 0.6,
-                "fillMode": kony.anim.FILL_MODE_FORWARDS
+                "fillMode": voltmx.anim.FILL_MODE_FORWARDS
             }, {});
             this.currentAngle = newAngle;
         } catch (error) {
-            kony.print(`Error in rotateNeedle: ${error.message}`);
+            voltmx.print(`Error in rotateNeedle: ${error.message}`);
         }
     },
     riskOptionSelect(riskType) {
@@ -371,7 +401,26 @@ define("Customer360/userfrmCustomerController", {
                 this.updateGauge(5);
             }
         } catch (error) {
-            kony.print(`Error in riskOptionSelect: ${error.message}`);
+            voltmx.print(`Error in riskOptionSelect: ${error.message}`);
+        }
+    },
+    populateEcoGrowth: function() {
+        try {
+            this.view.segEcoGrowth.widgetDataMap = {
+                lblGrpNum: "lblGrpNum",
+                lblGrpType: "lblGrpType",
+                lblApplicName: "lblApplicName",
+                lblIDRegNum: "lblIDRegNum",
+                lblSegType: "lblSegType",
+                lblBranch: "lblBranch",
+                lblRelMang: "lblRelMang",
+                lblAcctNum: "lblAcctNum",
+                lblWL: "lblWL"
+            };
+            this.ecoGrowthData = GlobalData.ecoGrowth;
+            this.view.segEcoGrowth.setData(this.ecoGrowthData);
+        } catch (e) {
+            voltmx.print(`Error in riskOptionSelect: ${error.message}`)
         }
     }
 });

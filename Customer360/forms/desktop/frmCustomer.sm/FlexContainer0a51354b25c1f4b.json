@@ -1,0 +1,109 @@
+{
+    "DNDConfig": null,
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 6,
+    "_padding_": [
+        4,
+        8,
+        4,
+        8
+    ],
+    "_percent_": true,
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_top_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "allboxes": [],
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "children": [
+        "flxCustIdenNum",
+        "flxCollateralType",
+        "flxCollateralDescp",
+        "flxCollateralStatusDesc",
+        "flxCollSecuSriNo",
+        "flxCollSecuTypeInd",
+        "flxSecuCode",
+        "flxSecDet",
+        "flxSecuCount",
+        "flxSecuValue",
+        "flxSecuDesc",
+        "flxItemDueDate",
+        "flxMaxCellingLim",
+        "flxInsurancePolicyNo",
+        "flxInsuranceCompany",
+        "flxInsuPolcyStartDate",
+        "flxInsuPolcyEndDate",
+        "flxInsuredItems",
+        "flxInsurancePolicyAmt",
+        "flxInspComments",
+        "flxInspDueDate",
+        "flxInspStockValue",
+        "flxInspAdditionalNotes",
+        "flxInspExtratDate"
+    ],
+    "clipbounds": false,
+    "containerweight": 100,
+    "desktopweb": {
+        "render": true
+    },
+    "disabledSkins": {
+        "blockedUISkin": "se10403881e545c88517e38d1704fe6e",
+        "focusSkin": "s055b30cc8544a4092521d1a3c930a38"
+    },
+    "enablescrolling": true,
+    "focusskin": "",
+    "gutterx": {
+        "type": "string",
+        "value": "12dp"
+    },
+    "guttery": {
+        "type": "string",
+        "value": "16dp"
+    },
+    "id": "FlexContainer0a51354b25c1f4b",
+    "info": null,
+    "iscustomlayout": false,
+    "isvisible": true,
+    "kiosk": {
+        "render": false
+    },
+    "kuid": "c69b44b9cb8e4bdcbadc8d224d43e528",
+    "layouttype": 5,
+    "name": "kony.ui.FlexContainer",
+    "nativemac": {
+        "render": true
+    },
+    "nativewin": {
+        "render": true
+    },
+    "paddinginpixel": true,
+    "parent": "FlexContainer0f0a53cbb40a347",
+    "pf": "frmCustomer",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "wType": "FlexContainer",
+    "widgetalignment": 1,
+    "zindex": 1
+}

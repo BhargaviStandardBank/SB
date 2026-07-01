@@ -3,7 +3,7 @@ define("com/hcl/lblTextArea/LabelTextArea/userLabelTextAreaController", function
 });
 define("com/hcl/lblTextArea/LabelTextArea/LabelTextAreaControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/lblTextArea/LabelTextArea/LabelTextAreaController", ["com/hcl/lblTextArea/LabelTextArea/userLabelTextAreaController", "com/hcl/lblTextArea/LabelTextArea/LabelTextAreaControllerActions"], function() {

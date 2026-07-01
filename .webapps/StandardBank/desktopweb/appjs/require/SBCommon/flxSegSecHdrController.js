@@ -3,7 +3,7 @@ define("SBCommon/userflxSegSecHdrController", {
 });
 define("SBCommon/flxSegSecHdrControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("SBCommon/flxSegSecHdrController", ["SBCommon/userflxSegSecHdrController", "SBCommon/flxSegSecHdrControllerActions"], function() {

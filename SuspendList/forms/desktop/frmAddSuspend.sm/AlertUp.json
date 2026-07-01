@@ -113,7 +113,8 @@
                 "kuid": "a0f153255ebf4829965cb6b96e2bc51b",
                 "srcKUID": "e125a8935ccd4fcdb2e5439ac900fd74",
                 "wType": "Image"
-            }
+            },
+            "src": "icon_alertcheck.png"
         },
         "lblAlertHdr": {
             "__events__": {},

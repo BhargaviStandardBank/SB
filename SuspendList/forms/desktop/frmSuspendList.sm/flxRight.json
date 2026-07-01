@@ -36,6 +36,7 @@
     "canUpdateUI": true,
     "children": [
         "FormHeader",
+        "SrchTextBox",
         "flxSuspendListData"
     ],
     "clipbounds": false,

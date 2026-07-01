@@ -3,7 +3,7 @@ define("SBCommon/userflxSuspensionEntryController", {
 });
 define("SBCommon/flxSuspensionEntryControllerActions", {
     /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("SBCommon/flxSuspensionEntryController", ["SBCommon/userflxSuspensionEntryController", "SBCommon/flxSuspensionEntryControllerActions"], function() {

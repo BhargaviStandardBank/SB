@@ -4,12 +4,17 @@ define("ManageScheme/userfrmSchemeReqHistoryController", {
     _filteredData: [],
     _currentFilter: "ALL",
     /** ---------------- ENTRY ---------------- **/
-    onNavigate: function() {
+    onNavigate: function(header) {
+        this.header = header ? "Credit Risk / " + header.formID.appInfo + " / " + header.lblMenuItem : "Credit Risk / Scheme Maintence / Request History";
         this.view.SrchTextBox.txtSrch.onTextChange = this._onSearch.bind(this);
         this.view.lstFilter.onSelection = this._onListBoxSelect.bind(this);
         this.view.SegSuspendList.segSuspend.onRowClick = this._onClickSuspendData.bind(this);
         this.setupDataMap();
         this._loadData();
+        this.preshowHandler();
+    },
+    preshowHandler: function() {
+        this.view.FormHeader.lblHdr.text = this.header;
     },
     setupDataMap: function() {
         this.view.SegSuspendList.segSuspend.widgetDataMap = {

@@ -20,28 +20,8 @@ define("SuspendList/frmRemoveSuspend", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "focusSkin": "sknFlxWhiteBdr",
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBdr",
-                "top": "0dp",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "SuspendList"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
             var SideMenu = new com.hcl.menu.SideMenu({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
                 "height": "100%",
                 "id": "SideMenu",
                 "isVisible": true,
@@ -51,8 +31,8 @@ define("SuspendList/frmRemoveSuspend", function() {
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
                 "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
+                "width": "60dp",
+                "zIndex": 10,
                 "appName": "SBCommon",
                 "overrides": {}
             }, {
@@ -61,7 +41,6 @@ define("SuspendList/frmRemoveSuspend", function() {
             }, {
                 "overrides": {}
             });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -70,11 +49,11 @@ define("SuspendList/frmRemoveSuspend", function() {
                 "id": "flxRight",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "15%",
+                "left": "60dp",
                 "isModalContainer": false,
+                "right": 0,
                 "skin": "sknFlxTrans",
                 "top": "0dp",
-                "width": "85%",
                 "zIndex": 1,
                 "appName": "SuspendList"
             }, {
@@ -83,29 +62,19 @@ define("SuspendList/frmRemoveSuspend", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "64dp",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
-                "overrides": {
-                    "FormHeader": {
-                        "centerY": "viz.val_cleared",
-                        "height": "64dp",
-                        "top": "0dp"
-                    },
-                    "lblHdr": {
-                        "text": "Remove Suspend List"
-                    }
-                }
+                "overrides": {}
             }, {
                 "paddingInPixel": false,
                 "overrides": {}
@@ -130,7 +99,7 @@ define("SuspendList/frmRemoveSuspend", function() {
                 "right": "24dp",
                 "scrollDirection": voltmx.flex.SCROLL_VERTICAL,
                 "skin": "sknFlxSrcTrans",
-                "top": "0dp",
+                "top": "24dp",
                 "verticalScrollIndicator": true,
                 "width": "96%",
                 "zIndex": 1
@@ -1185,7 +1154,7 @@ define("SuspendList/frmRemoveSuspend", function() {
                 "appName": "SBCommon",
                 "overrides": {
                     "lblCIFNO": {
-                        "left": "3.80%"
+                        "left": "2%"
                     }
                 }
             }, {
@@ -1194,7 +1163,46 @@ define("SuspendList/frmRemoveSuspend", function() {
             }, {
                 "overrides": {}
             });
-            flxSuspensionEntry.add(flxSuspensionHdr, flxSep, flxInner, SuspenEntryHdr);
+            var flxSegData = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "300dp",
+                "id": "flxSegData",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "slFbox",
+                "top": "0dp",
+                "width": "100%",
+                "appName": "SuspendList"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxSegData.setDefaultUnit(voltmx.flex.DP);
+            var SuspensionEntries = new com.hcl.SuspensionEntries.SuspensionEntries({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "100%",
+                "id": "SuspensionEntries",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {}
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxSegData.add(SuspensionEntries);
+            flxSuspensionEntry.add(flxSuspensionHdr, flxSep, flxInner, SuspenEntryHdr, flxSegData);
             var flxButtons = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "bottom": "30dp",
@@ -1253,22 +1261,14 @@ define("SuspendList/frmRemoveSuspend", function() {
             flxButtons.add(btnRemoveExist, btnRemoveSubmit);
             flxSrcRemoveSuspendList.add(flxRemoveSusList, flxSuspensionEntry, flxButtons);
             flxRight.add(FormHeader, flxSrcRemoveSuspendList);
-            flxMain.add(flxLeft, flxRight);
+            flxMain.add(SideMenu, flxRight);
             this.breakpointResetData = {};
             this.breakpointData = {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader": {
-                    "centerY": "",
-                    "height": "64dp",
-                    "top": "0dp"
-                },
-                "FormHeader.lblHdr": {
-                    "text": "Remove Suspend List"
-                },
                 "SuspenEntryHdr.lblCIFNO": {
-                    "left": "3.80%"
+                    "left": "2%"
                 }
             }
             this.add(flxMain);

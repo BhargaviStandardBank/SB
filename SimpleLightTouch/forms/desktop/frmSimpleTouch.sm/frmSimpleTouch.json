@@ -50,7 +50,8 @@
     "canUpdateUI": true,
     "canvasWidth": 1200,
     "children": [
-        "flxMain"
+        "flxMain",
+        "Label0e5bf67621d7c49"
     ],
     "containerweight": 100,
     "controllerInfo": {

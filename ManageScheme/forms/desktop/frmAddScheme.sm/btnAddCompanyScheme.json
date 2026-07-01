@@ -52,7 +52,7 @@
     "kuid": "a4ca3b6521c547fab18df87d53bbfd47",
     "name": "kony.ui.Button",
     "paddinginpixel": true,
-    "parent": "flxAddScheme",
+    "parent": "FlexGroup0gde43ebbf92a4c",
     "pf": "frmAddScheme",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,

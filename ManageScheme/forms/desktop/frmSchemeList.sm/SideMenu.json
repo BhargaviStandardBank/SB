@@ -33,8 +33,6 @@
         "type": "string",
         "value": "60dp"
     },
-    "android": {},
-    "androidwearos": {},
     "areflexpropsreferenced": false,
     "autogrowmode": 0,
     "canUpdateUI": true,
@@ -47,14 +45,6 @@
                 "kuid": "i1fa80d34d9048dba082746347f8655b",
                 "srcKUID": "g4b3fa2624fc4e338b5fd19c203e73ae",
                 "wType": "Image"
-            }
-        },
-        "Label0cff1e13b3a6943": {
-            "__events__": {},
-            "__info__": {
-                "kuid": "da129cf6b0c0460d8ee3783008e7deb6",
-                "srcKUID": "d8a1a550d6ad40d1bb3d3a6a97b08ca8",
-                "wType": "Label"
             }
         },
         "SideMenu": {
@@ -130,6 +120,14 @@
                 "wType": "Label"
             }
         },
+        "lblTitle": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "da129cf6b0c0460d8ee3783008e7deb6",
+                "srcKUID": "d8a1a550d6ad40d1bb3d3a6a97b08ca8",
+                "wType": "Label"
+            }
+        },
         "lblUserName": {
             "__events__": {},
             "__info__": {
@@ -147,17 +145,13 @@
             }
         }
     },
-    "desktopweb": {},
     "enablescrolling": true,
     "focusskin": null,
     "id": "SideMenu",
     "info": null,
-    "ipad": {},
-    "iphone": {},
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kiosk": {},
     "kuid": "hf07aefb8e25466c9750b9973cd279eb",
     "layouttype": 2,
     "masterType": 0,
@@ -170,24 +164,6 @@
     "snapgridsize": 10,
     "snaptogrid": true,
     "sourceUserWidget": "b9820cbf67a34dc9b198ef6c1ef7cc4a",
-    "spa": {},
-    "spaan": {},
-    "spaandroidtablet": {},
-    "spabb": {},
-    "spaip": {},
-    "spaipad": {},
-    "spamobile": {},
-    "spatablet": {},
-    "spawindowstablet": {},
-    "spawinphone8": {},
-    "tabrcandroid": {},
-    "vizProps": {
-        "hidewidgethierarchy": false
-    },
     "wType": "UserWidgetInstance",
-    "windows10": {},
-    "windows8": {},
-    "winphone10": {},
-    "winphone8": {},
     "zindex": 10
 }

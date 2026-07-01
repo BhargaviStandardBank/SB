@@ -36,12 +36,16 @@ define("SuspendList/userfrmRequestHistoryController", {
         initiator: "Michel",
         status: "Pending"
     }],
-    onNavigate: function() {
+    onNavigate: function(header) {
+        this.header = "Credit Risk / " + header.formID.appInfo + " / " + header.lblMenuItem;
         this.view.SrchTextBox.txtSrch.onTextChange = this.applyCombinedFilters;
         this.view.lstFilter.onSelection = this.applyCombinedFilters;
         this.view.SegSuspendList.segSuspend.onRowClick = this.onSegRowClick;
-        // Initial Load
         this.applyCombinedFilters();
+        this.preshowHandler();
+    },
+    preshowHandler: function(header) {
+        this.view.FormHeader.lblHdr.text = this.header;
     },
     applyCombinedFilters: function() {
         const searchText = (this.view.SrchTextBox.txtSrch.text || "").toLowerCase();

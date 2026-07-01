@@ -36,7 +36,7 @@
     "canUpdateUI": true,
     "children": [
         "imgLogo",
-        "Label0cff1e13b3a6943"
+        "lblTitle"
     ],
     "clipbounds": false,
     "containerweight": 100,

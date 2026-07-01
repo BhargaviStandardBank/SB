@@ -27,7 +27,7 @@
     "_skin_": "s1860cb829f64794999ae80557fd4327",
     "_top_": {
         "type": "string",
-        "value": "8dp"
+        "value": "16dp"
     },
     "_width_": {
         "type": "string",
@@ -51,7 +51,7 @@
             "top": {
                 "Default": {
                     "type": "string",
-                    "value": "8dp"
+                    "value": "16dp"
                 }
             }
         },
@@ -61,7 +61,10 @@
                 "kuid": "b0411767d85e416695a20de4c949e59f",
                 "srcKUID": "c30e3f0feb7c4988bba671efd9061acc",
                 "wType": "Label"
-            }
+            },
+            "i18n_text": "i18n.sbms.CIFNo",
+            "responsiveData": {},
+            "text": ""
         },
         "lblCustomerName": {
             "__events__": {},
@@ -69,7 +72,10 @@
                 "kuid": "f90bf50fd4614827bfa082120dd136bb",
                 "srcKUID": "b37817749af24b949d2de5f1d4c72630",
                 "wType": "Label"
-            }
+            },
+            "i18n_text": "i18n.sbms.CustomerName",
+            "responsiveData": {},
+            "text": ""
         },
         "lblIdNo": {
             "__events__": {},
@@ -77,7 +83,10 @@
                 "kuid": "ba7181e15b2f4c9a8b9984c6627a3dcf",
                 "srcKUID": "gd96c00c902a4ba0bed1e5220884574f",
                 "wType": "Label"
-            }
+            },
+            "i18n_text": "i18n.sbms.IdNo",
+            "responsiveData": {},
+            "text": ""
         },
         "lblReason": {
             "__events__": {},
@@ -86,8 +95,9 @@
                 "srcKUID": "dd449a9e0cde458cb8b90b60d6126929",
                 "wType": "Label"
             },
+            "i18n_text": "i18n.sbms.Comments",
             "responsiveData": {},
-            "text": "Comments"
+            "text": ""
         }
     },
     "enablescrolling": true,

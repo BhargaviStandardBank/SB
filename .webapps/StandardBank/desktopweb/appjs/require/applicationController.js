@@ -271,6 +271,11 @@ define({
             "controllerName": "flxSecHdrSuspendController",
             "appName": "SBCommon"
         });
+        voltmx.mvc.registry.add("flxRowSegEcoGrowth", {
+            "viewName": "flxRowSegEcoGrowth",
+            "controllerName": "flxRowSegEcoGrowthController",
+            "appName": "SBCommon"
+        });
         voltmx.mvc.registry.add("flxRow", {
             "viewName": "flxRow",
             "controllerName": "flxRowController",
@@ -432,9 +437,6 @@ define({
             "appName": "StandardBank"
         });
         setAppBehaviors();
-        if (typeof startBackgroundWorker != "undefined") {
-            startBackgroundWorker();
-        }
     },
     postAppInitCallBack: function(eventObj) {},
     appmenuseq: function() {

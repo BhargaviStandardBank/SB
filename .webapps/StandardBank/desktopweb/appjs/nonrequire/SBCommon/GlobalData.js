@@ -151,5 +151,56 @@ const GlobalData = {
         detail: "Full Liability",
         account: "0123456789",
         value: "R 500k"
+    }],
+    ecoGrowth: [{
+        lblGrpNum: "BOTO015",
+        lblGrpType: "Common shareholding",
+        lblApplicName: "ALI, PAREKH",
+        lblIDRegNum: "780217812",
+        lblSegType: "Personal",
+        lblBranch: "Francistown",
+        lblRelMang: "Nyaladzi Makgekgenene",
+        lblAcctNum: "9060005172271",
+        lblWL: ""
+    }, {
+        lblGrpNum: "BOTO015",
+        lblGrpType: "Common shareholding",
+        lblApplicName: "AMSONS INVESTMENTS PROPRIETARY LIMITED",
+        lblIDRegNum: "BW00000702531",
+        lblSegType: "Commercial",
+        lblBranch: "Francistown",
+        lblRelMang: "Gaobotswe Mabutho",
+        lblAcctNum: "9060003878037",
+        lblWL: ""
+    }, {
+        lblGrpNum: "BOTO015",
+        lblGrpType: "Common shareholding",
+        lblApplicName: "AMSONS VENTURES PROPRIETARY LIMITED",
+        lblIDRegNum: "BW00000737210",
+        lblSegType: "Commercial",
+        lblBranch: "Francistown",
+        lblRelMang: "Gaobotswe Babili",
+        lblAcctNum: "9060005847759",
+        lblWL: ""
+    }, {
+        lblGrpNum: "BOTO015",
+        lblGrpType: "Common shareholding",
+        lblApplicName: "C J RACE WAY PROPRIETARY LIMITED",
+        lblIDRegNum: "BW00001384492",
+        lblSegType: "Commercial",
+        lblBranch: "Francistown",
+        lblRelMang: "Gaobotswe Babili",
+        lblAcctNum: "9060001434107",
+        lblWL: ""
+    }, {
+        lblGrpNum: "BOTO015",
+        lblGrpType: "Common shareholding",
+        lblApplicName: "SECURITY SERVICES (BOTSWANA) (PROPRIETARY) LIMITED",
+        lblIDRegNum: "BW00000681737",
+        lblSegType: "Commercial",
+        lblBranch: "Francistown",
+        lblRelMang: "Gaobotswe Mabutho",
+        lblAcctNum: "9060001440492",
+        lblWL: ""
     }]
 };

@@ -51,7 +51,7 @@
         "lblDetail": {
             "__events__": {},
             "__info__": {
-                "kuid": "ec426e388680434badbb09fca652afdc",
+                "kuid": "g6bd44ff33e64d14a7dd1d9458381305",
                 "srcKUID": "f2ad940a55144e3aa422aa0e7e03c9f5",
                 "wType": "Label"
             },
@@ -61,7 +61,7 @@
         "lblDetailValue": {
             "__events__": {},
             "__info__": {
-                "kuid": "h24a46d6083849cd87b16a77d331bac3",
+                "kuid": "dadc863701844359a5dc68a0b01df196",
                 "srcKUID": "i42d1c7050b948a086498544defc3e6a",
                 "wType": "Label"
             },

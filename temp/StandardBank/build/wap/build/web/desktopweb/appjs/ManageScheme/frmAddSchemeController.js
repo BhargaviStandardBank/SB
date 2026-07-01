@@ -1,10 +1,15 @@
 define("ManageScheme/userfrmAddSchemeController", {
     _masterData: [],
-    onNavigate: function() {
+    onNavigate: function(header) {
+        this.header = "Credit Risk / " + header.formID.appInfo + " / " + header.lblMenuItem;
         this.setupDataMap();
         this.setupActions();
         this._loadSchemeData();
         this._initializeDefaultView();
+        this.preshowHandler();
+    },
+    preshowHandler: function() {
+        this.view.FormHeader.lblHdr.text = this.header;
     },
     _initializeDefaultView: function() {
         this.view.AddMethod.listData.selectedKey = "MC";
@@ -189,7 +194,7 @@ define("ManageScheme/userfrmAddSchemeController", {
                 this._masterData = [];
                 new voltmx.mvc.Navigation({
                     "appName": "StandardBank",
-                    "friendlyName": "FrmSBHome"
+                    "friendlyName": "frmSBHome"
                 }).navigate();
             }
         });

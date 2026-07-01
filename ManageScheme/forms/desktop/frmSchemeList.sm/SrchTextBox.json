@@ -4,11 +4,11 @@
     "_children_": [],
     "_height_": {
         "type": "string",
-        "value": "7%"
+        "value": "40dp"
     },
     "_left_": {
         "type": "string",
-        "value": "16dp"
+        "value": "24dp"
     },
     "_margin_": [
         0,
@@ -31,7 +31,7 @@
     },
     "_width_": {
         "type": "string",
-        "value": "97%"
+        "value": "63%"
     },
     "areflexpropsreferenced": false,
     "autogrowmode": 0,
@@ -46,12 +46,34 @@
                 "kuid": "f6a1405fb49446c997c9f2e782d2315c",
                 "srcKUID": "h6f01aa0566e47fcbc2c5e0f7d7f5a64",
                 "wType": "FlexContainer"
+            },
+            "autogrowMode": {
+                "Default": 0
+            },
+            "height": {
+                "Default": {
+                    "type": "string",
+                    "value": "40dp"
+                }
+            },
+            "left": {
+                "Default": {
+                    "type": "string",
+                    "value": "24dp"
+                }
+            },
+            "responsiveData": {},
+            "width": {
+                "Default": {
+                    "type": "string",
+                    "value": "63%"
+                }
             }
         },
         "imgSrch": {
             "__events__": {},
             "__info__": {
-                "kuid": "f1945de65b644704b48145feda065e43",
+                "kuid": "id93f158358e45beaa57e0f4e03e65da",
                 "srcKUID": "j17ea7c691de4903b0721864d263719c",
                 "wType": "Image"
             },
@@ -63,7 +85,7 @@
         "txtSrch": {
             "__events__": {},
             "__info__": {
-                "kuid": "f372adb8a80a41cca4e66f51a56b51e8",
+                "kuid": "c866dd558cf9429984d0cbc97f47c140",
                 "srcKUID": "a94bc69ab87742da88fc14ac5d4a1294",
                 "wType": "TextField"
             },
@@ -82,7 +104,7 @@
     "layouttype": 2,
     "masterType": 0,
     "name": "kony.ui.UserWidgetInstance",
-    "parent": "FlexContainer0if0d4d7b7b134a",
+    "parent": "flxRight",
     "pf": "frmSchemeList",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,

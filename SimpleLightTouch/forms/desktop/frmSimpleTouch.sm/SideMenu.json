@@ -47,14 +47,6 @@
                 "wType": "Image"
             }
         },
-        "Label0cff1e13b3a6943": {
-            "__events__": {},
-            "__info__": {
-                "kuid": "i32fd956900e4b1d8f9187863c21b5fe",
-                "srcKUID": "d8a1a550d6ad40d1bb3d3a6a97b08ca8",
-                "wType": "Label"
-            }
-        },
         "SideMenu": {
             "__events__": {},
             "__info__": {
@@ -125,6 +117,14 @@
             "__info__": {
                 "kuid": "d292dcca585543318360e5426dfd213e",
                 "srcKUID": "f941f0a42d824dce810efdd7728fbe26",
+                "wType": "Label"
+            }
+        },
+        "lblTitle": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "i32fd956900e4b1d8f9187863c21b5fe",
+                "srcKUID": "d8a1a550d6ad40d1bb3d3a6a97b08ca8",
                 "wType": "Label"
             }
         },

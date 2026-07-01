@@ -22,7 +22,7 @@
         "value": "0"
     },
     "_skin_": "sda0ea60761d44c0a25aa84bc3aa754f",
-    "_text_": "RETURN TO SCHEME LIST",
+    "_text_": "",
     "_top_": {
         "type": "string",
         "value": "0dp"
@@ -52,6 +52,7 @@
     "pf": "frmSchemeDetails",
     "retaincontentalignment": false,
     "retainflexpositionproperties": false,
+    "texti18n": "i18n.sbms.btn.ReturnToSchemeList",
     "wType": "Button",
     "zindex": 1
 }

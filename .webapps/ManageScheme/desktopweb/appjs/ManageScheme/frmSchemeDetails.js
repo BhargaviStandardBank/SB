@@ -20,27 +20,8 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBrd",
-                "top": "0dp",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "ManageScheme"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
             var SideMenu = new com.hcl.menu.SideMenu({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
                 "height": "100%",
                 "id": "SideMenu",
                 "isVisible": true,
@@ -48,10 +29,10 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
+                "width": "60dp",
+                "zIndex": 10,
                 "appName": "SBCommon",
                 "overrides": {}
             }, {
@@ -60,7 +41,6 @@ define("ManageScheme/frmSchemeDetails", function() {
             }, {
                 "overrides": {}
             });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -68,11 +48,11 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "id": "flxRight",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "15%",
+                "left": "60dp",
                 "isModalContainer": false,
+                "right": 0,
                 "skin": "sknFlxTrans",
                 "top": "0dp",
-                "width": "85%",
                 "zIndex": 1,
                 "appName": "ManageScheme"
             }, {
@@ -81,28 +61,19 @@ define("ManageScheme/frmSchemeDetails", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "8%",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
-                "overrides": {
-                    "FormHeader": {
-                        "centerY": "viz.val_cleared",
-                        "top": "0dp"
-                    },
-                    "lblHdr": {
-                        "text": "Scheme Details"
-                    }
-                }
+                "overrides": {}
             }, {
                 "paddingInPixel": false,
                 "overrides": {}
@@ -124,7 +95,6 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "pagingEnabled": false,
                 "scrollDirection": voltmx.flex.SCROLL_VERTICAL,
                 "skin": "sknFlxSrcTrans",
-                "top": "8dp",
                 "verticalScrollIndicator": true,
                 "width": "96%",
                 "zIndex": 1
@@ -142,7 +112,7 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "isModalContainer": false,
                 "right": "0dp",
                 "skin": "sknFlxWhiteBGBlckBrdr",
-                "top": "0dp",
+                "top": "24dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "ManageScheme"
@@ -170,7 +140,7 @@ define("ManageScheme/frmSchemeDetails", function() {
                         "top": "0dp"
                     },
                     "lblSubHdr": {
-                        "text": "Details"
+                        "text": "General Details"
                     }
                 }
             }, {
@@ -687,6 +657,67 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "overrides": {}
             });
             FlexContainer0ef86dfeff3d747.add(CopyLabelsField0gc6f630c73f347);
+            var flxMobileNumber = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxMobileNumber",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxMobileNumber.setDefaultUnit(voltmx.flex.DP);
+            var MobileNumber = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "MobileNumber",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "text": "MOBILE NUMBER"
+                    },
+                    "lblDetailValue": {
+                        "text": "Active"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxMobileNumber.add(MobileNumber);
             var FlexContainer0ea8c9b435fe84a = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
                 "clipBounds": false,
@@ -870,12 +901,752 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "overrides": {}
             });
             FlexContainer0h195ac660bae44.add(CopyLabelsField0b4e73a0e538647);
-            FlexContainer0fb5a511afd374c.add(FlexContainer0i9ccb313533048, FlexContainer0d6c95f60b8d043, FlexContainer0a466de0ddb9c42, FlexContainer0ace81c82c63440, FlexContainer0gec71c8ea63249, FlexContainer0h256b9c7113c4f, FlexContainer0a4082c17f8f34d, FlexContainer0ef86dfeff3d747, FlexContainer0ea8c9b435fe84a, FlexContainer0caf646fba49b41, FlexContainer0h195ac660bae44);
+            var flxAddress = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxAddress",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 6
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxAddress.setDefaultUnit(voltmx.flex.DP);
+            var Address = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "Address",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "text": "ADDRESS"
+                    },
+                    "lblDetailValue": {
+                        "text": "Active"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxAddress.add(Address);
+            FlexContainer0fb5a511afd374c.add(FlexContainer0i9ccb313533048, FlexContainer0d6c95f60b8d043, FlexContainer0a466de0ddb9c42, FlexContainer0ace81c82c63440, FlexContainer0gec71c8ea63249, FlexContainer0h256b9c7113c4f, FlexContainer0a4082c17f8f34d, FlexContainer0ef86dfeff3d747, flxMobileNumber, FlexContainer0ea8c9b435fe84a, FlexContainer0caf646fba49b41, FlexContainer0h195ac660bae44, flxAddress);
             flxDetails.add(SubHdr, FlexContainer0fb5a511afd374c);
+            var flxLimitDetails = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxLimitDetails",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "right": "0dp",
+                "skin": "sknFlxWhiteBGBlckBrdr",
+                "top": "24dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxLimitDetails.setDefaultUnit(voltmx.flex.DP);
+            var LimitSubHdr = new com.hcl.subHdr.SubHdr({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "45dp",
+                "id": "LimitSubHdr",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "right": "0dp",
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "SubHdr": {
+                        "centerY": "viz.val_cleared",
+                        "top": "0dp"
+                    },
+                    "lblSubHdr": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.LimitDetails\")"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            var flxLimitDetailsData = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "gutterX": "12dp",
+                "gutterY": "24dp",
+                "clipBounds": false,
+                "id": "flxLimitDetailsData",
+                "isVisible": true,
+                "layoutType": voltmx.flex.RESPONSIVE_GRID,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "ManageScheme"
+            }, {
+                "padding": [12, 0, 12, 24],
+                "paddingInPixel": true
+            }, {});
+            flxLimitDetailsData.setDefaultUnit(voltmx.flex.DP);
+            var flxSalaryFrq = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxSalaryFrq",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxSalaryFrq.setDefaultUnit(voltmx.flex.DP);
+            var SalaryFreq = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "SalaryFreq",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.SalaryFreq\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "0012350"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxSalaryFrq.add(SalaryFreq);
+            var flxOverallLoanLimit = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxOverallLoanLimit",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxOverallLoanLimit.setDefaultUnit(voltmx.flex.DP);
+            var LoanLimit = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "LoanLimit",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.OverallLoanLimit\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "HCL SOFTWARE AMERICA"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxOverallLoanLimit.add(LoanLimit);
+            var flxLimitEndDate = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxLimitEndDate",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxLimitEndDate.setDefaultUnit(voltmx.flex.DP);
+            var LimitEndDate = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "LimitEndDate",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.LimitEndDate\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "55534671"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxLimitEndDate.add(LimitEndDate);
+            var flxCutOffDelinqunceyPcnt = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxCutOffDelinqunceyPcnt",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxCutOffDelinqunceyPcnt.setDefaultUnit(voltmx.flex.DP);
+            var CutOffDelinqunceyPcnt = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "CutOffDelinqunceyPcnt",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.CutOffDelinqunceyPcnt\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "HCL Software"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxCutOffDelinqunceyPcnt.add(CutOffDelinqunceyPcnt);
+            var flxSancExceedOvrAllLimit = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxSancExceedOvrAllLimit",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxSancExceedOvrAllLimit.setDefaultUnit(voltmx.flex.DP);
+            var SancExceedOvrAllLimit = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "SancExceedOvrAllLimit",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.SancExceedOvrAllLimit\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "221234678904"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxSancExceedOvrAllLimit.add(SancExceedOvrAllLimit);
+            var flxOverAllLimitCCY = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxOverAllLimitCCY",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxOverAllLimitCCY.setDefaultUnit(voltmx.flex.DP);
+            var OverAllLimitCCY = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "OverAllLimitCCY",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.OverAllLimitCCY\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "Michello Viens"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxOverAllLimitCCY.add(OverAllLimitCCY);
+            var fxlLimitStartDate = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "fxlLimitStartDate",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            fxlLimitStartDate.setDefaultUnit(voltmx.flex.DP);
+            var LimitStartDate = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "LimitStartDate",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.LimitStartDate\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "HR Benefits Manager"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            fxlLimitStartDate.add(LimitStartDate);
+            var flxRevolvingLimit = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxRevolvingLimit",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxRevolvingLimit.setDefaultUnit(voltmx.flex.DP);
+            var RevolvingLimit = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "RevolvingLimit",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.RevolvingLimit\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "(555) 555-5555"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxRevolvingLimit.add(RevolvingLimit);
+            var flxSalaryCreditTolerance = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxSalaryCreditTolerance",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxSalaryCreditTolerance.setDefaultUnit(voltmx.flex.DP);
+            var SalaryCreditTolerance = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "SalaryCreditTolerance",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.SalaryCreditTolerance\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "Active"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxSalaryCreditTolerance.add(SalaryCreditTolerance);
+            var flxDelinquencyExcdCutOfLimit = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "clipBounds": false,
+                "id": "flxDelinquencyExcdCutOfLimit",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "isModalContainer": false,
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "responsiveConfig": {
+                    "offset": {
+                        "640": 0,
+                        "1024": 0,
+                        "1366": 0
+                    },
+                    "span": {
+                        "640": 6,
+                        "1024": 4,
+                        "1366": 4
+                    }
+                },
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxDelinquencyExcdCutOfLimit.setDefaultUnit(voltmx.flex.DP);
+            var DelinquencyExcdCutOfLimit = new com.hcl.labelField.LabelsField({
+                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "id": "DelinquencyExcdCutOfLimit",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "zIndex": 1,
+                "appName": "SBCommon",
+                "overrides": {
+                    "LabelsField": {
+                        "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                        "width": "100%",
+                        "zIndex": 1
+                    },
+                    "lblDetail": {
+                        "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sbms.DelinquencyExcdCutOfLimit\")"
+                    },
+                    "lblDetailValue": {
+                        "text": "bemefits@hcl-software.com"
+                    }
+                }
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxDelinquencyExcdCutOfLimit.add(DelinquencyExcdCutOfLimit);
+            flxLimitDetailsData.add(flxSalaryFrq, flxOverallLoanLimit, flxLimitEndDate, flxCutOffDelinqunceyPcnt, flxSancExceedOvrAllLimit, flxOverAllLimitCCY, fxlLimitStartDate, flxRevolvingLimit, flxSalaryCreditTolerance, flxDelinquencyExcdCutOfLimit);
+            flxLimitDetails.add(LimitSubHdr, flxLimitDetailsData);
             var flxEmployeeDetails = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
-                "height": "430dp",
+                "height": "450dp",
                 "id": "flxEmployeeDetails",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
@@ -921,7 +1692,7 @@ define("ManageScheme/frmSchemeDetails", function() {
             var SrchTextBox = new com.hcl.srchTextBox.SrchTextBox({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "focusSkin": "slFFocusbox",
-                "height": "12%",
+                "height": "48dp",
                 "id": "SrchTextBox",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
@@ -929,15 +1700,16 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
                 "skin": "sknFlxTextBox",
-                "top": "8dp",
-                "width": "500px",
+                "top": "16dp",
+                "width": "500dp",
                 "zIndex": 1,
                 "appName": "SBCommon",
                 "overrides": {
                     "SrchTextBox": {
-                        "height": "12%",
-                        "top": "8dp",
-                        "width": "500px"
+                        "height": "48dp",
+                        "left": "16dp",
+                        "top": "16dp",
+                        "width": "500dp"
                     },
                     "imgSrch": {
                         "src": "icon_srch.png"
@@ -963,13 +1735,13 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
                 "skin": "sknFlxBGEDF5FF",
-                "top": "8dp",
+                "top": "16dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
                 "overrides": {
                     "SuspenEntryHdr": {
-                        "top": "8dp"
+                        "top": "16dp"
                     },
                     "lblReason": {
                         "text": "Comments"
@@ -981,8 +1753,26 @@ define("ManageScheme/frmSchemeDetails", function() {
             }, {
                 "overrides": {}
             });
+            var flxSusEntry = new voltmx.ui.FlexContainer({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "clipBounds": false,
+                "height": "65%",
+                "id": "flxSusEntry",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FLOW_VERTICAL,
+                "left": "0dp",
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "100%",
+                "appName": "ManageScheme"
+            }, {
+                "paddingInPixel": false
+            }, {});
+            flxSusEntry.setDefaultUnit(voltmx.flex.DP);
             var SuspensionEntries = new com.hcl.SuspensionEntries.SuspensionEntries({
-                "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "100%",
                 "id": "SuspensionEntries",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
@@ -1001,7 +1791,8 @@ define("ManageScheme/frmSchemeDetails", function() {
             }, {
                 "overrides": {}
             });
-            flxEmployeeDetails.add(SubHdr1, SrchTextBox, SuspenEntryHdr, SuspensionEntries);
+            flxSusEntry.add(SuspensionEntries);
+            flxEmployeeDetails.add(SubHdr1, SrchTextBox, SuspenEntryHdr, flxSusEntry);
             var flxBtn = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "bottom": "16dp",
@@ -1013,7 +1804,7 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "left": "0dp",
                 "isModalContainer": false,
                 "skin": "sknFlxTrans",
-                "top": "16dp",
+                "top": "24dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "ManageScheme"
@@ -1038,9 +1829,9 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "paddingInPixel": true
             }, {});
             flxBtn.add(btnReturn);
-            flxScrSchemeDetails.add(flxDetails, flxEmployeeDetails, flxBtn);
+            flxScrSchemeDetails.add(flxDetails, flxLimitDetails, flxEmployeeDetails, flxBtn);
             flxRight.add(FormHeader, flxScrSchemeDetails);
-            flxMain.add(flxLeft, flxRight);
+            flxMain.add(SideMenu, flxRight);
             var flxPopup = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -2222,19 +3013,12 @@ define("ManageScheme/frmSchemeDetails", function() {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader": {
-                    "centerY": "",
-                    "top": "0dp"
-                },
-                "FormHeader.lblHdr": {
-                    "text": "Scheme Details"
-                },
                 "SubHdr": {
                     "centerY": "",
                     "top": "0dp"
                 },
                 "SubHdr.lblSubHdr": {
-                    "text": "Details"
+                    "text": "General Details"
                 },
                 "LabelsField": {
                     "width": "100%",
@@ -2316,6 +3100,16 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "CopyLabelsField0gc6f630c73f347.lblDetailValue": {
                     "text": "(555) 555-5555"
                 },
+                "MobileNumber": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "MobileNumber.lblDetail": {
+                    "text": "MOBILE NUMBER"
+                },
+                "MobileNumber.lblDetailValue": {
+                    "text": "Active"
+                },
                 "CopyLabelsField0db1a52314c2745": {
                     "width": "100%",
                     "zIndex": 1
@@ -2346,6 +3140,90 @@ define("ManageScheme/frmSchemeDetails", function() {
                 "CopyLabelsField0b4e73a0e538647.lblDetailValue": {
                     "text": "Active"
                 },
+                "Address": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "Address.lblDetail": {
+                    "text": "ADDRESS"
+                },
+                "Address.lblDetailValue": {
+                    "text": "Active"
+                },
+                "LimitSubHdr": {
+                    "centerY": "",
+                    "top": "0dp"
+                },
+                "SalaryFreq": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "SalaryFreq.lblDetailValue": {
+                    "text": "0012350"
+                },
+                "LoanLimit": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "LoanLimit.lblDetailValue": {
+                    "text": "HCL SOFTWARE AMERICA"
+                },
+                "LimitEndDate": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "LimitEndDate.lblDetailValue": {
+                    "text": "55534671"
+                },
+                "CutOffDelinqunceyPcnt": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "CutOffDelinqunceyPcnt.lblDetailValue": {
+                    "text": "HCL Software"
+                },
+                "SancExceedOvrAllLimit": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "SancExceedOvrAllLimit.lblDetailValue": {
+                    "text": "221234678904"
+                },
+                "OverAllLimitCCY": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "OverAllLimitCCY.lblDetailValue": {
+                    "text": "Michello Viens"
+                },
+                "LimitStartDate": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "LimitStartDate.lblDetailValue": {
+                    "text": "HR Benefits Manager"
+                },
+                "RevolvingLimit": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "RevolvingLimit.lblDetailValue": {
+                    "text": "(555) 555-5555"
+                },
+                "SalaryCreditTolerance": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "SalaryCreditTolerance.lblDetailValue": {
+                    "text": "Active"
+                },
+                "DelinquencyExcdCutOfLimit": {
+                    "width": "100%",
+                    "zIndex": 1
+                },
+                "DelinquencyExcdCutOfLimit.lblDetailValue": {
+                    "text": "bemefits@hcl-software.com"
+                },
                 "SubHdr1": {
                     "centerY": "",
                     "top": "0dp"
@@ -2354,15 +3232,16 @@ define("ManageScheme/frmSchemeDetails", function() {
                     "text": "EMPLYOPEE DETAILS"
                 },
                 "SrchTextBox": {
-                    "height": "12%",
-                    "top": "8dp",
-                    "width": "500px"
+                    "height": "48dp",
+                    "left": "16dp",
+                    "top": "16dp",
+                    "width": "500dp"
                 },
                 "SrchTextBox.imgSrch": {
                     "src": "icon_srch.png"
                 },
                 "SuspenEntryHdr": {
-                    "top": "8dp"
+                    "top": "16dp"
                 },
                 "SuspenEntryHdr.lblReason": {
                     "text": "Comments"

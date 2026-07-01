@@ -1,10 +1,15 @@
 define("SuspendList/userfrmSusHistoryDetailsController", {
-    onNavigate: function() {
+    onNavigate: function(header) {
+        this.header = "Credit Risk / Suspend List / History Details";
         this.view.btnReturnHistory.onClick = this.returnToHistory.bind(this);
         this.view.btnAccept.onClick = this.onClickAccept.bind(this);
         this.view.btnReturnHistory.onClick = this.returnHistory;
         this.populateHistoryDetails();
+        this.preshowHandler();
         //this.populateApprovalStatus();
+    },
+    preshowHandler: function() {
+        this.view.FormHeader.lblHdr.text = this.header;
     },
     returnToHistory: function() {
         let navObj = new voltmx.mvc.Navigation("frmSusRequestHistory");

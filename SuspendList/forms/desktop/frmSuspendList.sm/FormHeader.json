@@ -33,8 +33,6 @@
         "type": "string",
         "value": "100%"
     },
-    "android": {},
-    "androidwearos": {},
     "areflexpropsreferenced": false,
     "autogrowmode": 0,
     "canUpdateUI": true,
@@ -93,17 +91,13 @@
             "text": ""
         }
     },
-    "desktopweb": {},
     "enablescrolling": true,
     "focusskin": null,
     "id": "FormHeader",
     "info": null,
-    "ipad": {},
-    "iphone": {},
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kiosk": {},
     "kuid": "b91b548df6b747d4bb015ab3451b8989",
     "layouttype": 2,
     "masterType": 0,
@@ -116,24 +110,6 @@
     "snapgridsize": 10,
     "snaptogrid": true,
     "sourceUserWidget": "ja2cbe8fda184c1caaab89eeae9fb281",
-    "spa": {},
-    "spaan": {},
-    "spaandroidtablet": {},
-    "spabb": {},
-    "spaip": {},
-    "spaipad": {},
-    "spamobile": {},
-    "spatablet": {},
-    "spawindowstablet": {},
-    "spawinphone8": {},
-    "tabrcandroid": {},
-    "vizProps": {
-        "hidewidgethierarchy": false
-    },
     "wType": "UserWidgetInstance",
-    "windows10": {},
-    "windows8": {},
-    "winphone10": {},
-    "winphone8": {},
     "zindex": 1
 }

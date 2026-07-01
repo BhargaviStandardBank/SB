@@ -50,7 +50,7 @@
     "iscustomlayout": false,
     "isvisible": true,
     "kuid": "ed1996a12b3f4967aee63018606e194c",
-    "layouttype": 2,
+    "layouttype": 4,
     "name": "kony.ui.FlexContainer",
     "parent": "flxMain",
     "pf": "frmAddScheme",

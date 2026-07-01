@@ -1,0 +1,138 @@
+{
+    "@class": "com.kony.gen.viz.model.component.KVizUserWidget",
+    "DNDConfig": null,
+    "_children_": [],
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 1,
+    "_padding_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_percent_": true,
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_top_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "android": {},
+    "androidwearos": {},
+    "areflexpropsreferenced": false,
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "clipbounds": false,
+    "containerweight": 0,
+    "dataDiffs": {
+        "LabelsField": {
+            "__events__": {},
+            "__info__": {
+                "isRoot": true,
+                "kuid": "f50dc919d8e9480aab6fc9828c19342d",
+                "srcKUID": "da969f897817423280b2ae79a83f1831",
+                "wType": "FlexContainer"
+            },
+            "autogrowMode": {
+                "Default": 1
+            },
+            "height": {
+                "Default": {
+                    "type": "ref",
+                    "value": "preferred"
+                }
+            },
+            "responsiveData": {},
+            "width": {
+                "Default": {
+                    "type": "string",
+                    "value": "100%"
+                }
+            },
+            "zIndex": {
+                "Default": 1
+            }
+        },
+        "lblDetail": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "j5a2c54c381d4ea28d2485f6a311d994",
+                "srcKUID": "f2ad940a55144e3aa422aa0e7e03c9f5",
+                "wType": "Label"
+            },
+            "i18n_text": "i18n.sbms.OverallLoanLimit",
+            "responsiveData": {},
+            "text": ""
+        },
+        "lblDetailValue": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "c0e776c752bf4f30b9ffaf630e61d64f",
+                "srcKUID": "i42d1c7050b948a086498544defc3e6a",
+                "wType": "Label"
+            },
+            "responsiveData": {},
+            "text": "HCL SOFTWARE AMERICA"
+        }
+    },
+    "desktopweb": {},
+    "enablescrolling": true,
+    "focusskin": null,
+    "id": "LoanLimit",
+    "info": null,
+    "ipad": {},
+    "iphone": {},
+    "iscustomlayout": false,
+    "isdatareferenced": false,
+    "isvisible": true,
+    "kiosk": {},
+    "kuid": "f50dc919d8e9480aab6fc9828c19342d",
+    "layouttype": 4,
+    "masterType": 0,
+    "name": "kony.ui.UserWidgetInstance",
+    "parent": "flxOverallLoanLimit",
+    "pf": "frmSchemeDetails",
+    "responsiveData": {},
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "sourceUserWidget": "da969f897817423280b2ae79a83f1831",
+    "spa": {},
+    "spaan": {},
+    "spaandroidtablet": {},
+    "spabb": {},
+    "spaip": {},
+    "spaipad": {},
+    "spamobile": {},
+    "spatablet": {},
+    "spawindowstablet": {},
+    "spawinphone8": {},
+    "tabrcandroid": {},
+    "vizProps": {
+        "hidewidgethierarchy": false
+    },
+    "wType": "UserWidgetInstance",
+    "windows10": {},
+    "windows8": {},
+    "winphone10": {},
+    "winphone8": {},
+    "zindex": 1
+}

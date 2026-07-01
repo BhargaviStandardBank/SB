@@ -33,8 +33,6 @@
         "type": "string",
         "value": "100%"
     },
-    "android": {},
-    "androidwearos": {},
     "areflexpropsreferenced": false,
     "autogrowmode": 0,
     "canUpdateUI": true,
@@ -80,7 +78,8 @@
                 "kuid": "dbc60fb381344e34a7fdf9cc10ecba32",
                 "srcKUID": "j4a298acc2ce463686107bdf619e3c57",
                 "wType": "Image"
-            }
+            },
+            "src": "icon_logout.png"
         },
         "lblHdr": {
             "__events__": {},
@@ -91,17 +90,13 @@
             }
         }
     },
-    "desktopweb": {},
     "enablescrolling": true,
     "focusskin": null,
     "id": "FormHeader",
     "info": null,
-    "ipad": {},
-    "iphone": {},
     "iscustomlayout": false,
     "isdatareferenced": false,
     "isvisible": true,
-    "kiosk": {},
     "kuid": "dacd5406af514c4ebd66653cd156e013",
     "layouttype": 2,
     "masterType": 0,
@@ -114,24 +109,6 @@
     "snapgridsize": 10,
     "snaptogrid": true,
     "sourceUserWidget": "ja2cbe8fda184c1caaab89eeae9fb281",
-    "spa": {},
-    "spaan": {},
-    "spaandroidtablet": {},
-    "spabb": {},
-    "spaip": {},
-    "spaipad": {},
-    "spamobile": {},
-    "spatablet": {},
-    "spawindowstablet": {},
-    "spawinphone8": {},
-    "tabrcandroid": {},
-    "vizProps": {
-        "hidewidgethierarchy": false
-    },
     "wType": "UserWidgetInstance",
-    "windows10": {},
-    "windows8": {},
-    "winphone10": {},
-    "winphone8": {},
     "zindex": 1
 }

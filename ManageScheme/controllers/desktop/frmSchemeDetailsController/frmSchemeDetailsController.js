@@ -6,6 +6,10 @@ define({
     this.view.btnReturn.onClick = this.btnReturnClick;
     this.view.SuspensionEntries.segSuspendEntry.onRowClick = this.segRowClick;
     this.view.imgCancel.onTouchEnd = this.cancelClick;
+    this.preshowHandle();
+  },
+  preshowHandle: function(){
+    this.view.FormHeader.lblHdr.text = this.header;
   },
   btnReturnClick: function(){
     var navObj = new voltmx.mvc.Navigation("frmSchemeList");

@@ -4,17 +4,16 @@ define(function() {
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
-            "focusSkin": "sknFlxTrans",
             "height": "100%",
             "id": "SideMenu",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
-            "width": "100%",
-            "zIndex": 1,
+            "width": "60dp",
+            "zIndex": 10,
             "onBreakpointHandler": onBreakpointHandler,
             "breakpoints": [640, 1024, 1366],
             "appName": "SBCommon"
@@ -22,10 +21,28 @@ define(function() {
             "paddingInPixel": false
         }, controller.args[1], "SideMenu"), extendConfig({}, controller.args[2], "SideMenu"));
         SideMenu.setDefaultUnit(voltmx.flex.DP);
+        var flxSideMenu = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": true,
+            "height": "100%",
+            "id": "flxSideMenu",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "left": "0dp",
+            "isModalContainer": false,
+            "skin": "sknFlexMenu",
+            "top": "0dp",
+            "width": "60dp",
+            "zIndex": 10,
+            "appName": "SBCommon"
+        }, controller.args[0], "flxSideMenu"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "flxSideMenu"), extendConfig({}, controller.args[2], "flxSideMenu"));
+        flxSideMenu.setDefaultUnit(voltmx.flex.DP);
         var flxLogo = new voltmx.ui.FlexContainer(extendConfig({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "height": "120dp",
+            "height": "8%",
             "id": "flxLogo",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
@@ -33,7 +50,7 @@ define(function() {
             "isModalContainer": false,
             "skin": "sknFlxTrans",
             "top": "0dp",
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "flxLogo"), extendConfig({
@@ -41,21 +58,36 @@ define(function() {
         }, controller.args[1], "flxLogo"), extendConfig({}, controller.args[2], "flxLogo"));
         flxLogo.setDefaultUnit(voltmx.flex.DP);
         var imgLogo = new voltmx.ui.Image2(extendConfig({
-            "centerX": "50%",
             "centerY": "50%",
-            "height": "100dp",
+            "height": "60dp",
             "id": "imgLogo",
             "isVisible": true,
+            "left": "0dp",
             "skin": "slImage",
             "src": "sblogo.png",
-            "width": "100%",
+            "width": "60dp",
             "zIndex": 1
         }, controller.args[0], "imgLogo"), extendConfig({
             "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, controller.args[1], "imgLogo"), extendConfig({}, controller.args[2], "imgLogo"));
-        flxLogo.add(imgLogo);
+        var lblTitle = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "height": "60dp",
+            "id": "lblTitle",
+            "isVisible": true,
+            "left": "30dp",
+            "right": "0dp",
+            "skin": "sknLblHeading2White",
+            "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sb.StandardBank\")",
+            "zIndex": 1
+        }, controller.args[0], "lblTitle"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_CENTER,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "lblTitle"), extendConfig({}, controller.args[2], "lblTitle"));
+        flxLogo.add(imgLogo, lblTitle);
         var flxSegMenu = new voltmx.ui.FlexScrollContainer(extendConfig({
             "allowHorizontalBounce": false,
             "allowVerticalBounce": true,
@@ -63,7 +95,6 @@ define(function() {
             "bounces": true,
             "clipBounds": false,
             "enableScrolling": true,
-            "focusSkin": "sknFlxSrcTrans",
             "horizontalScrollIndicator": true,
             "id": "flxSegMenu",
             "isVisible": true,
@@ -74,7 +105,7 @@ define(function() {
             "skin": "sknFlxSrcTrans",
             "top": "120dp",
             "verticalScrollIndicator": true,
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1
         }, controller.args[0], "flxSegMenu"), extendConfig({
             "paddingInPixel": false
@@ -84,6 +115,7 @@ define(function() {
             "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
             "data": [
                 [{
+                        "imgIcon": "imagedrag.png",
                         "lblMenuItem": "Suspend List",
                         "lblSectionTitle": "Label"
                     },
@@ -96,6 +128,7 @@ define(function() {
                     }]
                 ],
                 [{
+                        "imgIcon": "imagedrag.png",
                         "lblMenuItem": "Customer 360",
                         "lblSectionTitle": "Label"
                     },
@@ -112,13 +145,11 @@ define(function() {
             "pageOffDotImage": "pageoffdot.png",
             "pageOnDotImage": "pageondot.png",
             "retainSelection": false,
-            "rowFocusSkin": "seg2Focus",
-            "rowSkin": "seg2Normal",
+            "rowSkin": "segTrans",
             "rowTemplate": kony.mvc.resolveNameFromContext({
                 "appName": "SBCommon",
                 "friendlyName": "flxRowItems"
             }),
-            "sectionHeaderSkin": "sliPhoneSegmentHeader",
             "sectionHeaderTemplate": kony.mvc.resolveNameFromContext({
                 "appName": "SBCommon",
                 "friendlyName": "flxSegSecHdr"
@@ -131,13 +162,15 @@ define(function() {
             "top": "0dp",
             "viewType": constants.SEGUI_VIEW_TYPE_TABLEVIEW,
             "widgetDataMap": {
+                "FlexGroup0a043cf8cc66045": "FlexGroup0a043cf8cc66045",
                 "flxLine": "flxLine",
                 "flxRowItems": "flxRowItems",
                 "flxSegSecHdr": "flxSegSecHdr",
+                "imgIcon": "imgIcon",
                 "lblMenuItem": "lblMenuItem",
                 "lblSectionTitle": "lblSectionTitle"
             },
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "segMenu"), extendConfig({
@@ -145,6 +178,57 @@ define(function() {
             "paddingInPixel": false
         }, controller.args[1], "segMenu"), extendConfig({}, controller.args[2], "segMenu"));
         flxSegMenu.add(segMenu);
+        var filxHome = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "bottom": "70dp",
+            "clipBounds": false,
+            "focusSkin": "sknFlxTrans",
+            "height": "64dp",
+            "id": "filxHome",
+            "isVisible": false,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "left": "0dp",
+            "isModalContainer": false,
+            "skin": "sknFlxTrans",
+            "width": "250dp",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "filxHome"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "filxHome"), extendConfig({}, controller.args[2], "filxHome"));
+        filxHome.setDefaultUnit(voltmx.flex.DP);
+        var lblHome = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "id": "lblHome",
+            "isVisible": true,
+            "left": "5%",
+            "skin": "sknLblHeading5",
+            "text": "Home",
+            "width": voltmx.flex.USE_PREFERRED_SIZE,
+            "zIndex": 1
+        }, controller.args[0], "lblHome"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "lblHome"), extendConfig({}, controller.args[2], "lblHome"));
+        var CopyimgLogout0d29fe4496d0f49 = new voltmx.ui.Image2(extendConfig({
+            "centerX": "85%",
+            "centerY": "50%",
+            "height": "35dp",
+            "id": "CopyimgLogout0d29fe4496d0f49",
+            "isVisible": false,
+            "left": "0dp",
+            "skin": "slImage",
+            "src": "icon_logout.png",
+            "top": "0dp",
+            "width": "35dp",
+            "zIndex": 1
+        }, controller.args[0], "CopyimgLogout0d29fe4496d0f49"), extendConfig({
+            "imageScaleMode": constants.IMAGE_SCALE_MODE_FIT_TO_DIMENSIONS,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "CopyimgLogout0d29fe4496d0f49"), extendConfig({}, controller.args[2], "CopyimgLogout0d29fe4496d0f49"));
+        filxHome.add(lblHome, CopyimgLogout0d29fe4496d0f49);
         var flxUserDetails = new voltmx.ui.FlexContainer(extendConfig({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "bottom": "0dp",
@@ -152,12 +236,12 @@ define(function() {
             "focusSkin": "sknFlxTrans",
             "height": "64dp",
             "id": "flxUserDetails",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
             "skin": "sknFlxTrans",
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "flxUserDetails"), extendConfig({
@@ -196,7 +280,8 @@ define(function() {
             "paddingInPixel": false
         }, controller.args[1], "imgLogout"), extendConfig({}, controller.args[2], "imgLogout"));
         flxUserDetails.add(lblUserName, imgLogout);
-        SideMenu.add(flxLogo, flxSegMenu, flxUserDetails);
+        flxSideMenu.add(flxLogo, flxSegMenu, filxHome, flxUserDetails);
+        SideMenu.add(flxSideMenu);
         SideMenu.compInstData = {}
         return SideMenu;
     }

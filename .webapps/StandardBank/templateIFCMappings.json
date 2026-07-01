@@ -28,6 +28,9 @@
             "FBox0d362f77aee3647Controller_desktop": [
                 "FBox0d362f77aee3647Controller"
             ],
+            "FBox0g93c8aed110e4bController_desktop": [
+                "FBox0g93c8aed110e4bController"
+            ],
             "flxApproverController_desktop": [
                 "flxApproverController"
             ],
@@ -39,6 +42,9 @@
             ],
             "flxRowItemsController_desktop": [
                 "flxRowItemsController"
+            ],
+            "flxRowSegEcoGrowthController_desktop": [
+                "flxRowSegEcoGrowthController"
             ],
             "flxRowSuspendController_desktop": [
                 "flxRowSuspendController"
@@ -500,6 +506,11 @@
                 "controllerChannel": "desktop",
                 "controllerName": "FBox0d362f77aee3647Controller"
             },
+            "FBox0g93c8aed110e4b": {
+                "controllerActionDir": "FBox0g93c8aed110e4bController",
+                "controllerChannel": "desktop",
+                "controllerName": "FBox0g93c8aed110e4bController"
+            },
             "SampleRowTemplate": {
                 "controllerActionDir": "flxSampleRowTemplateController",
                 "controllerChannel": "desktop",
@@ -539,6 +550,11 @@
                 "controllerActionDir": "flxSecHdrSuspendController",
                 "controllerChannel": "desktop",
                 "controllerName": "flxSecHdrSuspendController"
+            },
+            "TempSegRowEcoGrowth": {
+                "controllerActionDir": "flxRowSegEcoGrowthController",
+                "controllerChannel": "desktop",
+                "controllerName": "flxRowSegEcoGrowthController"
             },
             "TempSegRowInternalExpo": {
                 "controllerActionDir": "flxRowController",
@@ -638,6 +654,16 @@
                 },
                 "friendlyName": "flxRowItems",
                 "templateId": "flxRowItems"
+            },
+            "SBCommon.flxRowSegEcoGrowth": {
+                "appName": "SBCommon",
+                "controllerInfo": {
+                    "controllerActionName": "flxRowSegEcoGrowthController",
+                    "controllerChannel": "desktop",
+                    "controllerName": "flxRowSegEcoGrowthController"
+                },
+                "friendlyName": "flxRowSegEcoGrowth",
+                "templateId": "flxRowSegEcoGrowth"
             },
             "SBCommon.flxRowSuspend": {
                 "appName": "SBCommon",

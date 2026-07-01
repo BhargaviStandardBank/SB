@@ -78,7 +78,8 @@
                 "kuid": "cd905c7315aa4fc5b3b428e254be438d",
                 "srcKUID": "j4a298acc2ce463686107bdf619e3c57",
                 "wType": "Image"
-            }
+            },
+            "src": "icon_logout.png"
         },
         "lblHdr": {
             "__events__": {},

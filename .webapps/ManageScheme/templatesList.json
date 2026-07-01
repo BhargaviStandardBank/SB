@@ -37,7 +37,6 @@
                 "com.riskrating.chart.RiskRateChart",
                 "SBCommon.SampleRowTemplate",
                 "SBCommon.SampleSectionHeaderTemplate",
-                "SBCommon.TempAddSuspendRow",
                 "SBCommon.TempApproverSegRow",
                 "SBCommon.TempDropDown",
                 "SBCommon.TempRowSchemeList",

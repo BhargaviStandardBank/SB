@@ -20,47 +20,6 @@ define("SuspendList/frmApprovers", function() {
                 "paddingInPixel": false
             }, {});
             flxMain.setDefaultUnit(voltmx.flex.DP);
-            var flxLeft = new voltmx.ui.FlexContainer({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "clipBounds": false,
-                "height": "100%",
-                "id": "flxLeft",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "isModalContainer": false,
-                "skin": "sknFlxWhiteBdr",
-                "top": "0dp",
-                "width": "15%",
-                "zIndex": 1,
-                "appName": "SuspendList"
-            }, {
-                "paddingInPixel": false
-            }, {});
-            flxLeft.setDefaultUnit(voltmx.flex.DP);
-            var SideMenu = new com.hcl.menu.SideMenu({
-                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "100%",
-                "id": "SideMenu",
-                "isVisible": true,
-                "layoutType": voltmx.flex.FREE_FORM,
-                "left": "0dp",
-                "masterType": constants.MASTER_TYPE_DEFAULT,
-                "isModalContainer": false,
-                "skin": "sknFlxTrans",
-                "top": "0dp",
-                "width": "100%",
-                "zIndex": 1,
-                "appName": "SBCommon",
-                "overrides": {}
-            }, {
-                "paddingInPixel": false,
-                "overrides": {}
-            }, {
-                "overrides": {}
-            });
-            flxLeft.add(SideMenu);
             var flxRight = new voltmx.ui.FlexContainer({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
                 "clipBounds": false,
@@ -68,11 +27,11 @@ define("SuspendList/frmApprovers", function() {
                 "id": "flxRight",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FLOW_VERTICAL,
-                "left": "15%",
+                "left": "60dp",
                 "isModalContainer": false,
+                "right": 0,
                 "skin": "sknFlxTrans",
                 "top": "0dp",
-                "width": "85%",
                 "zIndex": 1,
                 "appName": "SuspendList"
             }, {
@@ -81,24 +40,19 @@ define("SuspendList/frmApprovers", function() {
             flxRight.setDefaultUnit(voltmx.flex.DP);
             var FormHeader = new com.hcl.hdr.FormHeader({
                 "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-                "focusSkin": "sknFlxTrans",
-                "height": "8%",
+                "height": "60px",
                 "id": "FormHeader",
                 "isVisible": true,
                 "layoutType": voltmx.flex.FREE_FORM,
                 "left": "0dp",
                 "masterType": constants.MASTER_TYPE_DEFAULT,
                 "isModalContainer": false,
-                "skin": "sknFlxTrans",
+                "skin": "sknFlexMenu",
                 "top": "0dp",
                 "width": "100%",
                 "zIndex": 1,
                 "appName": "SBCommon",
-                "overrides": {
-                    "lblHdr": {
-                        "text": "Approver"
-                    }
-                }
+                "overrides": {}
             }, {
                 "paddingInPixel": false,
                 "overrides": {}
@@ -115,7 +69,7 @@ define("SuspendList/frmApprovers", function() {
                 "left": "24dp",
                 "isModalContainer": false,
                 "skin": "sknFlxWhiteBGBlckBrdr",
-                "top": "16dp",
+                "top": "24dp",
                 "width": "96%",
                 "zIndex": 1,
                 "appName": "SuspendList"
@@ -553,15 +507,33 @@ define("SuspendList/frmApprovers", function() {
             });
             flxApproverList.add(SubHdr1, segHeader, SegApproverScheme);
             flxRight.add(FormHeader, flxAddApproval, flxApproverList);
-            flxMain.add(flxLeft, flxRight);
+            var SideMenu = new com.hcl.menu.SideMenu({
+                "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+                "height": "100%",
+                "id": "SideMenu",
+                "isVisible": true,
+                "layoutType": voltmx.flex.FREE_FORM,
+                "left": "0dp",
+                "masterType": constants.MASTER_TYPE_DEFAULT,
+                "isModalContainer": false,
+                "skin": "sknFlxTrans",
+                "top": "0dp",
+                "width": "60dp",
+                "zIndex": 10,
+                "appName": "SBCommon",
+                "overrides": {}
+            }, {
+                "paddingInPixel": false,
+                "overrides": {}
+            }, {
+                "overrides": {}
+            });
+            flxMain.add(flxRight, SideMenu);
             this.breakpointResetData = {};
             this.breakpointData = {
                 maxBreakpointWidth: 1366,
             }
             this.compInstData = {
-                "FormHeader.lblHdr": {
-                    "text": "Approver"
-                },
                 "SubHdr.lblSubHdr": {
                     "text": "Edit / Add Approver"
                 },

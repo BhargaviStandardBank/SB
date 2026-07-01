@@ -1,0 +1,93 @@
+{
+    "@class": "com.kony.gen.viz.model.component.KVizUserWidget",
+    "DNDConfig": null,
+    "_children_": [],
+    "_height_": {
+        "type": "ref",
+        "value": "preferred"
+    },
+    "_left_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_margin_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_orientation_": 1,
+    "_padding_": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "_percent_": true,
+    "_skin_": "sf51dc37fd0a40178320b8330b005a98",
+    "_top_": {
+        "type": "string",
+        "value": "0dp"
+    },
+    "_width_": {
+        "type": "string",
+        "value": "100%"
+    },
+    "areflexpropsreferenced": false,
+    "autogrowmode": 1,
+    "canUpdateUI": true,
+    "clipbounds": false,
+    "containerweight": 0,
+    "dataDiffs": {
+        "LabelsField": {
+            "__events__": {},
+            "__info__": {
+                "isRoot": true,
+                "kuid": "e63af8f9b5ee469ea4c2153a187fe014",
+                "srcKUID": "da969f897817423280b2ae79a83f1831",
+                "wType": "FlexContainer"
+            }
+        },
+        "lblDetail": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "i51ec7c1d27346f1a2ddb2b7381cb30c",
+                "srcKUID": "f2ad940a55144e3aa422aa0e7e03c9f5",
+                "wType": "Label"
+            },
+            "responsiveData": {},
+            "text": "Collateral_Type"
+        },
+        "lblDetailValue": {
+            "__events__": {},
+            "__info__": {
+                "kuid": "cc21ef0868334a96838e7a776f39845e",
+                "srcKUID": "i42d1c7050b948a086498544defc3e6a",
+                "wType": "Label"
+            },
+            "responsiveData": {},
+            "text": "IMMOVABLE PROPERTY"
+        }
+    },
+    "enablescrolling": true,
+    "focusskin": null,
+    "id": "CollateralTypeData",
+    "info": null,
+    "iscustomlayout": false,
+    "isdatareferenced": false,
+    "isvisible": true,
+    "kuid": "e63af8f9b5ee469ea4c2153a187fe014",
+    "layouttype": 4,
+    "masterType": 0,
+    "name": "kony.ui.UserWidgetInstance",
+    "parent": "flxCollateralType",
+    "pf": "frmCustomer",
+    "retaincontentalignment": false,
+    "retainflexpositionproperties": false,
+    "retainflowhorizontalalignment": false,
+    "snapgridsize": 10,
+    "snaptogrid": true,
+    "sourceUserWidget": "da969f897817423280b2ae79a83f1831",
+    "wType": "UserWidgetInstance",
+    "zindex": 1
+}

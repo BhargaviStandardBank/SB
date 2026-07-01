@@ -36,7 +36,6 @@ define(function() {
         }, controller.args[1], "lblText"), extendConfig({}, controller.args[2], "lblText"));
         var txtBox = new voltmx.ui.TextBox2(extendConfig({
             "autoCapitalize": constants.TEXTBOX_AUTO_CAPITALIZE_NONE,
-            "focusSkin": "defTextBoxFocus",
             "height": "40dp",
             "id": "txtBox",
             "isVisible": true,

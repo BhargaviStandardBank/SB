@@ -7,9 +7,6 @@
             "FBox0d362f77aee3647Controller_desktop": [
                 "FBox0d362f77aee3647Controller"
             ],
-            "flxAddSuspendRowController_desktop": [
-                "flxAddSuspendRowController"
-            ],
             "flxApproverController_desktop": [
                 "flxApproverController"
             ],
@@ -247,11 +244,6 @@
                 "controllerChannel": "desktop",
                 "controllerName": "flxSectionHeaderTemplateController"
             },
-            "TempAddSuspendRow": {
-                "controllerActionDir": "flxAddSuspendRowController",
-                "controllerChannel": "desktop",
-                "controllerName": "flxAddSuspendRowController"
-            },
             "TempApproverSegRow": {
                 "controllerActionDir": "flxApproverController",
                 "controllerChannel": "desktop",
@@ -320,16 +312,6 @@
                 },
                 "friendlyName": "flxSectionHeaderTemplate",
                 "templateId": "flxSectionHeaderTemplate"
-            },
-            "SBCommon.flxAddSuspendRow": {
-                "appName": "SBCommon",
-                "controllerInfo": {
-                    "controllerActionName": "flxAddSuspendRowController",
-                    "controllerChannel": "desktop",
-                    "controllerName": "flxAddSuspendRowController"
-                },
-                "friendlyName": "flxAddSuspendRow",
-                "templateId": "flxAddSuspendRow"
             },
             "SBCommon.flxApprover": {
                 "appName": "SBCommon",

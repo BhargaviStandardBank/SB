@@ -53,6 +53,7 @@
                 "SBCommon.TempRowSuspend",
                 "SBCommon.TempRowSuspensionEntry",
                 "SBCommon.TempSecHdrSuspend",
+                "SBCommon.TempSegRowEcoGrowth",
                 "SBCommon.TempSegRowInternalExpo",
                 "SBCommon.TempSegRowItems",
                 "SBCommon.TempSegSecHdr",

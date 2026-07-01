@@ -211,11 +211,6 @@ define('applicationController',{
             "controllerName": "flxSectionHeaderTemplateController",
             "appName": "SBCommon"
         });
-        voltmx.mvc.registry.add("flxAddSuspendRow", {
-            "viewName": "flxAddSuspendRow",
-            "controllerName": "flxAddSuspendRowController",
-            "appName": "SBCommon"
-        });
         voltmx.mvc.registry.add("flxApprover", {
             "viewName": "flxApprover",
             "controllerName": "flxApproverController",
@@ -322,6 +317,9 @@ define('applicationController',{
             "friendlyName": "frmSchemeList",
             "appName": "ManageScheme"
         }).navigate();
+    },
+    makeCall: function(eventobject) {
+        voltmx.phone.dial(eventobject.text);
     }
 });
 define("com/hc/segApprover/SegApproverScheme/userSegApproverSchemeController", [],function() {
@@ -501,9 +499,10 @@ define("com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesController"
 define('com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntries',[],function() {
     return function(controller) {
         var SuspensionEntries = new voltmx.ui.FlexContainer(extendConfig({
-            "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
+            "height": "100%",
             "id": "SuspensionEntries",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
@@ -521,57 +520,58 @@ define('com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntries',[],functi
         }, controller.args[1], "SuspensionEntries"), extendConfig({}, controller.args[2], "SuspensionEntries"));
         SuspensionEntries.setDefaultUnit(voltmx.flex.DP);
         var segSuspendEntry = new voltmx.ui.SegmentedUI2(extendConfig({
-            "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "data": [{
-                "imgDelet": "imagedrag.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }, {
-                "imgDelet": "imagedrag.png",
+                "imgDelete": "icon_delete.png",
                 "lblCIFNo": "CIF No",
                 "lblCustomerName": "Customer Name",
                 "lblIDNo": "ID No",
                 "lblReason": "Reason"
             }],
             "groupCells": false,
+            "height": "100%",
             "id": "segSuspendEntry",
             "isVisible": true,
             "left": "0dp",
@@ -596,7 +596,7 @@ define('com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntries',[],functi
             "widgetDataMap": {
                 "flxDelete": "flxDelete",
                 "flxSuspensionEntry": "flxSuspensionEntry",
-                "imgDelet": "imgDelet",
+                "imgDelete": "imgDelete",
                 "lblCIFNo": "lblCIFNo",
                 "lblCustomerName": "lblCustomerName",
                 "lblIDNo": "lblIDNo",
@@ -619,7 +619,7 @@ define("com/hcl/addSuspend/AddSuspend/userAddSuspendController", [],function() {
 });
 define("com/hcl/addSuspend/AddSuspend/AddSuspendControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/addSuspend/AddSuspend/AddSuspendController", ["com/hcl/addSuspend/AddSuspend/userAddSuspendController", "com/hcl/addSuspend/AddSuspend/AddSuspendControllerActions"], function() {
@@ -752,10 +752,6 @@ define('com/hcl/addSuspend/AddSuspend/AddSuspend',[],function() {
             "retainSelection": false,
             "rowFocusSkin": "seg2Focus",
             "rowSkin": "seg2Normal",
-            "rowTemplate": kony.mvc.resolveNameFromContext({
-                "appName": "SBCommon",
-                "friendlyName": "flxAddSuspendRow"
-            }),
             "sectionHeaderSkin": "sliPhoneSegmentHeader",
             "selectionBehavior": constants.SEGUI_DEFAULT_BEHAVIOR,
             "separatorColor": "aaaaaa00",
@@ -804,7 +800,6 @@ define('com/hcl/dropDown/DropDown/DropDown',[],function() {
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
-            "focusSkin": "sknFlxTrans",
             "height": "100dp",
             "id": "DropDown",
             "isVisible": true,
@@ -991,14 +986,13 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
-            "focusSkin": "sknFlxTrans",
-            "height": "8%",
+            "height": "60px",
             "id": "FormHeader",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
             "width": "100%",
             "zIndex": 1,
@@ -1014,7 +1008,7 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "id": "lblHdr",
             "isVisible": true,
             "left": "24dp",
-            "skin": "sknLblHeading2",
+            "skin": "sknLblHeading2White",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
             "zIndex": 1
@@ -1023,7 +1017,78 @@ define('com/hcl/hdr/FormHeader/FormHeader',[],function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, controller.args[1], "lblHdr"), extendConfig({}, controller.args[2], "lblHdr"));
-        FormHeader.add(lblHdr);
+        var FlexContainer0cfbd412f8d984f = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": false,
+            "height": "100%",
+            "id": "FlexContainer0cfbd412f8d984f",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+            "reverseLayoutDirection": true,
+            "isModalContainer": false,
+            "right": "24dp",
+            "skin": "slFbox",
+            "top": "0dp",
+            "width": "40%",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "FlexContainer0cfbd412f8d984f"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "FlexContainer0cfbd412f8d984f"), extendConfig({}, controller.args[2], "FlexContainer0cfbd412f8d984f"));
+        FlexContainer0cfbd412f8d984f.setDefaultUnit(voltmx.flex.DP);
+        var imgLogout = new voltmx.ui.Image2(extendConfig({
+            "centerY": "50%",
+            "height": "32dp",
+            "id": "imgLogout",
+            "isVisible": true,
+            "right": "0dp",
+            "skin": "slImage",
+            "src": "icon_logout.png",
+            "top": "23dp",
+            "width": "32dp",
+            "zIndex": 1
+        }, controller.args[0], "imgLogout"), extendConfig({
+            "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "imgLogout"), extendConfig({}, controller.args[2], "imgLogout"));
+        var FlexContainer0c5eafe3e5fdf45 = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "centerY": "50%",
+            "clipBounds": false,
+            "height": "80%",
+            "id": "FlexContainer0c5eafe3e5fdf45",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "isModalContainer": false,
+            "right": "25dp",
+            "skin": "sknFlxWhite20Opac",
+            "top": "35dp",
+            "width": "1px",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "FlexContainer0c5eafe3e5fdf45"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "FlexContainer0c5eafe3e5fdf45"), extendConfig({}, controller.args[2], "FlexContainer0c5eafe3e5fdf45"));
+        FlexContainer0c5eafe3e5fdf45.setDefaultUnit(voltmx.flex.DP);
+        FlexContainer0c5eafe3e5fdf45.add();
+        var Label0b2fdf6dd443b44 = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "id": "Label0b2fdf6dd443b44",
+            "isVisible": true,
+            "right": "24dp",
+            "skin": "sknLblHeading2White",
+            "text": "UserName",
+            "top": "13dp",
+            "width": voltmx.flex.USE_PREFERRED_SIZE,
+            "zIndex": 1
+        }, controller.args[0], "Label0b2fdf6dd443b44"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "Label0b2fdf6dd443b44"), extendConfig({}, controller.args[2], "Label0b2fdf6dd443b44"));
+        FlexContainer0cfbd412f8d984f.add(imgLogout, FlexContainer0c5eafe3e5fdf45, Label0b2fdf6dd443b44);
+        FormHeader.add(lblHdr, FlexContainer0cfbd412f8d984f);
         FormHeader.compInstData = {}
         return FormHeader;
     }
@@ -1087,7 +1152,7 @@ define('com/hcl/labelField/LabelsField/LabelsField',[],function() {
             "left": "0dp",
             "skin": "sknLblHeading4Bold",
             "text": "Label",
-            "top": "5dp",
+            "top": "0dp",
             "width": "100%",
             "zIndex": 1
         }, controller.args[0], "lblDetailValue"), extendConfig({
@@ -1285,7 +1350,6 @@ define('com/hcl/lblText/LabelTextBox/LabelTextBox',[],function() {
         }, controller.args[1], "lblText"), extendConfig({}, controller.args[2], "lblText"));
         var txtBox = new voltmx.ui.TextBox2(extendConfig({
             "autoCapitalize": constants.TEXTBOX_AUTO_CAPITALIZE_NONE,
-            "focusSkin": "defTextBoxFocus",
             "height": "40dp",
             "id": "txtBox",
             "isVisible": true,
@@ -1473,126 +1537,361 @@ define('com/hcl/listData/ListBoxData/ListBoxData',[],function() {
 });
 define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
     return {
+        CONFIG: {
+            MIN_WIDTH: "60dp",
+            MAX_WIDTH: "200dp",
+            ANIMATION_DURATION: 0.25
+        },
         masterData: [{
             header: {
-                lblSectionTitle: "Master Suspend List",
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Simple Light Touch(SLT)",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Loan Eligibility",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "Scored Offer View(PPB)",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "Scored Offer View(BCB)",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "Offer Manger",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "Scoring API",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "SLT",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Complex Lending",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Originate Application",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, ]
+        }, {
+            header: {
+                imgIcon: "icon_view.png",
+                lblSectionTitle: "Customer 360",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "View Customer Info",
+                formID: {
+                    "appName": "Customer360",
+                    "appInfo": "Customer 360",
+                    "friendlyName": "frmCustomer"
+                }
+            }, {
+                lblMenuItem: "View Application",
+                formID: {
+                    "appName": "Customer360",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_financialrisk.png",
+                lblSectionTitle: "Financial Spreading & Risk Rating",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Spread Financials",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "Rate Counterparty",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "View BBRS Ratings",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "BBRS Insights",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_queue.png",
+                lblSectionTitle: "Queue Manager",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "POR Queues",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "Branch (all)",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "RWAE (all)",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "RWAE my queue",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Suspend List",
                 isExpanded: false
             },
             rows: [{
                 lblMenuItem: "Suspend List",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmSuspendList"
                 }
             }, {
                 lblMenuItem: "Request History",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmRequestHistory"
                 }
             }, {
                 lblMenuItem: "Add Suspend",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmAddSuspend"
                 }
             }, {
                 lblMenuItem: "Remove Suspend",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmRemoveSuspend"
                 }
             }, {
                 lblMenuItem: "Approvers",
                 formID: {
                     "appName": "SuspendList",
+                    "appInfo": "Suspend List",
                     "friendlyName": "frmApprovers"
                 }
             }]
         }, {
             header: {
-                lblSectionTitle: "Manage Scheme",
+                imgIcon: "icon_manage.png",
+                lblSectionTitle: "Scheme Maintenance",
                 isExpanded: false
             },
             rows: [{
                 lblMenuItem: "Scheme List",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmSchemeList"
                 }
             }, {
                 lblMenuItem: "Request History",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmSchemeReqHistory"
                 }
             }, {
                 lblMenuItem: "Add Scheme",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmAddScheme"
                 }
             }, {
                 lblMenuItem: "Remove Scheme",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmRemoveScheme"
                 }
             }, {
                 lblMenuItem: "Approvers",
                 formID: {
                     "appName": "ManageScheme",
+                    "appInfo": "Scheme Maintence",
                     "friendlyName": "frmSchemeApprover"
                 }
             }]
         }, {
             header: {
-                lblSectionTitle: "Customer 360",
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Reporting / Dashboard",
                 isExpanded: false
             },
             rows: [{
-                lblMenuItem: "Customer Info",
+                lblMenuItem: "SLT Dashboard",
                 formID: {
-                    "appName": "Customer360",
-                    "friendlyName": "frmCustomer"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }, {
-                lblMenuItem: "Request History",
+                lblMenuItem: "CAMS Dashboard",
                 formID: {
-                    "appName": "ManageScheme",
-                    "friendlyName": "frmSchemeReqHistory"
-                }
-            }, {
-                lblMenuItem: "Add Scheme",
-                formID: {
-                    "appName": "ManageScheme",
-                    "friendlyName": "frmAddScheme"
-                }
-            }, {
-                lblMenuItem: "Remove Scheme",
-                formID: {
-                    "appName": "ManageScheme",
-                    "friendlyName": "frmRemoveScheme"
-                }
-            }, {
-                lblMenuItem: "Approvers",
-                formID: {
-                    "appName": "ManageScheme",
-                    "friendlyName": "frmSchemeApprover"
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
                 }
             }]
-        }],
+        }, {
+            header: {
+                imgIcon: "icon_suspend.png",
+                lblSectionTitle: "Credit Solution Engineering",
+                isExpanded: false
+            },
+            rows: [{
+                lblMenuItem: "Demand Planning App",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }, {
+                lblMenuItem: "Dev Ops Board",
+                formID: {
+                    "appName": "SimpleLightTouch",
+                    "appInfo": "",
+                    "friendlyName": "frmSimpleTouch"
+                }
+            }]
+        }, {
+            header: {
+                imgIcon: "icon_home.png",
+                lblSectionTitle: "Home",
+                isExpanded: false,
+                formID: {
+                    "appName": "StandardBank",
+                    "friendlyName": "frmSBHome"
+                }
+            },
+        }, ],
         constructor: function() {
+            this.view.lblTitle.text = voltmx.i18n.getLocalizedString("i18n.sb.StandardBank");
+            this.view.flxUserDetails.isVisible = false;
             this.view.preShow = this.invokePreShow.bind(this);
             this.view.segMenu.onRowClick = this.onRowItemClick.bind(this);
+            this.view.flxSideMenu.width = '60dp';
+            this.view.flxSideMenu.onHover = (widgetRef, context) => {
+                    if (context.eventType === "enter") {
+                        this.expandSidebar1();
+                    } else if (context.eventType === "leave") {
+                        this.collapseSidebar(); // Assuming you have a collapse function
+                    }
+                }
+                //this.view.flxSegMenu.onHover = this.handleMenuHover.bind(this);
+        },
+        expandSidebar1: function() {
+            var animConfig = {
+                duration: 0.3,
+                fillMode: voltmx.anim.FILL_MODE_FORWARDS
+            };
+            // Animate Side Menu
+            this.view.flxSideMenu.animate(voltmx.ui.createAnimation({
+                100: {
+                    width: "250dp"
+                }
+            }), animConfig, {});
+            // Animate Main Content
+            //     this.view.flxMainContent.animate(
+            //         voltmx.ui.createAnimation({ 100: { left: "250dp" } }), 
+            //         animConfig, 
+            //         {}
+            //     );
+            this.isCollapsed = false;
+            //this.view.flxUserDetails.isVisible = true;
+            //this._updateMenuToIconAndText();
+        },
+        collapseSidebar: function() {
+            var anim = voltmx.ui.createAnimation({
+                100: {
+                    width: "60dp"
+                }
+            });
+            this.view.flxSideMenu.animate(anim, {
+                duration: 0.3,
+                fillMode: voltmx.anim.FILL_MODE_FORWARDS
+            }, {});
+            //     this.view.flxMainContent.animate(
+            //       voltmx.ui.createAnimation({
+            //         100: { left: "70dp" }
+            //       }),
+            //       { duration: 0.3 },
+            //       {}
+            //     );
+            this.isCollapsed = true;
+            this.view.flxUserDetails.isVisible = false;
+            //this._updateMenuToIconOnly();
         },
         invokePreShow: function() {
             try {
                 this.view.segMenu.widgetDataMap = {
                     lblSectionTitle: "lblSectionTitle",
+                    imgIcon: "imgIcon",
                     lblMenuItem: "lblMenuItem",
                     flxSegSecHdr: "flxSegSecHdr"
                 };
+                // this.view.flxSegMenu.width = this.CONFIG.MIN_WIDTH;
                 // Check if we are currently on the Home Form
                 const currentForm = voltmx.application.getCurrentForm().id;
                 // ES6 Ternary: If landing on Home, collapse all; otherwise, keep current state
@@ -1611,10 +1910,40 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             });
             this.refreshMenu();
         },
+        handleMenuHover: function(widget, context) {
+            // context.eventType provides "enter" or "leave"
+            if (context.eventType === constants.ONHOVER_MOUSE_ENTER) {
+                this.animateMenu(this.CONFIG.MAX_WIDTH);
+            } else if (context.eventType === constants.ONHOVER_MOUSE_LEAVE) {
+                this.animateMenu(this.CONFIG.MIN_WIDTH);
+                // Optional: Collapse any open accordion sections when mouse leaves
+                this.collapseAllSections();
+            }
+        },
+        animateMenu: function(targetWidth) {
+            this.view.flxSideMenu.animate(voltmx.ui.createAnimation({
+                "100": {
+                    "width": targetWidth,
+                    "stepConfig": {
+                        "timingFunction": constants.ANIMATION_SERIES_EASE_IN_OUT
+                    }
+                }
+            }), {
+                "delay": 0,
+                "iterationCount": 1,
+                "fillMode": constants.ANIMATION_DIRECTION_FORWARDS,
+                "duration": this.CONFIG.ANIMATION_DURATION
+            }, {
+                "animationEnd": function() {}
+            });
+        },
         refreshMenu: function() {
             const segmentData = this.masterData.map((section, index) => {
                 const headerObj = {
                     lblSectionTitle: section.header.lblSectionTitle,
+                    imgIcon: {
+                        src: section.header.imgIcon
+                    },
                     flxSegSecHdr: {
                         onClick: () => this.onSectionClicked(index)
                     }
@@ -1627,12 +1956,23 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
             this.view.forceLayout();
         },
         onSectionClicked: function(sectionIndex) {
-            const currentState = this.masterData[sectionIndex].header.isExpanded;
-            // Logic: Collapse others (Accordion style)
+            const section = this.masterData[sectionIndex];
+            // 1. Check if the clicked section is "Home"
+            if (section.header.lblSectionTitle === "Home") {
+                try {
+                    const nav = new voltmx.mvc.Navigation(section.header.formID);
+                    nav.navigate();
+                    return; // Exit function so it doesn't try to expand
+                } catch (e) {
+                    voltmx.print("Home Navigation Failed: " + e.message);
+                }
+            }
+            // 2. Normal Accordion Logic for other sections
+            const currentState = section.header.isExpanded;
             this.masterData.forEach(item => {
                 item.header.isExpanded = false;
             });
-            this.masterData[sectionIndex].header.isExpanded = !currentState;
+            section.header.isExpanded = !currentState;
             this.refreshMenu();
         },
         onRowItemClick: function() {
@@ -1642,7 +1982,7 @@ define("com/hcl/menu/SideMenu/userSideMenuController", [],function() {
                 return new Promise((resolve, reject) => {
                     try {
                         const nav = new voltmx.mvc.Navigation(selectedItem.formID);
-                        nav.navigate();
+                        nav.navigate(selectedItem);
                         resolve();
                     } catch (e) {
                         // Throwing exception instead of print for better debugging
@@ -1673,17 +2013,16 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
             "isMaster": true,
-            "focusSkin": "sknFlxTrans",
             "height": "100%",
             "id": "SideMenu",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxTrans",
+            "skin": "sknFlexMenu",
             "top": "0dp",
-            "width": "100%",
-            "zIndex": 1,
+            "width": "60dp",
+            "zIndex": 10,
             "onBreakpointHandler": onBreakpointHandler,
             "breakpoints": [640, 1024, 1366],
             "appName": "SBCommon"
@@ -1691,10 +2030,28 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "paddingInPixel": false
         }, controller.args[1], "SideMenu"), extendConfig({}, controller.args[2], "SideMenu"));
         SideMenu.setDefaultUnit(voltmx.flex.DP);
+        var flxSideMenu = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": true,
+            "height": "100%",
+            "id": "flxSideMenu",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "left": "0dp",
+            "isModalContainer": false,
+            "skin": "sknFlexMenu",
+            "top": "0dp",
+            "width": "60dp",
+            "zIndex": 10,
+            "appName": "SBCommon"
+        }, controller.args[0], "flxSideMenu"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "flxSideMenu"), extendConfig({}, controller.args[2], "flxSideMenu"));
+        flxSideMenu.setDefaultUnit(voltmx.flex.DP);
         var flxLogo = new voltmx.ui.FlexContainer(extendConfig({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "height": "120dp",
+            "height": "8%",
             "id": "flxLogo",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
@@ -1702,7 +2059,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "isModalContainer": false,
             "skin": "sknFlxTrans",
             "top": "0dp",
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "flxLogo"), extendConfig({
@@ -1710,21 +2067,36 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
         }, controller.args[1], "flxLogo"), extendConfig({}, controller.args[2], "flxLogo"));
         flxLogo.setDefaultUnit(voltmx.flex.DP);
         var imgLogo = new voltmx.ui.Image2(extendConfig({
-            "centerX": "50%",
             "centerY": "50%",
-            "height": "100dp",
+            "height": "60dp",
             "id": "imgLogo",
             "isVisible": true,
+            "left": "0dp",
             "skin": "slImage",
             "src": "sblogo.png",
-            "width": "100%",
+            "width": "60dp",
             "zIndex": 1
         }, controller.args[0], "imgLogo"), extendConfig({
             "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, controller.args[1], "imgLogo"), extendConfig({}, controller.args[2], "imgLogo"));
-        flxLogo.add(imgLogo);
+        var lblTitle = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "height": "60dp",
+            "id": "lblTitle",
+            "isVisible": true,
+            "left": "30dp",
+            "right": "0dp",
+            "skin": "sknLblHeading2White",
+            "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sb.StandardBank\")",
+            "zIndex": 1
+        }, controller.args[0], "lblTitle"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_CENTER,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "lblTitle"), extendConfig({}, controller.args[2], "lblTitle"));
+        flxLogo.add(imgLogo, lblTitle);
         var flxSegMenu = new voltmx.ui.FlexScrollContainer(extendConfig({
             "allowHorizontalBounce": false,
             "allowVerticalBounce": true,
@@ -1732,7 +2104,6 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "bounces": true,
             "clipBounds": false,
             "enableScrolling": true,
-            "focusSkin": "sknFlxSrcTrans",
             "horizontalScrollIndicator": true,
             "id": "flxSegMenu",
             "isVisible": true,
@@ -1743,7 +2114,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "skin": "sknFlxSrcTrans",
             "top": "120dp",
             "verticalScrollIndicator": true,
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1
         }, controller.args[0], "flxSegMenu"), extendConfig({
             "paddingInPixel": false
@@ -1753,6 +2124,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "autogrowMode": voltmx.flex.AUTOGROW_HEIGHT,
             "data": [
                 [{
+                        "imgIcon": "imagedrag.png",
                         "lblMenuItem": "Suspend List",
                         "lblSectionTitle": "Label"
                     },
@@ -1765,6 +2137,7 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
                     }]
                 ],
                 [{
+                        "imgIcon": "imagedrag.png",
                         "lblMenuItem": "Customer 360",
                         "lblSectionTitle": "Label"
                     },
@@ -1781,13 +2154,11 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "pageOffDotImage": "pageoffdot.png",
             "pageOnDotImage": "pageondot.png",
             "retainSelection": false,
-            "rowFocusSkin": "seg2Focus",
-            "rowSkin": "seg2Normal",
+            "rowSkin": "segTrans",
             "rowTemplate": kony.mvc.resolveNameFromContext({
                 "appName": "SBCommon",
                 "friendlyName": "flxRowItems"
             }),
-            "sectionHeaderSkin": "sliPhoneSegmentHeader",
             "sectionHeaderTemplate": kony.mvc.resolveNameFromContext({
                 "appName": "SBCommon",
                 "friendlyName": "flxSegSecHdr"
@@ -1800,13 +2171,15 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "top": "0dp",
             "viewType": constants.SEGUI_VIEW_TYPE_TABLEVIEW,
             "widgetDataMap": {
+                "FlexGroup0a043cf8cc66045": "FlexGroup0a043cf8cc66045",
                 "flxLine": "flxLine",
                 "flxRowItems": "flxRowItems",
                 "flxSegSecHdr": "flxSegSecHdr",
+                "imgIcon": "imgIcon",
                 "lblMenuItem": "lblMenuItem",
                 "lblSectionTitle": "lblSectionTitle"
             },
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "segMenu"), extendConfig({
@@ -1814,6 +2187,57 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "paddingInPixel": false
         }, controller.args[1], "segMenu"), extendConfig({}, controller.args[2], "segMenu"));
         flxSegMenu.add(segMenu);
+        var filxHome = new voltmx.ui.FlexContainer(extendConfig({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "bottom": "70dp",
+            "clipBounds": false,
+            "focusSkin": "sknFlxTrans",
+            "height": "64dp",
+            "id": "filxHome",
+            "isVisible": false,
+            "layoutType": voltmx.flex.FREE_FORM,
+            "left": "0dp",
+            "isModalContainer": false,
+            "skin": "sknFlxTrans",
+            "width": "250dp",
+            "zIndex": 1,
+            "appName": "SBCommon"
+        }, controller.args[0], "filxHome"), extendConfig({
+            "paddingInPixel": false
+        }, controller.args[1], "filxHome"), extendConfig({}, controller.args[2], "filxHome"));
+        filxHome.setDefaultUnit(voltmx.flex.DP);
+        var lblHome = new voltmx.ui.Label(extendConfig({
+            "centerY": "50%",
+            "id": "lblHome",
+            "isVisible": true,
+            "left": "5%",
+            "skin": "sknLblHeading5",
+            "text": "Home",
+            "width": voltmx.flex.USE_PREFERRED_SIZE,
+            "zIndex": 1
+        }, controller.args[0], "lblHome"), extendConfig({
+            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "lblHome"), extendConfig({}, controller.args[2], "lblHome"));
+        var CopyimgLogout0d29fe4496d0f49 = new voltmx.ui.Image2(extendConfig({
+            "centerX": "85%",
+            "centerY": "50%",
+            "height": "35dp",
+            "id": "CopyimgLogout0d29fe4496d0f49",
+            "isVisible": false,
+            "left": "0dp",
+            "skin": "slImage",
+            "src": "icon_logout.png",
+            "top": "0dp",
+            "width": "35dp",
+            "zIndex": 1
+        }, controller.args[0], "CopyimgLogout0d29fe4496d0f49"), extendConfig({
+            "imageScaleMode": constants.IMAGE_SCALE_MODE_FIT_TO_DIMENSIONS,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, controller.args[1], "CopyimgLogout0d29fe4496d0f49"), extendConfig({}, controller.args[2], "CopyimgLogout0d29fe4496d0f49"));
+        filxHome.add(lblHome, CopyimgLogout0d29fe4496d0f49);
         var flxUserDetails = new voltmx.ui.FlexContainer(extendConfig({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "bottom": "0dp",
@@ -1821,12 +2245,12 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "focusSkin": "sknFlxTrans",
             "height": "64dp",
             "id": "flxUserDetails",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
             "skin": "sknFlxTrans",
-            "width": "100%",
+            "width": "250dp",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "flxUserDetails"), extendConfig({
@@ -1865,7 +2289,8 @@ define('com/hcl/menu/SideMenu/SideMenu',[],function() {
             "paddingInPixel": false
         }, controller.args[1], "imgLogout"), extendConfig({}, controller.args[2], "imgLogout"));
         flxUserDetails.add(lblUserName, imgLogout);
-        SideMenu.add(flxLogo, flxSegMenu, flxUserDetails);
+        flxSideMenu.add(flxLogo, flxSegMenu, filxHome, flxUserDetails);
+        SideMenu.add(flxSideMenu);
         SideMenu.compInstData = {}
         return SideMenu;
     }
@@ -2225,7 +2650,7 @@ define("com/hcl/segDropDown/SegDropDown/userSegDropDownController", [],function(
 });
 define("com/hcl/segDropDown/SegDropDown/SegDropDownControllerActions", {
     /*
-        This is an auto generated file and any modifications to it may result in corruption of the action sequence.
+      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
     */
 });
 define("com/hcl/segDropDown/SegDropDown/SegDropDownController", ["com/hcl/segDropDown/SegDropDown/userSegDropDownController", "com/hcl/segDropDown/SegDropDown/SegDropDownControllerActions"], function() {
@@ -2636,7 +3061,7 @@ define('com/hcl/segSuspend/SegSuspendList/SegSuspendList',[],function() {
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxWhiteBrd",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "zIndex": 1,
@@ -3167,14 +3592,13 @@ define('com/riskrating/chart/RiskRateChart/RiskRateChart',[],function() {
             "centerX": "50%",
             "centerY": "84%",
             "clipBounds": false,
-            "focusSkin": "slFFocusbox",
             "height": "60dp",
             "id": "flxPin",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "slFbox",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "60dp",
             "zIndex": 1,
@@ -3330,59 +3754,18 @@ define("SBCommon/flxSectionHeaderTemplate", [],function() {
         return flxSectionHeaderTemplate;
     }
 });
-define("SBCommon/flxAddSuspendRow", [],function() {
-    return function(controller) {
-        var flxAddSuspendRow = new voltmx.ui.FlexContainer({
-            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-            "clipBounds": false,
-            "focusSkin": "slFFocusbox",
-            "height": "40dp",
-            "id": "flxAddSuspendRow",
-            "isVisible": true,
-            "layoutType": voltmx.flex.FREE_FORM,
-            "left": "0dp",
-            "isModalContainer": false,
-            "skin": "slFbox",
-            "top": "0dp",
-            "width": "100%",
-            "breakpoints": [640, 1024, 1366],
-            "appName": "SBCommon"
-        }, {
-            "paddingInPixel": false
-        }, {});
-        flxAddSuspendRow.setDefaultUnit(voltmx.flex.DP);
-        var lblAdd = new voltmx.ui.Label({
-            "centerY": "50%",
-            "id": "lblAdd",
-            "isVisible": true,
-            "left": "16dp",
-            "skin": "sknLblFormLevel",
-            "text": "Label",
-            "top": "13dp",
-            "width": voltmx.flex.USE_PREFERRED_SIZE,
-            "zIndex": 1
-        }, {
-            "contentAlignment": constants.CONTENT_ALIGN_MIDDLE_LEFT,
-            "padding": [0, 0, 0, 0],
-            "paddingInPixel": false
-        }, {});
-        flxAddSuspendRow.add(lblAdd);
-        return flxAddSuspendRow;
-    }
-});
 define("SBCommon/flxApprover", [],function() {
     return function(controller) {
         var flxApprover = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "focusSkin": "slFFocusbox",
             "height": "40dp",
             "id": "flxApprover",
             "isVisible": true,
             "layoutType": voltmx.flex.FLOW_HORIZONTAL,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "slFbox",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -3450,14 +3833,13 @@ define("SBCommon/flxApprover", [],function() {
         var flxEdit = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "focusSkin": "slFFocusbox",
             "height": "25dp",
             "id": "flxEdit",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "2%",
             "isModalContainer": false,
-            "skin": "slFbox",
+            "skin": "sknFlxTrans",
             "top": "9dp",
             "width": "25dp",
             "zIndex": 1,
@@ -3485,14 +3867,13 @@ define("SBCommon/flxApprover", [],function() {
         var flxDelete = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "focusSkin": "slFFocusbox",
             "height": "25dp",
             "id": "flxDelete",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "2%",
             "isModalContainer": false,
-            "skin": "slFbox",
+            "skin": "sknFlxTrans",
             "top": "9dp",
             "width": "25dp",
             "zIndex": 1,
@@ -3890,10 +4271,10 @@ define("SBCommon/flxSuspensionEntry", [],function() {
             "paddingInPixel": false
         }, {});
         flxDelete.setDefaultUnit(voltmx.flex.DP);
-        var imgDelet = new voltmx.ui.Image2({
+        var imgDelete = new voltmx.ui.Image2({
             "centerX": "50%",
             "height": "30dp",
-            "id": "imgDelet",
+            "id": "imgDelete",
             "isVisible": true,
             "skin": "slImage",
             "src": "icon_delete.png",
@@ -3905,7 +4286,7 @@ define("SBCommon/flxSuspensionEntry", [],function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, {});
-        flxDelete.add(imgDelet);
+        flxDelete.add(imgDelete);
         flxSuspensionEntry.add(lblCIFNo, lblIDNo, lblCustomerName, lblReason, flxDelete);
         return flxSuspensionEntry;
     }
@@ -4233,14 +4614,13 @@ define("SBCommon/flxRowItems", [],function() {
         var flxRowItems = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "focusSkin": "sknFlxRowFocus",
             "height": "40px",
             "id": "flxRowItems",
             "isVisible": true,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxRow",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -4253,8 +4633,8 @@ define("SBCommon/flxRowItems", [],function() {
             "centerY": "50%",
             "id": "lblMenuItem",
             "isVisible": true,
-            "left": "4%",
-            "skin": "sknLblFormLevel",
+            "left": "60dp",
+            "skin": "sknLblWhiteFormLevel",
             "text": "Label",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
             "zIndex": 1
@@ -4272,14 +4652,13 @@ define("SBCommon/flxSegSecHdr", [],function() {
         var flxSegSecHdr = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
             "clipBounds": false,
-            "focusSkin": "sknFlxBGEDF5FF",
             "height": "40px",
             "id": "flxSegSecHdr",
             "isVisible": true,
             "layoutType": voltmx.flex.FLOW_VERTICAL,
             "left": "0dp",
             "isModalContainer": false,
-            "skin": "sknFlxBGEDF5FF",
+            "skin": "sknFlxTrans",
             "top": "0dp",
             "width": "100%",
             "breakpoints": [640, 1024, 1366],
@@ -4288,12 +4667,46 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "paddingInPixel": false
         }, {});
         flxSegSecHdr.setDefaultUnit(voltmx.flex.DP);
+        var FlexGroup0a043cf8cc66045 = new voltmx.ui.FlexContainer({
+            "autogrowMode": voltmx.flex.AUTOGROW_NONE,
+            "clipBounds": false,
+            "focusSkin": "slFFocusbox",
+            "height": "100%",
+            "id": "FlexGroup0a043cf8cc66045",
+            "isVisible": true,
+            "layoutType": voltmx.flex.FLOW_HORIZONTAL,
+            "left": "0dp",
+            "isModalContainer": false,
+            "skin": "sknFlxTrans",
+            "top": "0dp",
+            "width": "100%",
+            "appName": "SBCommon"
+        }, {
+            "paddingInPixel": false
+        }, {});
+        FlexGroup0a043cf8cc66045.setDefaultUnit(voltmx.flex.DP);
+        var imgIcon = new voltmx.ui.Image2({
+            "centerY": "50%",
+            "height": "30dp",
+            "id": "imgIcon",
+            "isVisible": true,
+            "left": "1%",
+            "skin": "slImage",
+            "src": "imagedrag.png",
+            "top": "0dp",
+            "width": "60dp",
+            "zIndex": 1
+        }, {
+            "imageScaleMode": constants.IMAGE_SCALE_MODE_MAINTAIN_ASPECT_RATIO,
+            "padding": [0, 0, 0, 0],
+            "paddingInPixel": false
+        }, {});
         var lblSectionTitle = new voltmx.ui.Label({
             "centerY": "50%",
             "id": "lblSectionTitle",
             "isVisible": true,
-            "left": "4%",
-            "skin": "sknLblHeading5",
+            "left": "1%",
+            "skin": "sknLblWhiteHeading5",
             "text": "Label",
             "top": "0",
             "width": voltmx.flex.USE_PREFERRED_SIZE,
@@ -4303,14 +4716,14 @@ define("SBCommon/flxSegSecHdr", [],function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, {});
+        FlexGroup0a043cf8cc66045.add(imgIcon, lblSectionTitle);
         var flxLine = new voltmx.ui.FlexContainer({
             "autogrowMode": voltmx.flex.AUTOGROW_NONE,
-            "centerY": "29%",
             "clipBounds": false,
             "focusSkin": "sknFlxLine",
             "height": "1%",
             "id": "flxLine",
-            "isVisible": true,
+            "isVisible": false,
             "layoutType": voltmx.flex.FREE_FORM,
             "left": "0dp",
             "isModalContainer": false,
@@ -4324,7 +4737,7 @@ define("SBCommon/flxSegSecHdr", [],function() {
         }, {});
         flxLine.setDefaultUnit(voltmx.flex.DP);
         flxLine.add();
-        flxSegSecHdr.add(lblSectionTitle, flxLine);
+        flxSegSecHdr.add(FlexGroup0a043cf8cc66045, flxLine);
         return flxSegSecHdr;
     }
 });
@@ -4550,20 +4963,6 @@ define("SBCommon/flxSectionHeaderTemplateController", ["SBCommon/userflxSectionH
     return voltmx.visualizer.mixinControllerActions(controller, controllerActions);
 });
 
-define("SBCommon/userflxAddSuspendRowController", {
-    //Type your controller code here 
-});
-define("SBCommon/flxAddSuspendRowControllerActions", {
-    /*
-      This is an auto generated file and any modifications to it may result in corruption of the action sequence.
-    */
-});
-define("SBCommon/flxAddSuspendRowController", ["SBCommon/userflxAddSuspendRowController", "SBCommon/flxAddSuspendRowControllerActions"], function() {
-    var controller = require("SBCommon/userflxAddSuspendRowController");
-    var controllerActions = ["SBCommon/flxAddSuspendRowControllerActions"];
-    return voltmx.visualizer.mixinControllerActions(controller, controllerActions);
-});
-
 define("SBCommon/userflxApproverController", {
     //Type your controller code here 
 });
@@ -4764,6 +5163,6 @@ define("ManageScheme/navigation/NavigationController", {
     //Add your navigation controller code here.
 });
 
-require(['applicationController','com/hc/segApprover/SegApproverScheme/SegApproverSchemeController','com/hc/segApprover/SegApproverScheme/SegApproverScheme','com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesController','com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntries','com/hcl/addSuspend/AddSuspend/AddSuspendController','com/hcl/addSuspend/AddSuspend/AddSuspend','com/hcl/dropDown/DropDown/DropDownController','com/hcl/dropDown/DropDown/DropDown','com/hcl/hdr/FormHeader/FormHeaderController','com/hcl/hdr/FormHeader/FormHeader','com/hcl/labelField/LabelsField/LabelsFieldController','com/hcl/labelField/LabelsField/LabelsField','com/hcl/lblList/LabelList/LabelListController','com/hcl/lblList/LabelList/LabelList','com/hcl/lblText/LabelTextBox/LabelTextBoxController','com/hcl/lblText/LabelTextBox/LabelTextBox','com/hcl/lblTextArea/LabelTextArea/LabelTextAreaController','com/hcl/lblTextArea/LabelTextArea/LabelTextArea','com/hcl/listData/ListBoxData/ListBoxDataController','com/hcl/listData/ListBoxData/ListBoxData','com/hcl/menu/SideMenu/SideMenuController','com/hcl/menu/SideMenu/SideMenu','com/hcl/popup/AlertUp/AlertUpController','com/hcl/popup/AlertUp/AlertUp','com/hcl/schemeList/SchemeList/SchemeListController','com/hcl/schemeList/SchemeList/SchemeList','com/hcl/segDropDown/SegDropDown/SegDropDownController','com/hcl/segDropDown/SegDropDown/SegDropDown','com/hcl/segHdr/segHeader/segHeaderController','com/hcl/segHdr/segHeader/segHeader','com/hcl/segSuspend/SegSuspendList/SegSuspendListController','com/hcl/segSuspend/SegSuspendList/SegSuspendList','com/hcl/srchTextBox/SrchTextBox/SrchTextBoxController','com/hcl/srchTextBox/SrchTextBox/SrchTextBox','com/hcl/subHdr/SubHdr/SubHdrController','com/hcl/subHdr/SubHdr/SubHdr','com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdrController','com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdr','com/riskrating/chart/RiskRateChart/RiskRateChartController','com/riskrating/chart/RiskRateChart/RiskRateChart','SBCommon/flxSampleRowTemplate','SBCommon/flxSectionHeaderTemplate','SBCommon/flxAddSuspendRow','SBCommon/flxApprover','SBCommon/flxDropDown','SBCommon/flxSchemeList','SBCommon/flxRowSuspend','SBCommon/flxSuspensionEntry','SBCommon/flxSecHdrSuspend','SBCommon/flxRow','SBCommon/flxRowItems','SBCommon/flxSegSecHdr','ManageScheme/CopyFBox0g0122a027e2e45','ManageScheme/FBox0d362f77aee3647','ManageScheme/flxSampleRowTemplate','ManageScheme/flxSectionHeaderTemplate','SBCommon/flxSampleRowTemplateController','SBCommon/flxSectionHeaderTemplateController','SBCommon/flxAddSuspendRowController','SBCommon/flxApproverController','SBCommon/flxDropDownController','SBCommon/flxSchemeListController','SBCommon/flxRowSuspendController','SBCommon/flxSuspensionEntryController','SBCommon/flxSecHdrSuspendController','SBCommon/flxRowController','SBCommon/flxRowItemsController','SBCommon/flxSegSecHdrController','ManageScheme/CopyFBox0g0122a027e2e45Controller','ManageScheme/FBox0d362f77aee3647Controller','ManageScheme/flxSampleRowTemplateController','ManageScheme/flxSectionHeaderTemplateController','SBCommon/navigation/NavigationModel','SBCommon/navigation/NavigationController','ManageScheme/navigation/NavigationModel','ManageScheme/navigation/NavigationController'], function(){});
+require(['applicationController','com/hc/segApprover/SegApproverScheme/SegApproverSchemeController','com/hc/segApprover/SegApproverScheme/SegApproverScheme','com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntriesController','com/hcl/SuspensionEntries/SuspensionEntries/SuspensionEntries','com/hcl/addSuspend/AddSuspend/AddSuspendController','com/hcl/addSuspend/AddSuspend/AddSuspend','com/hcl/dropDown/DropDown/DropDownController','com/hcl/dropDown/DropDown/DropDown','com/hcl/hdr/FormHeader/FormHeaderController','com/hcl/hdr/FormHeader/FormHeader','com/hcl/labelField/LabelsField/LabelsFieldController','com/hcl/labelField/LabelsField/LabelsField','com/hcl/lblList/LabelList/LabelListController','com/hcl/lblList/LabelList/LabelList','com/hcl/lblText/LabelTextBox/LabelTextBoxController','com/hcl/lblText/LabelTextBox/LabelTextBox','com/hcl/lblTextArea/LabelTextArea/LabelTextAreaController','com/hcl/lblTextArea/LabelTextArea/LabelTextArea','com/hcl/listData/ListBoxData/ListBoxDataController','com/hcl/listData/ListBoxData/ListBoxData','com/hcl/menu/SideMenu/SideMenuController','com/hcl/menu/SideMenu/SideMenu','com/hcl/popup/AlertUp/AlertUpController','com/hcl/popup/AlertUp/AlertUp','com/hcl/schemeList/SchemeList/SchemeListController','com/hcl/schemeList/SchemeList/SchemeList','com/hcl/segDropDown/SegDropDown/SegDropDownController','com/hcl/segDropDown/SegDropDown/SegDropDown','com/hcl/segHdr/segHeader/segHeaderController','com/hcl/segHdr/segHeader/segHeader','com/hcl/segSuspend/SegSuspendList/SegSuspendListController','com/hcl/segSuspend/SegSuspendList/SegSuspendList','com/hcl/srchTextBox/SrchTextBox/SrchTextBoxController','com/hcl/srchTextBox/SrchTextBox/SrchTextBox','com/hcl/subHdr/SubHdr/SubHdrController','com/hcl/subHdr/SubHdr/SubHdr','com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdrController','com/hcl/suspenEntryHdr/SuspenEntryHdr/SuspenEntryHdr','com/riskrating/chart/RiskRateChart/RiskRateChartController','com/riskrating/chart/RiskRateChart/RiskRateChart','SBCommon/flxSampleRowTemplate','SBCommon/flxSectionHeaderTemplate','SBCommon/flxApprover','SBCommon/flxDropDown','SBCommon/flxSchemeList','SBCommon/flxRowSuspend','SBCommon/flxSuspensionEntry','SBCommon/flxSecHdrSuspend','SBCommon/flxRow','SBCommon/flxRowItems','SBCommon/flxSegSecHdr','ManageScheme/CopyFBox0g0122a027e2e45','ManageScheme/FBox0d362f77aee3647','ManageScheme/flxSampleRowTemplate','ManageScheme/flxSectionHeaderTemplate','SBCommon/flxSampleRowTemplateController','SBCommon/flxSectionHeaderTemplateController','SBCommon/flxApproverController','SBCommon/flxDropDownController','SBCommon/flxSchemeListController','SBCommon/flxRowSuspendController','SBCommon/flxSuspensionEntryController','SBCommon/flxSecHdrSuspendController','SBCommon/flxRowController','SBCommon/flxRowItemsController','SBCommon/flxSegSecHdrController','ManageScheme/CopyFBox0g0122a027e2e45Controller','ManageScheme/FBox0d362f77aee3647Controller','ManageScheme/flxSampleRowTemplateController','ManageScheme/flxSectionHeaderTemplateController','SBCommon/navigation/NavigationModel','SBCommon/navigation/NavigationController','ManageScheme/navigation/NavigationModel','ManageScheme/navigation/NavigationController'], function(){});
 define("sparequirefileslist", function(){});
 

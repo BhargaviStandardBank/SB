@@ -211,11 +211,6 @@ define({
             "controllerName": "flxSectionHeaderTemplateController",
             "appName": "SBCommon"
         });
-        voltmx.mvc.registry.add("flxAddSuspendRow", {
-            "viewName": "flxAddSuspendRow",
-            "controllerName": "flxAddSuspendRowController",
-            "appName": "SBCommon"
-        });
         voltmx.mvc.registry.add("flxApprover", {
             "viewName": "flxApprover",
             "controllerName": "flxApproverController",
@@ -322,5 +317,8 @@ define({
             "friendlyName": "frmSchemeList",
             "appName": "ManageScheme"
         }).navigate();
+    },
+    makeCall: function(eventobject) {
+        voltmx.phone.dial(eventobject.text);
     }
 });

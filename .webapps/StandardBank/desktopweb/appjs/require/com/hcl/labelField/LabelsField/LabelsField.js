@@ -40,7 +40,7 @@ define(function() {
             "left": "0dp",
             "skin": "sknLblHeading4Bold",
             "text": "Label",
-            "top": "5dp",
+            "top": "0dp",
             "width": "100%",
             "zIndex": 1
         }, controller.args[0], "lblDetailValue"), extendConfig({

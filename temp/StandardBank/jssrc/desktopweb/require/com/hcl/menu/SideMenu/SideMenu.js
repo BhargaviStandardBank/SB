@@ -72,22 +72,22 @@ define(function() {
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
         }, controller.args[1], "imgLogo"), extendConfig({}, controller.args[2], "imgLogo"));
-        var Label0cff1e13b3a6943 = new voltmx.ui.Label(extendConfig({
+        var lblTitle = new voltmx.ui.Label(extendConfig({
             "centerY": "50%",
             "height": "60dp",
-            "id": "Label0cff1e13b3a6943",
+            "id": "lblTitle",
             "isVisible": true,
             "left": "30dp",
             "right": "0dp",
             "skin": "sknLblHeading2White",
-            "text": "Standard Bank",
+            "i18n_text": "voltmx.i18n.getLocalizedString(\"i18n.sb.StandardBank\")",
             "zIndex": 1
-        }, controller.args[0], "Label0cff1e13b3a6943"), extendConfig({
+        }, controller.args[0], "lblTitle"), extendConfig({
             "contentAlignment": constants.CONTENT_ALIGN_CENTER,
             "padding": [0, 0, 0, 0],
             "paddingInPixel": false
-        }, controller.args[1], "Label0cff1e13b3a6943"), extendConfig({}, controller.args[2], "Label0cff1e13b3a6943"));
-        flxLogo.add(imgLogo, Label0cff1e13b3a6943);
+        }, controller.args[1], "lblTitle"), extendConfig({}, controller.args[2], "lblTitle"));
+        flxLogo.add(imgLogo, lblTitle);
         var flxSegMenu = new voltmx.ui.FlexScrollContainer(extendConfig({
             "allowHorizontalBounce": false,
             "allowVerticalBounce": true,
@@ -105,7 +105,7 @@ define(function() {
             "skin": "sknFlxSrcTrans",
             "top": "120dp",
             "verticalScrollIndicator": true,
-            "width": "250dp",
+            "width": "265dp",
             "zIndex": 1
         }, controller.args[0], "flxSegMenu"), extendConfig({
             "paddingInPixel": false
@@ -170,7 +170,7 @@ define(function() {
                 "lblMenuItem": "lblMenuItem",
                 "lblSectionTitle": "lblSectionTitle"
             },
-            "width": "250dp",
+            "width": "100%",
             "zIndex": 1,
             "appName": "SBCommon"
         }, controller.args[0], "segMenu"), extendConfig({
